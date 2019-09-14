@@ -27,7 +27,7 @@ class CategoryController extends Controller
     public function create()
     {
         $cat_list = array();
-        $cat_list[0]='انتخاب سر دسته';
+        //$cat_list[0]='انتخاب سر دسته';
         $cat = Category::where('parent_id',0)->get(); //get: cat_name
 
         foreach ($cat as $key=>$item)

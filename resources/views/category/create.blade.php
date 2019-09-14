@@ -41,10 +41,11 @@
 		<div class="form-group">
 			<label for="title">انتخاب دسته</label>
 			 <select name="parent_id" class="selectpicker" data-live-search="true">
+			 <option value="">انتخاب دسته</option>
 
 			 @for ($i=1; $i <=count($cat_list); $i++)
 		        <option value="{{ $i }}">{{ $cat_list[$i] }}</option>
-		     @endfor
+		    @endfor
 
 			  
 			</select> 
