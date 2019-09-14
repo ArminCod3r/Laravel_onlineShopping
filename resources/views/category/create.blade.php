@@ -56,7 +56,7 @@
 		</div>
 	
 		<div class="form-group">
-			<input type="file" name="img" id="img" style="display: none;">
+			<input type="file" name="img" id="img" style="display: none;" onchange="load_file(event)">
 			<img src="{{ url('images/noimage.jpg') }}" id='res_img' width="150" onclick="select_file()">
 
 			@if($errors->has('parent_id'))
@@ -84,6 +84,16 @@
 		   document.getElementById('img').click();
 		};
 
+		load_file=function (event)
+		{
+		    var render=new FileReader;
+		    render.onload=function ()
+		    {
+		        var res_img=document.getElementById('res_img');
+		        res_img.src=render.result;
+		    };
+		    render.readAsDataURL(event.target.files[0]);
+		}
 
 	</script>
 @endsection
