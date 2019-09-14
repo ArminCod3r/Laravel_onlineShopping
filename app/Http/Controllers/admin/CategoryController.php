@@ -26,9 +26,27 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        
+        $cat_list = array();
+        $cat_list[0]='انتخاب سر دسته';
+        $cat = Category::where('parent_id',0)->get(); //get: cat_name
 
-        return view('category/create');
+        foreach ($cat as $key=>$item)
+        {
+            $cat_list[$item->id]=$item->cat_name;
+
+            foreach ($item->getChild as $key2=>$item2)
+            {
+                $cat_list[$item2->id]=' - '.$item2->cat_name;
+
+                foreach ($item2->getChild as $key3=>$item3)
+                {
+                    $cat_list[$item3->id]=' - - '.$item3->cat_name;
+                }
+            }
+        }
+
+        //return $cat_list;
+        return view('category/create')->with('cat_list', $cat_list);
     }
 
     /**
@@ -39,6 +57,12 @@ class CategoryController extends Controller
      */
     public function store(CategoryRequest $request)
     {
+        $category = new Category();
+        $category->cat_name = $request->input('cat_name');
+        $category->cat_ename = $request->input('cat_ename');
+        $category->parent_id = $request->input('parent_id');
+        $category->save();
+
         return 'inserted';
     }
 

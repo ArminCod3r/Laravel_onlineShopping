@@ -41,13 +41,11 @@
 		<div class="form-group">
 			<label for="title">انتخاب دسته</label>
 			 <select name="parent_id" class="selectpicker" data-live-search="true">
-			 <option value="a">aa</option>
-			 <option value="b">bb</option>
-			 <!--@if(count($cat) > 0)
-				 @foreach($cat as $item)			 	
-				 	<option value="{{ $item->id }}">{{ $item->cat_name }}</option>
-				 @endforeach
-			 @endif-->
+
+			 @for ($i=1; $i <=count($cat_list); $i++)
+		        <option value="{{ $i }}">{{ $cat_list[$i] }}</option>
+		     @endfor
+
 			  
 			</select> 
 
