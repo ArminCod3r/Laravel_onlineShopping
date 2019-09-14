@@ -59,8 +59,8 @@
 			<input type="file" name="img" id="img" style="display: none;" onchange="load_file(event)">
 			<img src="{{ url('images/noimage.jpg') }}" id='res_img' width="150" onclick="select_file()">
 
-			@if($errors->has('parent_id'))
-  				<span style="color: red;"> {{ $errors->first('parent_id') }} </span>
+			@if($errors->has('img'))
+  				<span style="color: red;"> {{ $errors->first('img') }} </span>
   			@endif
 		</div>
 

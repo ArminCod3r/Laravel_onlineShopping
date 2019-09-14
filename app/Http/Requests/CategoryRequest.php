@@ -25,8 +25,9 @@ class CategoryRequest extends FormRequest
     {
         return [
             'cat_name'=>'required',
-            'cat_ename'=>'required',
+            'cat_ename'=>'required|unique:category',
             'parent_id'=>'required',
+            'img'=>'image|max:1024',
         ];
     }
 
@@ -36,6 +37,7 @@ class CategoryRequest extends FormRequest
             'cat_name'=>'نام دسته',
             'cat_ename'=>'نام لاتین دسته',
             'parent_id'=>'سر دسته',
+            'img' => 'تصویر',
         ];
     }
 }

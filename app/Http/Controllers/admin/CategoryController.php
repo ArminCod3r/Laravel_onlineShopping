@@ -58,12 +58,24 @@ class CategoryController extends Controller
     public function store(CategoryRequest $request)
     {
         $category = new Category();
+
+        if($request->hasFile('img'))
+        {
+            $fileName = time().'.'.$request->file('img')->getClientOriginalExtension();
+
+            if($request->file('img')->move('upload', $fileName))
+                $category->img = $fileName;
+
+        }
+        //$category->saveorFail();
+        
         $category->cat_name = $request->input('cat_name');
         $category->cat_ename = $request->input('cat_ename');
         $category->parent_id = $request->input('parent_id');
         $category->save();
 
-        return 'inserted';
+        $url = 'category/'.$category->id.'/edit';
+        return redirect($url);
     }
 
     /**
@@ -85,7 +97,7 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        return $id;
     }
 
     /**
