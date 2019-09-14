@@ -41,7 +41,7 @@
 		<div class="form-group">
 			<label for="title">انتخاب دسته</label>
 			 <select name="parent_id" class="selectpicker" data-live-search="true">
-			 <option value="">انتخاب دسته</option>
+			 <option value="0">انتخاب دسته</option>
 
 			 @for ($i=1; $i <=count($cat_list); $i++)
 		        <option value="{{ $i }}">{{ $cat_list[$i] }}</option>
@@ -56,7 +56,12 @@
 		</div>
 	
 		<div class="form-group">
-			<input type="file" name="img" id="fileToUpload">
+			<input type="file" name="img" id="img" style="display: none;">
+			<img src="{{ url('images/noimage.jpg') }}" id='res_img' width="150" onclick="select_file()">
+
+			@if($errors->has('parent_id'))
+  				<span style="color: red;"> {{ $errors->first('parent_id') }} </span>
+  			@endif
 		</div>
 
 		<input type="submit" name="submit" value="ثبت" class="btn btn-primary">
@@ -71,4 +76,14 @@
 @section('footer')
 	<script type="text/javascript" src="{{ url('js/bootstrap-select.js') }}"></script>
 	<script type="text/javascript" src="{{ url('js/defaults-fa_IR.js') }}"></script>
+
+	<script>
+
+		select_file=function()
+		{
+		   document.getElementById('img').click();
+		};
+
+
+	</script>
 @endsection
