@@ -18,6 +18,6 @@ class Category extends Model
     //
     public function getChild()
     {
-    	return $this->hasMany(Category::class, 'id', 'parent_id');
+    	return $this->hasMany(Category::class, 'parent_id', 'id');
     }
 }
