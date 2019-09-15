@@ -7,6 +7,7 @@ use App\Category;
 use App\Http\Requests\CategoryRequest;
 use App\Http\Controllers\Controller;
 use DB;
+use Illuminate\Support\Facades\Storage;
 
 class CategoryController extends Controller
 {
@@ -147,7 +148,33 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return 'hi';
+        $category = Category::find($id);
+
+        $category->cat_name = $request->input('cat_name');
+        $category->cat_ename = $request->input('cat_ename');
+        $category->parent_id = $request->input('parent_id');
+
+        if($request->hasFile('img'))
+        {
+            $fileName = time().'.'.$request->file('img')->getClientOriginalExtension();
+
+            $path = 'upload/'.$category->img;
+            if(file_exists($path))
+            {
+                unlink($path);
+            }
+            
+            if($request->file('img')->move('upload', $fileName))
+            {
+                $category->img = $fileName;
+            }
+
+        }
+
+        $category->save();
+
+        $url = 'category/'. $id .'/edit';
+        return redirect($url);
     }
 
     /**
