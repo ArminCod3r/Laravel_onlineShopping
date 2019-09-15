@@ -45,6 +45,21 @@ class CategoryController extends Controller
             }
         }
 
+        /*$cat_list2 = array();
+        $cat_list3 = array();
+
+        for ($i = 0;$i<=count($cat)-1; $i++)
+        { 
+            $cat_list2[$i]= $cat[$i]->cat_name;
+
+            foreach ($cat[$i]->getChild as $key => $item)
+            {
+                $cat_list2[$i++]= ' - '.$item;
+            }
+        }
+
+        return $cat_list2;*/
+
         //return $cat_list;
         return view('category/create')->with('cat_list', $cat_list);
     }
