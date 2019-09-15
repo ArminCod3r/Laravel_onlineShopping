@@ -15,4 +15,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('category','admin\CategoryController');
+Route::resource('admin/category','admin\CategoryController');
+
+Route::get('admin', function () {
+    return view('admin.index');
+});

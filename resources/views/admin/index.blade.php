@@ -1,4 +1,4 @@
-@extends('layouts/admin')
+@extends('admin/layouts/adminLayout')
 
 @section('header')
 	<title>خانه</title>

@@ -18,7 +18,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('category/index');
+        return view('admin/category/index');
     }
 
     /**
@@ -63,7 +63,7 @@ class CategoryController extends Controller
         return $cat_list2;*/
 
         //return $cat_list;
-        return view('category/create')->with('cat_list', $cat_list);
+        return view('admin/category/create')->with('cat_list', $cat_list);
     }
 
     /**
