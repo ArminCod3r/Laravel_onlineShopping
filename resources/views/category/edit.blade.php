@@ -15,6 +15,11 @@
 	</style>
 @endsection
 
+@section('custom-title')
+  ویرایش : {{ $category->cat_name }}
+@endsection
+
+
 @section('content1')
  <form action="{{route('category.update', $category->id ) }}" method="POST" accept-charset="utf-8" enctype="multipart/form-data"> <!--stack: 40803339-->
 		{{ csrf_field() }}

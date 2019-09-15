@@ -15,6 +15,11 @@
 	</style>
 @endsection
 
+@section('custom-title')
+  ایجاد دسته جدید
+@endsection
+
+
 @section('content1')
  <form action="{{ action('admin\CategoryController@store') }}" method="POST" accept-charset="utf-8" enctype="multipart/form-data">
 		{{ csrf_field() }}

@@ -4,7 +4,9 @@
 	<title>خانه</title>
 @endsection
 
-
+@section('custom-title')
+  داشبورد
+@endsection
 
 @section('stat-box')
 
