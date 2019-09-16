@@ -198,6 +198,6 @@ class CategoryController extends Controller
             unlink($path);
         }
 
-        return 'Category has been deleted';
+        return redirect()->back();;
     }
 }
