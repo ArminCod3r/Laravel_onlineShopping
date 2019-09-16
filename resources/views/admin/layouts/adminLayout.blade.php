@@ -309,14 +309,14 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="admin/category" class="nav-link">
+                  <a href="/admin/category" class="nav-link">
                     <i class="fa fa-circle-o nav-icon"></i>
                     <p>لیست دسته ها</p>
                   </a>
                 </li>
 
                 <li class="nav-item">
-                  <a href="admin/category/create" class="nav-link">
+                  <a href="/admin/category/create" class="nav-link">
                     <i class="fa fa-circle-o nav-icon"></i>
                     <p>دسته جدید</p>
                   </a>
