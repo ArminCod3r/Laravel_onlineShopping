@@ -35,15 +35,15 @@ class CategoryController extends Controller
 
         foreach ($cat as $key=>$item)
         {
-            $cat_list[$item->id]=$item->cat_name;
+            $cat_list[($item->id)-1]=$item->cat_name;
 
             foreach ($item->getChild as $key2=>$item2)
             {
-                $cat_list[$item2->id]=' - '.$item2->cat_name;
+                $cat_list[($item2->id)-1]=' - '.$item2->cat_name;
 
                 foreach ($item2->getChild as $key3=>$item3)
                 {
-                    $cat_list[$item3->id]=' - - '.$item3->cat_name;
+                    $cat_list[($item3->id)-1]=' - - '.$item3->cat_name;
                 }
             }
         }
