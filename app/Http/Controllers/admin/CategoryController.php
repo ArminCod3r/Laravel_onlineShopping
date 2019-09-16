@@ -186,6 +186,16 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $category = Category::find($id);
+
+        $category->delete();
+
+        $path = 'public/upload/'.$category->img;
+        if(file_exists($path))
+        {
+            unlink($path);
+        }
+
+        return 'Category has been deleted';
     }
 }
