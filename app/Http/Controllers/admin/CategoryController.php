@@ -91,7 +91,7 @@ class CategoryController extends Controller
         $category->parent_id = $request->input('parent_id');
         $category->save();
 
-        $url = 'category/'.$category->id.'/edit';
+        $url = 'admin/category/'.$category->id.'/edit';
         return redirect($url);
     }
 
@@ -136,7 +136,7 @@ class CategoryController extends Controller
         }
 
         //return ($category->getParent()->get())[0]->id; // stackoverflow: 34571957
-        return view('category/edit', ['category'=> $category , 'cat_list'=>$cat_list]);
+        return view('admin/category/edit', ['category'=> $category , 'cat_list'=>$cat_list]);
     }
 
     /**
@@ -173,7 +173,7 @@ class CategoryController extends Controller
 
         $category->save();
 
-        $url = 'category/'. $id .'/edit';
+        $url = 'admin/category/'. $id .'/edit';
         return redirect($url);
     }
 
