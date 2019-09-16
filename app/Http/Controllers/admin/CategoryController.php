@@ -192,7 +192,7 @@ class CategoryController extends Controller
 
         $category->delete();
 
-        $path = 'public/upload/'.$category->img;
+        $path = 'upload/'.$category->img;
         if(file_exists($path))
         {
             unlink($path);
