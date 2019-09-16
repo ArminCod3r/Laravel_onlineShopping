@@ -51,7 +51,7 @@
 
 				 @for ($i=1; $i <=count($cat_list); $i++)
 
-				 	@if(($category->getParent()->get())[0]->id == $i)
+				 	@if($category->getParent->id == $i)
 				 		<option selected value="{{ $i }}">{{ $cat_list[$i] }}</option>
 				 	@else
 				 		<option value="{{ $i }}">{{ $cat_list[$i] }}</option>
