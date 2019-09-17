@@ -268,33 +268,21 @@
               <a href="#" class="nav-link">
                 <i class="nav-icon fa fa-tree"></i>
                 <p>
-                  اشیای گرافیکی
+                  اسلاید
                   <i class="fa fa-angle-left right"></i>
                 </p>
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="pages/UI/general.html" class="nav-link">
+                  <a href="{{ url('admin/slider/') }}" class="nav-link">
                     <i class="fa fa-circle-o nav-icon"></i>
-                    <p>عمومی</p>
+                    <p>لیست اسلاید ها</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="pages/UI/icons.html" class="nav-link">
+                  <a href="{{ url('admin/slider/create') }}" class="nav-link">
                     <i class="fa fa-circle-o nav-icon"></i>
-                    <p>آیکون‌ها</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="pages/UI/buttons.html" class="nav-link">
-                    <i class="fa fa-circle-o nav-icon"></i>
-                    <p>دکمه‌ها</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="pages/UI/sliders.html" class="nav-link">
-                    <i class="fa fa-circle-o nav-icon"></i>
-                    <p>اسلایدر‌ها</p>
+                    <p>افزودن اسلایدر</p>
                   </a>
                 </li>
               </ul>
