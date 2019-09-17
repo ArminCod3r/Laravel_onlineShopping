@@ -7,7 +7,7 @@
 @endsection
 
 @section('custom-title')
-  ایجاد اسلایدر
+  افزودن اسلایدر
 @endsection
 
 
@@ -17,7 +17,7 @@
 		
 
 		<div class="form-group">
-			<label for="title">نام دسته</label>
+			<label for="title">عنوان اسلایدر</label>
   			<input type="text" name="title" id="title" class="form-control" value="" placeholder=""><br>
 
   			@if($errors->has('title'))
@@ -26,8 +26,8 @@
 		</div>
 
 		<div class="form-group">
-			<label for="title">آدرس</label>
-  			<input type="text" name="url" id="title" class="form-control" value="" placeholder=""><br>
+			<label for="url">آدرس</label>
+  			<input type="text" name="url" id="url" class="form-control" value="" placeholder=""><br>
 
   			@if($errors->has('url'))
   				<span style="color: red;"> {{ $errors->first('url') }} </span>
