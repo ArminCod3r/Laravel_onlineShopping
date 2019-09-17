@@ -25,7 +25,7 @@ class SliderRequest extends FormRequest
     {
         return [
             'title'=>'required',
-            'url'=>'required',
+            'url'=>'required|url',
             'img'=>'required|max:1024',
         ];
     }
