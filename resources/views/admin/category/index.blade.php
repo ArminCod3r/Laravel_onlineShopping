@@ -21,6 +21,7 @@
 
 
 @section('content1')
+<form action="{{ url('admin/category') }}" id="list_form">
     <table class="table table-hover" dir="rtl">
         <thead>
           <tr>
@@ -68,6 +69,7 @@
 
     {{ $categories->links() }}
 
+</form>
 @endsection
 
 @section('content2')
@@ -77,4 +79,17 @@
 @section('footer')
     <script type="text/javascript" src="{{ url('js/bootstrap-select.js') }}"></script>
     <script type="text/javascript" src="{{ url('js/defaults-fa_IR.js') }}"></script>
+
+    <script>
+
+        $('.search_input').on('keydown', function(event){
+            if(event.keyCode == 13)
+            {
+                $('#list_form').submit();
+                //document.getElementById("list_form").submit(); 
+                //alert('a');
+            }
+        });
+
+    </script>
 @endsection
