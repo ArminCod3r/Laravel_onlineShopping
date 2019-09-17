@@ -54,7 +54,7 @@ class SliderController extends Controller
 
         $slider->save();
 
-        return 'done';
+        return redirect('admin/slider');
     }
 
     /**
