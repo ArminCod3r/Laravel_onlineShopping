@@ -32,6 +32,15 @@
             <th></th>
           </tr>
         </thead>
+
+        <tr>
+            <td></td>
+            <td> <input type="text" value="@if(Request::get('cat_name')){{Request::get('cat_name')}} @endif" name="cat_name" class="form-control search_input" style="width: 100px"></input> </td>
+            <td> <input type="text" name="cat_ename" class="form-control search_input" style="width: 100px"></input> </td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
          
         <?php $i=1; ?>
         @foreach($categories as $item)
