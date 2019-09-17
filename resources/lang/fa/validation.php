@@ -114,7 +114,7 @@ return [
     'timezone' => 'The :attribute must be a valid zone.',
     'unique' => ':attribute نمی تواند تکراری باشد',
     'uploaded' => 'The :attribute failed to upload.',
-    'url' => 'The :attribute format is invalid.',
+    'url' => 'قالب :attribute نادرست است.',
     'uuid' => 'The :attribute must be a valid UUID.',
 
     /*
