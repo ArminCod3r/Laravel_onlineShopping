@@ -30,7 +30,7 @@
             <tr>
                 <td>{{ $i }}</td>
                 <td>{{ $item->title }}</td>
-                <td> <img src="{{ url('upload/'.$item->img) }}" style="width: 80%"> </td>
+                <td> <img src="{{ url('upload/'.$item->img) }}" style="width: 80%" onclick="magnify_img(this)" ondblclick="img_newTab(this)"> </td>
                 <td>{{ $item->url }}</td>     
                 <td>
                     <a href="slider/{{ $item->id }}/edit" class="btn btn-default"> ویرایش </a>
@@ -65,5 +65,24 @@
     <br><br><br><br><br><br>
 @endsection
 
+@section('content4')
+<br><br><br>
+<img src="" id="bigger_img" style="width: 90%;">
+@endsection
+
 @section('footer')
+
+<script>
+    function magnify_img(img) {
+    var src = img.src;
+    document.getElementById("bigger_img").src = src; 
+    // Google: html javascript src in img, https://www.w3schools.com/jsref/prop_img_src.asp
+    }
+
+    function img_newTab(img) {
+    var src = img.src;
+    window.open(src);
+    }
+
+</script>
 @endsection
