@@ -66,13 +66,15 @@
 @endsection
 
 @section('content4')
-<br><br><br>
-<img src="" id="bigger_img" style="width: 90%;">
+    <br><br><br>
+    <img src="" id="bigger_img" style="width: 90%;">
 @endsection
 
 @section('footer')
 
 <script>
+    document.getElementById("bigger_img").src = "/images/preview.png";
+
     function magnify_img(img) {
     var src = img.src;
     document.getElementById("bigger_img").src = src; 
