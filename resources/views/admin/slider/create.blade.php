@@ -55,4 +55,23 @@
 @section('footer')
 	<script type="text/javascript" src="{{ url('js/bootstrap-select.js') }}"></script>
 	<script type="text/javascript" src="{{ url('js/defaults-fa_IR.js') }}"></script>
+	<script>
+
+		select_file=function()
+		{
+		   document.getElementById('img').click();
+		};
+
+		load_file=function (event)
+		{
+		    var render=new FileReader;
+		    render.onload=function ()
+		    {
+		        var res_img=document.getElementById('res_img');
+		        res_img.src=render.result;
+		    };
+		    render.readAsDataURL(event.target.files[0]);
+		}
+
+	</script>
 @endsection
