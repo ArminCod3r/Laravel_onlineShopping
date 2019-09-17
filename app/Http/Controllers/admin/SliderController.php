@@ -37,7 +37,23 @@ class SliderController extends Controller
      */
     public function store(SliderRequest $request)
     {
-        return 'store';
+        $slider = new Slider;
+
+        if($request->hasFile('img'))
+        {
+            $fileName = time().'.'.$request->file('img')->getClientOriginalExtension();
+
+            if($request->file('img')->move('upload', $fileName))
+                $slider->img = $fileName;
+
+        }
+
+        $slider->title = $request->input('title');
+        $slider->url = $request->input('url');
+
+        $slider->save();
+
+        return 'done';
     }
 
     /**
