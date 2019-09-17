@@ -16,7 +16,8 @@ class SliderController extends Controller
      */
     public function index()
     {
-        //
+        $sliders = Slider::orderBy('id', 'desc')->paginate(4);
+        return view('admin/slider/index')->with('sliders', $sliders);
     }
 
     /**
