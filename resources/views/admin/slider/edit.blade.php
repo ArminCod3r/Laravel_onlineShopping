@@ -26,7 +26,7 @@
 
 		<div class="form-group">
 			<label for="title">آدرس اسلایدر</label>
-  			<input type="text" name="url" id="url" class="form-control" value="{{$slider->url}}" placeholder=""><br>
+  			<input type="text" name="url" id="url" class="form-control" value="{{$slider->url}}" placeholder="" style="text-align: left"><br>
 
   			@if($errors->has('url'))
   				<span style="color: red;"> {{ $errors->first('url') }} </span>
