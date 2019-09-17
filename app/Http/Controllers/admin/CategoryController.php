@@ -16,9 +16,24 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $categories = Category::all();//::paginate(2);
+        $categories="";
+        $same_url="";
+
+        if( $request->input('cat_name') || $request->input('cat_ename') ) //array_key_exists('cat_name', $request)
+        {
+            $cat_name = $request->input('cat_name'); // Input::get('cat_name');
+            $cat_ename = $request->input('cat_ename');
+
+            $categories = Category::where('cat_name', 'like', '%'.$cat_name.'%')->paginate(1);
+
+            $same_url = 'category?cat_name='.$cat_name.'&'.'cat_ename='.$cat_ename;
+            $categories->setPath($same_url); //stack: 34946402
+        }
+        else
+            $categories = Category::orderBy('id', 'desc')->paginate(4);   
+
         return view('admin/category/index')->with('categories', $categories);
     }
 
