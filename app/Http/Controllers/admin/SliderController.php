@@ -89,7 +89,27 @@ class SliderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $slider = Slider::find($id);
+
+        if($request->hasFile('img'))
+        {
+            $fileName = time().'.'.$request->file('img')->getClientOriginalExtension();
+
+            $path = 'upload/'.$slider->img;
+            if(file_exists($path))
+                unlink($path);
+            
+            if($request->file('img')->move('upload', $fileName))
+                $slider->img = $fileName;
+
+        }
+
+        $slider->title = $request->input('title');
+        $slider->url = $request->input('url');
+
+        $slider->save();
+
+        return redirect('admin/slider');        
     }
 
     /**
