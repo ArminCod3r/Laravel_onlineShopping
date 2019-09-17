@@ -20,3 +20,5 @@ Route::resource('admin/category','admin\CategoryController');
 Route::get('admin', function () {
     return view('admin.index');
 });
+
+Route::resource('admin/slider','admin\SliderController');
