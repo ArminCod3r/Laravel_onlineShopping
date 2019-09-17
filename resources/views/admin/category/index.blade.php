@@ -21,6 +21,9 @@
 
 
 @section('content1')
+<a href="{{ url('admin/category/create') }}" class="btn btn-success"> افزودن دسته </a>
+<br><br>
+
 <form action="{{ url('admin/category') }}" id="list_form">
     <table class="table table-hover" dir="rtl">
         <thead>
@@ -65,7 +68,15 @@
             </tr>
             <?php $i++; ?> 
         @endforeach
+
+        @if(sizeof($categories)==0)
+            <tr>
+                <td colspan="5"> <center>رکوردی یافت نشد.</center> </td>
+            </tr>
+        @endif
+
     </table>
+    
 
     {{ $categories->links() }}
 
