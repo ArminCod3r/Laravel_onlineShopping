@@ -50,7 +50,7 @@
 
         @if(sizeof($sliders)==0)
             <tr>
-                <td colspan="5"> <center>رکوردی یافت نشد.</center> </td>
+                <td colspan="4"> <center>رکوردی یافت نشد.</center> </td>
             </tr>
         @endif
 
