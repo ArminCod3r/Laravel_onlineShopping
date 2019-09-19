@@ -62,7 +62,7 @@
 
 		<div class="form-group">
 			<label for="price">هزینه محصول</label>
-  			<input type="text" name="price" id="price" class="form-control" value="" placeholder="بر حسب تومان" style="text-align: left;" lang="fa"><br>
+  			<input type="text" name="price" id="price" class="form-control digit_to_persian" value="" placeholder="بر حسب تومان" style="text-align: left;" lang="fa"><br>
 
   			@if($errors->has('price'))
   				<span style="color: red;"> {{ $errors->first('price') }} </span>
@@ -117,6 +117,24 @@
 		    };
 		    render.readAsDataURL(event.target.files[0]);
 		}
+
+		$('.digit_to_persian').on('keyup', function(event){
+
+			$number = event.target.value;
+			//alert(event.target.value);
+			$number = $number.replace("1","۱");
+	        $number = $number.replace("2","۲");
+	        $number = $number.replace("3","۳");
+	        $number = $number.replace("4","۴");
+	        $number = $number.replace("5","۵");
+	        $number = $number.replace("6","۶");
+	        $number = $number.replace("7","۷");
+	        $number = $number.replace("8","۸");
+	        $number = $number.replace("9","۹");
+	        $number = $number.replace("0","۰");
+	        //return $number;
+	        document.getElementById('price').value = $number;
+        });
 
 	</script>
 
