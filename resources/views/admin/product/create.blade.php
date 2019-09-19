@@ -60,6 +60,14 @@
   			@endif
 		</div>
 
+		<div class="form-group">
+			<label for="price">هزینه محصول</label>
+  			<input type="text" name="price" id="price" class="form-control" value="" placeholder="بر حسب تومان" style="text-align: left;" lang="fa"><br>
+
+  			@if($errors->has('price'))
+  				<span style="color: red;"> {{ $errors->first('price') }} </span>
+  			@endif
+		</div>
 
 
 		<div class="form-group">
