@@ -30,7 +30,8 @@
 
 		<div class="form-group">
 			<label for="title">انتخاب دسته</label>
-			 <select name="parent_id" class="selectpicker" data-live-search="true">
+			 <select multiple="multiple" name="cat[]" class="selectpicker" data-live-search="true">
+			 <!--stack: 24627902-->
 
 				 @for ($i=0; $i <=count($cat_list)-1; $i++)
 			        <option value="{{ $i }}">{{ $cat_list[$i] }}</option>
