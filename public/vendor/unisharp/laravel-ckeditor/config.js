@@ -37,4 +37,5 @@ CKEDITOR.editorConfig = function( config ) {
 	config.removeDialogTabs = 'image:advanced;link:advanced';
 
 	config.contentsLangDirection = 'rtl';
+	config.language = 'fa';
 };
