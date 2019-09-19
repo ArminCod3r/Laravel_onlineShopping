@@ -5,6 +5,12 @@
 @section('header')
     <title>افزودن محصول</title>
     <link rel="stylesheet" type="text/css" href="{{ url('css/bootstrap-select.css') }}">
+    <style type="text/css">
+    	.bootstrap-select:not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn)
+    	{
+    		width: 75%;
+		}
+	</style>
 @endsection
 
 @section('custom-title')
