@@ -4,6 +4,7 @@
 
 @section('header')
     <title>افزودن محصول</title>
+    <link rel="stylesheet" type="text/css" href="{{ url('css/bootstrap-select.css') }}">
 @endsection
 
 @section('custom-title')
@@ -25,6 +26,24 @@
   				<span style="color: red;"> {{ $errors->first('title') }} </span>
   			@endif
 		</div>
+
+
+		<div class="form-group">
+			<label for="title">انتخاب دسته</label>
+			 <select name="parent_id" class="selectpicker" data-live-search="true">
+
+				 @for ($i=0; $i <=count($cat_list)-1; $i++)
+			        <option value="{{ $i }}">{{ $cat_list[$i] }}</option>
+			     @endfor
+			  
+			 </select> 
+
+  			@if($errors->has('parent_id'))
+  				<span style="color: red;"> {{ $errors->first('parent_id') }} </span>
+  			@endif
+		</div>
+
+
 
 		<div class="form-group">
 			<label for="article-ckeditor">توضیح</label>
