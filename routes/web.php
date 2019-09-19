@@ -15,12 +15,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('admin/category','admin\CategoryController');
-
+// Admin's idnex
 Route::get('admin', function () {
     return view('admin.index');
 });
 
+// Category
+Route::resource('admin/category','admin\CategoryController');
+
+// Slider
 Route::resource('admin/slider','admin\SliderController');
 
+// Product
 Route::resource('admin/product', 'admin\ProductController');
