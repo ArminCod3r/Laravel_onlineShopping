@@ -13,7 +13,7 @@ class ProductRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,16 @@ class ProductRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'title' =>'required',
+            'cat'=>'required',
+        ];
+    }
+
+    public function attributes()
+    {
+        return [
+            'title'=>'نام محصول',
+            'cat'=>'دسته',
         ];
     }
 }
