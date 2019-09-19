@@ -22,3 +22,5 @@ Route::get('admin', function () {
 });
 
 Route::resource('admin/slider','admin\SliderController');
+
+Route::resource('admin/product', 'admin\ProductController');
