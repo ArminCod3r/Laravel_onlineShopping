@@ -50,6 +50,16 @@
   			@endif
 		</div>
 
+		<br/>
+		<div class="form-group">
+			<label for="code">نام لاتین محصول</label>
+  			<input type="text" name="code" id="code" class="form-control" value="" placeholder="" style="text-align: left;"><br>
+
+  			@if($errors->has('code'))
+  				<span style="color: red;"> {{ $errors->first('code') }} </span>
+  			@endif
+		</div>
+
 
 
 		<div class="form-group">

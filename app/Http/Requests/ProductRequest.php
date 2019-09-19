@@ -26,6 +26,7 @@ class ProductRequest extends FormRequest
         return [
             'title' =>'required',
             'cat'=>'required',
+            'code'=>'required',
         ];
     }
 
@@ -34,6 +35,7 @@ class ProductRequest extends FormRequest
         return [
             'title'=>'نام محصول',
             'cat'=>'دسته',
+            'code'=>'نام لاتین دسته',
         ];
     }
 }
