@@ -40,6 +40,8 @@ class ProductRequest extends FormRequest
             'cat'=>'دسته',
             'code'=>'نام لاتین دسته',
             'price'=>'هزینه',
+            'discount'=>'تخفیف',
+            'product_number'=>'تعداد موجودی',
         ];
     }
 }

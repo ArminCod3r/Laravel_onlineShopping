@@ -81,6 +81,10 @@
 		<div class="form-group">
 			<label for="product_number">تعداد موجودی</label>
   			<input type="text" name="product_number" id="product_number" class="form-control digit_to_persian" value="" placeholder="" style="text-align: left;" lang="fa"><br>
+
+  			@if($errors->has('product_number'))
+  				<span style="color: red;"> {{ $errors->first('product_number') }} </span>
+  			@endif
 		</div>
 
 
