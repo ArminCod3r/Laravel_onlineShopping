@@ -73,8 +73,8 @@
 			<label for="discount">تخفیف</label>
   			<input type="text" name="discount" id="discount" class="form-control digit_to_persian" value="" placeholder="بر حسب تومان" style="text-align: left;" lang="fa"><br>
 
-  			@if($errors->has('price'))
-  				<span style="color: red;"> {{ $errors->first('price') }} </span>
+  			@if($errors->has('discount'))
+  				<span style="color: red;"> {{ $errors->first('discount') }} </span>
   			@endif
 		</div>
 
