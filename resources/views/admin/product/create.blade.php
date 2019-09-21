@@ -114,6 +114,27 @@
   				<span style="color: red;"> {{ $errors->first('product_status') }} </span>
   			@endif
 		</div>
+
+
+		<div class="form-group">
+			<label for="show_product">نمایش محصول</label>
+  			<input type="checkbox" name="show_product" value="1" checked style="margin-right: 5%;"><br>
+
+  			@if($errors->has('show_product'))
+  				<span style="color: red;"> {{ $errors->first('show_product') }} </span>
+  			@endif
+		</div>
+
+
+		<div class="form-group">
+			<label for="special"> پیشنهاد ویژه </label>
+  			<input type="checkbox" name="special" value="1" style="margin-right: 50px;"><br>
+
+  			@if($errors->has('special'))
+  				<span style="color: red;"> {{ $errors->first('special') }} </span>
+  			@endif
+		</div>
+
 	
 		<br><br>
 		<div class="form-group">
