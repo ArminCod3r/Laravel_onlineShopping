@@ -58,7 +58,44 @@ class ProductController extends Controller
      */
     public function store(ProductRequest $request)
     {
-        return $request->all(); //laravel get request body
+        $product = new Product($request->all());
+
+        /*$product->title          = $request->input('title');
+        $product->code           = $request->input('code');
+        $product->title_url      = $request->input('title_url');
+        $product->code_url       = $request->input('code_url');
+        $product->price          = $request->input('price');
+        $product->discounts      = $request->input('discounts');
+        $product->view           = $request->input('view');
+        $product->text           = $request->input('text');
+        $product->product_status = $request->input('product_status');
+        $product->bon            = $request->input('bon');
+        $product->show_product   = $request->input('show_product');
+        $product->product_number = $request->input('product_number');
+        $product->order_product  = $request->input('order_product');
+        $product->keywords       = $request->input('keywords');
+        $product->description    = $request->input('description');
+        $product->special        = $request->input('special');*/
+
+        // TITLE convert: '-','/' >TO> '-'
+        $url = str_replace('-', ' ', $request->title);
+        $url = str_replace('/', ' ', $url);
+        $product->title_url = preg_replace('/\s+/', '-', $url);
+
+        // CODE_URL convert: '-','/' >TO> '-'
+        $code_url = str_replace('-', ' ', $request->code_url);
+        $code_url = str_replace('/', ' ', $code_url);
+        $product->code_url = preg_replace('/\s+/', '-', $code_url);
+
+        $product->view = 0;
+        $product->order_product = 0; // Tedad-E forosh
+        $product->special = 0;
+
+        $product->save();
+
+        return 'inserted';
+
+        //return $request->all(); //laravel get request body
     }
 
     /**
