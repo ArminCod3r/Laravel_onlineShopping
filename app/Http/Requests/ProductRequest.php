@@ -29,6 +29,7 @@ class ProductRequest extends FormRequest
             'code'=>'required|integer',
             'price'=>'required|integer',
             'discount'=>'integer|nullable',
+            'product_number'=>'integer|nullable',
         ];
     }
 

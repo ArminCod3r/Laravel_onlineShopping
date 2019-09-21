@@ -78,6 +78,11 @@
   			@endif
 		</div>
 
+		<div class="form-group">
+			<label for="product_number">تعداد موجودی</label>
+  			<input type="text" name="product_number" id="product_number" class="form-control digit_to_persian" value="" placeholder="" style="text-align: left;" lang="fa"><br>
+		</div>
+
 
 		<div class="form-group">
 			<label for="article-ckeditor">توضیح</label>
@@ -144,7 +149,7 @@
 	        $number = $number.replace("8","۸");
 	        $number = $number.replace("9","۹");
 	        $number = $number.replace("0","۰");
-	        
+
 	        document.getElementById(event.target.id).value = $number;
         });
 
