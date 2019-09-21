@@ -62,7 +62,7 @@
 
 		<div class="form-group">
 			<label for="price">هزینه محصول</label>
-  			<input type="text" name="price" id="price" class="form-control digit_to_persian" value="" placeholder="بر حسب تومان" style="text-align: left;" lang="fa"><br>
+  			<input type="text" name="price" id="price" class="form-control " value="" placeholder="بر حسب تومان" style="text-align: left;" lang="fa"><br>
 
   			@if($errors->has('price'))
   				<span style="color: red;"> {{ $errors->first('price') }} </span>
@@ -71,7 +71,7 @@
 
 		<div class="form-group">
 			<label for="discount">تخفیف</label>
-  			<input type="text" name="discount" id="discount" class="form-control digit_to_persian" value="" placeholder="بر حسب تومان" style="text-align: left;" lang="fa"><br>
+  			<input type="text" name="discount" id="discount" class="form-control " value="" placeholder="بر حسب تومان" style="text-align: left;" lang="fa"><br>
 
   			@if($errors->has('discount'))
   				<span style="color: red;"> {{ $errors->first('discount') }} </span>
@@ -80,7 +80,7 @@
 
 		<div class="form-group">
 			<label for="product_number">تعداد موجودی</label>
-  			<input type="text" name="product_number" id="product_number" class="form-control digit_to_persian" value="" placeholder="" style="text-align: left;" lang="fa"><br>
+  			<input type="text" name="product_number" id="product_number" class="form-control " value="" placeholder="" style="text-align: left;" lang="fa"><br>
 
   			@if($errors->has('product_number'))
   				<span style="color: red;"> {{ $errors->first('product_number') }} </span>
@@ -89,7 +89,7 @@
 
 		<div class="form-group">
 			<label for="bon">تعداد بن خرید محصول</label>
-  			<input type="text" name="bon" id="bon" class="form-control digit_to_persian" value="" placeholder="" style="text-align: left;" lang="fa"><br>
+  			<input type="text" name="bon" id="bon" class="form-control " value="" placeholder="" style="text-align: left;" lang="fa"><br>
 
   			@if($errors->has('bon'))
   				<span style="color: red;"> {{ $errors->first('bon') }} </span>

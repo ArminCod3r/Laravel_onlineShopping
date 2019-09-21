@@ -28,10 +28,10 @@ class ProductRequest extends FormRequest
             'cat'           => 'required',
             'code'          => 'required',
 
-            'price'         => 'persian_num|required',
-            'discount'      => 'persian_num|nullable',
-            'product_number'=> 'persian_num|nullable',
-            'bon'           => 'persian_num|nullable',
+            'price'         => 'integer|required',
+            'discount'      => 'integer|nullable',
+            'product_number'=> 'integer|nullable',
+            'bon'           => 'integer|nullable',
 
             'product_status'=> 'nullable',
             'show_product'  => 'nullable',
