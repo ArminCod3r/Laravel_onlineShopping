@@ -24,32 +24,34 @@ class ProductRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' =>'required',
-            'cat'=>'required',
-            'code'=>'required|integer',
-            'price'=>'required|integer',
-            'discount'=>'integer|nullable',
-            'product_number'=>'integer|nullable',
-            'bon'=>'integer|nullable',
-            'product_status'=>'nullable',
-            'show_product'=>'nullable',
-            'special'=>'nullable',
+            'title'         => 'required',
+            'cat'           => 'required',
+            'code'          => 'required',
+
+            'price'         => 'integer|required',
+            'discount'      => 'integer|nullable',
+            'product_number'=> 'integer|nullable',
+            'bon'           => 'integer|nullable',
+
+            'product_status'=> 'nullable',
+            'show_product'  => 'nullable',
+            'special'       => 'nullable',
         ];
     }
 
     public function attributes()
     {
         return [
-            'title'=>'نام محصول',
-            'cat'=>'دسته',
-            'code'=>'نام لاتین دسته',
-            'price'=>'هزینه',
-            'discount'=>'تخفیف',
-            'product_number'=>'تعداد موجودی',
-            'bon'=>'تعداد بن خرید محصول',
-            'product_status'=>'وضعیت موجودی',
-            'show_product'=>'نمایش محصول',
-            'special'=>'پیشنهاد ویژه',
+            'title'          => 'نام محصول',
+            'cat'            => 'دسته',
+            'code'           => 'نام لاتین دسته',
+            'price'          => 'هزینه',
+            'discount'       => 'تخفیف',
+            'product_number' => 'تعداد موجودی',
+            'bon'            => 'تعداد بن خرید محصول',
+            'product_status' => 'وضعیت موجودی',
+            'show_product'   => 'نمایش محصول',
+            'special'        => 'پیشنهاد ویژه',
         ];
     }
 }
