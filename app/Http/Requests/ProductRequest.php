@@ -31,6 +31,9 @@ class ProductRequest extends FormRequest
             'discount'=>'integer|nullable',
             'product_number'=>'integer|nullable',
             'bon'=>'integer|nullable',
+            'product_status'=>'nullable',
+            'show_product'=>'nullable',
+            'special'=>'nullable',
         ];
     }
 
@@ -44,6 +47,9 @@ class ProductRequest extends FormRequest
             'discount'=>'تخفیف',
             'product_number'=>'تعداد موجودی',
             'bon'=>'تعداد بن خرید محصول',
+            'product_status'=>'وضعیت موجودی',
+            'show_product'=>'نمایش محصول',
+            'special'=>'پیشنهاد ویژه',
         ];
     }
 }
