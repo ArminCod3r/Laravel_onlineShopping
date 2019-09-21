@@ -28,6 +28,7 @@ class ProductRequest extends FormRequest
             'cat'=>'required',
             'code'=>'required|integer',
             'price'=>'required|integer',
+            'discount'=>'integer',
         ];
     }
 
@@ -38,6 +39,7 @@ class ProductRequest extends FormRequest
             'cat'=>'دسته',
             'code'=>'نام لاتین دسته',
             'price'=>'هزینه',
+            'discount'=>'تخفیف',
         ];
     }
 }

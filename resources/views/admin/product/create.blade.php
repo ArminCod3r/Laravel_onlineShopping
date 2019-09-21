@@ -69,6 +69,15 @@
   			@endif
 		</div>
 
+		<div class="form-group">
+			<label for="discount">تخفیف</label>
+  			<input type="text" name="discount" id="discount" class="form-control digit_to_persian" value="" placeholder="بر حسب تومان" style="text-align: left;" lang="fa"><br>
+
+  			@if($errors->has('price'))
+  				<span style="color: red;"> {{ $errors->first('price') }} </span>
+  			@endif
+		</div>
+
 
 		<div class="form-group">
 			<label for="article-ckeditor">توضیح</label>
@@ -120,8 +129,11 @@
 
 		$('.digit_to_persian').on('keyup', function(event){
 
-			$number = event.target.value;
+			//console.log((new Error()).stack);
+			//console.log("CALLER: " + event.target.id);
 			//alert(event.target.value);
+
+			$number = event.target.value;
 			$number = $number.replace("1","۱");
 	        $number = $number.replace("2","۲");
 	        $number = $number.replace("3","۳");
@@ -132,8 +144,8 @@
 	        $number = $number.replace("8","۸");
 	        $number = $number.replace("9","۹");
 	        $number = $number.replace("0","۰");
-	        //return $number;
-	        document.getElementById('price').value = $number;
+	        
+	        document.getElementById(event.target.id).value = $number;
         });
 
 	</script>
