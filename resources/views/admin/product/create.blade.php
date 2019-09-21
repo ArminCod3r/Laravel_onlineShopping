@@ -87,6 +87,15 @@
   			@endif
 		</div>
 
+		<div class="form-group">
+			<label for="bon">تعداد بن خرید محصول</label>
+  			<input type="text" name="bon" id="bon" class="form-control digit_to_persian" value="" placeholder="" style="text-align: left;" lang="fa"><br>
+
+  			@if($errors->has('bon'))
+  				<span style="color: red;"> {{ $errors->first('bon') }} </span>
+  			@endif
+		</div>
+
 
 		<div class="form-group">
 			<label for="article-ckeditor">توضیح</label>
