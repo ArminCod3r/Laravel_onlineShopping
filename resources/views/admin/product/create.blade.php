@@ -106,7 +106,7 @@
 		<br>
 		<div class="form-group">
 			<label for="product_status">وضعیت محصول</label>
-  			<input type="checkbox" name="product_status" value="1" checked style="margin-right: 20px;">
+  			<input type="checkbox" name="product_status" value="1" checked style="margin-right: 5%;">
   			موجود
   			<br>
 
