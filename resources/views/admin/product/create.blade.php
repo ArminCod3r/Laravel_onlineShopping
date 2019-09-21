@@ -101,7 +101,21 @@
 			<label for="article-ckeditor">توضیح</label>
   			<input type="text" name="article-ckeditor" id="article-ckeditor" class="form-control" value="" placeholder=""><br>
 		</div>
+
+		
+		<br>
+		<div class="form-group">
+			<label for="product_status">وضعیت محصول</label>
+  			<input type="checkbox" name="product_status" value="1" checked style="margin-right: 20px;">
+  			موجود
+  			<br>
+
+  			@if($errors->has('product_status'))
+  				<span style="color: red;"> {{ $errors->first('product_status') }} </span>
+  			@endif
+		</div>
 	
+		<br><br>
 		<div class="form-group">
 			<input type="file" name="img" id="img" style="display: none;" onchange="load_file(event)">
 			<img src="{{ url('images/noimage.jpg') }}" id='res_img' width="150" onclick="select_file()">
