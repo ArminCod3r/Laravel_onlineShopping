@@ -100,10 +100,6 @@
 		<div class="form-group">
 			<label for="article-ckeditor">توضیح</label>
   			<input type="text" name="article-ckeditor" id="article-ckeditor" class="form-control" value="" placeholder=""><br>
-
-  			@if($errors->has('url'))
-  				<span style="color: red;"> {{ $errors->first('url') }} </span>
-  			@endif
 		</div>
 	
 		<div class="form-group">
