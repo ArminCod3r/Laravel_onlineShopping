@@ -135,6 +135,16 @@
   			@endif
 		</div>
 
+
+		<div class="form-group">
+  			<label class="fa fa-plus" style="color:red ; cursor:pointer" onclick="add_color()"></label>
+		</div>
+
+
+		<div class="form-group" id='colors_here'>
+
+		</div>
+
 	
 		<br><br>
 		<div class="form-group">
@@ -174,6 +184,16 @@
 		        res_img.src=render.result;
 		    };
 		    render.readAsDataURL(event.target.files[0]);
+		}
+
+		add_color=function()
+		{
+			var colors_here = document.getElementById('colors_here'); //$(".colors_here");
+
+			var input = document.createElement("input");
+            input.type = "text";
+            colors_here.appendChild(input);
+            colors_here.appendChild(document.createElement("br"));
 		}
 
 		$('.digit_to_persian').on('keyup', function(event){
