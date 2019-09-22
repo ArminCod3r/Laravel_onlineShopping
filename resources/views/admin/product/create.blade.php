@@ -137,17 +137,15 @@
 
 
 		<div class="form-group">
-			<label for="special"> افزودن رنگ </label>
-  			<input type="text" class="jscolor" >
+			<label> افزودن رنگ </label><br>
+  			<input type="text" class="jscolor" style="margin-right: 10px;">
 		</div>
 
-
-		<div class="form-group">
+		<div class="form-group" style="margin-right: 10px;">
   			<label class="fa fa-plus" style="color:red ; cursor:pointer" onclick="add_color()"></label>
 		</div>
 
-
-		<div class="form-group" id='colors_here'>
+		<div class="form-group" id='colors_here' style="margin-right: 10px;">
 
 		</div>
 
@@ -195,12 +193,42 @@
 
 		add_color=function()
 		{
-			var colors_here = document.getElementById('colors_here'); //$(".colors_here");
+			var colors_here = document.getElementById('colors_here'); 
 
 			var input = document.createElement("input");
             input.type = "text";
+            //input.id = "";   //input.className="jscolor";
+            var color = new jscolor(input);
             colors_here.appendChild(input);
             colors_here.appendChild(document.createElement("br"));
+
+
+
+            // ANOTHER WAY OF CREATEING INPUT (stack: 37131370)
+
+			/*var formgroup = $("<div/>", {
+			  class: "form-group"
+				});
+
+			//formgroup.append($("<label>", {
+			//  class: "col-sm-2 control-label",
+			//  text: "Enter Name"
+			//	}));
+
+			var colsm = $("<div/>", {
+			  class: "col-sm-10"
+				});
+
+			var input = $("<input/>", {
+			  type: "text",
+			  class: "jscolor",
+			  id: "nameId",
+			  //placeholder: "Enter Full Namee"
+				});
+			colsm.append(input);
+			formgroup.append(colsm);
+			$("#colors_here").append(formgroup);*/
+
 		}
 
 		$('.digit_to_persian').on('keyup', function(event){
