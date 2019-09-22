@@ -90,6 +90,11 @@ class ProductController extends Controller
         $product->view = 0;
         $product->order_product = 0; // Tedad-E forosh
         $product->special = 0;
+        $product->product_status = ($request->has('product_status')) ? $request->input('product_status') : 0;  
+        //if $request->input('product_status') 
+        //    $request->input('product_status')
+        //else
+        //    0;
 
         $product->save();
 
