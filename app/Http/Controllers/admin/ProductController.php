@@ -58,7 +58,7 @@ class ProductController extends Controller
      */
     public function store(ProductRequest $request)
     {
-        $product = new Product($request->all());
+        //$product = new Product($request->all());
 
         /*$product->title          = $request->input('title');
         $product->code           = $request->input('code');
@@ -78,7 +78,7 @@ class ProductController extends Controller
         $product->special        = $request->input('special');*/
 
         // TITLE convert: '-','/' >TO> '-'
-        $url = str_replace('-', ' ', $request->title);
+        /*$url = str_replace('-', ' ', $request->title);
         $url = str_replace('/', ' ', $url);
         $product->title_url = preg_replace('/\s+/', '-', $url);
 
@@ -116,9 +116,9 @@ class ProductController extends Controller
         }
             
 
-        return 'inserted';
+        return 'inserted';*/
 
-        //return $request->all(); //laravel get request body
+        return $request->all(); //laravel get request body
     }
 
     /**
