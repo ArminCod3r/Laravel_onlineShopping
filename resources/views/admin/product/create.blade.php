@@ -137,6 +137,12 @@
 
 
 		<div class="form-group">
+			<label for="special"> افزودن رنگ </label>
+  			<input type="text" class="jscolor" >
+		</div>
+
+
+		<div class="form-group">
   			<label class="fa fa-plus" style="color:red ; cursor:pointer" onclick="add_color()"></label>
 		</div>
 
@@ -168,6 +174,7 @@
 @section('footer')
 	<script type="text/javascript" src="{{ url('js/bootstrap-select.js') }}"></script>
 	<script type="text/javascript" src="{{ url('js/defaults-fa_IR.js') }}"></script>
+	<script type="text/javascript" src="{{ url('js/jscolor.js') }}"></script>
 	<script>
 
 		select_file=function()
