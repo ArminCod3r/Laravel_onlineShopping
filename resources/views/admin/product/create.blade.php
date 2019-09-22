@@ -138,7 +138,7 @@
 
 		<div class="form-group">
 			<label> افزودن رنگ </label><br>
-  			<input type="text" class="jscolor" style="margin-right: 10px;">
+  			<input type="text" name="color[]" id="color" class="jscolor" style="margin-right: 10px;">
 		</div>
 
 		<div class="form-group" style="margin-right: 10px;">
@@ -191,12 +191,14 @@
 		    render.readAsDataURL(event.target.files[0]);
 		}
 
+		var number=2;
 		add_color=function()
 		{
 			var colors_here = document.getElementById('colors_here'); 
 
 			var input = document.createElement("input");
             input.type = "text";
+            input.name = "color[]"
             //input.id = "";   //input.className="jscolor";
             var color = new jscolor(input);
             colors_here.appendChild(input);
