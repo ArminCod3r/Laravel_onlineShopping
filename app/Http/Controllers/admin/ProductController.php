@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Product;
 use App\Category;
 use App\Http\Requests\ProductRequest;
-
+use DB;
 
 class ProductController extends Controller
 {
@@ -92,6 +92,13 @@ class ProductController extends Controller
         $product->special = 0;
 
         $product->save();
+
+        $parents= $request->input('cat');
+        foreach ($parents as $item)
+        {
+            // NOTE: $product->id is only avaliable after saveing the current row.
+            DB::table('parent_product')->insert(['product_id'=>$product->id, 'parent_id'=>$item]);
+        }
 
         return 'inserted';
 
