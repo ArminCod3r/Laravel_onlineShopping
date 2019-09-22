@@ -110,7 +110,8 @@ class ProductController extends Controller
             $colors = $request->input('color');
             foreach ($colors as $key => $item)
             {
-                DB::table('color_product')->insert(['color_code'=>$item, 'product_id'=>$product->id]);
+                if(!empty($item))
+                    DB::table('color_product')->insert(['color_code'=>$item, 'product_id'=>$product->id]);
             }
         }
             
