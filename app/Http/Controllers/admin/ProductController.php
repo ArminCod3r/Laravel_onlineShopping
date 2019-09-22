@@ -105,6 +105,16 @@ class ProductController extends Controller
             DB::table('parent_product')->insert(['product_id'=>$product->id, 'parent_id'=>$item]);
         }
 
+        if(is_array($request->input('color')))
+        {
+            $colors = $request->input('color');
+            foreach ($colors as $key => $item)
+            {
+                DB::table('color_product')->insert(['color_code'=>$item, 'product_id'=>$product->id]);
+            }
+        }
+            
+
         return 'inserted';
 
         //return $request->all(); //laravel get request body
