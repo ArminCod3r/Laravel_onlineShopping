@@ -15,6 +15,8 @@ class CreateParentProductTable extends Migration
     {
         Schema::create('parent_product', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('product_id');
+            $table->integer('parent_id');
             $table->timestamps();
         });
     }
