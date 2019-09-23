@@ -332,6 +332,15 @@
 
         removeTag = function(id)
         {
+        	keywords = document.getElementById('keywords').value;
+
+        	removed_keyword = ((keywords.split(','))[id]);
+        	new_keywords = keywords.replace(','+removed_keyword, '')
+
+        	document.getElementById('keywords').value=new_keywords;
+
+        	console.log(new_keywords);
+
         	$("#TagItem"+id).remove();
         }
 
