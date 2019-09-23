@@ -26,27 +26,17 @@
 		    margin-top: 1px;
 		}
 
-		.tagsContainer
+		.tag_style
 		{
-		  border: 1px solid black;
-		  border-radius: 5px;
-		  box-shadow: 2px 2px 2px #888888;
-		  background-color: whitesmoke;
-		  float: left;
-		  margin: 0px 5px 5px 0px;
-		  padding: 1px 5px 2px 5px;
-		}
-
-		.tagsContainer p {
-		  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-		  color: red;
-		  display: inline;
-		  padding-left: 5px;
-		  cursor: pointer;
-		}
-
-		.div-style{
-			margin: 10px;
+			float:right;
+		    margin-top: 10px;
+		    padding-top: 5px;
+		    padding-bottom:5px;
+		    padding-right:10px;
+		    padding-left:10px;
+		    background:#F9F9F9;
+		    margin-right:10px;
+		    cursor:pointer;
 		}
 
 	</style>
@@ -191,15 +181,16 @@
 
 		<div class="form-group">
 			<label>افزودن برچسب</label><br>
-			<input type="text" name="tags[]" id="tag_list" class="form-control" style="float:right ; width:60%;"> </input>
+			<input type="text" name="tags" id="tag_list" class="form-control" style="float:right ; width:60%;"> </input>
 			<div class="add_product_tag" onclick="add_tag()" > افزودن </div>
 		</div>
 
 		<br>
 		<div class="form-group" id="show_tags" style="text-align: rtl;" dir="rtl">
-			
+			<!-- Tags will be shown here-->			
 		</div>
-		<input type="hidden" id="tags_list_for_submit" name="tags_list_for_submit">
+
+		<input type="hidden" id="keywords" name="keywords">
 
 	
 		<br><br>
@@ -307,53 +298,42 @@
         });
 
         add_tag = function(){
-        	$tag = document.getElementById("tag_list").value;
-        	document.getElementById("tag_list").value = "";
-        	
-        	document.getElementById("show_tags").innerHTML += " " + $tag;
+        	var tag_list = document.getElementById("tag_list").value;
+        	var tag_split = tag_list.split(",");
+
+        	var keywords = document.getElementById("keywords").value;
+        	var keywords_temp = keywords;
+
+        	var count=1;
+
+        	for (var i=0 ; i<=(tag_split.length)-1 ; i++) 
+        	{
+        		if (tag_split[i].trim() != ' ' )
+        		{
+        			var char_count = keywords.search(tag_split[i]); // if nothingFound : ret -1 
+        			if (char_count == -1)
+        			{
+        				keywords_temp += ","+tag_split[i];
+        				var tag_html = '<div class="tag_style" id="TagItem'+count+'">'+
+        							    "<span class='fa fa-remove' onclick='removeTag("+count+")'></span>"+
+        							    tag_split[i]+
+        								"</div>";
+        				$("#show_tags").append(tag_html);
+        			}
+        		}
+        		count++;
+        	}
+
+        	document.getElementById("keywords").value = keywords_temp;
+        	document.getElementById("tag_list").value = ""; 
+
+        	// $("#show_tags").append("<div>"+tag_split[i]+"</div>");
         }
 
-        function AddTag(element, failLabel, label, value)
-		{
-		  // Let's only do a tag if the label has content
-		  if (label) 
-		  {
-			// we have to escape the label!  It could have quotes
-			label = label.split("\"").join("&quot;");
-			$(element).append('<div name="tags[]" id="TagItem" class="tagsContainer div-style" taglabel="' + label + '" value="' + value + '">' + label + '<p onclick="RemoveTag(this)">X</p></div>');
-			 document.getElementById('tags_list_for_submit').value += ","+value;
-		  }
-		}
-
-		function RemoveTag(element)
-		{
-		  $(element).parent().remove();
-		}
-
-		$('#tag_list').bind("keydown", function(event)
-		{
-			if (event.keyCode == 13)
-			{
-			  AddTag("#show_tags", "#Alert", $('#tag_list').val(), $('#tag_list').val());
-			  $('#tag_list').val('');
-			}
-		  })
-		  .blur(function() {
-			AddTag("#show_tags", "#Alert", $('#tag_list').val(), $('#tag_list').val());
-			$('#tag_list').val('');
-		  });
-
-		$('#add_tag').click(function()
-		{	
-		  // here we process the tags
-		  var TagElements = $('#show_tags').find('div');
-		  var tags = [];
-		  
-		  for (i = 0; i < TagElements.length; i++) 
-			tags.push($(TagElements[i]).attr("value"));
-		  
-		  //$('#Result-containter').text(tags.join(';'));
-		});
+        removeTag = function(id)
+        {
+        	$("#TagItem"+id).remove();
+        }
 
 	</script>
 
