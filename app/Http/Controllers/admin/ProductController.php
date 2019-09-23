@@ -114,9 +114,9 @@ class ProductController extends Controller
                     DB::table('color_product')->insert(['color_code'=>$item, 'product_id'=>$product->id]);
             }
         }
-            
-
-        return 'inserted';
+        
+        $url = 'admin/product/'.$product->id.'/edit';
+        return redirect($url);
 
         //return $request->all(); //laravel get request body
     }
@@ -140,7 +140,28 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        $product = Product::find($id);
+
+        $cat_list = array();
+        $cat_list[0]='انتخاب سر دسته';
+        $cat = Category::where('parent_id',0)->get(); //get: cat_name
+
+        foreach ($cat as $key=>$item)
+        {
+            $cat_list[($item->id)-1]=$item->cat_name;
+
+            foreach ($item->getChild as $key2=>$item2)
+            {
+                $cat_list[($item2->id)-1]=' - '.$item2->cat_name;
+
+                foreach ($item2->getChild as $key3=>$item3)
+                {
+                    $cat_list[($item3->id)-1]=' - - '.$item3->cat_name;
+                }
+            }
+        }
+
+        return view('admin/product/edit')->with(['product'=>$product, 'cat_list'=>$cat_list]);
     }
 
     /**
