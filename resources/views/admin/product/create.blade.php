@@ -11,7 +11,7 @@
     		width: 75%;
 		}
 
-		.add_product_tag
+		.add_btn_tag
 		{
 			border-radius: 3px;
 		    color:white;
@@ -182,7 +182,7 @@
 		<div class="form-group">
 			<label>افزودن برچسب</label><br>
 			<input type="text" name="tags" id="tag_list" class="form-control" style="float:right ; width:60%;"> </input>
-			<div class="add_product_tag" onclick="add_tag()" > افزودن </div>
+			<div class="add_btn_tag" onclick="add_tag()" > افزودن </div>
 		</div>
 
 		<br>
