@@ -32,7 +32,10 @@ class Product extends Model
                 ->join('parent_product', 'category.id', '=', 'parent_product.parent_id')
                 ->select('category.cat_name')
                 ->where('product_id',$id)
-                ->get()->toArray();
+                ->get();
+                //->toArray() // DB::table('tbl')->get() will return a collection of stdClass.
+                		     // stdClass has no function toArray() [stack:47204041]
+                //->makeHidden(['category.cat_name']);
 
 		return $result; //var_dump($result);
     }
