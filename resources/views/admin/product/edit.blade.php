@@ -9,7 +9,7 @@ foreach ($parents as $key => $item)
 	$item_trimed = str_replace(' ', '', $item);
 	array_push($parent_temp, $item_trimed);
 }
-print_r($parent_temp);
+//print_r($parent_temp);
 
 $cat_temp=array();
 foreach ($cat_list as $key => $item)
@@ -19,7 +19,7 @@ foreach ($cat_list as $key => $item)
 
 	$cat_temp[$item]=$trimed_cat;
 }
-print_r($cat_temp);
+//print_r($cat_temp);
 
 $matches = array_intersect($parent_temp, $cat_temp); // returns matches
 $differences = array_diff($parent_temp, $cat_list);      // returns the differences
@@ -35,10 +35,10 @@ for($i=0; $i <=count($cat_list)-1; $i++)
 	{
 		$cat_trim    = str_replace(' ', '', str_replace('-', '', $cat_list[$i]));
 		$parent_trim = str_replace(' ', '', $parents[$j]);
-		if ($cat_trim == $parent_trim)
-			print $cat_trim." = ".$parent_trim."\n";
+		//if ($cat_trim == $parent_trim)
+			//print $cat_trim." = ".$parent_trim."\n";
 	}
-	print "\n";
+	//print "\n";
 }
 ?>
 
@@ -103,9 +103,9 @@ for($i=0; $i <=count($cat_list)-1; $i++)
                </div>
 
 
-               <div class="form-group">
+               <div class="form-group" onload="make_it_checked()">
                        <label for="title">انتخاب دسته</label>
-                        <select multiple="multiple" name="cat[]" class="selectpicker" data-live-search="true">
+                        <select multiple="multiple" name="cat[]" class="selectpicker" id="selectpicker" data-live-search="true">
                         <!--stack: 24627902-->
 
                                 @for($i=0; $i <=count($cat_list)-1; $i++)
@@ -115,9 +115,9 @@ for($i=0; $i <=count($cat_list)-1; $i++)
 										?>
 
 										@if (in_array($cat_trim, $parent_temp))
-											<option value="{{$i}}">{{ $cat_list[$i] }} 11</option>
+											<option value="{{$cat_list[$i]}}" >{{ $cat_list[$i] }} 11</option>
 										@else
-											<option value="{{$i}}">{{ $cat_list[$i] }}</option>
+											<option value="{{$cat_list[$i]}}">{{ $cat_list[$i] }}</option>
 										
 										@endif
 								@endfor
@@ -129,6 +129,8 @@ for($i=0; $i <=count($cat_list)-1; $i++)
                                <span style="color: red;"> {{ $errors->first('parent_id') }} </span>
                        @endif
                </div>
+
+               <p id="demo"></p>
 
                <br/>
                <div class="form-group">
@@ -399,6 +401,24 @@ for($i=0; $i <=count($cat_list)-1; $i++)
 
                $("#TagItem"+id).remove();
         }
+
+        //window.onload=function()
+        //{
+        	//alert('hi');
+        	//$("#selectpicker").multiselect('updateButtonText');
+        	//$('select[name=cat]').val(1);
+			//$('.selectpicker').selectpicker('refresh')
+        //}
+
+        // Stack: 4842590
+        document.addEventListener('DOMContentLoaded', function() {
+		    //salert("Ready!");
+		    
+		    // stack: 14804253
+		    // https://jsfiddle.net/t0xicCode/96ntuxnz/
+		    $('.selectpicker').selectpicker();
+			$('.selectpicker').selectpicker('val', ['1', '2']);
+		}, false);
 
 
        </script>
