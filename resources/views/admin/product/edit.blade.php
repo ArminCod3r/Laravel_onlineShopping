@@ -9,7 +9,6 @@ foreach ($parents as $key => $item)
 	$item_trimed = str_replace(' ', '', $item);
 	array_push($parent_temp, $item_trimed);
 }
-//print_r($parent_temp);
 
 $cat_temp=array();
 foreach ($cat_list as $key => $item)
@@ -19,27 +18,16 @@ foreach ($cat_list as $key => $item)
 
 	$cat_temp[$item]=$trimed_cat;
 }
-//print_r($cat_temp);
 
 $matches = array_intersect($parent_temp, $cat_temp); // returns matches
 $differences = array_diff($parent_temp, $cat_list);      // returns the differences
 
 //print_r($matches);
-//print array_search($matches[0], $cat_temp);
+//print array_search($matches[0], $cat_temp); // Get key base on value
+//print array_search(array_search($matches[0], $cat_temp), $cat_list);
 //print empty($matches);
 //print serialize($differences);
 
-for($i=0; $i <=count($cat_list)-1; $i++)
-{
-	for($j=0; $j<=count($parents)-1; $j++)
-	{
-		$cat_trim    = str_replace(' ', '', str_replace('-', '', $cat_list[$i]));
-		$parent_trim = str_replace(' ', '', $parents[$j]);
-		//if ($cat_trim == $parent_trim)
-			//print $cat_trim." = ".$parent_trim."\n";
-	}
-	//print "\n";
-}
 ?>
 
 @section('header')
@@ -115,7 +103,7 @@ for($i=0; $i <=count($cat_list)-1; $i++)
 										?>
 
 										@if (in_array($cat_trim, $parent_temp))
-											<option value="{{$i}}" >{{ $cat_list[$i] }} 11</option>
+											<option value="{{$i}}" >{{ $cat_list[$i] }}</option>
 										@else
 											<option value="{{$i}}">{{ $cat_list[$i] }}</option>
 										
@@ -416,8 +404,20 @@ for($i=0; $i <=count($cat_list)-1; $i++)
 		    
 		    // stack: https://stackoverflow.com/questions/14804253/how-to-set-selected-value-on-select-using-selectpicker-plugin-from-bootstrap
 		    // https://jsfiddle.net/t0xicCode/96ntuxnz/
-		    $('.selectpicker').selectpicker();
-			$('.selectpicker').selectpicker('val', ['1', '2']);
+
+		    //$('.selectpicker').selectpicker();
+			//$('.selectpicker').selectpicker('val', ['1', '2']);
+
+			var selectpicker_ = [];
+
+			// stack: 4287357 - javascript access php variable
+			<?php foreach ($matches as $key => $item): ?>
+				selectpicker_[<?php print $key;?>] = ([<?php print array_search(array_search($item, $cat_temp), $cat_list)?>]).toString();
+			<?php endforeach ?>
+
+			console.log(selectpicker_);
+
+			$('.selectpicker').selectpicker('val', selectpicker_);
 		}, false);
 
 
