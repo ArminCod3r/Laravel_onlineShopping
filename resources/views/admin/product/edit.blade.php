@@ -59,8 +59,11 @@ print_r($cat_temp);
 $matches = array_intersect($parent_temp, $cat_temp); // returns matches
 $differences = array_diff($parents, $cat_list);      // returns the differences
 
-$key = array_search ('انتخابسردسته', $cat_temp);
-print $key;
+//print_r($matches);
+print array_search($matches[0], $cat_temp);
+
+//$key = array_search($matches, $cat_temp);
+//print $key;
 
 //print_r($matches);
 //print_r($differences);
