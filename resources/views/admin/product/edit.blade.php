@@ -115,9 +115,9 @@ for($i=0; $i <=count($cat_list)-1; $i++)
 										?>
 
 										@if (in_array($cat_trim, $parent_temp))
-											<option value="{{$cat_list[$i]}}" >{{ $cat_list[$i] }} 11</option>
+											<option value="{{$i}}" >{{ $cat_list[$i] }} 11</option>
 										@else
-											<option value="{{$cat_list[$i]}}">{{ $cat_list[$i] }}</option>
+											<option value="{{$i}}">{{ $cat_list[$i] }}</option>
 										
 										@endif
 								@endfor
@@ -414,7 +414,7 @@ for($i=0; $i <=count($cat_list)-1; $i++)
         document.addEventListener('DOMContentLoaded', function() {
 		    //salert("Ready!");
 		    
-		    // stack: 14804253
+		    // stack: https://stackoverflow.com/questions/14804253/how-to-set-selected-value-on-select-using-selectpicker-plugin-from-bootstrap
 		    // https://jsfiddle.net/t0xicCode/96ntuxnz/
 		    $('.selectpicker').selectpicker();
 			$('.selectpicker').selectpicker('val', ['1', '2']);
