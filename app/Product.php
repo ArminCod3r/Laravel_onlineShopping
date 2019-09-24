@@ -39,4 +39,15 @@ class Product extends Model
 
 		return $result; //var_dump($result);
     }
+
+    public static function getColor($id)
+    {
+    	$result = DB::table('product')
+                ->join('color_product', 'product.id', '=', 'color_product.product_id')
+                ->select('color_product.color_code')
+                ->where('product.id',$id)
+                ->get();
+
+        return $result;
+    }
 }

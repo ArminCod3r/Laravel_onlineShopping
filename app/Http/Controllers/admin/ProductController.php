@@ -171,9 +171,12 @@ class ProductController extends Controller
             $parents_array[$key] = ((array)$item)["cat_name"];
         }
 
+        $colors_products = Product::getColor($product->id);
+        echo $colors_products;
+
         //return $parents_array;
-        return view('admin/product/edit')->with(['product'=>$product, 'cat_list'=>$cat_list,
-                                                 'parents'=>$parents_array]);
+        //return view('admin/product/edit')->with(['product'=>$product, 'cat_list'=>$cat_list,
+        //                                         'parents'=>$parents_array]);
     }
 
     /**
