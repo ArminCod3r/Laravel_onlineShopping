@@ -1,40 +1,7 @@
 @extends('admin/layouts/adminLayout')
 
 
-<div class="arr_res">
-	@foreach($parents as $item)
-		<h1> {{ $item }} </h1>
-	@endforeach
-
-	@foreach($cat_list as $item)
-		<h1> {{ $item }} </h1>
-	@endforeach
-</div>
-
 <?php
-
-foreach ($parents as $parent)
-{
-	foreach ($cat_list as $item)
-	{
-		print $parent." = ".$item;
-
-		$trimed_cat = str_replace('-', '', $item);
-		$trimed_cat = str_replace(' ', '', $trimed_cat);
-
-		$parent_trimed = str_replace(' ', '', $parent);
-		
-		if ( $parent_trimed == $trimed_cat)
-		{
-		    echo ">>>>>";
-		}
-		print "\n";
-	}
-	print "\n";
-
-}
-
-print "\n\n";
 
 $parent_temp=array();
 foreach ($parents as $key => $item)
@@ -42,33 +9,37 @@ foreach ($parents as $key => $item)
 	$item_trimed = str_replace(' ', '', $item);
 	array_push($parent_temp, $item_trimed);
 }
+print_r($parent_temp);
 
 $cat_temp=array();
 foreach ($cat_list as $key => $item)
 {
 	$trimed_cat = str_replace('-', '', $item);
 	$trimed_cat = str_replace(' ', '', $trimed_cat);
-	//array_push($cat_temp, $trimed_cat);
-	//array_push($cat_temp, array($item => $trimed_cat));
 
 	$cat_temp[$item]=$trimed_cat;
 }
-
 print_r($cat_temp);
 
 $matches = array_intersect($parent_temp, $cat_temp); // returns matches
-$differences = array_diff($parents, $cat_list);      // returns the differences
+$differences = array_diff($parent_temp, $cat_list);      // returns the differences
 
 //print_r($matches);
-print array_search($matches[0], $cat_temp);
+//print array_search($matches[0], $cat_temp);
+//print empty($matches);
+//print serialize($differences);
 
-//$key = array_search($matches, $cat_temp);
-//print $key;
-
-//print_r($matches);
-//print_r($differences);
-
-
+for($i=0; $i <=count($cat_list)-1; $i++)
+{
+	for($j=0; $j<=count($parents)-1; $j++)
+	{
+		$cat_trim    = str_replace(' ', '', str_replace('-', '', $cat_list[$i]));
+		$parent_trim = str_replace(' ', '', $parents[$j]);
+		if ($cat_trim == $parent_trim)
+			print $cat_trim." = ".$parent_trim."\n";
+	}
+	print "\n";
+}
 ?>
 
 @section('header')
@@ -137,18 +108,20 @@ print array_search($matches[0], $cat_temp);
                         <select multiple="multiple" name="cat[]" class="selectpicker" data-live-search="true">
                         <!--stack: 24627902-->
 
-                                @for ($i=0; $i <=count($cat_list)-1; $i++)
-                                	@for ($j=0; $j<=count($parents)-1; $j++)
-                                	
-	                                	@if(true)
-	                                		<option value="{{ $i }}" >{{ $cat_list[$i] }} 11 </option>
+                                @for($i=0; $i <=count($cat_list)-1; $i++)
+										<?php
+											$cat_trim    = str_replace(' ', '', str_replace('-', '', $cat_list[$i]));
+											//$parent_trim = str_replace(' ', '', $parents[$j]);
+										?>
 
-	                                	@else
-	                                		<option value="{{ $i }}">{{ $cat_list[$i] }}</option>
+										@if (in_array($cat_trim, $parent_temp))
+											<option value="{{$i}}">{{ $cat_list[$i] }} 11</option>
+										@else
+											<option value="{{$i}}">{{ $cat_list[$i] }}</option>
+										
+										@endif
+								@endfor
 
-	                                	@endif
-                                	@endfor
-                                @endfor
 
                         </select>
 
