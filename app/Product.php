@@ -46,7 +46,7 @@ class Product extends Model
                 ->join('color_product', 'product.id', '=', 'color_product.product_id')
                 ->select('color_product.color_code')
                 ->where('product.id',$id)
-                ->get();
+                ->pluck('color_code');
 
         return $result;
     }
