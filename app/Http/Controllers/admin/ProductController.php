@@ -162,10 +162,18 @@ class ProductController extends Controller
         }
 
         $parents = Product::getParent($product->id);
+        //$row = ((array)$parents[0]);
+        //return $row["cat_name"];
 
-        return $parents;
+        $parents_array= array();
+        foreach ($parents as $key=>$item)
+        {
+            $parents_array[$key] = ((array)$item)["cat_name"];
+        }
 
-        //return view('admin/product/edit')->with(['product'=>$product, 'cat_list'=>$cat_list]);
+        //return $parents_array;
+        return view('admin/product/edit')->with(['product'=>$product, 'cat_list'=>$cat_list,
+                                                 'parents'=>$parents_array]);
     }
 
     /**
