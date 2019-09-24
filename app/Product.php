@@ -27,6 +27,7 @@ class Product extends Model
 		// Google: database joins & SQL joins
 		// https://www.w3schools.com/sql/sql_join.asp
 		// https://stackoverflow.com/questions/29165410/how-to-join-three-table-by-laravel-eloquent-model
+		// https://laravel.com/docs/5.8/queries#joins
 		$result = DB::table('category')
                 ->join('parent_product', 'category.id', '=', 'parent_product.parent_id')
                 ->select('category.cat_name')
