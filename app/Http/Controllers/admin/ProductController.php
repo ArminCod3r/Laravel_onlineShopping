@@ -161,7 +161,11 @@ class ProductController extends Controller
             }
         }
 
-        return view('admin/product/edit')->with(['product'=>$product, 'cat_list'=>$cat_list]);
+        $parents = Product::getParent($product->id);
+
+        return $parents;
+
+        //return view('admin/product/edit')->with(['product'=>$product, 'cat_list'=>$cat_list]);
     }
 
     /**
