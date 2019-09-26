@@ -50,4 +50,12 @@ class Product extends Model
 
         return $result;
     }
+
+    public static function getKeywords($id)
+    {
+    	$keywords = Product::select('keywords')
+                           ->where('id', '=', $id)
+                           ->pluck('keywords');
+        return $keywords;
+    }
 }
