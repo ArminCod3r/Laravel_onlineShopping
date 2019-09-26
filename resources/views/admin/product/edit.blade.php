@@ -407,6 +407,7 @@ $differences = array_diff($parent_temp, $cat_list);      // returns the differen
         //}
 
         // Stack: 4842590
+        // Onload of Page, get the 'Parents' and fill in deire input (selectpicker)
         document.addEventListener('DOMContentLoaded', function() {
 		    //salert("Ready!");
 		    
@@ -426,6 +427,9 @@ $differences = array_diff($parent_temp, $cat_list);      // returns the differen
 			console.log(selectpicker_);
 
 			$('.selectpicker').selectpicker('val', selectpicker_);
+
+			// set jscolor's first input(FFFFFF) to none
+			$('#color').val(color.style.backgroudColor);
 		}, false);
 
 
