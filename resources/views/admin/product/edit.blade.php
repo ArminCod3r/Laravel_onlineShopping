@@ -211,7 +211,15 @@ $differences = array_diff($parent_temp, $cat_list);      // returns the differen
 
                <div class="form-group">
                        <label> افزودن رنگ </label><br>
-                       <input type="text" name="color[]" id="color" class="jscolor" style="margin-right: 10px;">
+                       <input type="text" name="color[]" id="color" class="jscolor" value="" style="margin-right: 10px;">
+
+                       @if(!empty($colors_product))
+                       	 @foreach($colors_product as $item)
+                       	    </br>
+                       	    <input type="text" name="color[]" id="color" class="jscolor" value="{{$item}}" style="margin-right: 10px;">
+                         @endforeach
+                       @endif
+
                </div>
 
                <div class="form-group" style="margin-right: 10px;">
