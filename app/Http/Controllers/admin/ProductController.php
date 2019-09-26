@@ -173,11 +173,26 @@ class ProductController extends Controller
 
         $colors_product = Product::getColor($product->id);
 
+
+        $keywords = Product::getKeywords($product->id);
+
+        $regex_pattern = "/,./";  //https://regex101.com/r/gFoOCg/1
+        preg_match_all($regex_pattern, $keywords, $matches); // keywors would be: ,a,b,d,c
+
+        // Remove ',' in keywords[]
+        $keywords_temp= array();
+        foreach ($matches[0] as $key => $item)
+        {
+            $keywords_temp[$key] = str_replace(',', '', $item);
+        }
+        $keywords = $keywords_temp;
+
         //return $parents_array;
         return view('admin/product/edit')->with(['product'        => $product,
                                                  'cat_list'       => $cat_list,
                                                  'parents'        => $parents_array,
                                                  'colors_product' => $colors_product,
+                                                 'keywords'       => $keywords,
                                                  ]);
     }
 
