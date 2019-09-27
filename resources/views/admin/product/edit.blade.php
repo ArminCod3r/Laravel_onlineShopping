@@ -28,6 +28,8 @@ $differences = array_diff($parent_temp, $cat_list);      // returns the differen
 //print empty($matches);
 //print serialize($differences);
 
+$count=0;
+
 ?>
 
 @section('header')
@@ -247,6 +249,7 @@ $differences = array_diff($parent_temp, $cat_list);      // returns the differen
                               <span class='fa fa-remove' onclick='removeTag({{$key}})'></span>
                               {{$item}}
                              </div>
+                             <?php $count=$key;?>
                          @endforeach
                        @endif
                </div>
@@ -366,7 +369,7 @@ $differences = array_diff($parent_temp, $cat_list);      // returns the differen
                var keywords = document.getElementById("keywords").value;
                var keywords_temp = keywords;
 
-               var count=1;
+               var count=<?php echo $count; ?>+1;
 
                for (var i=0 ; i<=(tag_split.length)-1 ; i++)
                {
