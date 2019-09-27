@@ -13,7 +13,7 @@
 <a href="{{ url('admin/products/create') }}" class="btn btn-success"> افزودن اسلاید </a>
 <br><br>
 
-    <table class="table table-hover" dir="rtl">
+    <table class="table table-hover" dir="rtl" style="white-space: nowrap;">
         <thead>
           <tr>
             <th>نام</th>
