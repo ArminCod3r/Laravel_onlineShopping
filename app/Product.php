@@ -50,4 +50,20 @@ class Product extends Model
 
         return $result;
     }
+
+    // Put keyword in an array
+    public static function keywords_trimming($keywords)
+    {
+        $keywords = explode(',', $keywords);
+
+        $keywords_temp=array();
+        foreach ($keywords as $key => $item)
+        {
+            if (!empty($item))
+            {
+                $keywords_temp[$key] = $item;
+            }
+        }
+        return $keywords_temp;
+    }
 }

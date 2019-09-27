@@ -240,8 +240,9 @@ $differences = array_diff($parent_temp, $cat_list);      // returns the differen
                <br>
                <div class="form-group" id="show_tags" style="text-align: rtl;" dir="rtl">
                        <!-- Tags will be shown here-->
-                       @if(!empty($producy->keywords))
-                       	 @foreach($producy->keywords as $key=>$item)
+                       
+                       @if(!empty($keywords))
+                       	 @foreach(($keywords) as $key=>$item)
                        	    <div class="tag_style" id="TagItem{{$key}}">
                               <span class='fa fa-remove' onclick='removeTag({{$key}})'></span>
                               {{$item}}
