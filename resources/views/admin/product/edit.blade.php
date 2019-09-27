@@ -267,6 +267,8 @@ $count=0;
                        @endif
                </div>
 
+               <input type="hidden" name="_method" value="PATCH">
+
                <input type="submit" name="submit" value="ثبت" class="btn btn-primary">
 
        </form>
