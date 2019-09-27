@@ -178,7 +178,7 @@ $count=0;
                <br>
                <div class="form-group">
                        <label for="product_status">وضعیت محصول</label>
-                       <input type="checkbox" name="product_status"
+                       <input type="checkbox" name="product_status"  value="1"
                                <?php if($product->product_status) { echo "checked"; }?> style="margin-right: 5%;">
                        موجود
                        <br>
@@ -191,7 +191,7 @@ $count=0;
 
                <div class="form-group">
                        <label for="show_product">نمایش محصول</label>
-                       <input type="checkbox" name="show_product"
+                       <input type="checkbox" name="show_product" id="show_product" value="1"
                                <?php if($product->show_product) { echo "checked"; }?> style="margin-right: 5%;"><br>
 
                        @if($errors->has('show_product'))
@@ -202,7 +202,7 @@ $count=0;
 
                <div class="form-group">
                        <label for="special"> پیشنهاد ویژه </label>
-                       <input type="checkbox" name="special"
+                       <input type="checkbox" name="special" id="special"
                                <?php if($product->special) { echo "checked"; }?> style="margin-right: 50px;"><br>
 
                        @if($errors->has('special'))

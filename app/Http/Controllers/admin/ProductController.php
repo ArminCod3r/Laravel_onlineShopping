@@ -191,9 +191,55 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ProductRequest $request, $id)
     {
-        //
+        //return $request->all();
+
+        $product = Product::findOrFail($id);
+
+        $product->product_status="1";
+
+        $product->update($request->all());
+
+        // TITLE convert: '-','/' >TO> '-'
+        $url = str_replace('-', ' ', $request->title);
+        $url = str_replace('/', ' ', $url);
+        $product->title_url = preg_replace('/\s+/', '-', $url);
+
+        // CODE_URL convert: '-','/' >TO> '-'
+        $code_url = str_replace('-', ' ', $request->code_url);
+        $code_url = str_replace('/', ' ', $code_url);
+        $product->code_url = preg_replace('/\s+/', '-', $code_url);
+        
+        $product->view = 0;
+        $product->order_product = 0; // Tedad-E forosh
+        $product->special = 0;
+
+        $product->keywords;
+
+        $product->save();
+
+        // Other tables
+
+        $parents= $request->input('cat');
+        foreach ($parents as $item)
+        {
+            // NOTE: $product->id is only avaliable after saveing the current row.
+            DB::table('parent_product')->insert(['product_id'=>$product->id, 'parent_id'=>$item]);
+        }
+
+        if(is_array($request->input('color')))
+        {
+            $colors = $request->input('color');
+            foreach ($colors as $key => $item)
+            {
+                if(!empty($item))
+                    DB::table('color_product')->insert(['color_code'=>$item, 'product_id'=>$product->id]);
+            }
+        }
+        
+        $url = 'admin/product/';
+        return redirect($url);
     }
 
     /**
