@@ -174,10 +174,10 @@ class ProductController extends Controller
         $colors_product = Product::getColor($product->id);
 
 
-        $keywords = Product::getKeywords($product->id);
+        $keywords = $product->id;
 
         $regex_pattern = "/,./";  //https://regex101.com/r/gFoOCg/1
-        preg_match_all($regex_pattern, $keywords, $matches); // keywors would be: ,a,b,d,c
+        preg_match_all($regex_pattern, $product->keywords, $matches); // keywors would be: ,a,b,d,c
 
         // Remove ',' in keywords[]
         $keywords_temp= array();
@@ -192,7 +192,6 @@ class ProductController extends Controller
                                                  'cat_list'       => $cat_list,
                                                  'parents'        => $parents_array,
                                                  'colors_product' => $colors_product,
-                                                 'keywords'       => $keywords,
                                                  ]);
     }
 
