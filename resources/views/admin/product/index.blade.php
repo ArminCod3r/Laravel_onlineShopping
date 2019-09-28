@@ -18,6 +18,7 @@
           <tr>
             <th>نام</th>
             <th>عملیات</th>
+            <th>متن</th>
             <th>نام لاتین</th>
             <th>رنگها</th>
             <th>قیمت</th>
@@ -45,6 +46,13 @@
                     </form>
 
                 </td>
+
+                <td>
+                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#exampleModalLong">
+                    <span class="fa fa-twitch"></span>
+                    </button>
+                </td>
+
                 <td style="text-align: left"> {{ $item->code }} </td>
                 <td></td>
                 <td> {{ $item->price }} </td>
@@ -89,10 +97,35 @@
 
 @section('content2')
     <br><br><br><br><br><br>
+    <!-- Button trigger modal -->
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+
+        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">بستن</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 @endsection
 
 @section('footer')
 	<script type="text/javascript">
+
 		$("#submitBtn").bind('click', function(event) {
 		   $("#removeForm").submit();
 		});
