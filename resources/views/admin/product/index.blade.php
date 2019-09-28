@@ -3,6 +3,18 @@
 
 @section('header')
     <title>لیست محصولات</title>
+    <style type="text/css">
+    .modal {
+       position: absolute;
+       top: 10px;
+       right: 100px;
+       bottom: 0;
+       left: 0;
+       z-index: 10040;
+       overflow: auto;
+       overflow-y: auto;
+    }
+</style>
 @endsection
 
 @section('custom-title')
@@ -48,7 +60,8 @@
                 </td>
 
                 <td>
-                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#exampleModalLong">
+                    <button type="button" class="btn btn-default" data-toggle="modal"
+                        onclick="show_text('{{$item->title}}','{{$item->text}}')">
                     <span class="fa fa-twitch"></span>
                     </button>
                 </td>
@@ -129,5 +142,14 @@
 		$("#submitBtn").bind('click', function(event) {
 		   $("#removeForm").submit();
 		});
+
+        show_text = function($id, $text){
+
+            // stack: 27959117
+            $("#exampleModalLongTitle").html($id);
+            $(".modal-body").html($text);
+
+            $('#exampleModalLong').modal('show'); 
+        }
 	</script>
 @endsection
