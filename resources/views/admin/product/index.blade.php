@@ -14,6 +14,25 @@
        overflow: auto;
        overflow-y: auto;
     }
+
+
+    .modal-header .close {
+      margin: 0;
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      width: 23px;
+      height: 23px;
+      border-radius: 23px;
+      background-color: #00aeef;
+      color: #ffe300;
+      font-size: 18px;
+      opacity: 1;
+      z-index: 50;
+    }
+    .modal-header .close, .modal-header .mailbox-attachment-close{
+        padding:0rem;
+    }
 </style>
 @endsection
 
