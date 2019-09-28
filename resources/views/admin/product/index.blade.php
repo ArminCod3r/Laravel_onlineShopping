@@ -45,7 +45,7 @@
                     </form>
 
                 </td>
-                <td> {{ $item->code }} </td>
+                <td style="text-align: left"> {{ $item->code }} </td>
                 <td></td>
                 <td> {{ $item->price }} </td>
                 <td> {{ $item->discount }} </td>
