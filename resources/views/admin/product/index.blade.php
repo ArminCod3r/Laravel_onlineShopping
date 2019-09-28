@@ -24,26 +24,52 @@
             <th>بازدید</th>
             <th>موجود</th>
             <th>بن</th>
-            <th>نمایش محصول</th>
+            <th>محصول</th>
             <th>تعداد فروش</th>
             <th>پیشنهاد ویژه</th>
+            <th>عملیات</th>
           </tr>
         </thead>
          
         <?php $i=1; ?>
         @foreach($products as $item)
             <tr>
+                <td> {{ $item->title }} </td>
+                <td> {{ $item->code }} </td>
                 <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>     
+                <td> {{ $item->price }} </td>
+                <td> {{ $item->discount }} </td>
+                <td> {{ $item->view }} </td>
+
+                <td> 
+                	<input type="checkbox" name="product_status"  value="1"
+                        <?php if($item->product_status) { echo "checked"; }?> disabled >
+
+                </td>
+
+                <td> {{ $item->bon }} </td>
+
+                <td>
+                	<center>
+                		<input type="checkbox" name="show_product"  value="1"
+                        	<?php if($item->show_product) { echo "checked"; }?> disabled >
+                    </center>
+
+                </td>
+
+                <td> <center> {{ $item->order_product }} </center> </td>
+
+                <td>
+                	<center>
+                		<input type="checkbox" name="special"  value="1"
+                        	<?php if($item->special) { echo "checked"; }?> disabled >
+                    </center>
+
+                </td>
+
+                <td>
+                </td>
+
             </tr>
             <?php $i++; ?> 
         @endforeach
