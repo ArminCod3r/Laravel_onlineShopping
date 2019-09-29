@@ -33,6 +33,16 @@
     .modal-header .close, .modal-header .mailbox-attachment-close{
         padding:0rem;
     }
+
+    .dotStyle{
+      height: 15px;
+      width: 15px;
+      background-color: #bbb;
+      border-radius: 50%;
+      display: inline-block;
+      margin: 0px;
+      padding: 0px;
+    }
 </style>
 @endsection
 
@@ -97,7 +107,15 @@
                 </td>
 
                 <td style="text-align: left"> {{ $item->code }} </td>
-                <td></td>
+
+                <td>
+                  @foreach($colors as $key=>$color)
+                    @if( $item->id == $color->product_id)                      
+                      <input type="text" class="jscolor {valueElement:null,value:'{{ $color->color_code }}'} dotStyle" size="1" >
+                    @endif
+                  @endforeach
+                </td>
+
                 <td> {{ $item->price }} </td>
                 <td> 
                     <?php
@@ -172,6 +190,8 @@
 @endsection
 
 @section('footer')
+       <script type="text/javascript" src="{{ url('js/jscolor.js') }}"></script>
+
 	<script type="text/javascript">
 
 		$("#submitBtn").bind('click', function(event) {

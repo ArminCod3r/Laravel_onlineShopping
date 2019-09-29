@@ -35,7 +35,11 @@ class ProductController extends Controller
         else
             $products = Product::orderBy('id', 'desc')->paginate(2);
 
-        return view('admin/product/index')->with('products', $products);
+        $colors = Product::getColor();
+        $colors = (array)$colors;
+
+        return view('admin/product/index', ['products'=> $products , 'colors'=>$colors]);
+        //->with('products', $products);
     }
 
     /**
