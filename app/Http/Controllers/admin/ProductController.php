@@ -16,10 +16,24 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::orderBy('id', 'desc')->paginate(5);
-        //return $products;
+        //return Product::searchProduct($request->input('search_product_fa'));
+
+        $products  = "";
+        $search_product = "";
+
+        if ($request->input('search_product'))
+        {
+             $search_product = $request->input('search_product');
+             $products = Product::searchProduct($search_product);
+
+             $path = 'product?search_product_fa='.$search_product;
+             $products->setPath($path);
+        }
+
+        else
+            $products = Product::orderBy('id', 'desc')->paginate(2);
 
         return view('admin/product/index')->with('products', $products);
     }

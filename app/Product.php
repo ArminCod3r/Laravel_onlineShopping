@@ -66,4 +66,15 @@ class Product extends Model
         }
         return $keywords_temp;
     }
+
+    // index > search
+    public static function searchProduct($product)
+    {
+        $result = DB::table('product')
+                ->select('*')
+                ->where('product.title', 'like', '%'.$product.'%')
+                ->paginate(2);
+
+        return $result;
+    }
 }

@@ -44,6 +44,7 @@
 <a href="{{ url('admin/product/create') }}" class="btn btn-success"> افزودن محصول </a>
 <br><br>
 
+<form action="{{ url('admin/product') }}" id="list_form">
     <table class="table table-hover" dir="rtl" style="white-space: nowrap;">
         <thead>
           <tr>
@@ -62,6 +63,16 @@
             <th>پیشنهاد ویژه</th>
           </tr>
         </thead>
+
+        <tr>
+            <td colspan="4">
+              <input type="text" name="search_product" class="form-control search_input" style="width: 100%; " placeholder="متن سرچ">
+              </input>
+            </td>
+
+            <td></td>
+            <td></td>
+        </tr>
          
         <?php $i=1; ?>
         @foreach($products as $item)
@@ -88,7 +99,12 @@
                 <td style="text-align: left"> {{ $item->code }} </td>
                 <td></td>
                 <td> {{ $item->price }} </td>
-                <td> {{ $item->discount }} </td>
+                <td> 
+                    <?php
+                        if ($item->price == null)
+                          echo 0;
+                    ?>
+                </td>
                 <td> {{ $item->view }} </td>
 
                 <td> 
@@ -124,7 +140,7 @@
     
 
     {{ $products->links() }}
-
+</form>
 @endsection
 
 @section('content2')
@@ -170,5 +186,15 @@
 
             $('#exampleModalLong').modal('show'); 
         }
+
+    // When ENTER hit, submit the form
+    $('.search_input').on('keydown', function(event){
+            if(event.keyCode == 13)
+            {
+                $('#list_form').submit();
+                //document.getElementById("list_form").submit(); 
+                //alert('a');
+            }
+        });
 	</script>
 @endsection
