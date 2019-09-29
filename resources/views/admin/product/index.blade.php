@@ -41,7 +41,7 @@
 @endsection
 
 @section('content1')
-<a href="{{ url('admin/products/create') }}" class="btn btn-success"> افزودن محصول </a>
+<a href="{{ url('admin/product/create') }}" class="btn btn-success"> افزودن محصول </a>
 <br><br>
 
     <table class="table table-hover" dir="rtl" style="white-space: nowrap;">
