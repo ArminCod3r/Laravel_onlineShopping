@@ -68,7 +68,7 @@
             <tr>
                 <td> {{ $item->title }} </td>
                 <td>
-                	<a href="{{ $item->id }}/edit" class="fa fa-edit">  </a>
+                	<a href="/admin/product/{{ $item->id }}/edit" class="fa fa-edit">  </a>
                 	
                 	<form action="{{ action('admin\ProductController@destroy', ['id' => $item->id]) }}" method="POST"  accept-charset="utf-8" class="pull-right"  onsubmit="return confirm('آیا قصد حذف این دسته را دارید؟')" id="removeForm"> <!--stack: 39790082-->
                         {{ csrf_field() }}      
