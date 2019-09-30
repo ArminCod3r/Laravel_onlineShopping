@@ -171,7 +171,9 @@ $count=0;
 
                <div class="form-group">
                        <label for="article-ckeditor">توضیح</label>
-                       <input type="text" name="article-ckeditor" id="article-ckeditor" class="form-control" value="" placeholder=""><br>
+                       <textarea name="article-ckeditor" id="article-ckeditor" class="form-control" value="" placeholder="">
+                       </textarea>
+                       <br>
                </div>
 
 

@@ -226,6 +226,9 @@ class ProductController extends Controller
 
         $product->update($request->all());
 
+        // CKeditor
+        $product->text = $request->input('article-ckeditor');
+
         // TITLE convert: '-','/' >TO> '-'
         $url = str_replace('-', ' ', $request->title);
         $url = str_replace('/', ' ', $url);
