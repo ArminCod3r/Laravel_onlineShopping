@@ -33,7 +33,7 @@ class ProductController extends Controller
         }
 
         else
-            $products = Product::orderBy('id', 'desc')->paginate(2);
+            $products = Product::orderBy('id', 'desc')->paginate(5);
 
         $colors = Product::getColor();
         $colors = (array)$colors;
@@ -97,6 +97,9 @@ class ProductController extends Controller
         $product->keywords       = $request->input('keywords');
         $product->description    = $request->input('description');
         $product->special        = $request->input('special');*/
+
+        // CKeditor
+        $product->text = $request->input('article-ckeditor');
 
         // TITLE convert: '-','/' >TO> '-'
         $url = str_replace('-', ' ', $request->title);
@@ -214,6 +217,7 @@ class ProductController extends Controller
      */
     public function update(ProductRequest $request, $id)
     {
+        //DB::connection()->enableQueryLog();
         //return $request->all();
 
         $product = Product::findOrFail($id);
@@ -249,15 +253,25 @@ class ProductController extends Controller
             DB::table('parent_product')->insert(['product_id'=>$product->id, 'parent_id'=>$item]);
         }
 
+        $colors_arr = array();
         if(is_array($request->input('color')))
         {
+            // Delete previous colors
+            DB::table('color_product')->where('product_id', $product->id)->delete();
+
             $colors = $request->input('color');
             foreach ($colors as $key => $item)
             {
                 if(!empty($item))
-                    DB::table('color_product')->insert(['color_code'=>$item, 'product_id'=>$product->id]);
+                {
+                    // Insert new colors
+                    DB::table('color_product')
+                        ->insert(['color_code'=>$item, 'product_id'=>$product->id]);
+                }
             }
         }
+        // To see the raw query that was just executed.
+        //dd(DB::getQueryLog());
         
         $url = 'admin/product/';
         return redirect($url);

@@ -87,7 +87,7 @@ class Product extends Model
         $result = DB::table('product')
                 ->select('*')
                 ->where('product.title', 'like', '%'.$product.'%')
-                ->paginate(2);
+                ->paginate(5);
 
         return $result;
     }
