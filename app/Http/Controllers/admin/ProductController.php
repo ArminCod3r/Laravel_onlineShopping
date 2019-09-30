@@ -288,7 +288,13 @@ class ProductController extends Controller
         $product = Product::find($id);
 
         if($product)
+        {
+            // Delete Product
             $product->delete();
+
+            // Delete Product's Color
+            DB::table('color_product')->where('product_id', $product->id)->delete();
+        }
 
         return redirect()->back();
     }
