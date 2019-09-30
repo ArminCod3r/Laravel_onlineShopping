@@ -247,11 +247,18 @@ class ProductController extends Controller
         // Other tables
 
         $parents= $request->input('cat');
-        foreach ($parents as $item)
+        if(!empty($parents))
         {
-            // NOTE: $product->id is only avaliable after saveing the current row.
-            DB::table('parent_product')->insert(['product_id'=>$product->id, 'parent_id'=>$item]);
+            // Delete previous parenrts
+            DB::table('parent_product')->where('product_id', $product->id)->delete();
+
+            foreach ($parents as $item)
+            {
+                // NOTE: $product->id is only avaliable after saveing the current row.
+                DB::table('parent_product')->insert(['product_id'=>$product->id, 'parent_id'=>$item]);
+            }
         }
+        
 
         $colors_arr = array();
         if(is_array($request->input('color')))
