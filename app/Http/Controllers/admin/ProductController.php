@@ -294,6 +294,9 @@ class ProductController extends Controller
 
             // Delete Product's Color
             DB::table('color_product')->where('product_id', $product->id)->delete();
+
+            // Delete Product's Parents
+            DB::table('parent_product')->where('product_id', $product->id)->delete();
         }
 
         return redirect()->back();
