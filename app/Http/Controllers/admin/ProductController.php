@@ -311,4 +311,9 @@ class ProductController extends Controller
 
         return redirect()->back();
     }
+
+    public function gallery(Request $request,$id)
+    {
+        return view('admin/product/gallery');
+    }
 }
