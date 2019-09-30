@@ -72,21 +72,16 @@
             <th>نام</th>
             <th>عملیات</th>
             <th>متن</th>
-            <th>نام لاتین</th>
             <th>رنگها</th>
             <th>قیمت</th>
-            <th>تخفیف</th>
-            <th>بازدید</th>
             <th>موجود</th>
-            <th>بن</th>
             <th>محصول</th>
-            <th>تعداد فروش</th>
-            <th>ویژه</th>
+            <th>تاریخ انتشار</th>
           </tr>
         </thead>
 
         <tr>
-            <td colspan="4">
+            <td colspan="1">
               <input type="text" name="search_product" class="form-control search_input" style="width: 100%; " placeholder="متن سرچ">
               </input>
             </td>
@@ -103,11 +98,11 @@
                   <div style="float:left;">
                     <a href="/admin/product/{{ $item->id }}/edit" class="fa fa-edit">  </a>
                   </div>
-                	
-                	<div style="float:left;">
+                  
+                  <div style="float:left;">
                   <form></form> <!--if it is not writtern, then first 'X' will not work-->
                   
-                	<form action="/admin/product/{{ $item->id }}" method="POST"> <!--stack: 39790082-->
+                  <form action="/admin/product/{{ $item->id }}" method="POST"> <!--stack: 39790082-->
 
                         {{ csrf_field() }}
                         {{ method_field('DELETE') }}
@@ -125,8 +120,6 @@
                     </button>
                 </td>
 
-                <td style="text-align: left"> {{ $item->code }} </td>
-
                 <td>
                   @foreach($colors as $key=>$color)
                     @if( $item->id == $color->product_id)                      
@@ -136,32 +129,27 @@
                 </td>
 
                 <td> {{ $item->price }} </td>
-                <td> 
-                    <?php
-                        if ($item->price == null)
-                          echo 0;
-                    ?>
-                </td>
-                <td> {{ $item->view }} </td>
 
                 <td> 
-                	<input type="checkbox" name="product_status"  value="1"
+                  <input type="checkbox" name="product_status"  value="1"
                         <?php if($item->product_status) { echo "checked"; }?> disabled >
                 </td>
 
-                <td> {{ $item->bon }} </td>
-
                 <td align="center">
-                	<input type="checkbox" name="show_product"  value="1"
-                        <?php if($item->show_product) { echo "checked"; }?> disabled >
+                        @if($item->show_product)
+                            <div style="color: blue">
+                              موجود
+                            </div>
+                        @else
+                            <div style="color: red">
+                              موجود
+                            </div>
+
+                        @endif
                 </td>
 
-                <td> <center> {{ $item->order_product }} </center> </td>
 
-                <td align="center">
-                	<input type="checkbox" name="special"  value="1"
-                        <?php if($item->special) { echo "checked"; }?> disabled >
-                </td>
+                <td></td>
 
             </tr>
             <?php $i++; ?> 
@@ -211,11 +199,11 @@
 @section('footer')
        <script type="text/javascript" src="{{ url('js/jscolor.js') }}"></script>
 
-	<script type="text/javascript">
+  <script type="text/javascript">
 
-		$("#submitBtn").bind('click', function(event) {
-		   $("#removeForm").submit();
-		});
+    $("#submitBtn").bind('click', function(event) {
+       $("#removeForm").submit();
+    });
 
         show_text = function($id, $text){
 
@@ -235,5 +223,5 @@
                 //alert('a');
             }
         });
-	</script>
+  </script>
 @endsection
