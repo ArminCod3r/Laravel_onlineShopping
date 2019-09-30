@@ -43,6 +43,17 @@
       margin: 0px;
       padding: 0px;
     }
+
+    .submitStyle{
+      background-color: Transparent;
+      background-repeat:no-repeat;
+      border: none;
+      cursor:pointer;
+      overflow: hidden;
+      outline:none;
+      color: red;
+      font-weight: bold;
+    }
 </style>
 @endsection
 
@@ -89,14 +100,22 @@
             <tr>
                 <td> {{ $item->title }} </td>
                 <td>
-                	<a href="/admin/product/{{ $item->id }}/edit" class="fa fa-edit">  </a>
+                  <div style="float:left;">
+                    <a href="/admin/product/{{ $item->id }}/edit" class="fa fa-edit">  </a>
+                  </div>
                 	
-                	<form action="{{ action('admin\ProductController@destroy', ['id' => $item->id]) }}" method="POST"  accept-charset="utf-8" class="pull-right"  onsubmit="return confirm('آیا قصد حذف این دسته را دارید؟')" id="removeForm"> <!--stack: 39790082-->
-                        {{ csrf_field() }}      
-                        <input type="hidden" name="_method" value="DELETE">
-                        <a id="submitBtn" class="fa fa-remove" style="color:red; cursor:pointer; margin-left:10px">  </a>
-                    </form>
+                	<div style="float:left;">
+                  <form></form> <!--if it is not writtern, then first 'X' will not work-->
+                  
+                	<form action="/admin/product/{{ $item->id }}" method="POST"> <!--stack: 39790082-->
 
+                        {{ csrf_field() }}
+                        {{ method_field('DELETE') }}
+
+                        <input type="submit" value="X" class="submitStyle">
+                        <!--<a id="submitBtn" class="fa fa-remove" style="color:red; cursor:pointer; margin-left:10px">  </a>-->
+                    </form>
+                  </div>
                 </td>
 
                 <td>
