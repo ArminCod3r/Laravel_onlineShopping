@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Product;
 use App\Category;
+use App\ProductImage;
 use App\Http\Requests\ProductRequest;
 use DB;
 
@@ -328,7 +329,20 @@ class ProductController extends Controller
         
         // Set the return value for Dropzone
         if($files->move('upload', $fileName))
+        {
+            $product_image = new ProductImage();
+
+            // escape special characters [stack: 14114411]
+            $id = str_replace(' ', '-', $id); // Replaces all spaces with hyphens.
+            $id = preg_replace('/[^A-Za-z0-9\-]/', '', $id); // Removes special chars.
+
+            $product_image->product_id = $id;
+            $product_image->url = $fileName;
+
+            $product_image->Save();
+
             return 1;
+        }
         else
             return 0;
     }
