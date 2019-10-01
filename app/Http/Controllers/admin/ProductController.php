@@ -325,6 +325,11 @@ class ProductController extends Controller
         $files = $request->file('file');        
 
         $fileName = time().(rand(10,1000)).'.'.$files->getClientOriginalExtension();
-        $files->move('upload', $fileName);
+        
+        // Set the return value for Dropzone
+        if($files->move('upload', $fileName))
+            return 1;
+        else
+            return 0;
     }
 }
