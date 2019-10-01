@@ -323,7 +323,11 @@ class ProductController extends Controller
     // Uploading the images
     public function upload(Request $request, $id)
     {
-        $files = $request->file('file');        
+        $files = $request->file('file');
+        
+        $rules = array(
+            'file' => 'image|max:1999',
+        );       
 
         $fileName = time().(rand(10,1000)).'.'.$files->getClientOriginalExtension();
         
