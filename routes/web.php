@@ -29,3 +29,4 @@ Route::resource('admin/slider','admin\SliderController');
 // Product
 Route::resource('admin/product', 'admin\ProductController');
 Route::get('admin/product/gallery/{id}', 'admin\ProductController@gallery');
+Route::post('admin/product/upload', 'admin\ProductController@upload');

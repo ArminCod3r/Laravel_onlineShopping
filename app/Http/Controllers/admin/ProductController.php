@@ -312,8 +312,20 @@ class ProductController extends Controller
         return redirect()->back();
     }
 
-    public function gallery(Request $request,$id)
+    // Showing the gallery page
+    public function gallery(Request $request, $id)
     {
-        return view('admin/product/gallery');
+        $product_id = Product::findOrFail($id);
+        return view('admin/product/gallery')->with('product_id', $product_id);
+    }
+
+    // Uploading the images
+    public function upload(Request $request)
+    {
+
+        $files = $request->file('file');        
+
+        $fileName = time().(rand(10,1000)).'.'.$files->getClientOriginalExtension();
+        $files->move('upload', $fileName);
     }
 }
