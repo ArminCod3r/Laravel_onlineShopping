@@ -26,4 +26,30 @@
 @section('footer')
 	<!--Dropzone.js -->
 	<script type="text/javascript" src="{{ url('js/dropzone.js') }}"></script>
+
+	<!-- Checking file extension + Editing error messages -->
+	<script>
+		Dropzone.options.uploadFile={
+
+        acceptedFiles:".png,.jpg,.gif,.jpeg",
+        addRemoveLinks:true,
+        init:function() {
+
+            this.options.dictRemoveFile='حذف',
+                this.options.dictInvalidFileType='امکان آپلود این فایل وجود ندارد',
+                this.on('success',function(file,response) {
+                    if(response==1)
+                    {
+                        file.previewElement.classList.add('dz-success');
+                    }
+                    else
+                    {
+                        file.previewElement.classList.add('dz-error');
+                        $(file.previewElement).find('.dz-error-message').text('خطا در آپلود فایل');
+                    }
+                });
+
+        }
+    };
+	</script>
 @endsection
