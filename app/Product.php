@@ -91,4 +91,9 @@ class Product extends Model
 
         return $result;
     }
+
+    public function ProductImage()
+    {
+        return $this->hasMany("App\ProductImage");
+    }
 }

@@ -317,6 +317,9 @@ class ProductController extends Controller
     public function gallery(Request $request, $id)
     {
         $product = Product::findOrFail($id);
+
+        $images= $product->ProductImage;
+
         return view('admin/product/gallery')->with('product', $product);
     }
 
@@ -324,7 +327,7 @@ class ProductController extends Controller
     public function upload(Request $request, $id)
     {
         $files = $request->file('file');
-        
+
         $rules = array(
             'file' => 'image|max:1999',
         );       
