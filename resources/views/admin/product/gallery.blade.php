@@ -23,6 +23,33 @@
 	</form>
 @endsection
 
+@section('content2')
+	<br/><br/>
+
+	<table>
+
+		<thead>
+          <tr>
+            <th>تصاویر</th>
+          </tr>
+        </thead>
+
+		<tr>
+			@foreach($images as $key=>$item)				
+	            <td>
+	                <img id="{{$item->id}}" src="{{ url('upload/'.$item->url) }}" style="width: 80%" onclick="magnify_img(this)">
+	            </td>		        
+			@endforeach
+		</tr>
+
+	</table>
+
+@endsection
+
+@section('content4')
+	<img src="" style="width: 80%;" id="biggerImage">
+@endsection
+
 @section('footer')
 	<!--Dropzone.js -->
 	<script type="text/javascript" src="{{ url('js/dropzone.js') }}"></script>
@@ -51,5 +78,14 @@
 
         }
     };
+
+
+    function magnify_img(img)
+    {
+	    var src = img.src;
+	    document.getElementById("biggerImage").src = src; 
+	    // Google: html javascript src in img, https://www.w3schools.com/jsref/prop_img_src.asp
+    }
+
 	</script>
 @endsection

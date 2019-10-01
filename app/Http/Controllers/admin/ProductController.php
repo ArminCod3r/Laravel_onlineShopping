@@ -320,7 +320,9 @@ class ProductController extends Controller
 
         $images= $product->ProductImage;
 
-        return view('admin/product/gallery')->with('product', $product);
+        return view('admin/product/gallery', ['product' => $product,
+                                              'images'  => $images,
+                                              ]);
     }
 
     // Uploading the images
