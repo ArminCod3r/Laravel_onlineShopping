@@ -14,7 +14,7 @@
 @endsection
 
 @section('content1')
-	<form method="post" id="upload-file" action="{{url('admin/product/upload')}}" class="dropzone" enctype="multipart/form-data">
+	<form method="post" id="upload-file" action="{{url('admin/product/upload'.'/'.$product->id)}}" class="dropzone" enctype="multipart/form-data">
 
 		{{ csrf_field() }}
 

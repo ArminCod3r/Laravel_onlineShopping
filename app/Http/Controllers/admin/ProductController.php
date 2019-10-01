@@ -315,14 +315,13 @@ class ProductController extends Controller
     // Showing the gallery page
     public function gallery(Request $request, $id)
     {
-        $product_id = Product::findOrFail($id);
-        return view('admin/product/gallery')->with('product_id', $product_id);
+        $product = Product::findOrFail($id);
+        return view('admin/product/gallery')->with('product', $product);
     }
 
     // Uploading the images
-    public function upload(Request $request)
+    public function upload(Request $request, $id)
     {
-
         $files = $request->file('file');        
 
         $fileName = time().(rand(10,1000)).'.'.$files->getClientOriginalExtension();
