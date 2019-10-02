@@ -26,28 +26,36 @@
 @section('content2')
 	<br/><br/>
 
-	<table>
+	@if(sizeof($images))
+		<table>
+			<thead>
+	          <tr>
+	            <th>تصاویر</th>
+	          </tr>
+	        </thead>
 
-		<thead>
-          <tr>
-            <th>تصاویر</th>
-          </tr>
-        </thead>
+			<tr>
+				@foreach($images as $key=>$item)				
+		            <td>
+		                <img id="{{$item->id}}" src="{{ url('upload/'.$item->url) }}" style="width: 80%" onclick="magnify_img(this)">
+		            </td>		        
+				@endforeach
+			</tr>
+		</table>
 
-		<tr>
-			@foreach($images as $key=>$item)				
-	            <td>
-	                <img id="{{$item->id}}" src="{{ url('upload/'.$item->url) }}" style="width: 80%" onclick="magnify_img(this)">
-	            </td>		        
-			@endforeach
-		</tr>
-
-	</table>
+	@else
+		<h4> تصویری وجود ندارد.</h4>
+		
+	@endif
 
 @endsection
 
 @section('content4')
-	<img src="" style="width: 80%;" id="biggerImage">
+
+	@if(sizeof($images))
+		<img src="{{ url('upload/'.$images->first()->url) }}" style="width: 80%;" id="biggerImage">
+	@endif
+	
 @endsection
 
 @section('footer')
