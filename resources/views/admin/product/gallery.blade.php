@@ -132,12 +132,17 @@
 	    var src = img.src;
 	    document.getElementById("biggerImage").src = src; 
 	    // Google: html javascript src in img, https://www.w3schools.com/jsref/prop_img_src.asp
+
+	    var height = src.height;
+  		var width = src.width;
     }
 
     $(".imageDetails").mouseover(function() {
 	    $(this).children(".deleteImage").show();
+	     document.getElementById("biggerImage").style.filter = "blur(5px)";
 	}).mouseout(function() {
 	    $(this).children(".deleteImage").hide();
+	     document.getElementById("biggerImage").style.filter = "blur(0px)";
 	});
 
 	</script>
