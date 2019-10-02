@@ -7,6 +7,31 @@
   <!--Dropzone.css -->
 	<link href="{{ url('css/dropzone.css') }}" rel="stylesheet">
 
+	<style type="text/css">
+		.imageProcessingArea{
+			display: none;
+		    background: #ccc;
+		    width: 250px;
+		    height: 100px;
+		    padding: 20px;
+		    color: #333;
+		}
+		.deleteImage {
+			color: red;
+			display:none;
+			position: absolute;
+			top: 10px;
+			right: 100px;
+			bottom: 0;
+			left: 0;
+			z-index: 10040;
+			overflow: auto;
+			overflow-y: auto;
+	}
+	
+
+	</style>
+
 @endsection
 
 @section('custom-title')
@@ -45,7 +70,7 @@
 
 	@else
 		<h4> تصویری وجود ندارد.</h4>
-		
+
 	@endif
 
 @endsection
@@ -53,7 +78,21 @@
 @section('content4')
 
 	@if(sizeof($images))
-		<img src="{{ url('upload/'.$images->first()->url) }}" style="width: 80%;" id="biggerImage">
+		<!-- stack: 29485224 -->
+		<!-- http://jsfiddle.net/9RxLM/ -->
+		<div class="imageDetails">
+
+			<img src="{{ url('upload/'.$images->first()->url) }}" style="width: 80%;" id="biggerImage"
+			onmouseover="removeForm()" onmouseout="hideForm()">
+
+			<form action="" method="POST"  accept-charset="utf-8" class="deleteImage"
+					onsubmit="return confirm('آیا قصد حذف این دسته را دارید؟')"> <!--stack: 39790082-->
+                {{ csrf_field() }}      
+                <input type="hidden" name="_method" value="DELETE">
+                <input type="submit" name="submit" value="حذف" class="btn btn-default">
+            </form>
+
+		</div>		
 	@endif
 	
 @endsection
@@ -94,6 +133,12 @@
 	    document.getElementById("biggerImage").src = src; 
 	    // Google: html javascript src in img, https://www.w3schools.com/jsref/prop_img_src.asp
     }
+
+    $(".imageDetails").mouseover(function() {
+	    $(this).children(".deleteImage").show();
+	}).mouseout(function() {
+	    $(this).children(".deleteImage").hide();
+	});
 
 	</script>
 @endsection
