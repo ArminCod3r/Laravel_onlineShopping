@@ -82,8 +82,7 @@
 		<!-- http://jsfiddle.net/9RxLM/ -->
 		<div class="imageDetails">
 
-			<img src="{{ url('upload/'.$images->first()->url) }}" style="width: 80%;" id="biggerImage"
-			onmouseover="removeForm()" onmouseout="hideForm()">
+			<img src="{{ url('upload/'.$images->first()->url) }}" style="width: 80%;" id="biggerImage">
 
 			<form action="" method="POST"  accept-charset="utf-8" class="deleteImage"
 					onsubmit="return confirm('آیا قصد حذف این دسته را دارید؟')"> <!--stack: 39790082-->
