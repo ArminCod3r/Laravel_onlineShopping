@@ -138,6 +138,8 @@
 
     $(".imageDetails").mouseover(function() {
 	    $(this).children(".deleteImage").show();
+
+	     // bluring: https://www.w3schools.com/howto/howto_css_image_effects.asp
 	     document.getElementById("biggerImage").style.filter = "blur(5px)";
 	}).mouseout(function() {
 	    $(this).children(".deleteImage").hide();
