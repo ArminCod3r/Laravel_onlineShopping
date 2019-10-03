@@ -27,8 +27,10 @@
 			z-index: 10040;
 			overflow: auto;
 			overflow-y: auto;
-	}
-	
+		}
+		.setWidth{
+			width: 25%;
+		}	
 
 	</style>
 
@@ -51,27 +53,42 @@
 @section('content2')
 	<br/><br/>
 
-	@if(sizeof($images))
-		<table>
-			<thead>
-	          <tr>
-	            <th>تصاویر</th>
-	          </tr>
-	        </thead>
+	<table id="imagesTable">
+		<thead>
+          <tr>
+            <th>تصاویر</th>
+          </tr>
+        </thead>
 
-			<tr>
-				@foreach($images as $key=>$item)				
-		            <td>
-		                <img id="{{$item->id}}" src="{{ url('upload/'.$item->url) }}" style="width: 80%" onclick="magnify_img(this)">
-		            </td>		        
-				@endforeach
-			</tr>
-		</table>
+    <?php 
+    	$startCell = 0;
+    	$endCell   = 3;
+    ?>
+	@if(sizeof($images))
+		
+			@foreach($images as $key=>$item)	
+				@if( $startCell == 0 )
+					<tr>
+					<?php $startCell += 4;?>
+	            @endif
+			
+	            <td class="setWidth">
+	                <img id="{{$item->id}}" src="{{ url('upload/'.$item->url) }}" style="width: 80%" onclick="magnify_img(this)">
+	            </td>
+
+	            @if( $endCell == $key )
+					</tr>
+					<?php $endCell += 4;?>
+	            @endif	
+
+			@endforeach				
 
 	@else
 		<h4> تصویری وجود ندارد.</h4>
 
 	@endif
+
+	</table>
 
 @endsection
 
@@ -146,6 +163,13 @@
 	    $(this).children(".deleteImage").hide();
 	     document.getElementById("biggerImage").style.filter = "blur(0px)";
 	});
+
+	document.addEventListener('DOMContentLoaded', function() {
+		var rows = document.getElementById("imagesTable").getElementsByTagName("tr").length;
+		console.log(rows);
+	}, false);
+
+	
 
 	</script>
 @endsection
