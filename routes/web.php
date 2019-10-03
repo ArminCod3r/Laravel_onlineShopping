@@ -31,3 +31,9 @@ Route::resource('admin/product', 'admin\ProductController');
 Route::get('admin/product/gallery/{id}', 'admin\ProductController@gallery');
 Route::post('admin/product/upload/{id}', 'admin\ProductController@upload');
 Route::delete('admin/product/deleteImage/{img}', 'admin\ProductController@deleteImage');
+// Except 'delete', Drop all other methods (stack:18326030)
+Route::match(array('GET', 'POST', 'HEAD', 'PUT', 'PATCH'), 'admin/product/deleteImage/{img}', function()
+{
+    return abort(404);
+});
+
