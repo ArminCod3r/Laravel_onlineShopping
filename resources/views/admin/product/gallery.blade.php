@@ -28,9 +28,6 @@
 			overflow: auto;
 			overflow-y: auto;
 		}
-		.setWidth{
-			width: 25%;
-		}	
 
 	</style>
 
@@ -72,7 +69,7 @@
 					<?php $startCell += 4;?>
 	            @endif
 			
-	            <td class="setWidth">
+	            <td>
 	                <img id="{{$item->id}}" src="{{ url('upload/'.$item->url) }}" style="width: 80%" onclick="magnify_img(this)">
 	            </td>
 
@@ -163,12 +160,6 @@
 	    $(this).children(".deleteImage").hide();
 	     document.getElementById("biggerImage").style.filter = "blur(0px)";
 	});
-
-	document.addEventListener('DOMContentLoaded', function() {
-		var rows = document.getElementById("imagesTable").getElementsByTagName("tr").length;
-		console.log(rows);
-	}, false);
-
 	
 
 	</script>
