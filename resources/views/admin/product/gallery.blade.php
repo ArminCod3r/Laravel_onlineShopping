@@ -62,7 +62,7 @@
 			<tr>
 				@foreach($images as $key=>$item)				
 		            <td>
-		                <img id="{{$item->id}}" src="{{ url('upload/'.$item->url) }}" style="width: 80%" onclick="magnify_img(this)">
+		                <img id="{{$item->id}}" src="{{ url('upload/'.$item->url) }}" style="width: 80%" onclick="magnify_img(this, '{{$item->url}}')">
 		            </td>		        
 				@endforeach
 			</tr>
@@ -84,7 +84,7 @@
 
 			<img src="{{ url('upload/'.$images->first()->url) }}" style="width: 80%;" id="biggerImage">
 
-			<form action="" method="POST"  accept-charset="utf-8" class="deleteImage"
+			<form action="{{ action('admin\ProductController@deleteImage', ['img' => $images->first()->url]) }}" method="POST"  accept-charset="utf-8" class="deleteImage" id="deleteImage"
 					onsubmit="return confirm('آیا قصد حذف این دسته را دارید؟')"> <!--stack: 39790082-->
                 {{ csrf_field() }}      
                 <input type="hidden" name="_method" value="DELETE">
@@ -126,14 +126,16 @@
     };
 
 
-    function magnify_img(img)
+    function magnify_img(img, imgName)
     {
 	    var src = img.src;
 	    document.getElementById("biggerImage").src = src; 
 	    // Google: html javascript src in img, https://www.w3schools.com/jsref/prop_img_src.asp
 
-	    var height = src.height;
-  		var width = src.width;
+	    var imageId = img.id;
+	    console.log(imgName);
+	    //var action=String("\{\{route('product.deleteImage', "+imageId+" )\}\}");
+	    document.getElementById('deleteImage').action = "/admin/product/deleteImage/"+imgName;
     }
 
     $(".imageDetails").mouseover(function() {
