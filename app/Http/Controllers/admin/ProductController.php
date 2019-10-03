@@ -358,8 +358,8 @@ class ProductController extends Controller
 
     public function deleteImage($img)
     {
-        //$image = ProductImage::findOrFail($img);
+        $image = ProductImage::findOrFail($img);
 
-        return 'hi';
+        return $image;
     }
 }
