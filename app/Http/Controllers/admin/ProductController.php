@@ -360,6 +360,8 @@ class ProductController extends Controller
     {
         $image = ProductImage::findOrFail($img);
 
-        return $image;
+        $image->delete();
+
+        return redirect()->back();
     }
 }
