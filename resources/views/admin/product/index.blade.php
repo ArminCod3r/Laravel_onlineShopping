@@ -69,6 +69,7 @@
     <table class="table table-hover" dir="rtl" style="white-space: nowrap;">
         <thead>
           <tr>
+            <th>تصویر</th>
             <th>نام</th>
             <th>عملیات</th>
             <th>متن</th>
@@ -81,7 +82,7 @@
         </thead>
 
         <tr>
-            <td colspan="1">
+            <td colspan="2">
               <input type="text" name="search_product" class="form-control search_input" style="width: 100%; " placeholder="متن سرچ">
               </input>
             </td>
@@ -93,6 +94,8 @@
         <?php $i=1; ?>
         @foreach($products as $item)
             <tr>
+                <td> <img src="{{ url('upload/'.$item->img) }}" width="80%"> </td>
+
                 <td> {{ $item->title }} </td>
                 <td>
                   <div style="float:left;">

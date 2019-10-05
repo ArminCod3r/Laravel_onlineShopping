@@ -23,6 +23,7 @@ class ProductController extends Controller
 
         $products  = "";
         $search_product = "";
+        $images = "";
 
         if ($request->input('search_product'))
         {
@@ -34,10 +35,23 @@ class ProductController extends Controller
         }
 
         else
+        {
             $products = Product::orderBy('id', 'desc')->paginate(5);
+        }
 
         $colors = Product::getColor();
         $colors = (array)$colors;
+
+        // Adding image to the Products obj as a property
+        foreach ($products as $key => $item)
+        {
+            // check for if image of a product is avaliable
+            if(($item->ProductImage)->count() > 0)
+                $item->img = $item->ProductImage->first()->url;
+            else
+                $item->img = "";
+        }
+
 
         return view('admin/product/index', ['products'=> $products , 'colors'=>$colors]);
         //->with('products', $products);
@@ -367,7 +381,7 @@ class ProductController extends Controller
             if(file_exists($path))
             {
                 $image->delete();
-                
+
                 unlink($path);
             }
         }
