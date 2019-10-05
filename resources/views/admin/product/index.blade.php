@@ -54,6 +54,14 @@
       color: red;
       font-weight: bold;
     }
+
+    .zoom:hover {
+      position: absolute;
+      top: 10%;
+      width: 20%;
+      /*right: 10%;*/
+      transform: scale(1);
+    }
 </style>
 @endsection
 
@@ -93,8 +101,16 @@
          
         <?php $i=1; ?>
         @foreach($products as $item)
-            <tr>
-                <td> <img src="{{ url('upload/'.$item->img) }}" width="80%"> </td>
+            <tr>                
+                <td> 
+                  <!-- Checking if image is available -->
+                  @if( $item->img )
+                      <!-- Zooming: https://www.w3schools.com/howto/howto_css_zoom_hover.asp -->
+                      <img src="{{ url('upload/'.$item->img) }}" width="50%" class="zoom">
+                  @else
+                      <p style="color: red"> بدون تصویر </p>
+                  @endif
+                </td>
 
                 <td> {{ $item->title }} </td>
                 <td>
