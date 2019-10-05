@@ -50,7 +50,7 @@
 @section('content2')
 	<br/><br/>
 
-	<table id="imagesTable">
+	<table id="imagesTable" class="table table-striped">
 		<thead>
           <tr>
             <th>تصاویر</th>
@@ -70,7 +70,7 @@
 	            @endif
 			
 	            <td>
-	                <img id="{{$item->id}}" src="{{ url('upload/'.$item->url) }}" style="width: 80%" onclick="magnify_img(this)">
+	                <img id="{{$item->id}}" src="{{ url('upload/'.$item->url) }}" width="80%" onclick="magnify_img(this)">
 	            </td>
 
 	            @if( $endCell == $key )
