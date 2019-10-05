@@ -360,7 +360,17 @@ class ProductController extends Controller
     {
         $image = ProductImage::findOrFail($img);
 
-        $image->delete();
+        if ($image->url)
+        {
+            $path = 'upload/'.$image->url;            
+
+            if(file_exists($path))
+            {
+                $image->delete();
+                
+                unlink($path);
+            }
+        }
 
         return redirect()->back();
     }
