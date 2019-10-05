@@ -112,7 +112,7 @@
                   @endif
                 </td>
 
-                <td> {{ $item->title }} </td>
+                <td> <a href="{{ url('admin/product/gallery/'.$item->id) }}"> {{ $item->title }} </a> </td>
                 <td>
                   <div style="float:left;">
                     <a href="/admin/product/{{ $item->id }}/edit" class="fa fa-edit">  </a>
