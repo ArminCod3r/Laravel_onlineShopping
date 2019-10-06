@@ -11,9 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// site's index page
+Route::get('/', "SiteController@index");
 
 // Admin's idnex
 Route::get('admin', function () {
