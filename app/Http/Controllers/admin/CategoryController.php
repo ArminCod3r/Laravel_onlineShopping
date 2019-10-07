@@ -107,8 +107,8 @@ class CategoryController extends Controller
         $category->parent_id = $request->input('parent_id');
         $category->save();
 
-        $url = 'admin/category/'.$category->id.'/edit';
-        return redirect($url);
+        //$url = 'admin/category/'.$category->id.'/edit';
+        return redirect('admin/category/');
     }
 
     /**
