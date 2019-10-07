@@ -103,5 +103,104 @@ body
 
 .logo
 {
-    margin: 38px 200px 0px 0px
+    margin: 38px 200px 0px 0px;
+}
+
+@media(max-width:1156px)
+{
+    .logo
+    {
+        margin: 38px 100px 0px 0px;
+    }
+
+}
+
+@media(max-width:1240px)
+{
+    .logo
+    {
+        margin: 38px 70px 0px 0px;
+    }
+
+}
+
+@media(max-width:826px)
+{
+    .logo
+    {
+        margin: 38px 50px 0px 0px;
+    }
+
+}
+
+@media(max-width:634px)
+{
+    .logo
+    {
+        width: 90%;
+        margin: 38px 20px 0px 0px;
+    }
+
+}
+
+
+@media(max-width:582px)
+{
+    .searching-box
+    {
+        width: 550px;
+    }
+
+    .logo
+    {
+        width: auto;        
+        margin: 10px 50px 10px 0px;
+    }
+
+}
+
+
+@media(max-width:990px)
+{
+    .shopping-cart-text
+    {
+        float: right;
+        padding-left: 20px;
+    }
+
+    .searching-box
+    {
+        width: 300px;
+    }
+
+}
+
+@media(max-width:768px)
+{
+    .shopping-cart-text
+    {
+        float: right;
+        padding-left: 5px;
+    }
+
+    .searching-box
+    {
+        width: 200px;
+    }
+
+}
+
+@media(max-width:390px)
+{
+    .shopping-cart-text
+    {
+        float: right;
+        padding-left: 1px;
+    }
+
+    .searching-box
+    {
+        width: 150px;
+    }
+
 }

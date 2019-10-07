@@ -25,7 +25,7 @@
 
       <div class="row">
 
-        <div class="col-md-9">
+        <div class="col-md-9 col-sm-9">
 
           <ul class="list-inline">
 
@@ -81,7 +81,7 @@
 
         </div>
 
-        <div class="col-md-3">
+        <div class="col-md-3 col-sm-3">
           <img src="{{ url('/images/logo.png') }}" class="logo">
         </div>
         
