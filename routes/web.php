@@ -36,3 +36,4 @@ Route::match(array('GET', 'POST', 'HEAD', 'PUT', 'PATCH'), 'admin/product/delete
     return abort(404);
 });
 
+Route::get('/categoryTree', "SiteController@categoryTree");
