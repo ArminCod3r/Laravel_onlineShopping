@@ -34,7 +34,7 @@ class SiteController extends Controller
         foreach ($query as $key => $value)
         {
         	//echo $key." : ".$sub_mark.$value."</br>";
-        	array_push($this->categories, $sub_mark.$value);
+        	array_push($this->categories, $value.':'.$parent_id.'-'.$key);
         	$this->categoryTree($key, $sub_mark.'---');
         }
         return $this->categories;
