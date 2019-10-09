@@ -109,7 +109,24 @@ body
 .menu
 {
     background: #f7f8fa;
+    padding: 1px;
 }
+
+.level1-ul
+{
+    padding-right: 20px;
+}
+
+.level1-li
+{
+    padding-left: 10px;
+    cursor: pointer;
+}
+
+
+
+
+
 
 @media(max-width:1156px)
 {
