@@ -138,11 +138,12 @@ preg_match('/([a-zA-Z0-9_]*)-/', $parent_and_key, $match);
             <?php
               
 
-              foreach ($categories as $key_L2 => $value_L2)
+              foreach ($categories as $key_L2_ => $value_L2)
               {
                 $cat_name_L2       = explode(':', $value_L2)[0];
                 $parent_and_key_L2 = explode(':', $value_L2)[1];
                 $parent_L2         = explode('-', $parent_and_key_L2)[0];
+                $key_L2            = explode('-', $parent_and_key_L2)[1];
                 
 
                 if ($parent_L2!=0)
@@ -151,6 +152,30 @@ preg_match('/([a-zA-Z0-9_]*)-/', $parent_and_key, $match);
                   {
                     echo '<li class="list-inline-item level2-li">';
                     echo $cat_name_L2;
+
+                    // -------------------- Category Level 3 ------------------
+                    echo '<ul class="list-group">';
+
+                    foreach ($categories as $key_L3 => $value_L3)
+                    {
+                      $cat_name_L3       = explode(':', $value_L3)[0];
+                      $parent_and_key_L3 = explode(':', $value_L3)[1];
+                      $parent_L3         = explode('-', $parent_and_key_L3)[0];
+                      
+
+                      if ($parent_L3!=0)
+                      {
+                        if ($parent_L3 == $key_L2)
+                        {
+                          echo '<li class="list-group-item">';
+                          echo $cat_name_L3;
+                          echo '</li>';
+                        }
+                      }
+                    }
+                    echo '</ul>';
+                    //---------------------------------------------------------
+
                     echo '</li>';
                   }                  
                 }
