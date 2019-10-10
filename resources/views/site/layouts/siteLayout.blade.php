@@ -126,7 +126,6 @@ preg_match('/([a-zA-Z0-9_]*)-/', $parent_and_key, $match);
           $key            = explode('-', $parent_and_key)[1];
 
           preg_match('/([a-zA-Z0-9_]*)-/', $parent_and_key, $match);
-          //echo ($match[0])
         ?>
 
         @if ( preg_match('/0\b/', $value) )
@@ -134,9 +133,6 @@ preg_match('/([a-zA-Z0-9_]*)-/', $parent_and_key, $match);
           <li class="list-inline-item level1-li">
             <?php echo $cat_name?>         
 
-            <!--<div class="form-group subCategories" id="subCategories" style="display: none;">-->  
-              <!-- Tags will be shown here-->     
-            <!--</div>-->  
 
             <ul class="list-inline level2-ul" id="level2-ul">
             <?php
@@ -153,7 +149,7 @@ preg_match('/([a-zA-Z0-9_]*)-/', $parent_and_key, $match);
                 {
                   if ($parent_L2 == $key)
                   {
-                    echo '<li>';
+                    echo '<li class="list-inline-item level2-li">';
                     echo $cat_name_L2;
                     echo '</li>';
                   }                  
