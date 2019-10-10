@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Storage;
 
 class CategoryController extends Controller
 {
+    private $categories = array();
+
     /**
      * Display a listing of the resource.
      *
@@ -44,42 +46,9 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        $cat_list = array();
-        //$cat_list[0]='انتخاب سر دسته';
-        $cat = Category::where('parent_id',0)->get(); //get: cat_name
+        $categories = self::categoryTree();
 
-        foreach ($cat as $key=>$item)
-        {
-            $cat_list[($item->id)-1]=$item->cat_name;
-
-            foreach ($item->getChild as $key2=>$item2)
-            {
-                $cat_list[($item2->id)-1]=' - '.$item2->cat_name;
-
-                foreach ($item2->getChild as $key3=>$item3)
-                {
-                    $cat_list[($item3->id)-1]=' - - '.$item3->cat_name;
-                }
-            }
-        }
-
-        /*$cat_list2 = array();
-        $cat_list3 = array();
-
-        for ($i = 0;$i<=count($cat)-1; $i++)
-        { 
-            $cat_list2[$i]= $cat[$i]->cat_name;
-
-            foreach ($cat[$i]->getChild as $key => $item)
-            {
-                $cat_list2[$i++]= ' - '.$item;
-            }
-        }
-
-        return $cat_list2;*/
-
-        //return $cat_list;
-        return view('admin/category/create')->with('cat_list', $cat_list);
+        return view('admin/category/create')->with('categories', $categories);
     }
 
     /**
@@ -132,7 +101,9 @@ class CategoryController extends Controller
     {
         $category = Category::find($id);
 
-        $cat_list = array();
+        $categories = self::categoryTree();
+
+        /*$cat_list = array();
         //$cat_list[0]='انتخاب سر دسته';
         $cat = Category::where('parent_id',0)->get(); //get: cat_name
 
@@ -149,12 +120,12 @@ class CategoryController extends Controller
                     $cat_list[($item3->id)-1]=' - - '.$item3->cat_name;
                 }
             }
-        }
+        }*/
 
         //return $cat_list;
 
         //return ($category->getParent()->get())[0]->id; // stackoverflow: 34571957
-        return view('admin/category/edit', ['category'=> $category , 'cat_list'=>$cat_list]);
+        return view('admin/category/edit', ['category'=> $category , 'categories'=>$categories]);
     }
 
     /**
@@ -214,5 +185,24 @@ class CategoryController extends Controller
         }
 
         return redirect()->back();;
+    }
+
+    // Recursive Method to get all the categories/subcategories
+    private function categoryTree($parent_id = 0, $sub_mark = '')
+    {
+        $query = DB::table('category')
+                ->select('*')
+                ->where('parent_id',$parent_id)
+                ->get()
+                ->pluck('cat_name','id');
+
+        
+        foreach ($query as $id => $value)
+        {
+            //echo $key." : ".$sub_mark.$value."</br>";
+            array_push($this->categories, $sub_mark.$value.':'.$id);
+            $this->categoryTree($id, $sub_mark.'---');
+        }
+        return $this->categories;
     }
 }

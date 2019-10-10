@@ -45,20 +45,18 @@
 
 		<div class="form-group">
 			<label for="title">انتخاب دسته</label>
-			 <select name="parent_id" class="selectpicker" data-live-search="true" >
+			 <select name="parent_id" class="selectpicker" id="selectpicker" data-live-search="true" >
 
 				 <option value="0">انتخاب دسته</option>
+				 <?php
+			 	foreach ($categories as $id=>$item)
+			 	{
+			 		$cat_name = explode(':', $item)[0];
+					$id       = explode(':', $item)[1];
 
-				 @for ($i=1; $i <=count($cat_list); $i++)
-
-				 	@if($category->getParent->id == $i)
-				 		<option selected value="{{ $i }}">{{ $cat_list[$i] }}</option>
-				 	@else
-				 		<option value="{{ $i }}">{{ $cat_list[$i] }}</option>
-				 	@endif
-
-			        
-			     @endfor
+					echo '<option value="'.$id.'">'.$cat_name.'</option>';
+			 	}
+			 ?>
 			  
 			</select> 
 
@@ -114,6 +112,23 @@
 		    };
 		    render.readAsDataURL(event.target.files[0]);
 		}
+
+		document.addEventListener('DOMContentLoaded', function() {
+
+		    // stack: 14804253 -- https://jsfiddle.net/t0xicCode/96ntuxnz/
+
+			var selectpicker_ = [];
+
+			// stack: 4287357 - javascript access php variable
+			selectpicker_[<?php print $category->id; ?>] = <?php print $category['cat_name']; ?>;
+
+			console.log(selectpicker_);
+
+			$('.selectpicker').selectpicker('val', selectpicker_);
+
+			// set jscolor's first input(FFFFFF) to none
+			$('#color').val(color.style.backgroudColor);
+		}, false);
 
 	</script>
 @endsection
