@@ -9,6 +9,8 @@ $key            = explode('-', $parent_and_key)[1];
 
 preg_match('/([a-zA-Z0-9_]*)-/', $parent_and_key, $match);
 
+$subCat_array_L1 = array();
+
 ?> 
 
 <!doctype html>
@@ -128,11 +130,11 @@ preg_match('/([a-zA-Z0-9_]*)-/', $parent_and_key, $match);
           preg_match('/([a-zA-Z0-9_]*)-/', $parent_and_key, $match);
           //echo ($match[0])
         ?>
-        
+
         @if ( preg_match('/0\b/', $value) )
             
           <li class="list-inline-item level1-li"
-            onmouseover="viewSubMenu('{{$cat_name}}', '{{$parent}}', '{{$key}}')"
+            onmouseover="viewSubMenu()"
             onmouseout="hideSubMenu('{{$value}}')"
             >
             <?php echo $cat_name?>         
@@ -141,8 +143,9 @@ preg_match('/([a-zA-Z0-9_]*)-/', $parent_and_key, $match);
               <!-- Tags will be shown here-->     
             <!--</div>-->  
 
-            <ul class="level2-ul"  style="display:none;">
+            <ul class="list-inline sub_menu1 level2-ul">
             <?php
+              
 
               foreach ($categories as $key_L2 => $value_L2)
               {
@@ -155,10 +158,11 @@ preg_match('/([a-zA-Z0-9_]*)-/', $parent_and_key, $match);
                 {
                   if ($parent_L2 == $key)
                   {
+                    array_push($subCat_array_L1, $cat_name_L2);
+                    //print_r($subCat_array_L1);
                     echo '<li>';
-                    echo explode(':', $value_L2)[0];
+                    echo $cat_name_L2;
                     echo '</li>';
-                    echo '</br>';
                   }                  
                 }
               }
@@ -195,40 +199,10 @@ preg_match('/([a-zA-Z0-9_]*)-/', $parent_and_key, $match);
 
   <script>
 
-    function viewSubMenu(cat_name, parent, key)
+    function viewSubMenu()
     {
-      //document.getElementById('subCategories').style.display = 'block';
-
-      <?php foreach ($categories as $key2 => $value2): ?>
-
-        <?php
-          $cat_name_2       = explode(':', $value2)[0];
-          $parent_and_key_2 = explode(':', $value2)[1];
-          $parent_2         = explode('-', $parent_and_key_2)[0];
-          $key_2            = explode('-', $parent_and_key_2)[1];
-        ?>
-
-        if (key == {!! json_encode($parent_2) !!})
-        {
-          var subCats = ({!! json_encode($cat_name_2) !!});
-          var key_2   = ({!! json_encode($key_2) !!});
-          //console.log(key_2);
-
-          if ( !( subCats in cat_array ) )
-          {
-              cat_array.push(subCats);          
-
-              var subCatsDiv = '<div class="subcat" id="subcat'
-                                +key_2+'" onmouseout="hideSubMenu(subcat'+key_2+')" >'
-                                +subCats+
-                                '</div>';
-          }
-          $("#subCategories").append(subCatsDiv);
-        }
-
-        
-      <?php endforeach ?>
-
+      //var subCat_array_L1 = <?php echo json_encode($subCat_array_L1); ?>
+      console.log(<?php echo json_encode($subCat_array_L1); ?>);
     }
 
     function hideSubMenu(key)

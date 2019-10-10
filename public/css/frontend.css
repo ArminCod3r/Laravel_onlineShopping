@@ -124,7 +124,19 @@ body
 }
 
 
-
+.sub_menu1
+{
+    background:white;
+    width: 972px;
+    position:absolute;
+    border-right:1px solid #e1e1e1;
+    border-left:1px solid #e1e1e1;
+    border-bottom:1px solid #e1e1e1;
+    margin-top:16px;
+    right:4px;
+    display:none;
+    z-index:100;
+}
 
 
 
