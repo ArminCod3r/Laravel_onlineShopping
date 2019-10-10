@@ -9,8 +9,6 @@ $key            = explode('-', $parent_and_key)[1];
 
 preg_match('/([a-zA-Z0-9_]*)-/', $parent_and_key, $match);
 
-$subCat_array_L1 = array();
-
 ?> 
 
 <!doctype html>
@@ -158,8 +156,6 @@ $subCat_array_L1 = array();
                 {
                   if ($parent_L2 == $key)
                   {
-                    array_push($subCat_array_L1, $cat_name_L2);
-                    //print_r($subCat_array_L1);
                     echo '<li>';
                     echo $cat_name_L2;
                     echo '</li>';
@@ -201,8 +197,6 @@ $subCat_array_L1 = array();
 
     function viewSubMenu()
     {
-      //var subCat_array_L1 = <?php echo json_encode($subCat_array_L1); ?>
-      console.log(<?php echo json_encode($subCat_array_L1); ?>);
     }
 
     function hideSubMenu(key)
