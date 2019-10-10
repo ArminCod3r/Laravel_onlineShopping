@@ -28,8 +28,15 @@ preg_match('/([a-zA-Z0-9_]*)-/', $parent_and_key, $match);
     <!-- Frontend CSS-->
     <link rel="stylesheet" type="text/css" href="{{ url('css/frontend.css') }}">
 
+    <!-- jQuery -->
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+
 
     <title>فروشگاه اینترنتی دیجی کالا</title>
+
+    <script type="text/javascript">
+      var cat_array = new Array();
+    </script>
   </head>
   <body>
 
@@ -129,6 +136,34 @@ preg_match('/([a-zA-Z0-9_]*)-/', $parent_and_key, $match);
             onmouseout="hideSubMenu('{{$value}}')"
             >
             <?php echo $cat_name?>         
+
+            <!--<div class="form-group subCategories" id="subCategories" style="display: none;">-->  
+              <!-- Tags will be shown here-->     
+            <!--</div>-->  
+
+            <ul class="level2-ul"  style="display:none;">
+            <?php
+
+              foreach ($categories as $key_L2 => $value_L2)
+              {
+                $cat_name_L2       = explode(':', $value_L2)[0];
+                $parent_and_key_L2 = explode(':', $value_L2)[1];
+                $parent_L2         = explode('-', $parent_and_key_L2)[0];
+                
+
+                if ($parent_L2!=0)
+                {
+                  if ($parent_L2 == $key)
+                  {
+                    echo '<li>';
+                    echo explode(':', $value_L2)[0];
+                    echo '</li>';
+                    echo '</br>';
+                  }                  
+                }
+              }
+            ?>            
+            </ul>
         @endif
 
         <!--
@@ -150,9 +185,6 @@ preg_match('/([a-zA-Z0-9_]*)-/', $parent_and_key, $match);
           @endforeach               
         </ul>
       -->
-      @if ( !stristr($value, "---") )
-        </li>
-      @endif
 
     @endforeach
 
@@ -165,6 +197,7 @@ preg_match('/([a-zA-Z0-9_]*)-/', $parent_and_key, $match);
 
     function viewSubMenu(cat_name, parent, key)
     {
+      //document.getElementById('subCategories').style.display = 'block';
 
       <?php foreach ($categories as $key2 => $value2): ?>
 
@@ -172,21 +205,43 @@ preg_match('/([a-zA-Z0-9_]*)-/', $parent_and_key, $match);
           $cat_name_2       = explode(':', $value2)[0];
           $parent_and_key_2 = explode(':', $value2)[1];
           $parent_2         = explode('-', $parent_and_key_2)[0];
-          //$key_2            = explode('-', $parent_and_key)[1];
+          $key_2            = explode('-', $parent_and_key_2)[1];
         ?>
 
         if (key == {!! json_encode($parent_2) !!})
         {
-          console.log({!! json_encode($cat_name_2) !!});
+          var subCats = ({!! json_encode($cat_name_2) !!});
+          var key_2   = ({!! json_encode($key_2) !!});
+          //console.log(key_2);
+
+          if ( !( subCats in cat_array ) )
+          {
+              cat_array.push(subCats);          
+
+              var subCatsDiv = '<div class="subcat" id="subcat'
+                                +key_2+'" onmouseout="hideSubMenu(subcat'+key_2+')" >'
+                                +subCats+
+                                '</div>';
+          }
+          $("#subCategories").append(subCatsDiv);
         }
+
         
       <?php endforeach ?>
 
     }
 
-    function hideSubMenu(x)
+    function hideSubMenu(key)
     {
+      //document.getElementById(key).remove();
+      //document.getElementById('subCategories').style.display = 'none';
     }
+
+    $(".level1-li").mouseover(function() {
+          $(this).children(".level2-ul").show();
+      }).mouseout(function() {
+          $(this).children(".level2-ul").hide();
+      });
 
   </script>
 </html>
