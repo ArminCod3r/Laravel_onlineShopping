@@ -131,17 +131,14 @@ preg_match('/([a-zA-Z0-9_]*)-/', $parent_and_key, $match);
 
         @if ( preg_match('/0\b/', $value) )
             
-          <li class="list-inline-item level1-li"
-            onmouseover="viewSubMenu()"
-            onmouseout="hideSubMenu('{{$value}}')"
-            >
+          <li class="list-inline-item level1-li">
             <?php echo $cat_name?>         
 
             <!--<div class="form-group subCategories" id="subCategories" style="display: none;">-->  
               <!-- Tags will be shown here-->     
             <!--</div>-->  
 
-            <ul class="list-inline sub_menu1 level2-ul">
+            <ul class="list-inline level2-ul" id="level2-ul">
             <?php
               
 
@@ -195,21 +192,11 @@ preg_match('/([a-zA-Z0-9_]*)-/', $parent_and_key, $match);
 
   <script>
 
-    function viewSubMenu()
-    {
-    }
-
-    function hideSubMenu(key)
-    {
-      //document.getElementById(key).remove();
-      //document.getElementById('subCategories').style.display = 'none';
-    }
-
     $(".level1-li").mouseover(function() {
           $(this).children(".level2-ul").show();
-      }).mouseout(function() {
-          $(this).children(".level2-ul").hide();
-      });
 
+      }).mouseout(function() {
+                $(this).children(".level2-ul").hide();
+      });
   </script>
 </html>

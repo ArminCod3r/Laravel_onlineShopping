@@ -109,7 +109,8 @@ body
 .menu
 {
     background: #f7f8fa;
-    padding: 1px;
+    position: relative;
+    margin-top: -15px;
 }
 
 .level1-ul
@@ -121,10 +122,12 @@ body
 {
     padding-left: 10px;
     cursor: pointer;
+    padding: 15px;
+    padding-bottom: 16px;
 }
 
 
-.sub_menu1
+.level2-ul
 {
     background:white;
     width: 972px;
