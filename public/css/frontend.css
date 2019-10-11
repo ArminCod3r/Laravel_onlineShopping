@@ -150,6 +150,27 @@ body
     margin-right: 10px;
     padding-left: 20px;
     width       : 25%;
+    border-left : 1px solid #E2E2E2;
+}
+
+.li-menu
+{
+    padding-right  : 10px;
+    position       : relative;
+    z-index        : 100;
+    list-style-type: none;
+}
+
+.li-menu:hover
+{
+    background : #FAFAFA;
+}
+
+/* Editing bootstrap's list-group-item */
+.list-group-item
+{
+    padding-top : 5px;
+    border      : 0px !important;
 }
 
 
