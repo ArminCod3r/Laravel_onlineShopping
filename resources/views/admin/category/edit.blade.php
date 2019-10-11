@@ -119,12 +119,9 @@
 
 			var selectpicker_ = [];
 
-			// stack: 4287357 - javascript access php variable
-			selectpicker_[<?php print $category->id; ?>] = <?php print $category['cat_name']; ?>;
-
 			console.log(selectpicker_);
 
-			$('.selectpicker').selectpicker('val', selectpicker_);
+			$('.selectpicker').selectpicker('val', 20); //id of the current category
 
 			// set jscolor's first input(FFFFFF) to none
 			$('#color').val(color.style.backgroudColor);
