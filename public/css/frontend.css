@@ -169,8 +169,9 @@ body
 /* Editing bootstrap's list-group-item */
 .list-group-item
 {
-    padding-top : 5px;
-    border      : 0px !important;
+    padding-top    : 5px;
+    padding-bottom : 5px;
+    border         : 0px !important;
 }
 
 

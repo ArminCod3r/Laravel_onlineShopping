@@ -9,6 +9,8 @@ $key            = explode('-', $parent_and_key)[1];
 
 preg_match('/([a-zA-Z0-9_]*)-/', $parent_and_key, $match);
 
+$see_more = 0;
+
 ?> 
 
 <!doctype html>
@@ -115,6 +117,7 @@ preg_match('/([a-zA-Z0-9_]*)-/', $parent_and_key, $match);
 
   <ul class="list-inline level1-ul">
      
+     <?php // -------------------- Category Level 1 ------------------ ?>
     @foreach ($categories as $key => $value)
 
     
@@ -137,7 +140,7 @@ preg_match('/([a-zA-Z0-9_]*)-/', $parent_and_key, $match);
             <ul class="list-inline level2-ul" id="level2-ul">
             <?php
               
-
+              // -------------------- Category Level 1 ------------------
               foreach ($categories as $key_L2_ => $value_L2)
               {
                 $cat_name_L2       = explode(':', $value_L2)[0];
@@ -151,7 +154,7 @@ preg_match('/([a-zA-Z0-9_]*)-/', $parent_and_key, $match);
                   if ($parent_L2 == $key)
                   {
                     echo '<li class="list-inline-item level2-li">';
-                    echo $cat_name_L2;
+                    echo '<span style="color:#16C1F3">'.$cat_name_L2.'</span>';
 
                     // -------------------- Category Level 3 ------------------
                     echo '<ul class="list-group">';
@@ -167,9 +170,20 @@ preg_match('/([a-zA-Z0-9_]*)-/', $parent_and_key, $match);
                       {
                         if ($parent_L3 == $key_L2)
                         {
-                          echo '<li class="list-group-item">';
-                          echo $cat_name_L3;
-                          echo '</li>';
+                          if ($see_more<10)
+                          {
+                            echo '<li class="list-group-item li-menu">';
+                            echo $cat_name_L3;
+                            echo '</li>';
+                          }
+                          else
+                            if ($see_more == 10)
+                            {
+                              echo '<li class="list-group-item li-menu">';
+                              echo '<span style="color:#16C1F3">'.'+ مشاهده موارد بیشتر'.'</span>';
+                              echo '</li>';
+                            }                       
+                          $see_more++;
                         }
                       }
                     }
