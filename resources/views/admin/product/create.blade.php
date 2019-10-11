@@ -68,9 +68,15 @@
 			 <select multiple="multiple" name="cat[]" class="selectpicker" data-live-search="true">
 			 <!--stack: 24627902-->
 
-				 @for ($i=0; $i <=count($cat_list)-1; $i++)
-			        <option value="{{ $i }}">{{ $cat_list[$i] }}</option>
-			     @endfor
+				 <?php
+			 	foreach ($categories as $id=>$item)
+			 	{
+			 		$cat_name = explode(':', $item)[0];
+					$id       = explode(':', $item)[1];
+
+					echo '<option value="'.$id.'">'.$cat_name.'</option>';
+			 	}
+			 ?>
 			  
 			 </select> 
 

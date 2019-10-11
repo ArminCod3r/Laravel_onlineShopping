@@ -3,31 +3,6 @@
 
 <?php
 
-$parent_temp=array();
-foreach ($parents as $key => $item)
-{
-	$item_trimed = str_replace(' ', '', $item);
-	array_push($parent_temp, $item_trimed);
-}
-
-$cat_temp=array();
-foreach ($cat_list as $key => $item)
-{
-	$trimed_cat = str_replace('-', '', $item);
-	$trimed_cat = str_replace(' ', '', $trimed_cat);
-
-	$cat_temp[$item]=$trimed_cat;
-}
-
-$matches = array_intersect($parent_temp, $cat_temp); // returns matches
-$differences = array_diff($parent_temp, $cat_list);      // returns the differences
-
-//print_r($matches);
-//print array_search($matches[0], $cat_temp); // Get key base on value
-//print array_search(array_search($matches[0], $cat_temp), $cat_list);
-//print empty($matches);
-//print serialize($differences);
-
 $count=0;
 
 ?>
@@ -98,19 +73,15 @@ $count=0;
                         <select multiple="multiple" name="cat[]" class="selectpicker" id="selectpicker" data-live-search="true">
                         <!--stack: 24627902-->
 
-                                @for($i=0; $i <=count($cat_list)-1; $i++)
-										<?php
-											$cat_trim    = str_replace(' ', '', str_replace('-', '', $cat_list[$i]));
-											//$parent_trim = str_replace(' ', '', $parents[$j]);
-										?>
+                        <?php
+                          foreach ($categories as $id=>$item)
+                          {
+                            $cat_name = explode(':', $item)[0];
+                            $id       = explode(':', $item)[1];
 
-										@if (in_array($cat_trim, $parent_temp))
-											<option value="{{$i}}" >{{ $cat_list[$i] }}</option>
-										@else
-											<option value="{{$i}}">{{ $cat_list[$i] }}</option>
-										
-										@endif
-								@endfor
+                            echo '<option value="'.$id.'">'.$cat_name.'</option>';
+                          }
+                        ?>
 
 
                         </select>
@@ -414,38 +385,20 @@ $count=0;
                $("#TagItem"+id).remove();
         }
 
-        //window.onload=function()
-        //{
-        	//alert('hi');
-        	//$("#selectpicker").multiselect('updateButtonText');
-        	//$('select[name=cat]').val(1);
-			//$('.selectpicker').selectpicker('refresh')
-        //}
+      document.addEventListener('DOMContentLoaded', function() {
 
-        // Stack: 4842590
-        // Onload of Page, get the 'Parents' and fill in deire input (selectpicker)
-        document.addEventListener('DOMContentLoaded', function() {
-		    //salert("Ready!");
-		    
-		    // stack: https://stackoverflow.com/questions/14804253/how-to-set-selected-value-on-select-using-selectpicker-plugin-from-bootstrap
-		    // https://jsfiddle.net/t0xicCode/96ntuxnz/
+  			var selectpicker_ = Array();
 
-		    //$('.selectpicker').selectpicker();
-			//$('.selectpicker').selectpicker('val', ['1', '2']);
+  			<?php foreach ($parents as $key => $item): ?>
+          selectpicker_.push(<?php echo json_encode($key); ?>);
+  			<?php endforeach ?>
 
-			var selectpicker_ = [];
+  			//console.log(selectpicker_);
 
-			// stack: 4287357 - javascript access php variable
-			<?php foreach ($matches as $key => $item): ?>
-				selectpicker_[<?php print $key;?>] = ([<?php print array_search(array_search($item, $cat_temp), $cat_list)?>]).toString();
-			<?php endforeach ?>
+  			$('.selectpicker').selectpicker('val', selectpicker_);
 
-			console.log(selectpicker_);
-
-			$('.selectpicker').selectpicker('val', selectpicker_);
-
-			// set jscolor's first input(FFFFFF) to none
-			$('#color').val(color.style.backgroudColor);
+  			// set jscolor's first input(FFFFFF) to none
+  			$('#color').val(color.style.backgroudColor);
 		}, false);
 
 

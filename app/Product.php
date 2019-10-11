@@ -30,9 +30,10 @@ class Product extends Model
 		// https://laravel.com/docs/5.8/queries#joins
 		$result = DB::table('category')
                 ->join('parent_product', 'category.id', '=', 'parent_product.parent_id')
-                ->select('category.cat_name')
+                ->select('category.cat_name', 'category.id')
                 ->where('product_id',$id)
-                ->get();
+                ->get()
+                ->pluck('cat_name','id');
                 //->toArray() // DB::table('tbl')->get() will return a collection of stdClass.
                 		     // stdClass has no function toArray() [stack:47204041]
                 //->makeHidden(['category.cat_name']);

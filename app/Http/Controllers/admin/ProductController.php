@@ -12,6 +12,8 @@ use DB;
 
 class ProductController extends Controller
 {
+    private $categories = array();
+
     /**
      * Display a listing of the resource.
      *
@@ -64,26 +66,9 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $cat_list = array();
-        $cat_list[0]='انتخاب سر دسته';
-        $cat = Category::where('parent_id',0)->get(); //get: cat_name
+        $categories = self::categoryTree();
 
-        foreach ($cat as $key=>$item)
-        {
-            $cat_list[($item->id)-1]=$item->cat_name;
-
-            foreach ($item->getChild as $key2=>$item2)
-            {
-                $cat_list[($item2->id)-1]=' - '.$item2->cat_name;
-
-                foreach ($item2->getChild as $key3=>$item3)
-                {
-                    $cat_list[($item3->id)-1]=' - - '.$item3->cat_name;
-                }
-            }
-        }
-
-        return view('admin/product/create')->with('cat_list', $cat_list);
+        return view('admin/product/create')->with('categories', $categories);
     }
 
     /**
@@ -181,34 +166,13 @@ class ProductController extends Controller
     {
         $product = Product::find($id);
 
-        $cat_list = array();
-        $cat_list[0]='انتخاب سر دسته';
-        $cat = Category::where('parent_id',0)->get(); //get: cat_name
-
-        foreach ($cat as $key=>$item)
-        {
-            $cat_list[($item->id)-1]=$item->cat_name;
-
-            foreach ($item->getChild as $key2=>$item2)
-            {
-                $cat_list[($item2->id)-1]=' - '.$item2->cat_name;
-
-                foreach ($item2->getChild as $key3=>$item3)
-                {
-                    $cat_list[($item3->id)-1]=' - - '.$item3->cat_name;
-                }
-            }
-        }
+        $categories = self::categoryTree();
 
         $parents = Product::getParent($product->id);
         //$row = ((array)$parents[0]);
         //return $row["cat_name"];
 
-        $parents_array= array();
-        foreach ($parents as $key=>$item)
-        {
-            $parents_array[$key] = ((array)$item)["cat_name"];
-        }
+        //return $parents;
 
         $colors_product = Product::getColor($product->id);
 
@@ -216,8 +180,8 @@ class ProductController extends Controller
         $keywords = Product::keywords_trimming($keywords);        
 
         return view('admin/product/edit')->with(['product'        => $product,
-                                                 'cat_list'       => $cat_list,
-                                                 'parents'        => $parents_array,
+                                                 'categories'     => $categories,
+                                                 'parents'        => $parents,
                                                  'colors_product' => $colors_product,
                                                  'keywords'       => $keywords,
                                                  ]);
@@ -387,5 +351,25 @@ class ProductController extends Controller
         }
 
         return redirect()->back();
+    }
+
+
+    // Recursive Method to get all the categories/subcategories
+    private function categoryTree($parent_id = 0, $sub_mark = '')
+    {
+        $query = DB::table('category')
+                ->select('*')
+                ->where('parent_id',$parent_id)
+                ->get()
+                ->pluck('cat_name','id');
+
+        
+        foreach ($query as $id => $value)
+        {
+            //echo $key." : ".$sub_mark.$value."</br>";
+            array_push($this->categories, $sub_mark.$value.':'.$id);
+            $this->categoryTree($id, $sub_mark.'---');
+        }
+        return $this->categories;
     }
 }
