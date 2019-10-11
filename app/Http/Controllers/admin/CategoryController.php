@@ -34,7 +34,7 @@ class CategoryController extends Controller
             $categories->setPath($same_url); //stack: 34946402
         }
         else
-            $categories = Category::orderBy('id', 'desc')->paginate(4);  
+            $categories = Category::orderBy('id', 'desc')->paginate(8);  
 
         return view('admin/category/index')->with('categories', $categories);
     }
@@ -102,7 +102,7 @@ class CategoryController extends Controller
         $category = Category::find($id);
 
         $categories = self::categoryTree();
-        
+
         return view('admin/category/edit', ['category'=> $category , 'categories'=>$categories]);
     }
 
