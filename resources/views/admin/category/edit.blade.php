@@ -116,12 +116,7 @@
 		document.addEventListener('DOMContentLoaded', function() {
 
 		    // stack: 14804253 -- https://jsfiddle.net/t0xicCode/96ntuxnz/
-
-			var selectpicker_ = [];
-
-			console.log(selectpicker_);
-
-			$('.selectpicker').selectpicker('val', 20); //id of the current category
+			$('.selectpicker').selectpicker('val', <?php echo json_encode($category['parent_id']); ?>);
 
 			// set jscolor's first input(FFFFFF) to none
 			$('#color').val(color.style.backgroudColor);

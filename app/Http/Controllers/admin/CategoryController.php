@@ -102,29 +102,7 @@ class CategoryController extends Controller
         $category = Category::find($id);
 
         $categories = self::categoryTree();
-
-        /*$cat_list = array();
-        //$cat_list[0]='انتخاب سر دسته';
-        $cat = Category::where('parent_id',0)->get(); //get: cat_name
-
-        foreach ($cat as $key=>$item)
-        {
-            $cat_list[($item->id)-1]=$item->cat_name;
-
-            foreach ($item->getChild as $key2=>$item2)
-            {
-                $cat_list[($item2->id)-1]=' - '.$item2->cat_name;
-
-                foreach ($item2->getChild as $key3=>$item3)
-                {
-                    $cat_list[($item3->id)-1]=' - - '.$item3->cat_name;
-                }
-            }
-        }*/
-
-        //return $cat_list;
-
-        //return ($category->getParent()->get())[0]->id; // stackoverflow: 34571957
+        
         return view('admin/category/edit', ['category'=> $category , 'categories'=>$categories]);
     }
 
