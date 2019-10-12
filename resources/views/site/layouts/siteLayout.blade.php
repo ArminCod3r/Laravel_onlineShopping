@@ -133,9 +133,10 @@ $shown_item = 0;
 
         @if ( preg_match('/0\b/', $value) )
             
-          <li class="list-inline-item level1-li">
-            <?php echo $cat_name?>         
+          <li class="list-inline-item level1-li" id="level1-li" value="{{$key}}">
+            <?php echo $cat_name?>     
 
+            <span class="fa fa-chevron-down" id="level1-li-{{$key}}"></span>
 
             <ul class="list-inline level2-ul" id="level2-ul">
             <?php
@@ -245,6 +246,9 @@ $shown_item = 0;
     $(".level1-li").mouseover(function() {
           $(this).children(".level2-ul").show();
 
+          var upDown_icon = "level1-li-"+this.value;
+          document.getElementById(upDown_icon).className="fa fa-chevron-up";
+
           $(".level2-li").mouseover(function() {
               $(this).children(".level3-ul").show();
 
@@ -254,6 +258,9 @@ $shown_item = 0;
 
       }).mouseout(function() {
                 $(this).children(".level2-ul").hide();
+
+                var upDown_icon = "level1-li-"+this.value;
+                document.getElementById(upDown_icon).className="fa fa-chevron-down";
       });
   </script>
 </html>
