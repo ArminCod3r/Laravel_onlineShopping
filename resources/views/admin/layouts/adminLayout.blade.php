@@ -282,19 +282,7 @@
                 <li class="nav-item">
                   <a href="/admin/category/create" class="nav-link">
                     <i class="fa fa-circle-o nav-icon"></i>
-                    <p>دسته جدید</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="pages/forms/advanced.html" class="nav-link">
-                    <i class="fa fa-circle-o nav-icon"></i>
-                    <p>پیشرفته</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="pages/forms/editors.html" class="nav-link">
-                    <i class="fa fa-circle-o nav-icon"></i>
-                    <p>ویشرایشگر</p>
+                    <p>افزودن دسته</p>
                   </a>
                 </li>
               </ul>
