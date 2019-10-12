@@ -131,7 +131,7 @@ body
 {
     background:white;
     width: 80%;
-    height: 400px;
+    /*height: 400px;*/
     position:absolute;
     border-right:1px solid #e1e1e1;
     border-left:1px solid #e1e1e1;
@@ -142,16 +142,61 @@ body
     z-index:100;
     padding-top    : 10px;
     padding-right  : 20px;
-    padding-bottom : 10px;
+    padding-bottom : 0px;
 }
 
 .level2-li
 {
     margin-right: 10px;
     padding-left: 20px;
-    width       : 25%;
+    padding-bottom: 10px;
     border-left : 1px solid #E2E2E2;
 }
+
+.level2-li:hover
+{
+    color: #ff4d4d;
+}
+
+/*.level2-li
+{
+    margin-right: 10px;
+    padding-left: 20px;
+    width       : 25%;
+    border-left : 1px solid #E2E2E2;
+}*/
+
+
+.level3-ul
+{
+    background      : #ffffff;
+    width           : 99%;
+    position        : absolute;
+    border-top      : 1px solid #e1e1e1;
+    border-right    : 1px solid #e1e1e1;
+    border-left     : 1px solid #e1e1e1;
+    border-bottom   : 1px solid #e1e1e1;
+    margin-top      : 10px;
+    right           : 3px;
+    z-index         : 100;
+    padding-right   : 20px !important;
+    list-style-type : none;
+}
+
+.level3-li
+{    
+    padding-top     : 2px;
+    padding-bottom  : 2px;
+}
+
+.level3-li:hover
+{
+    width      : 25%;
+    background : #FAFAFA;
+}
+
+
+
 
 .li-menu
 {
@@ -164,6 +209,16 @@ body
 .li-menu:hover
 {
     background : #FAFAFA;
+}
+
+.level2-li
+{
+    padding-top: 0px !important;
+}
+
+.list-group
+{
+    padding-top: 0px !important;
 }
 
 /* Editing bootstrap's list-group-item */

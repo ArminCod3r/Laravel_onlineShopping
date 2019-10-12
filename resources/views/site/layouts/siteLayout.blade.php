@@ -9,7 +9,7 @@ $key            = explode('-', $parent_and_key)[1];
 
 preg_match('/([a-zA-Z0-9_]*)-/', $parent_and_key, $match);
 
-$see_more = 0;
+$shown_item = 0;
 
 ?> 
 
@@ -154,10 +154,10 @@ $see_more = 0;
                   if ($parent_L2 == $key)
                   {
                     echo '<li class="list-inline-item level2-li">';
-                    echo '<span style="color:#16C1F3">'.$cat_name_L2.'</span>';
+                    echo '<span>'.$cat_name_L2.'</span>'; // style="color:#16C1F3"
 
                     // -------------------- Category Level 3 ------------------
-                    echo '<ul class="list-group">';
+                    echo '<ul class="level3-ul" id="level3-ul">';
 
                     foreach ($categories as $key_L3 => $value_L3)
                     {
@@ -165,28 +165,39 @@ $see_more = 0;
                       $parent_and_key_L3 = explode(':', $value_L3)[1];
                       $parent_L3         = explode('-', $parent_and_key_L3)[0];
                       
+                      //echo "<h1>".$cat_name_L3."</h1>";
 
                       if ($parent_L3!=0)
                       {
                         if ($parent_L3 == $key_L2)
                         {
-                          if ($see_more<10)
+                          if ($shown_item<10 && $shown_item != 0)
                           {
-                            echo '<li class="list-group-item li-menu">';
+                            echo '<li class="level3-li">';
                             echo $cat_name_L3;
+                            echo '</li>'; 
+                          }
+                          if ($shown_item == 0)
+                          {
+                            echo '<li class="level3-li">';
+                            echo '<span style="color:#16C1F3">'.$cat_name_L3.'</span>';
                             echo '</li>';
                           }
                           else
-                            if ($see_more == 10)
+                          {
+                            if ($shown_item == 10)
                             {
-                              echo '<li class="list-group-item li-menu">';
+                              echo '<li class="level3-li">';
                               echo '<span style="color:#16C1F3">'.'+ مشاهده موارد بیشتر'.'</span>';
                               echo '</li>';
-                            }                       
-                          $see_more++;
+                            }
+                          }                       
+                          $shown_item++;                      
                         }
                       }
                     }
+                    $shown_item=0;
+
                     echo '</ul>';
                     //---------------------------------------------------------
 
@@ -226,9 +237,20 @@ $see_more = 0;
   </body>
 
   <script>
+    // why below code? if not, first hover all the the categories on last level will shown 
+    $(document).ready(function(){
+      $(".level3-ul").hide();
+    });
 
     $(".level1-li").mouseover(function() {
           $(this).children(".level2-ul").show();
+
+          $(".level2-li").mouseover(function() {
+              $(this).children(".level3-ul").show();
+
+          }).mouseout(function() {
+                    $(this).children(".level3-ul").hide();
+          });
 
       }).mouseout(function() {
                 $(this).children(".level2-ul").hide();
