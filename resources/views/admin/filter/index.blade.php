@@ -20,6 +20,10 @@
 
 @section('content1')
 
+    @if(isset($selected_id))
+     <form action="{{ url('admin/filter?id='.$selected_id) }}" method="POST" accept-charset="utf-8" enctype="multipart/form-data">
+    @endif
+
     <div class="form-group">
             <label for="title">انتخاب دسته</label>
              <select name="category" class="selectpicker selectFilterCSS col-md-9" id="select_category" data-live-search="true" onchange="get_filter()">
@@ -37,6 +41,32 @@
              </select> 
 
         </div>
+
+    @if(isset($selected_id))
+
+    <div class="form-group" id="filters_box">
+        <div style="margin-top:10px; margin-bottom:5px;">
+
+            <input type="text" class="form-control col-md-4" style="float: right">
+            <input type="text" class="form-control col-md-4" style="float: right">
+            <select class="form-control col-md-4" style="margin-right:10px;">                
+            </select>
+
+        </div>
+    </div>
+
+
+    <div class="form-group" style="margin-right: 10px;">
+            <label class="fa fa-plus" style="color:red ; cursor:pointer" onclick="add_filter()"></label>
+        </div>
+
+
+     <div class="form-submit">
+         <input type="submit" name="submit" value="ثبت" class="btn btn-primary">
+     </div>
+
+     </form>
+    @endif
 
 @endsection
 
@@ -61,6 +91,12 @@
             <?php endif ?>
 
         }, false);
+
+
+        add_filter = function()
+        {
+            alert(1);
+        }
 
     </script>
 
