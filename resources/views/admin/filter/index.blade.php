@@ -22,7 +22,7 @@
 
     <div class="form-group">
             <label for="title">انتخاب دسته</label>
-             <select name="category" class="selectpicker selectFilterCSS" data-live-search="true" style="width: 100%; ">
+             <select name="category" class="selectpicker selectFilterCSS col-md-9" data-live-search="true">
              <!--stack: 24627902-->
 
                  <?php
