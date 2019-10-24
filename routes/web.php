@@ -37,3 +37,6 @@ Route::match(array('GET', 'POST', 'HEAD', 'PUT', 'PATCH'), 'admin/product/delete
 });
 
 Route::get('/categoryTree', "SiteController@categoryTree");
+
+// Filter
+Route::get('admin/filter', 'admin\FilterController@index');
