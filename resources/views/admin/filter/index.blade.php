@@ -53,6 +53,15 @@
             
             window.location = "<?php echo url('admin/filter'); ?>" + "?id=" + select_category;
         }
+
+        document.addEventListener('DOMContentLoaded', function() {
+
+            <?php if (isset($selected_id)): ?>
+                document.getElementById('select_category').value=<?php echo $selected_id; ?>;              
+            <?php endif ?>
+
+        }, false);
+
     </script>
 
 @endsection

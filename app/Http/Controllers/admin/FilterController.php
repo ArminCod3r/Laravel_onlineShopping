@@ -19,7 +19,16 @@ class FilterController extends Controller
     {
     	$categories = self::categoryTree();
 
-    	return view('admin/filter/index')->with('categories', $categories);
+    	if($request->get('id'))
+    	{
+    		$selected_id = $request->get('id');
+    		return view('admin/filter/index')->with(['categories'  => $categories,
+    												 'selected_id' => $selected_id,
+    												 ]);
+    	}
+
+    	else
+    		return view('admin/filter/index')->with('categories', $categories);
     }
 
 
