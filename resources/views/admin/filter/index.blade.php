@@ -44,15 +44,9 @@
 
     @if(isset($selected_id))
 
+    <!-- Filters will be shown here -->
     <div class="form-group" id="filters_box">
-        <div style="margin-top:10px; margin-bottom:5px;">
-
-            <input type="text" class="form-control col-md-4" style="float: right">
-            <input type="text" class="form-control col-md-4" style="float: right">
-            <select class="form-control col-md-4" style="margin-right:10px;">                
-            </select>
-
-        </div>
+        
     </div>
 
 
@@ -93,9 +87,25 @@
         }, false);
 
 
+        var count = 1;
+
         add_filter = function()
         {
-            alert(1);
+            var filter='<div style="margin-top:10px; margin-bottom:5px;" id="filter_parent_'+count+'">' +
+
+                          '<input type="text" name="filter_name_parent[-'+count+']" class="form-control col-md-4" style="float: right" placeholder="نام فیلتر ...">'+
+
+                          '<input type="text" name="filter_ename_parent[-'+count+']" class="form-control col-md-4" style="float: right" placeholder="نام لاتین فیلتر ...">'+
+
+                          '<select class="form-control col-md-4" style="margin-right:10px;">'+
+                            '<option value="1"> radio </option>'+
+                            '<option value="2"> color </option>'+
+                          '</select>'+
+                          
+                         '</div>';
+            count++;
+
+            $("#filters_box").append(filter);
         }
 
     </script>
