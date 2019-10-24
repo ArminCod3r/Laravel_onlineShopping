@@ -22,7 +22,7 @@
 
     <div class="form-group">
             <label for="title">انتخاب دسته</label>
-             <select name="category" class="selectpicker selectFilterCSS col-md-9" data-live-search="true">
+             <select name="category" class="selectpicker selectFilterCSS col-md-9" id="select_category" data-live-search="true" onchange="get_filter()">
              <!--stack: 24627902-->
 
                  <?php
@@ -45,4 +45,14 @@
     <script type="text/javascript" src="{{ url('js/bootstrap-select.js') }}"></script>
     <script type="text/javascript" src="{{ url('js/defaults-fa_IR.js') }}"></script>
     <script type="text/javascript" src="{{ url('js/jscolor.js') }}"></script>
+
+    <script type="text/javascript">
+        get_filter = function()
+        {
+            var select_category = document.getElementById('select_category').value;
+            
+            window.location = "<?php echo url('admin/filter'); ?>" + "?id=" + select_category;
+        }
+    </script>
+
 @endsection
