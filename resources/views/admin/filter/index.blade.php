@@ -22,6 +22,7 @@
 
     @if(isset($selected_id))
      <form action="{{ url('admin/filter?id='.$selected_id) }}" method="POST" accept-charset="utf-8" enctype="multipart/form-data">
+     {{ csrf_field() }}
     @endif
 
     <div class="form-group">
@@ -122,17 +123,32 @@
         add_child = function(parent_count)
         {
             var selected_option = document.getElementById('parent_option_'+parent_count).value;
-            console.log(selected_option);
 
             if (selected_option == 1)
             {
                 var filter_child = '<input type="text" name="filter_name_child[-'+parent_count+'][-'+count_child+']" class="form-control col-md-4" style="margin-top:10px">';
                 $("#filter_child_"+parent_count).append(filter_child);
             }
+
             if (selected_option == 2)
             {
-                alert("Nothing yet");
+                //alert("Nothing yet");
+                var filter_child = '<input type="text" name="filter_color_child[-'+parent_count+'][-'+count_child+']" class="form-control col-md-4" style="float:right;" placeholder="نام رنگ ...">';
+                $("#filter_child_"+parent_count).append(filter_child);
+
+                var colors_here = document.getElementById('filter_child_'+parent_count); 
+
+                var input = document.createElement("input");
+                input.type = "text";
+                input.name = "filter_color_child[-"+parent_count+"][-"+count_child+"]";
+                input.className="form-control col-md-4";
+                //input.style["margin-top"] = "10px";
+
+                var color = new jscolor(input);
+                colors_here.appendChild(input);
+                colors_here.appendChild(document.createElement("br"));
             }
+
             count_child++;
         }
 
