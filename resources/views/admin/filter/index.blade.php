@@ -101,7 +101,7 @@
 
                           '<input type="text" name="filter_ename_parent[-'+count+']" class="form-control col-md-4" style="float: right" placeholder="نام لاتین فیلتر ...">'+
 
-                          '<select id="parent_option_'+count+'" class="form-control col-md-4" style="margin-right:10px;">'+
+                          '<select id="parent_option_'+count+'" name="parent_option[]" class="form-control col-md-4" style="margin-right:10px;">'+
                             '<option value="1"> radio </option>'+
                             '<option value="2"> color </option>'+
                           '</select>'+
