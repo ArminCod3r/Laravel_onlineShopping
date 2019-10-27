@@ -44,31 +44,51 @@ class FilterController extends Controller
 
     	$filter_name_parent  = $request->get('filter_name_parent');
     	$filter_ename_parent = $request->get('filter_ename_parent');
-    	$select_option       = $request->get('parent_option');
+    	$select_option       = $request->get('parent_option');   // radio or color
+    	$filter_name_child   = $request->get('filter_name_child');
     	$filter_color_child  = $request->get('filter_color_child');
 
     	foreach ($filter_name_parent as $key => $value)
     	{
     		if ($key<0 && !empty($value))
     		{
+    			// Insert Filter's Name
     			$ename = array_key_exists($key, $filter_ename_parent) ? $filter_ename_parent[$key] : '';
-    			$selected_item = array_key_exists($key, $select_option) ? $select_option[$key] : 1;
+    			$selected_option_item = array_key_exists($key, $select_option) ? $select_option[$key] : 1;
 
-    			DB::table('filter')->insert(
-				    ['category_id' => $id    ,
-				     'name'       => $value ,
-				     'ename' 	   => $ename ,
-				     'parent_id'   => 0      ,
-				     'filled' 	   => $selected_item,
-				     ]
-				);
+    			$inserted_parent_id = DB::table('filter')->insertGetId(
+									    ['category_id' => $id    ,
+									     'name'        => $value ,
+									     'ename' 	   => $ename ,
+									     'parent_id'   => 0      ,
+									     'filled' 	   => $selected_option_item,
+									     ]
+									);
+
+				// Insert Filter's Child
+				if(is_array($filter_name_child) && array_key_exists($key, $filter_name_child))
+				{
+					foreach ($filter_name_child[$key] as $key_child => $value_child)
+					{
+						if(!empty($value_child))
+						{
+							DB::table('filter')->insert(
+							    ['category_id' => $id    ,
+							     'name'        => $value_child ,
+							     'ename' 	   => '' ,
+							     'parent_id'   => $inserted_parent_id ,
+							     'filled' 	   => $selected_option_item,
+							     ]
+							);
+						}
+					}
+				}
 
 				echo 'inserted <br>';
     		}
     	}
 
-    	//return $request->all();
-    	//return [$selected_option, $request->all()];
+    	return redirect()->back();
     }
 
 
