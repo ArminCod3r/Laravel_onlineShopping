@@ -133,14 +133,14 @@
             if (selected_option == 2)
             {
                 //alert("Nothing yet");
-                var filter_child = '<input type="text" name="filter_color_child[-'+parent_count+'][-'+count_child+']" class="form-control col-md-4" style="float:right;" placeholder="نام رنگ ...">';
+                var filter_child = '<input type="text" name="filter_color_child[-'+parent_count+'][-'+count_child+'][]" class="form-control col-md-4" style="float:right;" placeholder="نام رنگ ...">';
                 $("#filter_child_"+parent_count).append(filter_child);
 
                 var colors_here = document.getElementById('filter_child_'+parent_count); 
 
                 var input = document.createElement("input");
                 input.type = "text";
-                input.name = "filter_color_child[-"+parent_count+"][-"+count_child+"]";
+                input.name = "filter_color_child[-"+parent_count+"][-"+count_child+"][]";
                 input.className="form-control col-md-4";
                 //input.style["margin-top"] = "10px";
 

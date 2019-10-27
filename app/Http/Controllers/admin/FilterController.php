@@ -45,6 +45,7 @@ class FilterController extends Controller
     	$filter_name_parent  = $request->get('filter_name_parent');
     	$filter_ename_parent = $request->get('filter_ename_parent');
     	$select_option       = $request->get('parent_option');
+    	$filter_color_child  = $request->get('filter_color_child');
 
     	foreach ($filter_name_parent as $key => $value)
     	{
