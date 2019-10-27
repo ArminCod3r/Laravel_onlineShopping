@@ -47,7 +47,40 @@
 
     <!-- Filters will be shown here -->
     <div class="form-group" id="filters_box">
-        
+        <?php
+
+            foreach ($filters_parent as $key => $value)
+            {
+                if ($value['parent_id'] == 0)
+                {
+                    echo '<div style="margin-top:10px; margin-bottom:5px;" id="filter_parent_'.$value['id'].'_FromDB">';
+
+                    echo '<input type="text" value="'.$value['name'].'" name="filter_name_parent['.$value['id'].']" class="form-control col-md-4" style="float: right" placeholder="نام فیلتر ...">';
+
+                    echo '<input type="text" value="'.$value['ename'].'" name="filter_ename_parent['.$value['id'].']" class="form-control col-md-4" style="float: right" placeholder="نام لاتین فیلتر ...">';
+
+                    echo '<select id="parent_option_'.$value['id'].'_FromDB" name="parent_option[]" class="form-control col-md-4" style="margin-right:10px;">';
+                    echo '<option value="1"> radio </option>';
+                    echo '<option value="2"> color </option>';
+                    echo '</select>';
+
+                    echo '<div id="filter_child_'.$value['id'].'_FromDB" class="form-submit" style="margin:20px;">';
+                    echo '</div>';
+
+                    echo '<span>';
+                    echo '<label class="fa fa-plus" style="color:green ; cursor:pointer" onclick="add_child(\''.$value['id'].'\')"></label>';
+                    echo '</span>';
+
+                    echo '</div>';
+                }
+
+                if ($value['parent_id'] == 0)
+                {
+
+                }
+            }
+
+        ?>
     </div>
 
 

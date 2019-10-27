@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use DB;
 use App\Category;
+use App\Filter;
 
 class FilterController extends Controller
 {
@@ -23,8 +24,19 @@ class FilterController extends Controller
     	if($request->get('id'))
     	{
     		$selected_id = $request->get('id');
-    		return view('admin/filter/index')->with(['categories'  => $categories,
-    												 'selected_id' => $selected_id,
+
+    		//$filters_parent = Filter::where('category_id', $selected_id)->get();
+
+    		$filters_parent = Filter::where(
+    										['category_id' => $selected_id,
+    										'parent_id'    => 0,
+    										])
+    									->get();
+
+
+    		return view('admin/filter/index')->with(['categories'     => $categories,
+    												 'selected_id'    => $selected_id,
+    												 'filters_parent' => $filters_parent,
     												 ]);
     	}
 
