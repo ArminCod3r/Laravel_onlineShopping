@@ -65,7 +65,14 @@
                     echo '</select>';
 
                     echo '<div id="filter_child_'.$value['id'].'_FromDB" class="form-submit" style="margin:20px;">';
+
+                    foreach ($value['get_childs'] as $key_child => $value_child)
+                    {
+                        echo '<input type="text" value="'.$value_child['name'].'" name="filter_name_child['.$value['id'].']['.$value_child['id'].']" class="form-control col-md-4" style="margin-top:10px;">';
+                    }
+                    
                     echo '</div>';
+
 
                     $arg1 = "'".$value['id']."'";
                     $arg2 = "'"."True"."'";
@@ -74,11 +81,6 @@
                     echo '</span>';
 
                     echo '</div>';
-                }
-
-                if ($value['parent_id'] == 0)
-                {
-
                 }
             }
 

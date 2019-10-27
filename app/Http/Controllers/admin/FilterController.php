@@ -32,17 +32,19 @@ class FilterController extends Controller
                                             ])
                                         ->get();
             
-            // Adding new Element to the array named 'get_childs' with the value of childs
+            // Adding new Element to the 'filters_parent' named 'get_childs' with the value of childs
+            // e.g:
+            // parent [id, category_id, name, ..., get_childs[ List-of-all-the-childs ] ]
+            //
+            // So just sending the 'filters_parent' will get the job done.
+            //
             $childs = Filter::with('get_childs')
                             ->where(['category_id'=>$selected_id,'parent_id'=>0])
                             ->get();
             
-            return $childs;
-            
             return view('admin/filter/index')->with(['categories'     => $categories,
                                                      'selected_id'    => $selected_id,
                                                      'filters_parent' => $filters_parent,
-                                                     'get_childs'     => $childs,
                                                      ]);
         }
 
