@@ -67,8 +67,10 @@
                     echo '<div id="filter_child_'.$value['id'].'_FromDB" class="form-submit" style="margin:20px;">';
                     echo '</div>';
 
+                    $arg1 = "'".$value['id']."'";
+                    $arg2 = "'"."True"."'";
                     echo '<span>';
-                    echo '<label class="fa fa-plus" style="color:green ; cursor:pointer" onclick="add_child(\''.$value['id'].'\')"></label>';
+                    echo '<label class="fa fa-plus" style="color:green ; cursor:pointer" onclick="add_child('.$arg1.','.$arg2.')"></label>';
                     echo '</span>';
 
                     echo '</div>';
@@ -143,7 +145,7 @@
                           '</div>'+
 
                            '<span>'+
-                             '<label class="fa fa-plus" style="color:green ; cursor:pointer" onclick="add_child(\''+count+'\')"></label>'+
+                             '<label class="fa fa-plus" style="color:green ; cursor:pointer" onclick="add_child(\''+count+'\',\'False\')"></label>'+
                            '</span>'+
 
                          '</div>';
@@ -153,19 +155,45 @@
         }
 
         var count_child = 1;
-        add_child = function(parent_count)
+        add_child = function(parent_count, isItFromDB)
         {
-            var selected_option = document.getElementById('parent_option_'+parent_count).value;
+
+            // Check whether if the add_child() called from filled parents or new added parents-input
+
+            if (isItFromDB == "True")
+                var selected_option = document.getElementById('parent_option_'+parent_count+"_FromDB").value;
+
+            if (isItFromDB == "False")
+                var selected_option = document.getElementById('parent_option_'+parent_count).value;
+
 
             if (selected_option == 1)
             {
-                var filter_child = '<input type="text" name="filter_name_child[-'+parent_count+'][-'+count_child+']" class="form-control col-md-4" style="margin-top:10px">';
-                $("#filter_child_"+parent_count).append(filter_child);
+                // NOTE: POSITIVE / NEGATIVE ARRAY IS IMPORTANT
+                //
+                // if the function's caller has made from DB,
+                // it means a new child-input is about to be made, so: 
+                //      ['+parent_count+'] 
+                // NOT: [-'+parent_count+']
+                //
+                if (isItFromDB == "True")
+                {
+                    var filter_child = '<input type="text" name="filter_name_child['+parent_count+'][-'+count_child+']" class="form-control col-md-4" style="margin-top:10px">';
+
+                    $("#filter_child_"+parent_count+"_FromDB").append(filter_child);
+                }
+
+                if (isItFromDB == "False")
+                {
+                    var filter_child = '<input type="text" name="filter_name_child[-'+parent_count+'][-'+count_child+']" class="form-control col-md-4" style="margin-top:10px">';
+
+                    $("#filter_child_"+parent_count).append(filter_child);
+                }
             }
+
 
             if (selected_option == 2)
             {
-                //alert("Nothing yet");
                 var filter_child = '<input type="text" name="filter_color_child[-'+parent_count+'][-'+count_child+'][]" class="form-control col-md-4" style="float:right;" placeholder="نام رنگ ...">';
                 $("#filter_child_"+parent_count).append(filter_child);
 
