@@ -10,8 +10,8 @@ use App\Filter;
 
 class FilterController extends Controller
 {
-	private $categories = array();
-	
+    private $categories = array();
+    
     /**
      * Display a listing of the resource.
      *
@@ -19,29 +19,35 @@ class FilterController extends Controller
      */
     public function index(Request $request)
     {
-    	$categories = self::categoryTree();
+        $categories = self::categoryTree();
 
-    	if($request->get('id'))
-    	{
-    		$selected_id = $request->get('id');
+        if($request->get('id'))
+        {
+            $selected_id = $request->get('id');
 
-    		//$filters_parent = Filter::where('category_id', $selected_id)->get();
+            // Get the parents' filter
+            $filters_parent = Filter::where(
+                                            ['category_id' => $selected_id,
+                                            'parent_id'    => 0,
+                                            ])
+                                        ->get();
+            
+            // Adding new Element to the array named 'get_childs' with the value of childs
+            $childs = Filter::with('get_childs')
+                            ->where(['category_id'=>$selected_id,'parent_id'=>0])
+                            ->get();
+            
+            return $childs;
+            
+            return view('admin/filter/index')->with(['categories'     => $categories,
+                                                     'selected_id'    => $selected_id,
+                                                     'filters_parent' => $filters_parent,
+                                                     'get_childs'     => $childs,
+                                                     ]);
+        }
 
-    		$filters_parent = Filter::where(
-    										['category_id' => $selected_id,
-    										'parent_id'    => 0,
-    										])
-    									->get();
-
-
-    		return view('admin/filter/index')->with(['categories'     => $categories,
-    												 'selected_id'    => $selected_id,
-    												 'filters_parent' => $filters_parent,
-    												 ]);
-    	}
-
-    	else
-    		return view('admin/filter/index')->with('categories', $categories);
+        else
+            return view('admin/filter/index')->with('categories', $categories);
     }
 
     /**
@@ -51,56 +57,56 @@ class FilterController extends Controller
      */
     public function create(Request $request)
     {
-    	$id = $request->get('id');
-    	$category = Category::findOrFail($id);
+        $id = $request->get('id');
+        $category = Category::findOrFail($id);
 
-    	$filter_name_parent  = $request->get('filter_name_parent');
-    	$filter_ename_parent = $request->get('filter_ename_parent');
-    	$select_option       = $request->get('parent_option');   // radio or color
-    	$filter_name_child   = $request->get('filter_name_child');
-    	$filter_color_child  = $request->get('filter_color_child');
+        $filter_name_parent  = $request->get('filter_name_parent');
+        $filter_ename_parent = $request->get('filter_ename_parent');
+        $select_option       = $request->get('parent_option');   // radio or color
+        $filter_name_child   = $request->get('filter_name_child');
+        $filter_color_child  = $request->get('filter_color_child');
 
-    	foreach ($filter_name_parent as $key => $value)
-    	{
-    		if ($key<0 && !empty($value))
-    		{
-    			// Insert Filter's Name
-    			$ename = array_key_exists($key, $filter_ename_parent) ? $filter_ename_parent[$key] : '';
-    			$selected_option_item = array_key_exists($key, $select_option) ? $select_option[$key] : 1;
+        foreach ($filter_name_parent as $key => $value)
+        {
+            if ($key<0 && !empty($value))
+            {
+                // Insert Filter's Name
+                $ename = array_key_exists($key, $filter_ename_parent) ? $filter_ename_parent[$key] : '';
+                $selected_option_item = array_key_exists($key, $select_option) ? $select_option[$key] : 1;
 
-    			$inserted_parent_id = DB::table('filter')->insertGetId(
-									    ['category_id' => $id    ,
-									     'name'        => $value ,
-									     'ename' 	   => $ename ,
-									     'parent_id'   => 0      ,
-									     'filled' 	   => $selected_option_item,
-									     ]
-									);
+                $inserted_parent_id = DB::table('filter')->insertGetId(
+                                        ['category_id' => $id    ,
+                                         'name'        => $value ,
+                                         'ename'       => $ename ,
+                                         'parent_id'   => 0      ,
+                                         'filled'      => $selected_option_item,
+                                         ]
+                                    );
 
-				// Insert Filter's Child
-				if(is_array($filter_name_child) && array_key_exists($key, $filter_name_child))
-				{
-					foreach ($filter_name_child[$key] as $key_child => $value_child)
-					{
-						if(!empty($value_child))
-						{
-							DB::table('filter')->insert(
-							    ['category_id' => $id    ,
-							     'name'        => $value_child ,
-							     'ename' 	   => '' ,
-							     'parent_id'   => $inserted_parent_id ,
-							     'filled' 	   => $selected_option_item,
-							     ]
-							);
-						}
-					}
-				}
+                // Insert Filter's Child
+                if(is_array($filter_name_child) && array_key_exists($key, $filter_name_child))
+                {
+                    foreach ($filter_name_child[$key] as $key_child => $value_child)
+                    {
+                        if(!empty($value_child))
+                        {
+                            DB::table('filter')->insert(
+                                ['category_id' => $id    ,
+                                 'name'        => $value_child ,
+                                 'ename'       => '' ,
+                                 'parent_id'   => $inserted_parent_id ,
+                                 'filled'      => $selected_option_item,
+                                 ]
+                            );
+                        }
+                    }
+                }
 
-				echo 'inserted <br>';
-    		}
-    	}
+                echo 'inserted <br>';
+            }
+        }
 
-    	return redirect()->back();
+        return redirect()->back();
     }
 
 
