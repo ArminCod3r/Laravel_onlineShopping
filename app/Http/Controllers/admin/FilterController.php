@@ -70,6 +70,8 @@ class FilterController extends Controller
 
         //return $request->all();
 
+        $inserted_item_count = 0;
+
         foreach ($filter_name_parent as $key => $value)
         {
             if ($key<0 && !empty($value))
@@ -83,7 +85,7 @@ class FilterController extends Controller
                                          'name'        => $value ,
                                          'ename'       => $ename ,
                                          'parent_id'   => 0      ,
-                                         'filled'      => $selected_option_item,
+                                         'filled'      => $select_option[$inserted_item_count],
                                          ]
                                     );
 
@@ -99,12 +101,13 @@ class FilterController extends Controller
                                  'name'        => $value_child ,
                                  'ename'       => '' ,
                                  'parent_id'   => $inserted_parent_id ,
-                                 'filled'      => $selected_option_item,
+                                 'filled'      => $select_option[$inserted_item_count],
                                  ]
                             );
                         }
                     }
                 }
+                $inserted_item_count++;
 
                 // Inserting colors-child
                 if(is_array($filter_color_child) && array_key_exists($key, $filter_color_child))
@@ -120,7 +123,7 @@ class FilterController extends Controller
                                  'name'        => $child_color ,
                                  'ename'       => '' ,
                                  'parent_id'   => $inserted_parent_id ,
-                                 'filled'      => $selected_option_item,
+                                 'filled'      => 2,
                                  ]
                             );
                         }
@@ -172,9 +175,7 @@ class FilterController extends Controller
 
                                 // Inserting:  if key_child<0 => New Child-filter
                                 if($key_child<0 && !empty($value_child))
-                                {
-                                    $selected_option_item = array_key_exists($key, $select_option) ? $select_option[$key] : 1;
-                                    
+                                {                                    
                                     DB::table('filter')->insert(
                                         ['category_id' => $id    ,
                                          'name'        => $value_child ,
