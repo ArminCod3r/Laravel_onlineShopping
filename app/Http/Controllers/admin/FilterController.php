@@ -68,11 +68,13 @@ class FilterController extends Controller
         $filter_name_child   = $request->get('filter_name_child');
         $filter_color_child  = $request->get('filter_color_child');
 
+        //return $request->all();
+
         foreach ($filter_name_parent as $key => $value)
         {
             if ($key<0 && !empty($value))
             {
-                // Insert Filter's Name
+                // Inserting parents-filter
                 $ename = array_key_exists($key, $filter_ename_parent) ? $filter_ename_parent[$key] : '';
                 $selected_option_item = array_key_exists($key, $select_option) ? $select_option[$key] : 1;
 
@@ -85,13 +87,13 @@ class FilterController extends Controller
                                          ]
                                     );
 
-                // Insert Filter's Child
+                // Inserting childs-filter
                 if(is_array($filter_name_child) && array_key_exists($key, $filter_name_child))
                 {
                     foreach ($filter_name_child[$key] as $key_child => $value_child)
                     {
                         if(!empty($value_child))
-                        {
+                        {                            
                             DB::table('filter')->insert(
                                 ['category_id' => $id    ,
                                  'name'        => $value_child ,
@@ -103,8 +105,64 @@ class FilterController extends Controller
                         }
                     }
                 }
+            }
 
-                echo 'inserted <br>';
+            else
+            {
+                // If parent's input was removed:  1.Delete parents 2.Delete childs-filter
+                if(empty($value))
+                {
+                    DB::table('filter')->where('id', $key)->delete();
+
+                    DB::table('filter')->where('parent_id', $key)->delete();
+                }
+
+                // Deleteing child
+                // If parents-filter was not removed, but childs-filter did remove.
+                if(!empty($value))
+                {
+                   if(is_array($filter_name_child) && array_key_exists($key, $filter_name_child))
+                    {
+                        foreach ($filter_name_child[$key] as $key_child => $value_child)
+                        {
+                            $previous_child_filter = DB::table('filter')->where('id', $key_child)
+                                                                        ->pluck('name');
+
+                            // Comparing current-child and inserted-child-databse
+                            if($value_child != $previous_child_filter)
+                            {
+                                // Deleteing
+                                if(empty($value_child))
+                                {
+                                    DB::table('filter')->where('id', $key_child)->delete();
+                                }
+
+                                // Editing                         
+                                if(!empty($value_child))
+                                {
+                                    DB::table('filter')->where('id', $key_child)
+                                                       ->update(['name' => $value_child]);
+                                    
+                                }
+
+                                // Inserting:  if key_child<0 => New Child-filter
+                                if($key_child<0 && !empty($value_child))
+                                {
+                                    $selected_option_item = array_key_exists($key, $select_option) ? $select_option[$key] : 1;
+                                    
+                                    DB::table('filter')->insert(
+                                        ['category_id' => $id    ,
+                                         'name'        => $value_child ,
+                                         'ename'       => '' ,
+                                         'parent_id'   => $key ,
+                                         'filled'      => $selected_option_item,
+                                         ]
+                                    );
+                                }
+                            }                            
+                        }
+                    } 
+                }
             }
         }
 
