@@ -93,10 +93,31 @@ class FilterController extends Controller
                     foreach ($filter_name_child[$key] as $key_child => $value_child)
                     {
                         if(!empty($value_child))
-                        {                            
+                        {
                             DB::table('filter')->insert(
                                 ['category_id' => $id    ,
                                  'name'        => $value_child ,
+                                 'ename'       => '' ,
+                                 'parent_id'   => $inserted_parent_id ,
+                                 'filled'      => $selected_option_item,
+                                 ]
+                            );
+                        }
+                    }
+                }
+
+                // Inserting colors-child
+                if(is_array($filter_color_child) && array_key_exists($key, $filter_color_child))
+                {
+                    foreach ($filter_color_child[$key] as $key_child_color => $value_child_color)
+                    {
+                        if(!empty($value_child_color))
+                        {
+                            $child_color = $value_child_color[0].':'.$value_child_color[1];
+
+                            DB::table('filter')->insert(
+                                ['category_id' => $id    ,
+                                 'name'        => $child_color ,
                                  'ename'       => '' ,
                                  'parent_id'   => $inserted_parent_id ,
                                  'filled'      => $selected_option_item,

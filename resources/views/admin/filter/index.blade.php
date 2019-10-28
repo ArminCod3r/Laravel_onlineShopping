@@ -67,8 +67,18 @@
                     echo '<div id="filter_child_'.$value['id'].'_FromDB" class="form-submit" style="margin:20px;">';
 
                     foreach ($value['get_childs'] as $key_child => $value_child)
-                    {
-                        echo '<input type="text" value="'.$value_child['name'].'" name="filter_name_child['.$value['id'].']['.$value_child['id'].']" class="form-control col-md-4" style="margin-top:10px;">';
+                    {                       
+
+                        if(strpos($value_child['name'], ':') !== false)
+                        {
+                            echo '<input type="text" value="'.$value_child['name'].'" name="filter_color_child[-1][-2][]" class="form-control col-md-4" style="float:right;" placeholder="نام رنگ ...">';
+                            echo '<br/>';
+                        }
+
+                        else
+                        {
+                            echo '<input type="text" value="'.$value_child['name'].'" name="filter_name_child['.$value['id'].']['.$value_child['id'].']" class="form-control col-md-4" style="margin-top:10px;">';
+                        }
                     }
                     
                     echo '</div>';
