@@ -117,10 +117,14 @@ class FilterController extends Controller
                     DB::table('filter')->where('parent_id', $key)->delete();
                 }
 
-                // Deleteing child
-                // If parents-filter was not removed, but childs-filter did remove.
+                // 1. Editing parents-filter
+                // 2. child-filter: Deleting, Editing, Inserting
                 if(!empty($value))
                 {
+                    // Update the current value-parent whether changed or not
+                    $previous_parent_filter = DB::table('filter')->where('id', $key)
+                                                                 ->update(['name' => $value]);
+
                    if(is_array($filter_name_child) && array_key_exists($key, $filter_name_child))
                     {
                         foreach ($filter_name_child[$key] as $key_child => $value_child)
