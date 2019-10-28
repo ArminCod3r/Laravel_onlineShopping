@@ -60,8 +60,18 @@
                     echo '<input type="text" value="'.$value['ename'].'" name="filter_ename_parent['.$value['id'].']" class="form-control col-md-4" style="float: right" placeholder="نام لاتین فیلتر ...">';
 
                     echo '<select id="parent_option_'.$value['id'].'_FromDB" name="parent_option[]" class="form-control col-md-4" style="margin-right:10px;">';
-                    echo '<option value="1"> radio </option>';
-                    echo '<option value="2"> color </option>';
+                    
+                    if($value['filled']==1)
+                    {
+                        echo '<option value="1" selected> radio </option>';
+                        echo '<option value="2"> color </option>';
+                    }
+                    else
+                    {
+                        echo '<option value="1"> radio </option>';
+                        echo '<option value="2" selected> color </option>';
+                    }
+
                     echo '</select>';
 
                     echo '<div id="filter_child_'.$value['id'].'_FromDB" class="form-submit" style="margin:20px;">';
@@ -71,8 +81,14 @@
 
                         if(strpos($value_child['name'], ':') !== false)
                         {
-                            echo '<input type="text" value="'.$value_child['name'].'" name="filter_color_child[-1][-2][]" class="form-control col-md-4" style="float:right;" placeholder="نام رنگ ...">';
-                            echo '<br/>';
+                            $color_text = explode(":", $value_child['name'])[0];
+                            $color_code = explode(":", $value_child['name'])[1];
+
+                            echo '<input type="text" value="'.$color_text.'" name="filter_color_child['.$value['id'].']['.$key_child.'][]" class="form-control col-md-4" style="float:right;" placeholder="نام رنگ ...">';
+
+                            echo '<input type="text" name="color[]" class="jscolor form-control col-md-4" value="'.$color_code.'" style="margin-right: 10px;">';
+
+                            echo '<div style="margin-top:10px;"></div>';
                         }
 
                         else
@@ -206,20 +222,52 @@
 
             if (selected_option == 2)
             {
-                var filter_child = '<input type="text" name="filter_color_child[-'+parent_count+'][-'+count_child+'][]" class="form-control col-md-4" style="float:right;" placeholder="نام رنگ ...">';
-                $("#filter_child_"+parent_count).append(filter_child);
+                try
+                {
+                    var filter_child = '<input type="text" name="filter_color_child[-'+parent_count+'][-'+count_child+'][]" class="form-control col-md-4" style="float:right;" placeholder="نام رنگ ...">';
+                    $("#filter_child_"+parent_count).append(filter_child);
 
-                var colors_here = document.getElementById('filter_child_'+parent_count); 
+                    var colors_here = document.getElementById('filter_child_'+parent_count);
 
-                var input = document.createElement("input");
-                input.type = "text";
-                input.name = "filter_color_child[-"+parent_count+"][-"+count_child+"][]";
-                input.className="form-control col-md-4";
-                //input.style["margin-top"] = "10px";
+                    var input = document.createElement("input");
+                    input.type = "text";
+                    input.name = "filter_color_child[-"+parent_count+"][-"+count_child+"][]";
+                    input.className="form-control col-md-4";
+                    //input.style["margin-top"] = "10px";
 
-                var color = new jscolor(input);
-                colors_here.appendChild(input);
-                colors_here.appendChild(document.createElement("br"));
+                    var color = new jscolor(input);
+                    colors_here.appendChild(input);
+                    colors_here.appendChild(document.createElement("br"));
+
+                }
+                catch(e)
+                {
+                    var filter_child = '<input type="text" name="filter_color_child['+parent_count+'][-'+count_child+'][]" class="form-control col-md-4" style="float:right;" placeholder="نام رنگ ...">';
+                    $("#filter_child_"+parent_count+"_FromDB").append(filter_child);
+                    
+                    var colors_here = document.getElementById('filter_child_'+parent_count+"_FromDB");
+
+                    var input = document.createElement("input");
+                    input.type = "text";
+                    input.name = "filter_color_child[-"+parent_count+"][-"+count_child+"][]";
+                    input.className="form-control col-md-4";
+                    //input.style["margin-top"] = "10px";
+
+                    var color = new jscolor(input);
+                    colors_here.appendChild(input);
+                    colors_here.appendChild(document.createElement("br"));
+                }
+
+                // after showing color from database, make the '+' ready for new childs
+                //<?php foreach ($filters_parent as $key => $value): ?>
+                    //<?php if (isset($value->filled)): ?>
+                        // Color text input
+                        //filter_child = '<input type="text" name="filter_color_child['+parent_count+'][-'+count_child+'][]" class="form-control col-md-4" style="float:right;" placeholder="نام رنگ ...">';
+                        //$("#filter_child_"+parent_count+"_FromDB").append(filter_child);                        
+                        //colors_here = document.getElementById('filter_child_'+parent_count+"_FromDB");
+                        //<?php break ?>
+                    //<?php endif ?>
+                //<?php endforeach ?>
             }
 
             count_child++;
