@@ -175,7 +175,8 @@ class FilterController extends Controller
 
                                 // Inserting:  if key_child<0 => New Child-filter
                                 if($key_child<0 && !empty($value_child))
-                                {                                    
+                                {
+                                    $selected_option_item = array_key_exists($key, $select_option) ? $select_option[$key] : 1;                  
                                     DB::table('filter')->insert(
                                         ['category_id' => $id    ,
                                          'name'        => $value_child ,
@@ -186,6 +187,30 @@ class FilterController extends Controller
                                     );
                                 }
                             }                            
+                        }
+                    }
+
+                    // Adding childs-color to the current colors
+                    if(is_array($filter_color_child) && array_key_exists($key, $filter_color_child))
+                    {
+                        foreach ($filter_color_child as $key_child_color => $value_child_color)
+                        {
+                            foreach ($value_child_color as $key_ => $value_)
+                            {                        
+                                if($key_ == -1 && !empty($value_))
+                                {
+                                    $child_color = $value_[0].':'.$value_[1];
+
+                                    DB::table('filter')->insert(
+                                        ['category_id' => $id    ,
+                                         'name'        => $child_color ,
+                                         'ename'       => '' ,
+                                         'parent_id'   => $key_child_color ,
+                                         'filled'      => 2,
+                                         ]
+                                    );
+                                }
+                            }
                         }
                     } 
                 }

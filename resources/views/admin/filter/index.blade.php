@@ -86,7 +86,7 @@
 
                             echo '<input type="text" value="'.$color_text.'" name="filter_color_child['.$value['id'].']['.$key_child.'][]" class="form-control col-md-4" style="float:right;" placeholder="نام رنگ ...">';
 
-                            echo '<input type="text" name="color[]" class="jscolor form-control col-md-4" value="'.$color_code.'" style="margin-right: 10px;">';
+                            echo '<input type="text" class="jscolor form-control col-md-4" value="'.$color_code.'" style="margin-right: 10px;">';
 
                             echo '<div style="margin-top:10px;"></div>';
                         }
@@ -228,24 +228,37 @@
                     $("#filter_child_"+parent_count).append(filter_child);
 
                     var colors_here = document.getElementById('filter_child_'+parent_count);
+
+                    var input = document.createElement("input");
+                    input.type = "text";
+                    input.name = "filter_color_child[-"+parent_count+"][-"+count_child+"][]";
+                    input.className="form-control col-md-4";
+                    //input.style["margin-top"] = "10px";
+
+                    var color = new jscolor(input);
+                    colors_here.appendChild(input);
+                    colors_here.appendChild(document.createElement("br"));
                 }
-                else
+
+                else // for values came from database
                 {
                     filter_child = '<input type="text" name="filter_color_child['+parent_count+'][-'+count_child+'][]" class="form-control col-md-4" style="float:right;" placeholder="نام رنگ ...">';
                     $("#filter_child_"+parent_count+"_FromDB").append(filter_child);
-                    
+
                     colors_here = document.getElementById('filter_child_'+parent_count+"_FromDB");
+
+                    var input = document.createElement("input");
+                    input.type = "text";
+                    input.name = "filter_color_child["+parent_count+"][-"+count_child+"][]"; // Delete the '-'
+                    input.className="form-control col-md-4";
+                    //input.style["margin-top"] = "10px";
+
+                    var color = new jscolor(input);
+                    colors_here.appendChild(input);
+                    colors_here.appendChild(document.createElement("br"));
                 }
 
-                var input = document.createElement("input");
-                input.type = "text";
-                input.name = "filter_color_child[-"+parent_count+"][-"+count_child+"][]";
-                input.className="form-control col-md-4";
-                //input.style["margin-top"] = "10px";
-
-                var color = new jscolor(input);
-                colors_here.appendChild(input);
-                colors_here.appendChild(document.createElement("br"));
+                
             }
 
             count_child++;
