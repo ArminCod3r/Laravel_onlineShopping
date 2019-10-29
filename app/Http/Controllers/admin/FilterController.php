@@ -155,7 +155,7 @@ class FilterController extends Controller
                         {
                             $previous_child_filter = DB::table('filter')->where('id', $key_child)
                                                                         ->pluck('name');
-
+                            
                             // Comparing current-child and inserted-child-databse
                             if($value_child != $previous_child_filter)
                             {
@@ -176,6 +176,8 @@ class FilterController extends Controller
                                 // Inserting:  if key_child<0 => New Child-filter
                                 if($key_child<0 && !empty($value_child))
                                 {
+                                    return $value_child;
+
                                     $selected_option_item = array_key_exists($key, $select_option) ? $select_option[$key] : 1;                  
                                     DB::table('filter')->insert(
                                         ['category_id' => $id    ,
@@ -196,7 +198,8 @@ class FilterController extends Controller
                         foreach ($filter_color_child as $key_child_color => $value_child_color)
                         {
                             foreach ($value_child_color as $key_ => $value_)
-                            {                        
+                            {
+                                // Inserting
                                 if($key_ == -1 && !empty($value_))
                                 {
                                     $child_color = $value_[0].':'.$value_[1];
@@ -209,6 +212,67 @@ class FilterController extends Controller
                                          'filled'      => 2,
                                          ]
                                     );
+                                }
+
+                                // Deleting, Editing
+                                else //if(empty($value_[0]))
+                                {
+                                    $blades_colors_trimming = array();
+                                    $colors_trim_db = array();
+
+                                    $previous_colors_filter = DB::table('filter')
+                                                                 ->where('parent_id', $key_child_color)
+                                                                 ->pluck('name');
+                                    
+                                    // white:FFFFFF ->to-> white (array form)
+                                    foreach ($previous_colors_filter as $key_trim_db => $value_trim_db)
+                                    {
+                                        array_push($colors_trim_db, explode(":", $value_trim_db)[0]);
+                                    }
+
+                                    // convert blades-color into simple array
+                                    foreach ($value_child_color as $key_trimming => $value_trimming)
+                                    {
+                                        array_push($blades_colors_trimming, $value_trimming[0]);
+                                    }
+
+                                    // Comparing
+                                    $db_result = array_diff($colors_trim_db, $blades_colors_trimming);
+
+                                    if($db_result)
+                                    {
+                                        // in case of multiple inputs going to change
+                                        foreach ($db_result as $key_del_edit_color => $value_del_edit_color)
+                                        {
+                                            // Delete  : if blades-input were removed, which is gonna to be empty-input
+                                            if ( empty($blades_colors_trimming[$key_del_edit_color]) )
+                                            {
+                                                DB::table('filter')
+                                                    ->where('name', 'like', '%'.$value_del_edit_color.'%')
+                                                    ->delete();
+
+                                                
+                                            }
+
+                                            // Editing
+                                            else
+                                            {
+                                                $prev_color_txt = $colors_trim_db[$key_del_edit_color];
+                                                $prev_color = $previous_colors_filter[$key_del_edit_color];
+
+                                                $new_color_txt= $blades_colors_trimming[$key_del_edit_color];
+
+                                                $edited_color = str_replace($prev_color_txt,
+                                                                            $new_color_txt,
+                                                                            $prev_color);
+
+                                                DB::table('filter')
+                                                    ->where('name', 'like', $prev_color)
+                                                    ->update(['name' => $edited_color]);
+
+                                            }
+                                        }
+                                    }
                                 }
                             }
                         }
