@@ -222,52 +222,30 @@
 
             if (selected_option == 2)
             {
-                try
+                if(document.getElementById('filter_child_'+parent_count))
                 {
                     var filter_child = '<input type="text" name="filter_color_child[-'+parent_count+'][-'+count_child+'][]" class="form-control col-md-4" style="float:right;" placeholder="نام رنگ ...">';
                     $("#filter_child_"+parent_count).append(filter_child);
 
                     var colors_here = document.getElementById('filter_child_'+parent_count);
-
-                    var input = document.createElement("input");
-                    input.type = "text";
-                    input.name = "filter_color_child[-"+parent_count+"][-"+count_child+"][]";
-                    input.className="form-control col-md-4";
-                    //input.style["margin-top"] = "10px";
-
-                    var color = new jscolor(input);
-                    colors_here.appendChild(input);
-                    colors_here.appendChild(document.createElement("br"));
-
                 }
-                catch(e)
+                else
                 {
-                    var filter_child = '<input type="text" name="filter_color_child['+parent_count+'][-'+count_child+'][]" class="form-control col-md-4" style="float:right;" placeholder="نام رنگ ...">';
+                    filter_child = '<input type="text" name="filter_color_child['+parent_count+'][-'+count_child+'][]" class="form-control col-md-4" style="float:right;" placeholder="نام رنگ ...">';
                     $("#filter_child_"+parent_count+"_FromDB").append(filter_child);
                     
-                    var colors_here = document.getElementById('filter_child_'+parent_count+"_FromDB");
-
-                    var input = document.createElement("input");
-                    input.type = "text";
-                    input.name = "filter_color_child[-"+parent_count+"][-"+count_child+"][]";
-                    input.className="form-control col-md-4";
-                    //input.style["margin-top"] = "10px";
-
-                    var color = new jscolor(input);
-                    colors_here.appendChild(input);
-                    colors_here.appendChild(document.createElement("br"));
+                    colors_here = document.getElementById('filter_child_'+parent_count+"_FromDB");
                 }
 
-                // after showing color from database, make the '+' ready for new childs
-                //<?php foreach ($filters_parent as $key => $value): ?>
-                    //<?php if (isset($value->filled)): ?>
-                        // Color text input
-                        //filter_child = '<input type="text" name="filter_color_child['+parent_count+'][-'+count_child+'][]" class="form-control col-md-4" style="float:right;" placeholder="نام رنگ ...">';
-                        //$("#filter_child_"+parent_count+"_FromDB").append(filter_child);                        
-                        //colors_here = document.getElementById('filter_child_'+parent_count+"_FromDB");
-                        //<?php break ?>
-                    //<?php endif ?>
-                //<?php endforeach ?>
+                var input = document.createElement("input");
+                input.type = "text";
+                input.name = "filter_color_child[-"+parent_count+"][-"+count_child+"][]";
+                input.className="form-control col-md-4";
+                //input.style["margin-top"] = "10px";
+
+                var color = new jscolor(input);
+                colors_here.appendChild(input);
+                colors_here.appendChild(document.createElement("br"));
             }
 
             count_child++;
