@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use DB;
+use App\Feature;
 
 class FeatureController extends Controller
 {
@@ -19,12 +20,31 @@ class FeatureController extends Controller
         {
             $selected_id = $request->get('id');
 
-    		return view('admin/feature/index')->with(['categories'     => $categories,
+
+            // Get the parents' feature
+            $parent = Feature::where([
+            						 'category_id' => $selected_id,
+                                     'parent_id'   => 0,
+                                     ])
+                                   ->get();
+            
+            // Adding 'get_childs'(array) to the 'parent' 
+            // e.g: parent [id, category_id, name, ..., get_childs[ List-of-all-the-childs ] ]
+            //
+            // So just sending the 'parents_and_childs' will get the job done.
+
+            $parents_and_childs = Feature::with('get_childs')
+                            	->where(['category_id'=>$selected_id,'parent_id'=>0])
+                            	->get();
+
+            return $parents_and_childs;
+
+    		/*return view('admin/feature/index')->with(['categories'     => $categories,
                                                       'selected_id'    => $selected_id,
-                                                     ]);
+                                                     ]);*/
     	}
-    else
-    	return view('admin/feature/index')->with('categories', $categories);
+    	else
+    		return view('admin/feature/index')->with('categories', $categories);
 
     }
 
