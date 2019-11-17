@@ -111,7 +111,7 @@
 
             var feature_child = '<input type="text" name="feature_name_child[-'+parent_count+'][-'+count_child+']" class="form-control col-md-6" style="display: inline-block ; margin-top:5px" placeholder="نام ویژگی">'+
 
-            	'<select id="parent_option_'+count+'" name="parent_option[]" class="form-control col-md-4" style="display: inline-block ; margin-right:5px ; padding-top:5px">'+
+            	'<select id="parent_option_'+count+'" name="parent_option[-'+parent_count+'][-'+count_child+']" class="form-control col-md-4" style="display: inline-block ; margin-right:5px ; padding-top:5px">'+
                     '<option value="1"> فیلد input </option>'+
                     '<option value="2"> فیلد select </option>'+
                     '<option value="3"> فیلد textarea </option>'+
