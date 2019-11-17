@@ -15,7 +15,17 @@ class FeatureController extends Controller
     {
     	$categories = self::categoryTree();
 
-    	return view('admin/feature/index')->with('categories' , $categories);
+    	if($request->get('id'))
+        {
+            $selected_id = $request->get('id');
+
+    		return view('admin/feature/index')->with(['categories'     => $categories,
+                                                      'selected_id'    => $selected_id,
+                                                     ]);
+    	}
+    else
+    	return view('admin/feature/index')->with('categories', $categories);
+
     }
 
     public function create(Request $request)
