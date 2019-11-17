@@ -30,7 +30,27 @@ class FeatureController extends Controller
 
     public function create(Request $request)
     {
-    	return 'create';
+    	$id = $request->get('id');
+
+        $feature_names_parent  = $request->get('feature_name_parent');
+        $select_option       = $request->get('parent_option');
+        $feature_names_child   = $request->get('feature_name_child');
+
+        foreach ($feature_names_parent as $key_parent => $value_parent)
+        {
+        	if($key_parent<0)
+        	{
+        		echo $value_parent."<br/>";
+
+        		if(array_key_exists($key_parent, $feature_names_child))
+        		{
+        			foreach ($feature_names_child[$key_parent] as $key_child => $value_child)
+        			{
+        				echo $value_child."<br/>";
+        			}
+        		}        		
+        	}
+        }
     }
 
 
