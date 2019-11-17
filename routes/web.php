@@ -38,6 +38,10 @@ Route::match(array('GET', 'POST', 'HEAD', 'PUT', 'PATCH'), 'admin/product/delete
 
 Route::get('/categoryTree', "SiteController@categoryTree");
 
-// Filter
+// Products' Filter
 Route::get('admin/filter' , 'admin\FilterController@index');
 Route::post('admin/filter', 'admin\FilterController@create');
+
+// Products' Features
+Route::get('admin/feature' , 'admin\FeatureController@index');
+Route::post('admin/feature', 'admin\FeatureController@create');
