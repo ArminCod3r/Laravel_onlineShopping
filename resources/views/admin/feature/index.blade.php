@@ -48,7 +48,51 @@
     @if(isset($selected_id))
 
 	    <!-- Features will be shown here -->
-	    <div class="form-group" id="features_box">	        
+	    <div class="form-group" id="features_box">
+
+        <?php
+            if (isset($parents_and_childs))
+            {
+              foreach ($parents_and_childs as $key_parent => $value_parent)
+              {
+                $name_parent = $value_parent['name'];
+                $id_parent = $value_parent['id'];
+
+                echo ''.
+                  '<div style="margin-top:10px; margin-bottom:5px;" id="feature_parent_'.$id_parent.'_FromDB">' .
+
+                    '<input type="text" name="feature_name_parent['.$id_parent.']" id="feature_name_parent['.$id_parent.']" class="form-control col-md-4" style="float: right" value="'.$name_parent.'" placeholder="نام گروه ...">'.
+
+                    '<br/>'.
+
+                    '<div id="feature_child_'.$id_parent.'_FromDB" class="form-submit" style="margin:20px;">';
+
+                      foreach ($value_parent['get_childs'] as $key_child => $value_child)
+                      {
+                        $name_child = $value_child["name"];
+                        $id_child = $value_child["id"];
+                        echo ''.
+                          '<input type="text" name="feature_name_child['.$id_parent.']['.$id_child.']" class="form-control col-md-6" style="display: inline-block ; margin-top:5px;" placeholder="نام ویژگی" value="'.$name_child.'">'.
+
+                          '<select id="parent_option_'.$id_child.'" name="parent_option[-'.$id_parent.']['.$id_child.']" class="form-control col-md-4" style="display: inline-block ; margin-right:5px ; padding-top:5px">'.
+                                '<option value="1"> فیلد input </option>'.
+                                '<option value="2"> فیلد select </option>'.
+                                '<option value="3"> فیلد textarea </option>'.
+                            '</select>';
+                      }
+
+                    echo '</div>';
+                  echo '</div>';
+
+                echo '<br/>';
+
+                echo '<span>'.
+                         '<label class="fa fa-plus" style="color:green ; cursor:pointer" onclick="add_child(\''.$id_parent.'\',\'True\')"></label>'.
+                       '</span>';
+              }
+            }
+        ?>
+
 	    </div>
 
 
@@ -96,7 +140,7 @@
                           '</div>'+
 
                            '<span>'+
-                             '<label class="fa fa-plus" style="color:green ; cursor:pointer" onclick="add_child(\''+count+'\',\'False\')"></label>'+
+                             '<label class="fa fa-plus" style="color:green ; cursor:pointer" onclick="add_child(\'-'+count+'\',\'False\')"></label>'+
                            '</span>'+
 
                          '</div>';
@@ -106,21 +150,29 @@
         }
 
         var count_child = 1;
-        add_child = function(parent_count)
+        add_child = function(parent_count, isitFromDB)
         {
 
-            var feature_child = '<input type="text" name="feature_name_child[-'+parent_count+'][-'+count_child+']" class="form-control col-md-6" style="display: inline-block ; margin-top:5px" placeholder="نام ویژگی">'+
+          var feature_child = '<input type="text" name="feature_name_child['+parent_count+'][-'+count_child+']" class="form-control col-md-6" style="display: inline-block ; margin-top:5px" placeholder="نام ویژگی">'+
 
-            	'<select id="parent_option_'+count+'" name="parent_option[-'+parent_count+'][-'+count_child+']" class="form-control col-md-4" style="display: inline-block ; margin-right:5px ; padding-top:5px">'+
-                    '<option value="1"> فیلد input </option>'+
-                    '<option value="2"> فیلد select </option>'+
-                    '<option value="3"> فیلد textarea </option>'+
-                  '</select>'
-            	;
-
+            '<select id="parent_option_'+count+'" name="parent_option['+parent_count+'][-'+count_child+']" class="form-control col-md-4" style="display: inline-block ; margin-right:5px ; padding-top:5px">'+
+                  '<option value="1"> فیلد input </option>'+
+                  '<option value="2"> فیلد select </option>'+
+                  '<option value="3"> فیلد textarea </option>'+
+              '</select>'
+              ;
+          
+          if (parent_count<0)
+          {
+            parent_count = -parent_count;
             $("#feature_child_"+parent_count).append(feature_child);
+          }
+          else
+          {
+            $("#feature_child_"+parent_count+"_FromDB").append(feature_child);
+          }          
 
-            count_child++;
+          count_child++;
         }
 
     </script>

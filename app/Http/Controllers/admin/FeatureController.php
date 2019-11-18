@@ -31,17 +31,16 @@ class FeatureController extends Controller
             // Adding 'get_childs'(array) to the 'parent' 
             // e.g: parent [id, category_id, name, ..., get_childs[ List-of-all-the-childs ] ]
             //
-            // So just sending the 'parents_and_childs' will get the job done.
+            // So just sending the 'childs' will get the job done.
 
             $parents_and_childs = Feature::with('get_childs')
                             	->where(['category_id'=>$selected_id,'parent_id'=>0])
                             	->get();
 
-            return $parents_and_childs;
-
-    		/*return view('admin/feature/index')->with(['categories'     => $categories,
-                                                      'selected_id'    => $selected_id,
-                                                     ]);*/
+    		return view('admin/feature/index')->with(['categories'    => $categories,
+                                                      'selected_id'   => $selected_id,
+                                                      'parents_and_childs' => $parents_and_childs,
+                                                     ]);
     	}
     	else
     		return view('admin/feature/index')->with('categories', $categories);
