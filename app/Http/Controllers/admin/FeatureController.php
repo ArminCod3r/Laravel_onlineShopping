@@ -84,6 +84,68 @@ class FeatureController extends Controller
         			}
         		}
         	}
+        	else
+        	{
+        		// If parent's input was removed:  1.Delete parents  2.Delete childs-feature
+        		if(empty($value_parent))
+                {
+                    DB::table('feature')->where('id', $key_parent)->delete();
+
+                    DB::table('feature')->where('parent_id', $key_parent)->delete();
+                }
+
+                // 1. Editing parents-feature
+                // 2. child-feature: Deleting, Editing, Inserting
+                if(!empty($value_parent))
+                {
+                	// Parent: Editing               	
+                	$previous_child = DB::table('feature')->where('id', $key_parent)->pluck('name');
+                	if( $previous_child != $value_parent )
+                	{
+                		DB::table('feature')->where('id', $key_parent)->update(['name' => $value_parent]);
+                	}
+
+                	// Child: Inserting, Deleting, Editing
+	        		if(array_key_exists($key_parent, $feature_names_child))
+	        		{
+		        		foreach ($feature_names_child[$key_parent] as $key_child => $value_child)
+		        		{
+		        			// Inserting
+		        			if( $key_child<0 )
+		        			{
+		        				DB::table('feature')->insert([
+		        											 'category_id' => $id    ,
+					                                         'name'        => $value_child ,
+					                                         'parent_id'   => $key_parent ,
+					                                         'filled'      => 1 ,
+					                                         ]);
+		        			}
+		        			
+		        			else
+		        			{
+		        				// Deleting
+		        				if(empty($value_child))
+			        			{
+			        				DB::table('feature')->where('id', $key_child )->delete();
+			        			}
+
+			        			// Editing
+			        			else
+			        			{
+			        				$previous_child = DB::table('feature')->where('id', $key_child)
+                                                                	 	  ->pluck('name');
+
+                                    if ( $previous_child != $value_child )
+                                    {
+                                    	DB::table('feature')->where('id', $key_child)
+                                                  			->update(['name' => $value_child]);
+                                    }
+			        			}
+			        		}
+		        		}
+	        		}
+        		}
+        	}
         }
     }
 
