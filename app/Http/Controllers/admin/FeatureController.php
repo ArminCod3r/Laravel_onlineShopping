@@ -57,7 +57,7 @@ class FeatureController extends Controller
 
         foreach ($feature_names_parent as $key_parent => $value_parent)
         {
-        	if($key_parent<0)
+        	if($key_parent<0 && !empty($value_parent))
         	{
         		// Inserting parent-feature
         		// Getting inserted current-id => to be: parent-id for the child-features
@@ -74,13 +74,16 @@ class FeatureController extends Controller
         		{
         			foreach ($feature_names_child[$key_parent] as $key_child => $value_child)
         			{
-        				DB::table('feature')->insert(
+        				if(!empty($value_child))
+        				{
+        					DB::table('feature')->insert(
 		                                        ['category_id' => $id    ,
 		                                         'name'        => $value_child ,
 		                                         'parent_id'   => $inserted_parent_id ,
 		                                         'filled'      => 1 ,
 		                                         ]
 		                                    );
+        				}        				
         			}
         		}
         	}
@@ -111,7 +114,7 @@ class FeatureController extends Controller
 		        		foreach ($feature_names_child[$key_parent] as $key_child => $value_child)
 		        		{
 		        			// Inserting
-		        			if( $key_child<0 )
+		        			if( $key_child<0 && !empty($value_child))
 		        			{
 		        				DB::table('feature')->insert([
 		        											 'category_id' => $id    ,
@@ -147,6 +150,7 @@ class FeatureController extends Controller
         		}
         	}
         }
+        return redirect()->back();
     }
 
 
