@@ -235,6 +235,10 @@ $shown_item = 0;
     </ul>
 </div>
 
+
+@yield('content')
+
+
   </body>
 
   <script>

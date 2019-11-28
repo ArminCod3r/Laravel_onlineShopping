@@ -18,7 +18,10 @@ class SiteController extends Controller
 
     public function index()
     {
-    	return view('site.index'); // $this->categories
+        // Get list of the sliders
+        $sliders = DB::table('slider')->orderBy('id', 'DESC')->get();
+
+    	return view('site.index')->with('sliders', $sliders); // $this->categories
     }
 
     // Recursive Method to get all the categories/subcategories

@@ -231,6 +231,72 @@ body
 }
 
 
+.right_panel img
+{
+    width         : 90%;
+    margin-right  : 20px;
+    margin-bottom : 17px;
+    border-radius : 5px;
+}
+
+.sliders img
+{
+    width         : 95%;
+    border-top-right-radius : 5px;
+    border-top-left-radius  : 5px;
+}
+
+.slider_name
+{
+    background : rgba(66, 73, 89, .8);
+    width      : 95%;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    cursor     : pointer;
+}
+
+.slider_name_text
+{
+    width       : 19%;
+    color       : white;
+    text-align  : center;
+    line-height : 48px;
+    display     : inline-block;
+}
+
+/* stack: 13955667 */
+.slider_name_text:active, .slider_name_text:focus
+{
+    background-color : #f55d5d;
+    border-radius    : 5px;
+    pointer-events: none;
+    cursor: default;
+}
+
+/* stack: 1734618, 13955667 */
+.slider_name_text:hover
+{
+    text-decoration : none;
+    color           : white;
+    border-bottom   : 2px solid #f55d5d;
+    line-height     : 46px;
+    pointer-events: none;
+    cursor: default;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @media(max-width:1156px)
 {
