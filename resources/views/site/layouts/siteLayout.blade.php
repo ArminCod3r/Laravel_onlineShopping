@@ -238,6 +238,7 @@ $shown_item = 0;
 
 @yield('content')
 
+@yield('footer')
 
   </body>
 

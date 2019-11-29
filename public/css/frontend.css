@@ -264,26 +264,11 @@ body
     display     : inline-block;
 }
 
-/* stack: 13955667 */
-.slider_name_text:active, .slider_name_text:focus
+.slider_name_active
 {
     background-color : #f55d5d;
     border-radius    : 5px;
-    pointer-events: none;
-    cursor: default;
 }
-
-/* stack: 1734618, 13955667 */
-.slider_name_text:hover
-{
-    text-decoration : none;
-    color           : white;
-    border-bottom   : 2px solid #f55d5d;
-    line-height     : 46px;
-    pointer-events: none;
-    cursor: default;
-}
-
 
 
 
