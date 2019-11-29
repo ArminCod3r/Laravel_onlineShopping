@@ -15,9 +15,10 @@
 	</div>
 
 	<!-- Left Panel -->
-	<div class="col-md-9 sliders" id="sliders">
-		<div>
-			@if(sizeof($sliders)>0)
+	<div class="col-md-9 sliders" id="sliders" class="sliders">
+
+		@if(sizeof($sliders)>0)
+			<div>			
 				@foreach ($sliders as $key => $item)
 					@if($key == 1)
 						<img src="{{ url('upload/'.$item->img) }}" id="slider_img_{{ $key }}"
@@ -26,9 +27,9 @@
 						<img src="{{ url('upload/'.$item->img) }}" id="slider_img_{{ $key }}"
 																   style="display: none" >
 					@endif
-				@endforeach
-			@endif
-		</div>
+				@endforeach			
+			</div>
+		@endif
 
 
 		<div class="slider_name">
@@ -51,7 +52,10 @@
 			@endif
 
 		</div>
+
 	</div>
+	
+
 </div>
 
 @endsection

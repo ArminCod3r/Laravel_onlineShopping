@@ -239,11 +239,18 @@ body
     border-radius : 5px;
 }
 
+/*.sliders
+{
+    height    : 250px;
+    position  : absolute;
+}*/
+
 .sliders img
 {
     width         : 95%;
-    border-top-right-radius : 5px;
-    border-top-left-radius  : 5px;
+    border-radius : 5px;
+    z-index       : -1;
+    position      : absolute;
 }
 
 .slider_name
@@ -253,6 +260,8 @@ body
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
     cursor     : pointer;
+    position   : absolute;
+    top        : 27%;
 }
 
 .slider_name_text
