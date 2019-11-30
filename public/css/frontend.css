@@ -261,10 +261,10 @@ body
     border-bottom-right-radius: 5px;
     cursor     : pointer;
     position   : absolute;
-    top        : 27%;
+    top        : 26.85%;
 }
 
-.slider_name_text
+.slider_text
 {
     width       : 19%;
     color       : white;
@@ -273,8 +273,13 @@ body
     display     : inline-block;
 }
 
-.slider_name_active
+.slider_text_active
 {
+    width       : 19%;
+    color       : white;
+    text-align  : center;
+    line-height : 48px;
+    display     : inline-block;
     background-color : #f55d5d;
     border-radius    : 5px;
 }

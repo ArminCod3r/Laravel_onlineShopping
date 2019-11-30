@@ -38,12 +38,12 @@
 				@foreach ($sliders as $key => $item)
 
 					@if($key == 1)
-						<div class="slider_name_text slider_name_active" id="slider_text_{{ $key }}"
+						<div class="slider_text_active" id="slider_text_{{ $key }}"
 												onclick="change_slider('{{ $key }}')">
 							{{ $item->title }}
 						</div>
 					@else
-						<div class="slider_name_text" id="slider_text_{{ $key }}"
+						<div class="slider_text" id="slider_text_{{ $key }}"
 							 					onclick="change_slider('{{ $key }}')"> 
 							{{ $item->title }}
 						</div>
@@ -71,15 +71,19 @@
 
 		}, 3000);
 
-		console.log(slide_count);
+
 		next = function()
 		{
 			for (var i=0 ; i<slide_count; i++)
 			{
-				console.log('slider_img_'+i);
 				document.getElementById('slider_img_'+i).style.display="none";
+
+				$('#slider_text_'+i).removeClass('slider_text_active');
+				$('#slider_text_'+i).addClass('slider_text');
 			}
+
 			document.getElementById('slider_img_'+slide).style.display="block";
+			$('#slider_text_'+slide).addClass('slider_text_active');
 
 			slide = slide+1;
 
