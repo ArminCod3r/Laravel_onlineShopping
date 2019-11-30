@@ -100,13 +100,19 @@
 
 		change_slider = function(slider_key)
 		{
-		   console.log(slider_key);
+		   for (var i=0 ; i<slide_count; i++)
+			{
+				document.getElementById('slider_img_'+i).style.display="none";
 
+				$('#slider_text_'+i).removeClass('slider_text_active');
+				$('#slider_text_'+i).addClass('slider_text');
+			}
 
-		   //var img = document.getElementById(slider_name);
-		   //img.style.display = "block";
+			document.getElementById('slider_img_'+slider_key).style.display="block";
+			$('#slider_text_'+slider_key).addClass('slider_text_active');
 
-		   //document.getElementById('sliders').style.display = "none"; 
+			// if a user changed the slide manually, keep sliding after the selected one
+			slide=Number(slider_key);
 		};
 
 	</script>
