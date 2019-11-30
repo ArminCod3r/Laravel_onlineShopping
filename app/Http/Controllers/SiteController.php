@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use View;
 use DB;
+use App\Product;
 
 class SiteController extends Controller
 {
@@ -21,8 +22,21 @@ class SiteController extends Controller
         // Get list of the sliders
         $sliders = DB::table('slider')->orderBy('id', 'DESC')->get();
 
-    	return view('site.index')->with('sliders', $sliders); // $this->categories
+        $newest_products = Product::with('ProductImage')  // Adding ProductImage[] for image names
+                                  ->where('product_status',1)
+                                  ->orderBy('id', 'DESC')
+                                  ->limit(15)
+                                  ->all();
+        
+        return view('site.index')->with([                              // $this->categories
+                                        'sliders'         => $sliders,
+                                        'newest_products' => $newest_products,
+                                        ]); 
     }
+
+
+
+
 
     // Recursive Method to get all the categories/subcategories
     private function categoryTree($parent_id = 0, $sub_mark = '')

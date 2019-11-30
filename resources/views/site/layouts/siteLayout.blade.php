@@ -33,6 +33,8 @@ $shown_item = 0;
     <!-- jQuery -->
     <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 
+    @yield('header')
+
 
     <title>فروشگاه اینترنتی دیجی کالا</title>
 

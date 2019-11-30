@@ -1,6 +1,9 @@
 @extends('site/layouts/siteLayout')
 
-
+@section('header')
+  <link rel="stylesheet" type="text/css" href="{{ url('slick/slick/slick.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ url('slick/slick/slick-theme.css') }}">
+@endsection
 
 @section('content')
 
@@ -15,8 +18,9 @@
 	</div>
 
 	<!-- Left Panel -->
-	<div class="col-sm-9 col-md-9 col-lg-9 col-xl-9 sliders" id="sliders" class="sliders">
+	<div class="col-sm-9 col-md-9 col-lg-9 col-xl-9 sliders" id="sliders">
 
+		<!-- Sliders images -->
 		@if(sizeof($sliders)>0)
 			<div>			
 				@foreach ($sliders as $key => $item)
@@ -31,7 +35,7 @@
 			</div>
 		@endif
 
-
+		<!-- Sliders texts -->
 		<div class="slider_name">
 
 			@if(sizeof($sliders)>0)
@@ -53,6 +57,24 @@
 
 		</div>
 
+		<!-- Newest products -->
+		<div class="newest_products">
+
+			<div class="newest_products_title">
+				<span> جدیدترین محصولات فروشگاه </span>
+			</div>
+
+			@foreach($newest_products as $key=>$value)
+				<div class="newest_products_img">
+					@if(sizeof($value)>0)
+						<h1> {{$value}} </h1>
+					@endif
+				</div>
+			@endforeach
+
+		</div>
+		
+
 	</div>
 	
 
@@ -61,6 +83,7 @@
 @endsection
 
 @section('footer')
+	<script type="text/javascript" src="{{ url('slick/slick/slick.js') }}" charset="utf-8"></script>
 	<script>
 
 		slide_count = <?php echo sizeof($sliders); ?>;
@@ -114,6 +137,16 @@
 			// if a user changed the slide manually, keep sliding after the selected one
 			slide=Number(slider_key);
 		};
+
+
+		$(".center").slick({
+	        dots: true,
+	        infinite: true,
+	        centerMode: true,
+	        slidesToShow: 3,
+	        slidesToScroll: 1,
+	        rtl: true
+	     });
 
 	</script>
 @endsection
