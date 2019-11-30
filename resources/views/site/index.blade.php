@@ -21,11 +21,11 @@
 			<div>			
 				@foreach ($sliders as $key => $item)
 					@if($key == 1)
-						<img src="{{ url('upload/'.$item->img) }}" id="slider_img_{{ $key }}"
-																   style="display: block" >
+						<img src="{{ url('upload/'.$item->img) }}" id="slider_img_{{ $key }}" 
+												style="display: block" class="animation">
 					@else
 						<img src="{{ url('upload/'.$item->img) }}" id="slider_img_{{ $key }}"
-																   style="display: none" >
+												style="display: none" class="animation">
 					@endif
 				@endforeach			
 			</div>
