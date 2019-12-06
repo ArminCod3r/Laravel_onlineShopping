@@ -58,19 +58,41 @@
 		</div>
 
 		<!-- Newest products -->
-		<div class="newest_products">
+		<div class="newest_product">
 
 			<div class="newest_products_title">
 				<span> جدیدترین محصولات فروشگاه </span>
 			</div>
 
-			@foreach($newest_products as $key=>$value)
-				<div class="newest_products_img">
-					@if(sizeof($value)>0)
-						<h1> {{$value}} </h1>
-					@endif
-				</div>
-			@endforeach
+
+			<section class="view_products">
+
+				@foreach($newest_products as $key=>$value)
+					<div class="newest_products_image_box">
+
+						@if(sizeof($value['product_image'])>0)
+
+							@foreach($value['product_image'] as $key_img => $value_img)
+								@if($key_img == 0 )
+
+									<div class="newest_products_image">
+										<img src="{{ url('upload/'.$value_img['url']) }}">
+									</div>
+
+								@endif
+							@endforeach
+
+						@endif
+
+						<div style="word-break: normal; margin-left: 10px">
+						{{ $value['title'] }}
+					</div>
+
+					</div>
+				@endforeach
+
+
+			</section>
 
 		</div>
 		
@@ -139,12 +161,12 @@
 		};
 
 
-		$(".center").slick({
+		$(".view_products").slick({
 	        dots: true,
 	        infinite: true,
 	        centerMode: true,
-	        slidesToShow: 3,
-	        slidesToScroll: 1,
+	        slidesToShow: 4,
+	        slidesToScroll:4,
 	        rtl: true
 	     });
 

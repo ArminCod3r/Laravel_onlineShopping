@@ -26,9 +26,11 @@ class SiteController extends Controller
                                   ->where('product_status',1)
                                   ->orderBy('id', 'DESC')
                                   ->limit(15)
-                                  ->all();
+                                  ->get()
+                                  ->toArray();
         
-        return view('site.index')->with([                              // $this->categories
+
+    	return view('site.index')->with([                              // $this->categories
                                         'sliders'         => $sliders,
                                         'newest_products' => $newest_products,
                                         ]); 

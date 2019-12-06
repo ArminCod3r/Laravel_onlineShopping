@@ -299,13 +299,12 @@ body
     border-radius    : 5px;
 }
 
-.newest_products
+.newest_product
 {
-    width        :95%;
+    width        : 95%;
     background   : white;
     border       : 1px solid #EBECED;
     border-radius: 5px;
-    height       : 100px;
     position     : absolute;
     top          : 34%;
 }
@@ -328,14 +327,25 @@ body
     padding-right: 15px;
 }
 
-.newest_products_img
+.newest_products_image_box
 {
-    float: right;
+    /*float: right;*/
     margin-right: 10px;
 }
 
+.newest_products_image
+{
+    width: 100%;
+}
 
-
+.newest_products_image img
+{
+    margin-top: 10px;
+    width     : 40%;
+    height    : auto;
+    position  : relative;
+    z-index   : -1;
+}
 
 
 
