@@ -446,13 +446,25 @@ body
 .newest_product_discount
 {
     margin-right   : 30%;
-    padding-top    : 0px !important;
-    margin-top     : 0px !important;
+    padding-top    : 1px !important;
+    margin-top     : 1px !important;
     padding-bottom : 0px !important;
     margin-bottom  : 0px !important;
-    color          : red;
+
+
+    padding-left    : 2px !important;
+    margin-left     : 2px !important;
+    padding-right   : 2px !important;
+    margin-right    : 2px !important;
+    display         : inline-block;
+    background-color: red;
+    color           : white;
+    border-radius   : 8px;
+
     font-size      : 150;
     font-weight    : bold;
+    /*display: inline-block;
+    float:right;*/
 }
 
 .newest_product_price_with_discount

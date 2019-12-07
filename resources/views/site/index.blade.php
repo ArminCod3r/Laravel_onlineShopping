@@ -104,7 +104,7 @@
 						@if($value['discounts'])
 							<p class="strikediag">
 								{{ number_format($value['price']) }} تومان
-							</p>
+							</p>							
 						@else
 							<p class="newest_product_price">
 								{{ number_format($value['price']) }} تومان
