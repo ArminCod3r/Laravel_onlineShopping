@@ -99,6 +99,33 @@
 								@endif
 							</a>
 						</p>
+
+						<!-- Price -->
+						@if($value['discounts'])
+							<p class="strikediag">
+								{{ number_format($value['price']) }} تومان
+							</p>
+						@else
+							<p class="newest_product_price">
+								{{ number_format($value['price']) }} تومان
+							</p>
+						@endif
+
+						<!-- Discount -->
+						<p class="newest_product_discount">
+							@if($value['discounts'])
+								{{ $value['discounts'] }}%
+							@else
+								<div style="display:none;"> 0%</div>
+							@endif
+						</p>
+
+						<!-- Price with discount -->
+						@if($value['discounts'])
+							<p class="newest_product_price_with_discount">
+								{{ number_format( $value['price'] - (($value['price'] * $value['discounts'] )/100) ) }} تومان
+							</p>
+						@endif
 					</div>
 				@endforeach
 

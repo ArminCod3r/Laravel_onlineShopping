@@ -414,6 +414,61 @@ body
 /* End of arrow styling */
 
 
+
+.newest_product_price
+{
+    margin-right  : 20%;
+    color         : green;
+    margin-top    : 10%;
+    padding-bottom: 0px !important;
+    margin-bottom : 0px !important;
+}
+/*Crossline:14593415*/
+.strikediag {
+    margin-right  : 20%;
+    color         : black;
+    padding-bottom: 0px !important;
+    margin-bottom : 0px !important;
+    display       : inline-block;
+    position      : relative;
+}
+.strikediag::before {
+  content       : '';
+  position      : absolute;
+  left          : -0.1em;
+  right         : -0.1em;
+  top           : 0.38em;
+  bottom        : 0.38em;
+  background    : linear-gradient(to left top, transparent 45.5%, currentColor 47.5%, currentColor 52.5%, transparent 54.5%);
+  pointer-events: none;
+}
+
+.newest_product_discount
+{
+    margin-right   : 30%;
+    padding-top    : 0px !important;
+    margin-top     : 0px !important;
+    padding-bottom : 0px !important;
+    margin-bottom  : 0px !important;
+    color          : red;
+    font-size      : 150;
+    font-weight    : bold;
+}
+
+.newest_product_price_with_discount
+{
+    margin-right: 20%;
+    padding-top : 0px !important;
+    margin-top  : 0px !important;
+    color       : green;
+}
+
+
+
+
+
+
+
 @media(max-width:1156px)
 {
     .logo
