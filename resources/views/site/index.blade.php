@@ -64,16 +64,8 @@
 				<span> جدیدترین محصولات فروشگاه </span>
 			</div>
 
-			<div class="left-right-space-arrowa"></div>
-			<div style="
-					margin-top: 10%;
-					width:40px;
-					height:25%;
-					position: absolute;
-					background-color:#F7F9FA;
-    				">
-				
-			</div>
+			<div class="right-space-arrow"></div>
+			<div class="left-space-arrow"></div>
 
 			<section class="view_products">
 

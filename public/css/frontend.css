@@ -349,14 +349,6 @@ body
 }
 
 
-.left-right-space-arrow
-{
-    width:50px;
-    height:200px;
-    position: absolute;
-    background-color:#F7F9FA;
-}
-
 .newest_products_image_box p
 {
     padding-top: 10px;
@@ -370,20 +362,56 @@ body
     text-decoration: none !important;
 }
 
+/* Arrow style */
+
+.right-space-arrow
+{
+    margin-top: 10%;
+    width:40px;
+    height:25%;
+    position: absolute;
+    background-color:#F7F9FA;
+}
+
 .slick-next
 {
-    right: -0px !important;
-    /*background-color: red !important;*/
+    right: 0px !important;
+}
+.slick-next:before
+{
+    content     : "<"  !important;
+    color       : black  !important;
+    font-size   : 30px !important;
+    font-weight : bold !important;
 }
 
-/* Arrow style */
-.slick-next:before {
-  content     : "\f105"  !important;
-  color       : red  !important;
-  font-size   : 30px !important;
-  font-weight : bold !important;
+
+.left-space-arrow
+{
+    margin-top: 10%;
+    margin-right: 95%;
+    width:40px;
+    height:25%;
+    position: absolute;
+    background-color:#F7F9FA;
 }
 
+.slick-prev {
+    z-index: 9999 !important; /*if not: prev slide button not working - https://github.com/kenwheeler/slick/issues/2827*/
+    left: 18px !important;
+}
+
+.slick-prev:before
+{
+    content     : ">"  !important;
+    color       : black  !important;
+    font-size   : 30px !important;
+    font-weight : bold !important;
+}
+
+
+
+/* End of arrow styling */
 
 
 @media(max-width:1156px)
