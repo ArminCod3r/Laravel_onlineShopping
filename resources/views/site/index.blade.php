@@ -64,6 +64,16 @@
 				<span> جدیدترین محصولات فروشگاه </span>
 			</div>
 
+			<div class="left-right-space-arrowa"></div>
+			<div style="
+					margin-top: 10%;
+					width:40px;
+					height:25%;
+					position: absolute;
+					background-color:#F7F9FA;
+    				">
+				
+			</div>
 
 			<section class="view_products">
 
@@ -84,10 +94,19 @@
 
 						@endif
 
-						<div style="word-break: normal; margin-left: 10px">
-						{{ $value['title'] }}
-					</div>
+						<p>
+							<a class="newest_product_title"
+									href="{{ url('product').'/'.str_replace(' ','-', $value['code']).'/'.$value['title_url'] }}">
 
+								@if(mb_strlen($value['title']) > 35)
+									{{ substr($value['title'],35).'...' }} 
+									
+								@else
+									{{ $value['title'] }}
+
+								@endif
+							</a>
+						</p>
 					</div>
 				@endforeach
 
