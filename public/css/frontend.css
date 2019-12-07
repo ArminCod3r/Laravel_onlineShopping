@@ -445,7 +445,6 @@ body
 
 .newest_product_discount
 {
-    margin-right   : 30%;
     padding-top    : 1px !important;
     margin-top     : 1px !important;
     padding-bottom : 0px !important;
@@ -457,12 +456,16 @@ body
     padding-right   : 2px !important;
     margin-right    : 2px !important;
     display         : inline-block;
-    background-color: red;
+    background-color: #ff2b2b;
     color           : white;
     border-radius   : 8px;
 
     font-size      : 150;
     font-weight    : bold;
+
+    position: absolute;
+    bottom  : 16%;
+
     /*display: inline-block;
     float:right;*/
 }

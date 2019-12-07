@@ -102,7 +102,7 @@
 
 						<!-- Price -->
 						@if($value['discounts'])
-							<p class="strikediag">
+							<p class="newest_product_price" style="color: #b8b8b8 !important">
 								{{ number_format($value['price']) }} تومان
 							</p>							
 						@else
@@ -200,7 +200,7 @@
 
 
 		$(".view_products").slick({
-	        dots: true,
+	        //dots: true,
 	        infinite: true,
 	        centerMode: true,
 	        slidesToShow: 4,
