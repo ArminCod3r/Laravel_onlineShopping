@@ -54,7 +54,7 @@ $count=0;
 
 
 @section('content1')
- <form action="{{route('amazing_products.update', $amazing->id ) }}" method="POST" accept-charset="utf-8" enctype="multipart/form-data">
+ <form action="{{route('product.update', $product->id ) }}" method="POST" accept-charset="utf-8" enctype="multipart/form-data">
                {{ csrf_field() }}
 
 
