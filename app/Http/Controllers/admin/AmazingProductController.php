@@ -103,6 +103,10 @@ class AmazingProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $amazing = AmazingProducts::find($id);
+
+        $amazing->delete();
+
+        return redirect()->back();;
     }
 }
