@@ -16,7 +16,9 @@ class AmazingProductController extends Controller
      */
     public function index()
     {
-        return 'hi';
+        $amazing = AmazingProducts::orderBy('id', 'desc')->paginate(10);
+
+        return view('admin/amazing_products/index')->with('amazing', $amazing);
     }
 
     /**
