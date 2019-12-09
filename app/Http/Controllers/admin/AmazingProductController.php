@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\admin;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\AmazingProducts;
+use App\AmazingProducts;
+use App\Http\Requests\AmazingProductRequest;
 use App\Http\Controllers\Controller;
 
 class AmazingProductController extends Controller
@@ -34,9 +35,17 @@ class AmazingProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AmazingProductRequest $request)
     {
-        //
+        $amazing = new AmazingProducts($request->all());
+
+        // Changing time_amazing to second
+        $amazing->time_amazing = time() + $request->get('time_amazing') * 60 * 60;
+
+        $amazing->saveOrFail();
+
+        $url = 'admin/amazing_products/'.$amazing->id.'/edit';
+        return redirect($url);
     }
 
     /**
