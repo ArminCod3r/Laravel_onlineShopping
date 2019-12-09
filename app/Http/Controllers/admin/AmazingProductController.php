@@ -81,7 +81,16 @@ class AmazingProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $amazing = AmazingProducts::findOrFail($id);
+
+        // Preventig from refreshing the 'timestamp' in case of not changing the 'time'
+        if ( $request->get('time_amazing') != $amazing->time_amazing)
+            $amazing->time_amazing_timestamp = time() + $request->get('time_amazing') * 60 * 60;
+        
+        $amazing->update($request->all());
+
+        $url = 'admin/amazing_products/'.$amazing->id.'/edit';
+        return redirect($url);
     }
 
     /**

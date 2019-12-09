@@ -25,7 +25,7 @@
 
 <hr style="margin-bottom: 5%" />
 
-<form action="" method="POST" accept-charset="utf-8" enctype="multipart/form-data">
+<form action="{{route('amazing_products.update', $amazing->id ) }}" method="POST" accept-charset="utf-8" enctype="multipart/form-data">
 
 	{{ csrf_field() }}
 
@@ -108,6 +108,8 @@
 
 	<hr style="margin-top: 10%" />
 
+
+	<input type="hidden" name="_method" value="PATCH">
 
 	<input type="submit" name="submit" value="ویرایش" class="btn btn-primary">
 
