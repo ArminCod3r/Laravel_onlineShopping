@@ -40,7 +40,7 @@ class AmazingProductController extends Controller
         $amazing = new AmazingProducts($request->all());
 
         // Changing time_amazing to second
-        $amazing->time_amazing = time() + $request->get('time_amazing') * 60 * 60;
+        $amazing->time_amazing_timestamp = time() + $request->get('time_amazing') * 60 * 60;
 
         $amazing->saveOrFail();
 
