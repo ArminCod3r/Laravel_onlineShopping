@@ -8,6 +8,6 @@ class AmazingProducts extends Model
 {
     protected $table = 'amazing_products';
     public $primaryKey = 'id';
-    protected $fillable = ['short_title','long_title','description','price','price_discounted','product_id', 'time_amazing'];
+    protected $fillable = ['short_title','long_title','description','price','price_discounted','product_id', 'time_amazing', 'time_amazing_timestamp'];
     public $timestamps = false;
 }

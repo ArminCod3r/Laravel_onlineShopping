@@ -22,6 +22,7 @@ class AmazingProductsTable extends Migration
             $table->integer('price_discounted');
             $table->integer('product_id');
             $table->integer('time_amazing');
+            $table->integer('time_amazing_timestamp');
         });
     }
 
