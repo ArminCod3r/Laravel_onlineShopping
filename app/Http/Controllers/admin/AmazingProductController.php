@@ -67,7 +67,9 @@ class AmazingProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        $amazing = AmazingProducts::findOrFail($id);
+
+        return view('admin/amazing_products/edit')->with('amazing', $amazing);
     }
 
     /**
