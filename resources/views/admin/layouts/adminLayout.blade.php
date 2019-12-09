@@ -289,23 +289,23 @@
             </li>
             <li class="nav-item has-treeview">
               <a href="#" class="nav-link">
-                <i class="nav-icon fa fa-table"></i>
+                <i class="nav-icon fa fa-bolt"></i>
                 <p>
-                  جداول
+                  محصولات شگفت انگیز
                   <i class="fa fa-angle-left right"></i>
                 </p>
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="pages/tables/simple.html" class="nav-link">
+                  <a href="{{ url('admin/amazing_products') }}" class="nav-link">
                     <i class="fa fa-circle-o nav-icon"></i>
-                    <p>جداول ساده</p>
+                    <p>لیست</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="pages/tables/data.html" class="nav-link">
+                  <a href="{{ url('admin/amazing_products/create') }}" class="nav-link">
                     <i class="fa fa-circle-o nav-icon"></i>
-                    <p>جداول داده</p>
+                    <p>افزودن</p>
                   </a>
                 </li>
               </ul>
