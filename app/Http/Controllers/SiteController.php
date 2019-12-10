@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use View;
 use DB;
 use App\Product;
+use App\AmazingProducts;
 
 class SiteController extends Controller
 {
@@ -29,10 +30,12 @@ class SiteController extends Controller
                                   ->get()
                                   ->toArray();
         
+        $amazing_products = AmazingProducts::orderBy('id', 'desc')->get();
 
     	return view('site.index')->with([                              // $this->categories
                                         'sliders'         => $sliders,
                                         'newest_products' => $newest_products,
+                                        'amazing_products'=> $amazing_products,
                                         ]); 
     }
 

@@ -57,6 +57,80 @@
 
 		</div>
 
+		<!-- Amazing offers -->
+		@if(sizeof($amazing_products)>0)
+
+			@foreach($amazing_products as $key=>$value)			
+				<a href="#" class="amazing_products_links">
+					<div class="amazing_products">
+
+						<!-- Details -->
+						<div class="col-md-5">
+							<p style="color:red ; padding-top:17px; position: relative;">
+								پیشنهاد شگفت انگیز امروز
+							</p>
+
+							<!-- Price -->
+							<span class="price">
+								<?php
+									$price_figures = str_replace("000", "", $value->price);
+								?>
+
+								{{ number_format($price_figures) }}
+							</span>
+
+							<!-- Discounted price -->
+							<span class="price_discounted">
+
+								<span style="font-size: 15px;">
+								<?php
+									$discounted = ($value->price - (($value->price * $value->price_discounted )/100));
+									$price_discounted_figures = str_replace("000", "", $discounted);
+								?>
+								</span>
+
+								{{ number_format($price_discounted_figures) }}
+
+								<span> 
+									<?php
+										$unit = array(
+											4=> "هزار تومان" ,
+											5=> "هزار تومان" ,
+											6=> "هزار تومان" ,
+											7=> "میلیون تومان",
+											8=> "میلیون تومان",
+											9=> "میلیون تومان",
+											10=> "میلیازد تومان",
+											11=> "میلیازد تومان",
+											10=> "میلیازد تومان",
+											);
+
+										if(array_key_exists(strlen($discounted), $unit) )
+											echo $unit[strlen($discounted)];
+									?>
+
+								</span>
+
+								
+							</span>
+
+
+
+
+							<div style="margin-top: 20px">
+								{!! nl2br($value->description) !!}
+							</div>
+						</div>
+						
+						<!-- Image -->
+						<div class="col-md-7">
+							
+						</div>
+					</div>
+				</a>
+			@endforeach
+		@endif
+
 		<!-- Newest products -->
 		<div class="newest_product">
 

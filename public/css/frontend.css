@@ -301,6 +301,7 @@ body
 
 .newest_product
 {
+    margin-top   : 35%;
     width        : 95%;
     background   : white;
     border       : 1px solid #EBECED;
@@ -477,6 +478,101 @@ body
     margin-top  : 0px !important;
     color       : green;
 }
+
+.amazing_products_links, .amazing_products_links:hover
+{
+    color          : black;
+    text-decoration: none;
+}
+
+.amazing_products
+{
+    height          : 340px;
+    width           : 98%;
+    background-color: white;
+    margin-top      : 37%;
+    border-radius   : 4px;
+    border          : 1px solid #EBECED;
+    box-shadow      : 0px 1px 2px 1px rgba(0, 0, 0, 0.1);
+}
+
+.price
+{
+    height        : 32px;
+    line-height   : 37px;
+    display       : inline-block;
+    vertical-align: top;
+    background    : #808080 none repeat scroll 0% 0%;
+    position      : relative;
+    padding       : 0px 14px;
+    font-size     : 20px;
+    color         : #E5E5E5;
+    box-sizing    : border-box;
+    min-width     : 76px;
+    text-align    : center;
+    transition    : all 150ms linear 0s;
+}
+
+.price:before
+{
+    content       : "";
+    position      : absolute;
+    left          : 0px;
+    right         : 5px;
+    border-bottom : 1px solid #000;
+    top           : 16px;
+    z-index       : 2;
+    transform     : rotate(-20deg);
+    width         : 90%;
+    height        : 0px;
+    bottom        : 0px;
+}
+
+.price:after
+{
+    content       : "";
+    position      : absolute;
+    left          : -10px;
+    top           : 8px;
+    border-right  : 10px solid #808080;
+    border-top    : 8px solid transparent;
+    border-bottom : 8px solid transparent;
+    z-index       : 2;
+    transition    : all 150ms linear 0s;
+}
+
+.price_discounted
+{
+    height         : 32px;
+    display        : inline-block;
+    vertical-align : top;
+    background     : #f0413E none repeat scroll 0% 0%;
+    margin-right   : 2px;
+    color          : #FFF;
+    padding        : 0px 20px 0px 8px;
+    position       : relative;
+    font-size      : 20px;
+    line-height    : 37px;
+    min-width      : 147px;
+    box-sizing     : border-box;
+    transition     : all 150ms linear 0s;
+    margin-right   : -1px;
+}
+
+.price_discounted:after
+{
+    content      : "";
+    position     : absolute;
+    right        : 0px;
+    z-index      : 1;
+    top          : 7px;
+    border-right : 11px solid #FFF;
+    border-top   : 9px solid transparent;
+    border-bottom: 9px solid transparent;
+}
+
+
+
 
 
 
