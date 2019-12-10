@@ -571,6 +571,27 @@ body
     border-bottom: 9px solid transparent;
 }
 
+.long_title
+{
+    text-align    : center;
+    padding-right : 45%;
+    margin-top    : -12%;
+}
+
+.amazing_product_image
+{
+    position     : relative;
+    margin-right : 65%;
+}
+
+.amazing_product_image img
+{
+    z-index : 1;
+    width   : 35%;
+    height  : auto;
+}
+
+
 
 
 

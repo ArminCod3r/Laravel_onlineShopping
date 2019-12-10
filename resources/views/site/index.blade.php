@@ -65,7 +65,7 @@
 					<div class="amazing_products">
 
 						<!-- Details -->
-						<div class="col-md-5">
+						<div class="col-md-12">
 							<p style="color:red ; padding-top:17px; position: relative;">
 								پیشنهاد شگفت انگیز امروز
 							</p>
@@ -108,14 +108,9 @@
 										if(array_key_exists(strlen($discounted), $unit) )
 											echo $unit[strlen($discounted)];
 									?>
-
 								</span>
-
 								
-							</span>
-
-
-
+							</span>							
 
 							<div style="margin-top: 20px">
 								{!! nl2br($value->description) !!}
@@ -123,8 +118,16 @@
 						</div>
 						
 						<!-- Image -->
-						<div class="col-md-7">
-							
+						<div>
+							<p class="long_title" style="font-weight: bold; font-size:20px">
+								{{ $value->long_title }}
+								
+								@if($value->ProductImage)
+									<div class="amazing_product_image">
+										<img src="{{ url('upload').'/'.$value->ProductImage->url }}">
+									</div>
+								@endif
+							</p>
 						</div>
 					</div>
 				</a>
