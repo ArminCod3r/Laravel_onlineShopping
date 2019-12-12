@@ -60,86 +60,18 @@
 		<!-- Amazing offers -->
 		@if(sizeof($amazing_products)>0)
 
+			
 			@foreach($amazing_products as $key=>$value)
 
 				<!-- Details -->
-				<div class="col-md-12">
+				<!-- <div class="col-md-12"> -->
 
 					@if($key == 0)
+					<div class="offer_active" id="offer_{{ $key }}">
+						<div class="col-md-7 ">
+							<a href="#" class="amazing_products_links">
 
-						<a href="#" class="amazing_products_links">
-
-							<div class="amazing_product_active" id="amazing_product_{{ $key }}">
-								<p style="color:red ; padding-top: 12px;">
-									پیشنهاد شگفت انگیز امروز
-								</p>
-								<!-- Price -->
-								<span class="price">
-									<?php
-										$price_figures = str_replace("000", "", $value->price);
-									?>
-
-									{{ number_format($price_figures) }}
-								</span>
-
-								<!-- Discounted price -->
-								<span class="price_discounted">
-
-									<span style="font-size: 15px;">
-									<?php
-										$discounted = ($value->price - (($value->price * $value->price_discounted )/100));
-										$price_discounted_figures = str_replace("000", "", $discounted);
-									?>
-									</span>
-
-									{{ number_format($price_discounted_figures) }}
-
-									<span> 
-										<?php
-											$unit = array(
-												4=> "هزار تومان" ,
-												5=> "هزار تومان" ,
-												6=> "هزار تومان" ,
-												7=> "میلیون تومان",
-												8=> "میلیون تومان",
-												9=> "میلیون تومان",
-												10=> "میلیازد تومان",
-												11=> "میلیازد تومان",
-												10=> "میلیازد تومان",
-												);
-
-											if(array_key_exists(strlen($discounted), $unit) )
-												echo $unit[strlen($discounted)];
-										?>
-									</span>
-									
-								</span>							
-
-								<div style="padding-top: 20px">
-									{!! nl2br($value->description) !!}
-								</div>
-							
-							
-								<!-- Image -->
-								<div>
-									<p class="long_title" style="font-weight: bold; font-size:20px">
-										{{ $value->long_title }}
-										
-										@if($value->ProductImage)
-											<div class="amazing_product_image">
-												<img src="{{ url('upload').'/'.$value->ProductImage->url }}">
-											</div>
-										@endif
-									</p>
-								</div>
-							</div>
-						</a>
-					
-
-					@else
-						<a href="#" class="amazing_products_links">
-
-								<div class="amazing_product_not_active" id="amazing_product_{{ $key }}">
+								<div class="amazing_product_active" id="amazing_product_{{ $key }}">
 									<p style="color:red ; padding-top: 12px;">
 										پیشنهاد شگفت انگیز امروز
 									</p>
@@ -189,27 +121,104 @@
 										{!! nl2br($value->description) !!}
 									</div>
 								
-								
-									<!-- Image -->
-									<div>
-										<p class="long_title" style="font-weight: bold; font-size:20px">
-											{{ $value->long_title }}
-											
-											@if($value->ProductImage)
-												<div class="amazing_product_image">
-													<img src="{{ url('upload').'/'.$value->ProductImage->url }}">
-												</div>
-											@endif
-										</p>
-									</div>
 								</div>
 							</a>
+						</div>
+
+						<!-- Image -->
+						<div class="col-md-5"> 
+							<p style="font-weight: bold; font-size:20px">
+								{{ $value->long_title }}
+								
+								@if($value->ProductImage)
+									<div class="center_img">
+										<img src="{{ url('upload').'/'.$value->ProductImage->url }}" style="width: 20%; z-index:0 !important;" text-align="center">
+									</div>
+								@endif
+							</p>
+						</div>
+					</div>
+
+					@else
+					<div class="offer_not_active" id="offer_{{ $key }}">
+						<div class="col-md-7">
+							<a href="#" class="amazing_products_links">
+
+								<div class="amazing_product_active" id="amazing_product_{{ $key }}">
+									<p style="color:red ; padding-top: 12px;">
+										پیشنهاد شگفت انگیز امروز
+									</p>
+									<!-- Price -->
+									<span class="price">
+										<?php
+											$price_figures = str_replace("000", "", $value->price);
+										?>
+
+										{{ number_format($price_figures) }}
+									</span>
+
+									<!-- Discounted price -->
+									<span class="price_discounted">
+
+										<span style="font-size: 15px;">
+										<?php
+											$discounted = ($value->price - (($value->price * $value->price_discounted )/100));
+											$price_discounted_figures = str_replace("000", "", $discounted);
+										?>
+										</span>
+
+										{{ number_format($price_discounted_figures) }}
+
+										<span> 
+											<?php
+												$unit = array(
+													4=> "هزار تومان" ,
+													5=> "هزار تومان" ,
+													6=> "هزار تومان" ,
+													7=> "میلیون تومان",
+													8=> "میلیون تومان",
+													9=> "میلیون تومان",
+													10=> "میلیازد تومان",
+													11=> "میلیازد تومان",
+													10=> "میلیازد تومان",
+													);
+
+												if(array_key_exists(strlen($discounted), $unit) )
+													echo $unit[strlen($discounted)];
+											?>
+										</span>
+										
+									</span>							
+
+									<div style="padding-top: 20px">
+										{!! nl2br($value->description) !!}
+									</div>
+								
+								</div>
+							</a>
+						</div>
+
+						<!-- Image -->
+						<div class="col-md-5">
+
+							<p class="" style="font-weight: bold; font-size:20px">
+								{{ $value->short_title }}
+								
+							@if($value->ProductImage)
+								<div class="amazing_product_image center_img">
+									<img src="{{ url('upload').'/'.$value->ProductImage->url }}" style="width:30%;z-index:0 !important;">
+								</div>
+							@endif
+							</p>							
+						</div>
+				
+					</div>		
 					
 					@endif					
-				</div>
-					
+				
 				
 			@endforeach
+			
 
 			<!-- Texts -->
 			<div class="short_titles">
@@ -394,8 +403,8 @@
 			// Deactivating all the offers
 			for (var i=0 ; i<offer_count; i++)
 			{
-				$('#amazing_product_'+i).removeClass('amazing_product_active');
-				$('#amazing_product_'+i).addClass('amazing_product_not_active');
+				$('#offer_'+i).removeClass('offer_active');
+				$('#offer_'+i).addClass('offer_not_active');
 
 
 				$('#short_title_'+i).removeClass('title_active');
@@ -404,8 +413,8 @@
 
 			// Activating the selected offer
 
-			$('#amazing_product_'+offer_key).removeClass('amazing_product_not_active');
-			$('#amazing_product_'+offer_key).addClass('amazing_product_active');
+			$('#offer_'+offer_key).removeClass('offer_not_active');
+			$('#offer_'+offer_key).addClass('offer_active');
 
 			$('#short_title_'+offer_key).removeClass('title_not_active');
 			$('#short_title_'+offer_key).addClass('title_active');

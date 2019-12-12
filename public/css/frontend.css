@@ -493,7 +493,7 @@ body
 .amazing_product_active
 {
     height          : 340px;
-    width           : 98%;
+    width           : 163%;
     background-color: white;
     margin-top      : 37%;
     border-radius   : 4px;
@@ -502,20 +502,6 @@ body
     position        : absolute;
     padding-right   : 20px;
     display         : block;
-}
-
-.amazing_product_not_active
-{
-    height          : 340px;
-    width           : 98%;
-    background-color: white;
-    margin-top      : 37%;
-    border-radius   : 4px;
-    border          : 1px solid #EBECED;
-    box-shadow      : 0px 1px 2px 1px rgba(0, 0, 0, 0.1);
-    position        : absolute;
-    padding-right   : 20px;
-    display: none;
 }
 
 
@@ -601,17 +587,28 @@ body
     margin-top    : -20%;
 }
 
-.amazing_product_image
+/*.amazing_product_image
 {
     position     : relative;
     margin-right : 65%;
-}
+}*/
 
 .amazing_product_image img
 {
-    z-index : 1;
     width   : 35%;
     height  : auto;
+}
+
+/*16818192*/
+.center_img
+{
+    min-height: 150px;
+    min-width: 150px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle
 }
 
 .short_titles
@@ -645,9 +642,31 @@ body
     line-height   : 48px;
     border-radius : 5px;
     display       : inline-block;
+    padding-right : 0px !important;
 }
 
+.col-md-7
+{
+    position: absolute;
+    margin-top: 15%;
+    padding-right: 0px;
+}
 
+.col-md-5 {
+    position: absolute;
+    margin-top: 37%;
+    margin-right: 60%;
+}
+
+.offer_active
+{
+    display: block;
+}
+
+.offer_not_active
+{
+    display: none;
+}
 
 
 
