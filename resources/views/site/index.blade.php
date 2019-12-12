@@ -62,77 +62,118 @@
 
 			@foreach($amazing_products as $key=>$value)			
 				<a href="#" class="amazing_products_links">
-					<div class="amazing_products">
+					
 
 						<!-- Details -->
 						<div class="col-md-12">
-							<p style="color:red ; padding-top:17px; position: relative;">
+
+							@if($key == 0)
+
+							<!-- <p style="color:red ; margin-top:37% ; position:absolute; background-color:white">
 								پیشنهاد شگفت انگیز امروز
-							</p>
+							</p> -->
 
-							<!-- Price -->
-							<span class="price">
-								<?php
-									$price_figures = str_replace("000", "", $value->price);
-								?>
-
-								{{ number_format($price_figures) }}
-							</span>
-
-							<!-- Discounted price -->
-							<span class="price_discounted">
-
-								<span style="font-size: 15px;">
-								<?php
-									$discounted = ($value->price - (($value->price * $value->price_discounted )/100));
-									$price_discounted_figures = str_replace("000", "", $discounted);
-								?>
-								</span>
-
-								{{ number_format($price_discounted_figures) }}
-
-								<span> 
+							<div class="amazing_products">
+								<p style="color:red ; padding-top: 12px;">
+									پیشنهاد شگفت انگیز امروز
+								</p>
+								<!-- Price -->
+								<span class="price">
 									<?php
-										$unit = array(
-											4=> "هزار تومان" ,
-											5=> "هزار تومان" ,
-											6=> "هزار تومان" ,
-											7=> "میلیون تومان",
-											8=> "میلیون تومان",
-											9=> "میلیون تومان",
-											10=> "میلیازد تومان",
-											11=> "میلیازد تومان",
-											10=> "میلیازد تومان",
-											);
-
-										if(array_key_exists(strlen($discounted), $unit) )
-											echo $unit[strlen($discounted)];
+										$price_figures = str_replace("000", "", $value->price);
 									?>
-								</span>
-								
-							</span>							
 
-							<div style="margin-top: 20px">
-								{!! nl2br($value->description) !!}
-							</div>
+									{{ number_format($price_figures) }}
+								</span>
+
+								<!-- Discounted price -->
+								<span class="price_discounted">
+
+									<span style="font-size: 15px;">
+									<?php
+										$discounted = ($value->price - (($value->price * $value->price_discounted )/100));
+										$price_discounted_figures = str_replace("000", "", $discounted);
+									?>
+									</span>
+
+									{{ number_format($price_discounted_figures) }}
+
+									<span> 
+										<?php
+											$unit = array(
+												4=> "هزار تومان" ,
+												5=> "هزار تومان" ,
+												6=> "هزار تومان" ,
+												7=> "میلیون تومان",
+												8=> "میلیون تومان",
+												9=> "میلیون تومان",
+												10=> "میلیازد تومان",
+												11=> "میلیازد تومان",
+												10=> "میلیازد تومان",
+												);
+
+											if(array_key_exists(strlen($discounted), $unit) )
+												echo $unit[strlen($discounted)];
+										?>
+									</span>
+									
+								</span>							
+
+								<div style="padding-top: 20px">
+									{!! nl2br($value->description) !!}
+								</div>
+							
+							
+								<!-- Image -->
+								<div>
+									<p class="long_title" style="font-weight: bold; font-size:20px">
+										{{ $value->long_title }}
+										
+										@if($value->ProductImage)
+											<div class="amazing_product_image">
+												<img src="{{ url('upload').'/'.$value->ProductImage->url }}">
+											</div>
+										@endif
+									</p>
+								</div>
+								</div>
+							@else
+							@endif
+							
 						</div>
-						
-						<!-- Image -->
-						<div>
-							<p class="long_title" style="font-weight: bold; font-size:20px">
-								{{ $value->long_title }}
-								
-								@if($value->ProductImage)
-									<div class="amazing_product_image">
-										<img src="{{ url('upload').'/'.$value->ProductImage->url }}">
-									</div>
-								@endif
-							</p>
-						</div>
-					</div>
+					
 				</a>
 			@endforeach
 		@endif
+		<!-- Texts -->
+		<div class="short_titles" style="
+										margin-top  : 70%;										 
+										background  : #b5abaa;
+										width		: 98%;
+										cursor      : pointer;
+										position    : relative;
+										border-bottom-left-radius : 5px;
+										border-bottom-right-radius: 5px;
+									    ">
+
+			@foreach ($amazing_products as $key => $value)
+				@if($key == 0)
+					<div style="width       : 19%;
+							    color       : black;
+							    text-align  : center;
+							    line-height : 48px;
+							    display     : inline-block;
+							    background-color : #ded8d7;
+							    border-bottom-left-radius: 5px;
+							    border-bottom-right-radius: 5px;">
+						{{ $value->short_title }}
+					</div>					
+				@else
+					{{ $value->short_title }}
+				@endif
+			@endforeach
+
+		</div>
 
 		<!-- Newest products -->
 		<div class="newest_product">

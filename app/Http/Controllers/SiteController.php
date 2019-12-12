@@ -30,22 +30,7 @@ class SiteController extends Controller
                                   ->get()
                                   ->toArray();
         
-        $amazing_products= AmazingProducts::with('ProductImage')->orderBy('id', 'desc')->get();//->toArray();
-
-        /*return $amazing_products->$id;
-        foreach ($amazing_products[0] as $key => $value)
-        {
-            echo $value."<br/>";
-
-            //foreach ($value["product_image"] as $key1 => $value1)
-        }*/
-
-        //return $amazing_products[0]->ProductImage;
-
-        /*foreach ($amazing_products  as $key => $value)
-        {
-            echo $value->ProductImage."<br/>";
-        }*/
+        $amazing_products= AmazingProducts::with('ProductImage')->orderBy('id', 'desc')->get();
 
     	return view('site.index')->with([                              // $this->categories
                                         'sliders'         => $sliders,
