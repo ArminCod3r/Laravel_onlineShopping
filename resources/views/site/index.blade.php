@@ -60,20 +60,16 @@
 		<!-- Amazing offers -->
 		@if(sizeof($amazing_products)>0)
 
-			@foreach($amazing_products as $key=>$value)			
-				<a href="#" class="amazing_products_links">
-					
+			@foreach($amazing_products as $key=>$value)
 
-						<!-- Details -->
-						<div class="col-md-12">
+				<!-- Details -->
+				<div class="col-md-12">
 
-							@if($key == 0)
+					@if($key == 0)
 
-							<!-- <p style="color:red ; margin-top:37% ; position:absolute; background-color:white">
-								پیشنهاد شگفت انگیز امروز
-							</p> -->
+						<a href="#" class="amazing_products_links">
 
-							<div class="amazing_products">
+							<div class="amazing_product_active" id="amazing_product_{{ $key }}">
 								<p style="color:red ; padding-top: 12px;">
 									پیشنهاد شگفت انگیز امروز
 								</p>
@@ -136,29 +132,103 @@
 										@endif
 									</p>
 								</div>
-								</div>
-
-								<!-- Texts -->
-								<div class="short_titles">
-
-									@foreach ($amazing_products as $key => $value)
-										@if($key == 0)
-											<div class="short_titles_active">
-												{{ $value->short_title }}
-											</div>					
-										@else
-											{{ $value->short_title }}
-										@endif
-									@endforeach
-
-								</div>
-							@else
-							@endif
-							
-						</div>
+							</div>
+						</a>
 					
-				</a>
+
+					@else
+						<a href="#" class="amazing_products_links">
+
+								<div class="amazing_product_not_active" id="amazing_product_{{ $key }}">
+									<p style="color:red ; padding-top: 12px;">
+										پیشنهاد شگفت انگیز امروز
+									</p>
+									<!-- Price -->
+									<span class="price">
+										<?php
+											$price_figures = str_replace("000", "", $value->price);
+										?>
+
+										{{ number_format($price_figures) }}
+									</span>
+
+									<!-- Discounted price -->
+									<span class="price_discounted">
+
+										<span style="font-size: 15px;">
+										<?php
+											$discounted = ($value->price - (($value->price * $value->price_discounted )/100));
+											$price_discounted_figures = str_replace("000", "", $discounted);
+										?>
+										</span>
+
+										{{ number_format($price_discounted_figures) }}
+
+										<span> 
+											<?php
+												$unit = array(
+													4=> "هزار تومان" ,
+													5=> "هزار تومان" ,
+													6=> "هزار تومان" ,
+													7=> "میلیون تومان",
+													8=> "میلیون تومان",
+													9=> "میلیون تومان",
+													10=> "میلیازد تومان",
+													11=> "میلیازد تومان",
+													10=> "میلیازد تومان",
+													);
+
+												if(array_key_exists(strlen($discounted), $unit) )
+													echo $unit[strlen($discounted)];
+											?>
+										</span>
+										
+									</span>							
+
+									<div style="padding-top: 20px">
+										{!! nl2br($value->description) !!}
+									</div>
+								
+								
+									<!-- Image -->
+									<div>
+										<p class="long_title" style="font-weight: bold; font-size:20px">
+											{{ $value->long_title }}
+											
+											@if($value->ProductImage)
+												<div class="amazing_product_image">
+													<img src="{{ url('upload').'/'.$value->ProductImage->url }}">
+												</div>
+											@endif
+										</p>
+									</div>
+								</div>
+							</a>
+					
+					@endif					
+				</div>
+					
+				
 			@endforeach
+
+			<!-- Texts -->
+			<div class="short_titles">
+
+				@foreach ($amazing_products as $key => $value)
+					@if($key == 0)
+						<div class="title_active" id="short_title_{{ $key }}"
+							 					  onclick="change_offer('{{ $key }}')">
+							{{ $value->short_title }}
+						</div>					
+					@else
+						<div class="title_not_active" id="short_title_{{ $key }}"
+							 					      onclick="change_offer('{{ $key }}')">
+							{{ $value->short_title }}
+						</div>
+					@endif
+				@endforeach
+
+			</div>
 		@endif
 		
 
@@ -304,6 +374,7 @@
 		};
 
 
+		// Newest Products
 		$(".view_products").slick({
 	        //dots: true,
 	        infinite: true,
@@ -312,6 +383,33 @@
 	        slidesToScroll:4,
 	        rtl: true
 	     });
+
+
+		// Amazing Products -------------
+
+		offer_count = <?php echo sizeof($amazing_products); ?>;
+
+		change_offer = function(offer_key)
+		{
+			// Deactivating all the offers
+			for (var i=0 ; i<offer_count; i++)
+			{
+				$('#amazing_product_'+i).removeClass('amazing_product_active');
+				$('#amazing_product_'+i).addClass('amazing_product_not_active');
+
+
+				$('#short_title_'+i).removeClass('title_active');
+				$('#short_title_'+i).addClass('title_not_active');
+			}
+
+			// Activating the selected offer
+
+			$('#amazing_product_'+offer_key).removeClass('amazing_product_not_active');
+			$('#amazing_product_'+offer_key).addClass('amazing_product_active');
+
+			$('#short_title_'+offer_key).removeClass('title_not_active');
+			$('#short_title_'+offer_key).addClass('title_active');
+		}
 
 	</script>
 @endsection
