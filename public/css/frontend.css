@@ -598,6 +598,29 @@ body
     height  : auto;
 }
 
+.short_titles
+{
+
+    margin-top  : 70%;                                       
+    background  : #b5abaa;
+    width       : 98%;
+    cursor      : pointer;
+    position    : absolute;
+    border-bottom-left-radius : 5px;
+    border-bottom-right-radius: 5px;                                                            
+}
+
+.short_titles_active
+{
+    width       : 19%;
+    color       : black;
+    text-align  : center;
+    line-height : 48px;
+    display     : inline-block;
+    background-color : #ded8d7;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
 
 
 

@@ -137,6 +137,21 @@
 									</p>
 								</div>
 								</div>
+
+								<!-- Texts -->
+								<div class="short_titles">
+
+									@foreach ($amazing_products as $key => $value)
+										@if($key == 0)
+											<div class="short_titles_active">
+												{{ $value->short_title }}
+											</div>					
+										@else
+											{{ $value->short_title }}
+										@endif
+									@endforeach
+
+								</div>
 							@else
 							@endif
 							
@@ -145,35 +160,7 @@
 				</a>
 			@endforeach
 		@endif
-		<!-- Texts -->
-		<div class="short_titles" style="
-										margin-top  : 70%;										 
-										background  : #b5abaa;
-										width		: 98%;
-										cursor      : pointer;
-										position    : relative;
-										border-bottom-left-radius : 5px;
-										border-bottom-right-radius: 5px;
-									    ">
-
-			@foreach ($amazing_products as $key => $value)
-				@if($key == 0)
-					<div style="width       : 19%;
-							    color       : black;
-							    text-align  : center;
-							    line-height : 48px;
-							    display     : inline-block;
-							    background-color : #ded8d7;
-							    border-bottom-left-radius: 5px;
-							    border-bottom-right-radius: 5px;">
-						{{ $value->short_title }}
-					</div>					
-				@else
-					{{ $value->short_title }}
-				@endif
-			@endforeach
-
-		</div>
+		
 
 		<!-- Newest products -->
 		<div class="newest_product">
