@@ -668,10 +668,18 @@ body
     display: none;
 }
 
+.amazing_clock
+{
+    margin-right: -390px !important;
+    /*24946573*/
+    zoom: 0.5;
+    -moz-transform: scale(0.5);
+}
 
-
-
-
+.flip-clock-label
+{
+    display: none;
+}
 
 
 

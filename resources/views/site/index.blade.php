@@ -3,6 +3,9 @@
 @section('header')
   <link rel="stylesheet" type="text/css" href="{{ url('slick/slick/slick.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ url('slick/slick/slick-theme.css') }}">
+
+  <link rel="stylesheet" href="{{ url('css/flipclock.css') }}">
+  <script src="{{ url('js/flipclock.js') }}"></script>
 @endsection
 
 @section('content')
@@ -121,6 +124,9 @@
 										{!! nl2br($value->description) !!}
 									</div>
 								
+									<div class="amazing_clock" id="amazing_clock_{{ $key }}">
+										فرصت باقی مانده تا این پیشنهاد
+									</div>
 								</div>
 							</a>
 						</div>
@@ -192,6 +198,10 @@
 
 									<div style="padding-top: 20px">
 										{!! nl2br($value->description) !!}
+									</div>
+								
+									<div class="amazing_clock" id="amazing_clock_{{ $key }}">
+										فرصت باقی مانده تا این پیشنهاد
 									</div>
 								
 								</div>
@@ -418,6 +428,44 @@
 
 			$('#short_title_'+offer_key).removeClass('title_not_active');
 			$('#short_title_'+offer_key).addClass('title_active');
+		}
+
+
+		// Amazing Products' Clock -------------
+		var each_offer_time = new Array();
+		var i = 0;
+
+		<?php
+
+			foreach ($amazing_products as $key => $value)
+			{
+				$time=$value->time_amazing;;
+		?>		
+				each_offer_time[i] = <?= $time ?>;
+				i++;
+		<?php
+			}
+		?>
+		
+		
+		var clock;
+		for (var i=0 ; i<offer_count; i++)
+		{
+			var clock;
+
+			clock = $('#amazing_clock_'+i).FlipClock({
+		        clockFace: 'DailyCounter',
+		        autoStart: false,
+		        callbacks: {
+		        	stop: function() {
+		        		$('.message').html('The clock has stopped!')
+		        	}
+		        }
+		    });
+				    
+		    clock.setTime(each_offer_time[i]*60*60);
+		    clock.setCountdown(true);
+		    clock.start();
 		}
 
 	</script>
