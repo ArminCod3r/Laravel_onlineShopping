@@ -377,6 +377,7 @@ body
 .slick-next
 {
     right: 12px !important;
+    height: 40px !important;
 }
 .slick-next:before
 {
@@ -400,6 +401,7 @@ body
 .slick-prev {
     z-index: 9999 !important; /*if not: prev slide button not working - https://github.com/kenwheeler/slick/issues/2827*/
     left: 15px !important;
+    height: 40px !important;
 }
 
 .slick-prev:before
@@ -680,6 +682,41 @@ body
 {
     display: none;
 }
+
+.slick-next
+{
+    height: 0px;
+}
+
+
+/*
+.short_titles slick-next
+{
+    height: 0px;
+}
+
+.short_titles slick-prev
+{
+    height: 0px;
+}
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

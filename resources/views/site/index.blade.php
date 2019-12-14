@@ -231,7 +231,7 @@
 			
 
 			<!-- Texts -->
-			<div class="short_titles">
+			<div class="short_titles amazing_product_scroll">
 
 				@foreach ($amazing_products as $key => $value)
 					@if($key == 0)
@@ -447,7 +447,7 @@
 			}
 		?>
 		
-		
+
 		var clock;
 		for (var i=0 ; i<offer_count; i++)
 		{
@@ -467,6 +467,18 @@
 		    clock.setCountdown(true);
 		    clock.start();
 		}
+
+		// Amazing products' scroll
+
+		$(".amazing_product_scroll").slick({
+	        infinite: true,
+	        slidesToShow: 4,
+	        slidesToScroll:1,
+	        rtl: true,
+	        autoplaySpeed: 2000,
+	        autoplay: false,
+	     });
+
 
 	</script>
 @endsection
