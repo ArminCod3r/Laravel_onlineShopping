@@ -17,4 +17,9 @@ class AmazingProducts extends Model
     	// Not 'hasMany' : We want just the first image
     	return $this->hasOne(ProductImage::class, 'product_id', 'product_id');
     }
+
+    public function Product_details()
+    {
+    	return $this->hasOne(Product::class, "id", "product_id");
+    }
 }

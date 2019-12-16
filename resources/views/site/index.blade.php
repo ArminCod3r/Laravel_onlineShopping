@@ -68,11 +68,15 @@
 
 				<!-- Details -->
 				<!-- <div class="col-md-12"> -->
+				<?php
+					$url = url('')."/".str_replace(' ','-', $value->Product_details->code)."/".$value->Product_details->title_url;
+				?>
+				
 
 					@if($key == 0)
 					<div class="offer_active" id="offer_{{ $key }}">
 						<div class="col-md-7 ">
-							<a href="#" class="amazing_products_links">
+							<a href="{{ $url }}" class="amazing_products_links">
 
 								<div class="amazing_product_active" id="amazing_product_{{ $key }}">
 									<p style="color:red ; padding-top: 12px;">
@@ -148,7 +152,7 @@
 					@else
 					<div class="offer_not_active" id="offer_{{ $key }}">
 						<div class="col-md-7">
-							<a href="#" class="amazing_products_links">
+							<a href="{{ $url }}" class="amazing_products_links">
 
 								<div class="amazing_product_active" id="amazing_product_{{ $key }}">
 									<p style="color:red ; padding-top: 12px;">

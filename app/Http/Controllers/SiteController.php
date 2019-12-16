@@ -30,7 +30,11 @@ class SiteController extends Controller
                                   ->get()
                                   ->toArray();
         
-        $amazing_products= AmazingProducts::with('ProductImage')->orderBy('id', 'desc')->get();
+
+        $amazing_products= AmazingProducts::with('ProductImage')
+                                          ->with('Product_details')
+                                          ->orderBy('id', 'desc')
+                                          ->get();
 
     	return view('site.index')->with([                              // $this->categories
                                         'sliders'         => $sliders,
