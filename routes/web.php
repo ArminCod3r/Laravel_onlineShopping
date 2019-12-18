@@ -11,8 +11,9 @@
 |
 */
 
-// site's index page
+// site's index/product page
 Route::get('/', "SiteController@index");
+Route::get('product/{code}/{title_url}', 'SiteController@showProduct');
 
 // Admin's idnex
 Route::get('admin', function () {

@@ -43,6 +43,11 @@ class SiteController extends Controller
                                         ]); 
     }
 
+    public function showProduct($code, $title_url)
+    {
+        return view('site.showProduct');
+    }
+
 
 
 
