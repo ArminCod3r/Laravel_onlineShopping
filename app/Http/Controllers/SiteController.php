@@ -45,7 +45,14 @@ class SiteController extends Controller
 
     public function showProduct($code, $title_url)
     {
-        return view('site.showProduct');
+        $code = str_replace('-',' ', $code);
+
+        $product = Product::with('ProductImage')->where(['code'         => $code,
+                                                'title_url'    => $title_url,
+                                                'show_product' => 1])
+                                                ->firstOrFail();
+
+        return view('site.showProduct')->with('product', $product);
     }
 
 
