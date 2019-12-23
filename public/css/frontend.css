@@ -750,27 +750,32 @@ body
     width         : 20px;
     margin-top    : 4px;
     border-radius : 9px;
+    margin-right  : -15px;
     -moz-transform: scale(0.7); /* why: height-width limitation that casues by'jscolor' so we need another solution*/
 }
 
-.colors_areacc
+.product_colors_list
 {
-    margin-top: 10px
+    margin-top: 10px;
+    margin-right: -85px;
 }
 
-.border_area
+.color_area
 {
     padding-left: 1px;
     padding-right: 60px;
     right: 10px;
-    margin-top: 4px;
 }
-.border_color
+
+.list-group-item {
+    border: 1px solid rgba(0,0,0,.125) !important;
+}
+
+.list-group-item.active
 {
-    border-right: 2px solid #34bdeb;
+    background-color: #f5f6f7;
+    border: 1px solid #00bfd6 !important;
 }
-
-
 
 
 

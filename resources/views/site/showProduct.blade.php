@@ -48,39 +48,42 @@
 		    </div>
 
 		    @if($product->product_status == 1)
-			    
+
 			    <?php
 			    	$color_count = $product->color_product_frontend;
 			    ?>
 			    @if(sizeof($color_count) > 0)
 
-				    <div class="row" style="margin-top: 10px ; margin-right: -85px;">
+					<div class="">
+					 	<div class="row product_colors_list">
 
 					    	@foreach($product->color_product_frontend as $key=>$item)
-								
-								<div class="col-sm-1 border_area">
-									<span class="border_color"></span>
+
+
+					    		<div class="col-sm-2 color_area list-group panel">
+									<a class="list-group-item color_a" style="cursor:pointer">
+
+										<input type="text" id="color"
+										class="jscolor {valueElement:null,value:'{{ $item->color_code }}'} colorStyle form-control"
+										value="" disabled>
+
+									</a>
 								</div>
 
-								<div class="col-sm-1">
-								<input type="text" id="color"
-								class="jscolor {valueElement:null,value:'{{ $item->color_code }}'} 
-									   colorStyle form-control"
-								value="" disabled>
+					    		<div class="col-sm-10">
 								</div>
 
-								<div class="col-sm-10">
-								</div>
 
 							@endforeach
+
+
+						</div>
 					</div>
+
 				@endif
 		    @endif
 
-
-
 		</div>
-
 	</div>
 </div>
 
@@ -90,5 +93,22 @@
 @section('footer')
 
     <script type="text/javascript" src="{{ url('js/jscolor.js') }}"></script>
+
+
+    <script type="text/javascript">
+
+    	// Changing 'background-color' of the selected product-color (29767380)
+    	$('.list-group').on('click','> a', function(e) {
+		   var $this = $(this);
+		    $('.list-group').find('.active').removeClass('active');
+		    $this.addClass('active');
+		});
+
+    	// Preventing href="#" Going to Top of Page (13003044)
+		$('.color_a').click(function(e) {
+		    e.preventDefault();
+		});
+
+    </script>
 
 @endsection
