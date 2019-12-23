@@ -47,9 +47,48 @@
 
 		    </div>
 
+		    @if($product->product_status == 1)
+			    
+			    <?php
+			    	$color_count = $product->color_product_frontend;
+			    ?>
+			    @if(sizeof($color_count) > 0)
+
+				    <div class="row" style="margin-top: 10px ; margin-right: -85px;">
+
+					    	@foreach($product->color_product_frontend as $key=>$item)
+								
+								<div class="col-sm-1 border_area">
+									<span class="border_color"></span>
+								</div>
+
+								<div class="col-sm-1">
+								<input type="text" id="color"
+								class="jscolor {valueElement:null,value:'{{ $item->color_code }}'} 
+									   colorStyle form-control"
+								value="" disabled>
+								</div>
+
+								<div class="col-sm-10">
+								</div>
+
+							@endforeach
+					</div>
+				@endif
+		    @endif
+
+
+
 		</div>
 
 	</div>
 </div>
+
+
+@endsection
+
+@section('footer')
+
+    <script type="text/javascript" src="{{ url('js/jscolor.js') }}"></script>
 
 @endsection
