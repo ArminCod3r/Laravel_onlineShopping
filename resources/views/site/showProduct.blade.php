@@ -19,10 +19,34 @@
 
 
 		<div class="col-sm-8">
-			<div class="product_title">
-				<h4> {{ $product->title }} </h4>
-				<p> {{ $product->code }} </p>
-			</div>
+			<div class="row product_title">
+				<div class="col-sm-10">				
+					<div class="">
+						<h4> {{ $product->title }} </h4>
+						<p> {{ $product->code }} </p>
+					</div>
+				</div>
+
+				<div class="col-sm-2">				
+					<div class="rating">
+						<div class="gray">
+
+							<!--
+								rated stars should be 'width'ed within the inline 'style' 
+								why? value is caluclated using php and changing value is 
+									 possible.
+							-->
+							<div class="activate_stars" style="width: 70%">	
+							</div>	
+
+						</div>
+					</div>
+
+					<p class="vote"> از 10 رای </p>
+				</div>
+
+		    </div>
+
 		</div>
 
 	</div>

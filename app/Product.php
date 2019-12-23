@@ -97,4 +97,9 @@ class Product extends Model
     {
         return $this->hasMany("App\ProductImage");
     }
+
+    public function color_product_frontend()
+    {
+        return $this->hasMany(Color::class, 'product_id', 'id');
+    }
 }
