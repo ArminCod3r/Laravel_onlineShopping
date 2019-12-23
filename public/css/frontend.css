@@ -714,6 +714,7 @@ body
     margin-top       : 20px;
     border-radius    : 4px;
     padding          : 20px 15px 1px 0px;
+    margin-left      : 10px;
 }
 
 .product_title p
@@ -721,11 +722,27 @@ body
     color: #818181;
 }
 
+.rating .gray
+{
+    background : transparent url("../images/stars.png") repeat-x scroll 0px -14px;
+    height     : 14px;
+    margin     : 0px auto;
+    position   : relative;
+    width      : 100px;
+    direction  : ltr;
+}
 
+.activate_stars
+{
+    background : transparent url("../images/stars.png") repeat-x scroll 0px 0px;
+    height     : 14px;
+}
 
-
-
-
+.vote
+{
+    padding-top : 8px;
+    font-size   : 12px;
+}
 
 
 
