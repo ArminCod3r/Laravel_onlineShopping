@@ -708,6 +708,12 @@ body
     margin  : 0 auto;
 }
 
+.imgZoom
+{
+    position     : absolute;
+    margin-right : 50%;
+}
+
 .product_title
 {
     background-color : #f5f6f7;

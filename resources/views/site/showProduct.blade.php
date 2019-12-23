@@ -14,11 +14,16 @@
 	<div class="row" style="margin-top:20px ; background:white">
 
 		<div class="col-sm-4">
-			<img src="{{ url('upload').'/'.$product->ProductImage[0]->url }}" class="product_img">
+			<img src="{{ url('upload').'/'.$product->ProductImage[0]->url }}" 
+				 data-zoom-image="{{ url('upload').'/'.$product->ProductImage[0]->url }}"
+				 class="product_img"
+				 id="product_img">
 		</div>
 
-
+		
 		<div class="col-sm-8">
+			<div id="imgZoom" class="imgZoom"></div>
+
 			<div class="row product_title">
 				<div class="col-sm-10">				
 					<div class="">
@@ -93,6 +98,7 @@
 @section('footer')
 
     <script type="text/javascript" src="{{ url('js/jscolor.js') }}"></script>
+    <script type="text/javascript" src="{{ url('js/jquery.elevateZoom-3.0.8.min.js') }}"></script>
 
 
     <script type="text/javascript">
@@ -107,6 +113,17 @@
     	// Preventing href="#" Going to Top of Page (13003044)
 		$('.color_a').click(function(e) {
 		    e.preventDefault();
+		});
+
+		// Zoom on img
+		$("#product_img").elevateZoom({
+			zoomWindowPosition:'imgZoom',
+			borderSize:1,
+			scrollZoom:true,
+			cursor:'zoom-in',
+			/*zoomWindowWidth:100,
+			zoomWindowHeight:100,
+			zoomLevel:0.5*/
 		});
 
     </script>
