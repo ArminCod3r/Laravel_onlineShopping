@@ -725,6 +725,7 @@ body
     border           : 1px solid rgba(0,0,0,.125) ;
     border-radius    : 4px;
     cursor           : pointer;
+    position         : relative;
 }
 
 .otherProductImages img
@@ -732,8 +733,12 @@ body
     width          : 50%;
     padding-top    : 2px;
     padding-bottom : 2px;
-    
-    vertical-align: middle
+    position       : absolute;
+    margin         : auto;
+    right          : 0;
+    left           : 0;
+    bottom         : 0;
+    top            : 0;
 }
 
 .otherProductImages div
