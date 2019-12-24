@@ -11,13 +11,37 @@
 @section('content')
 
 <div class="container">
-	<div class="row" style="margin-top:20px ; background:white">
+	<div class="row" style="margin-top:20px ; background:white ; height: 470px;">
 
 		<div class="col-sm-4">
 			<img src="{{ url('upload').'/'.$product->ProductImage[0]->url }}" 
 				 data-zoom-image="{{ url('upload').'/'.$product->ProductImage[0]->url }}"
 				 class="product_img"
 				 id="product_img">
+
+			<div>
+				<?php $key; ?>
+				@foreach($product->ProductImage as $key=>$item)
+
+					@if($key < 3)
+						<?php $imgLink = url('upload').'/'.$item->url ?>
+						<div class="otherProductImages">
+							<img src="{{ url('upload').'/'.$item->url }}"
+								 onclick="imgToShow('{{ $imgLink }}')">
+						</div>
+
+					@else
+						<div class="otherProductImages">
+							<div onclick="imgToShow('{{ $imgLink }}')">
+								...
+							</div>
+						</div>
+						@break
+
+					@endif
+
+				@endforeach
+			</div>
 		</div>
 
 		
@@ -125,6 +149,19 @@
 			zoomWindowHeight:100,
 			zoomLevel:0.5*/
 		});
+
+
+		// Changing img+ZoomedImg when clicked on thumbnails
+		imgToShow = function(img)
+		{
+			var imageElement = $('#product_img');
+			imageElement.attr('src', img);
+
+			// 19110330 - 31910882
+			var prev_img = document.getElementById("product_img").src;
+			var ez = $("#product_img").data("elevateZoom");
+			ez.swaptheimage(prev_img, img);
+		}
 
     </script>
 
