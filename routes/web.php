@@ -49,3 +49,24 @@ Route::post('admin/feature', 'admin\FeatureController@create');
 
 // Amazin Products
 Route::resource('admin/amazing_products','admin\AmazingProductController');
+
+// Review
+//Route::resource('admin/review/{product_id}','admin\ReviewController');
+Route::get('admin/review','admin\ReviewController@index')
+	 ->name('review.index');
+
+Route::get('admin/review/{product_id}/create','admin\ReviewController@create' )
+	 ->name('review.create');
+
+Route::delete('admin/review/{product_id}/destroy', 'admin\ReviewController@destroy')
+	 ->name('review.destroy');
+
+Route::get('admin/review/{product_id}/show', 'admin\ReviewController@show')
+	 ->name('review.show');
+
+Route::put('admin/review/{product_id}/update', 'admin\ReviewController@update')
+	  ->name('review.update');
+	  
+Route::get('admin/review/{product_id}/edit', 'admin\ReviewController@edit')
+	  ->name('review.edit');
+	  
