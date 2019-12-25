@@ -40,3 +40,65 @@ body{
 .sidenav a:hover {
   color: #f1f1f1;
 }
+
+.link_box
+{
+  border          : 1px solid rgba(0,0,0,.125);
+  margin-bottom   : 30px;
+  width           : 90%;
+  border-radius   : 5px;
+  padding-top     : 5px;
+  padding-right   : 10px;
+  height          : 90px;
+  margin-top      : 32px;
+  background-color: #fcfafa
+}
+
+.link_box span
+{
+  position: relative;
+}
+
+.link_area_style
+{
+  border           : 1px solid rgba(0,0,0,.125); 
+  width            : 82%;
+  height           : 25px;
+  border-radius    : 100px;
+  background-color : #f2f2f2;
+  position         : absolute;
+  margin-top       : 12px;
+}
+
+.img_link
+{
+  position      : relative;
+  margin-bottom : 30px;
+  text-align    : center;
+  padding-top   : 10px;
+  font-size     : 15px;  
+  margin-left   : 9px;
+  padding-top   : 6px;
+  margin-top    : 10px;
+
+  /*margin-top    : 10px;
+  border        : 1px solid rgba(0,0,0,.125);
+  width         : 100%;
+  height        : 5%;
+  border-radius : 40px;
+  padding-top   : 2px;*/
+}
+
+.review_images /*20813899*/
+{
+  width   :30%;
+  height  :20%;
+  float   :right;
+  background-color:white;
+  border   : 1px solid rgba(0,0,0,.125);
+  margin   : auto;
+  right    : 0;
+  left     : 0;
+  bottom   : 0;
+  top      : 0;
+}

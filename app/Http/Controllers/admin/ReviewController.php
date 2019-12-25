@@ -31,7 +31,12 @@ class ReviewController extends Controller
     {
         $product = Product::findOrFail($product_id);
 
-        return view('admin/review/create')->with('product', $product);
+        $review_images = ProductImage::where('tag', 'review')->pluck('url');
+
+        return view('admin/review/create')->with([
+                                                  'product'       => $product,
+                                                  'review_images' => $review_images,
+                                                ]);
     }
 
     /**

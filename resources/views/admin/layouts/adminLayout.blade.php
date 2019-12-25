@@ -42,6 +42,9 @@
   
   <!-- template rtl version -->
   <link rel="stylesheet" href="{{ url('dist/css/custom-style.css') }}">
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" type="text/css" href="{{ url('css/admin.css') }}">
 
   @yield('header')
 </head>

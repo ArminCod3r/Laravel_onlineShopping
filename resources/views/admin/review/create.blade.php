@@ -5,6 +5,7 @@
 
     <!--Dropzone.css -->
 	<link href="{{ url('css/dropzone.css') }}" rel="stylesheet">
+
 @endsection
 
 @section('custom-title')
@@ -46,6 +47,26 @@
 
 @endsection
 
+@section('content4')
+
+    <div class="link_box">
+        <span> لینک تصویر: </span>
+        <div class="link_area_style"></div>
+        <div id="img_link" class="img_link">  </div>
+    </div>
+
+    @if(sizeof($review_images) > 0)
+
+        @foreach($review_images as $key=>$item)
+
+            <?php $img_link = url('upload'.'/'.$item); ?>
+            <img src="{{ $img_link }}" class="review_images" onclick="get_link('{{ $img_link }}')">
+
+        @endforeach
+
+    @endif
+
+@endsection
 
 
 
@@ -86,5 +107,13 @@
 
         }
     };
+
+
+    // Getting the link of the uploaded images
+    get_link = function(img_link)
+    {
+        $(".img_link").html(img_link);
+    }
+    </script>
 
 @endsection
