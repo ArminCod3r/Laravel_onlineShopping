@@ -17,7 +17,6 @@ class CreateReviewTable extends Migration
             $table->bigIncrements('id');
             $table->integer('product_id');
             $table->text('desc');
-            $table->string('img');
         });
     }
 
