@@ -2,6 +2,9 @@
 
 @section('header')
     <title>افزودن نقد و بررسی</title>
+
+    <!--Dropzone.css -->
+	<link href="{{ url('css/dropzone.css') }}" rel="stylesheet">
 @endsection
 
 @section('custom-title')
@@ -11,7 +14,7 @@
 
 @section('content1')
 
- <form action="{{ action('admin\ReviewController@store') }}" method="POST" accept-charset="utf-8">
+ <form action="{{route('review.store', $product->id ) }}" method="POST" accept-charset="utf-8">
 	{{ csrf_field() }}
 	
 	<div class="form-group">
@@ -26,12 +29,23 @@
 	</div>
 
 
-
-		<input type="submit" name="submit" value="ثبت" class="btn btn-success">
+	<input type="submit" name="submit" value="ثبت" class="btn btn-success">
 
 </form>
 
+<form method="post" action="{{url('admin/review/upload'.'/28')}}"
+					class="dropzone"
+					id="upload-file"
+					enctype="multipart/form-data">
+
+	{{ csrf_field() }}
+
+	<input name="file" type="file" multiple style="display: none;">
+	
+</form>
+
 @endsection
+
 
 
 
@@ -39,9 +53,38 @@
 	<!-- CKEditor -->
 	<script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
 
+	<!--Dropzone.js -->
+	<script type="text/javascript" src="{{ url('js/dropzone.js') }}"></script>
+
 
     <script>
         CKEDITOR.replace( 'desc' );
     </script>
-    
+
+
+    <!-- Checking file extension + Editing error messages -->
+	<script>
+		Dropzone.options.uploadFile={
+
+        acceptedFiles:".png,.jpg,.gif,.jpeg",
+        addRemoveLinks:true,
+        init:function() {
+
+            this.options.dictRemoveFile='حذف',
+                this.options.dictInvalidFileType='امکان آپلود این فایل وجود ندارد',
+                this.on('success',function(file,response) {
+                    if(response==1)
+                    {
+                        file.previewElement.classList.add('dz-success');
+                    }
+                    else
+                    {
+                        file.previewElement.classList.add('dz-error');
+                        $(file.previewElement).find('.dz-error-message').text('خطا در آپلود فایل');
+                    }
+                });
+
+        }
+    };
+
 @endsection
