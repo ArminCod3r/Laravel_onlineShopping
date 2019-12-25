@@ -70,5 +70,7 @@ Route::put('admin/review/{product_id}/update', 'admin\ReviewController@update')
 Route::get('admin/review/{product_id}/edit', 'admin\ReviewController@edit')
 	  ->name('review.edit');
 	  
-Route::post('admin/review/store', 'admin\ReviewController@store')
+Route::post('admin/review/store/{product_id}', 'admin\ReviewController@store')
 	  ->name('review.store');
+
+Route::post('admin/review/upload/{product_id}', 'admin\ReviewController@upload');
