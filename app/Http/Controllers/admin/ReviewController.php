@@ -19,10 +19,7 @@ class ReviewController extends Controller
      */
     public function index()
     {
-        $result = DB::table('review')->where('desc', 'NOT YET') //->select('img')
-                                             ->pluck('img');
-
-        return $result[0];
+        //
     }
 
     /**
