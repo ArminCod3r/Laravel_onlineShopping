@@ -66,7 +66,9 @@ Route::get('admin/review/{product_id}/show', 'admin\ReviewController@show')
 
 Route::put('admin/review/{product_id}/update', 'admin\ReviewController@update')
 	  ->name('review.update');
-	  
+
 Route::get('admin/review/{product_id}/edit', 'admin\ReviewController@edit')
 	  ->name('review.edit');
 	  
+Route::post('admin/review/store', 'admin\ReviewController@store')
+	  ->name('review.store');
