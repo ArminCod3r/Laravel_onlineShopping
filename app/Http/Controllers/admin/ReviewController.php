@@ -57,6 +57,8 @@ class ReviewController extends Controller
         $review->desc       = $request->input('desc');
 
         $review->Save();
+
+        return redirect('admin/review/'.$product_id.'/edit');
     }
 
     /**
@@ -76,9 +78,23 @@ class ReviewController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($product_id)
     {
-        //
+        $product_id = str_replace(' ', '-', $product_id); // Replaces all spaces with hyphens.
+        $product_id = preg_replace('/[^A-Za-z0-9\-]/', '', $product_id); // Removes special chars.
+
+        $product = Product::findOrFail($product_id);
+
+        $review_images = $product->ProductImage->where('tag', 'review'); 
+
+        $review = Review::where('product_id', $product_id)->first();
+
+
+        return view('admin/review/edit')->with([
+                                                'product'       => $product,
+                                                'review_images' => $review_images,
+                                                'review'        => $review
+                                               ]);
     }
 
     /**
