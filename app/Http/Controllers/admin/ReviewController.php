@@ -104,9 +104,21 @@ class ReviewController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $product_id)
     {
-        //
+        $product_id = str_replace(' ', '-', $product_id); // Replaces all spaces with hyphens.
+        $product_id = preg_replace('/[^A-Za-z0-9\-]/', '', $product_id); // Removes special chars.
+
+        // Updating
+        $desc = $request->input('desc');
+        Review::where('product_id', $product_id)->update(array('desc' => $desc));
+
+
+        $product       = Product::findOrFail($product_id);
+        $review_images = $product->ProductImage->where('tag', 'review'); 
+        $review        = Review::where('product_id', $product_id)->first();
+
+        return redirect('admin/review/');
     }
 
     /**
