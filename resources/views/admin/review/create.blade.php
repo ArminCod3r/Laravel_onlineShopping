@@ -34,7 +34,7 @@
 
 </form>
 
-<form method="post" action="{{url('admin/review/upload'.'/28')}}"
+<form method="post" action="{{url('admin/review/upload'.'/'.$product->id)}}"
 					class="dropzone"
 					id="upload-file"
 					enctype="multipart/form-data">
@@ -68,24 +68,11 @@
 
     @endif
 
-<!-- The Modal -->
-<div id="myModal" class="modal">
-
-  <!-- The Close Button -->
-  <span class="close">&times;</span>
-
-  <!-- Modal Content (The Image) -->
-  <img class="modal-content" id="img01">
-
-  <!-- Modal Caption (Image Text) -->
-  <div id="caption"></div>
-</div>
 @endsection
 
 
 @section('content2')
     <br><br><br><br><br><br>
-    <!-- Button trigger modal -->
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
