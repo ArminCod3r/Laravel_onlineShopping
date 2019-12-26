@@ -60,11 +60,54 @@
         @foreach($review_images as $key=>$item)
 
             <?php $img_link = url('upload'.'/'.$item); ?>
-            <img src="{{ $img_link }}" class="review_images" onclick="get_link('{{ $img_link }}')">
+            <img src="{{ $img_link }}" class="review_images"
+                                       onclick="get_link('{{ $img_link }}')"
+                                       ondblclick="biggerImg('{{ $img_link }}')">
 
         @endforeach
 
     @endif
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- The Close Button -->
+  <span class="close">&times;</span>
+
+  <!-- Modal Content (The Image) -->
+  <img class="modal-content" id="img01">
+
+  <!-- Modal Caption (Image Text) -->
+  <div id="caption"></div>
+</div>
+@endsection
+
+
+@section('content2')
+    <br><br><br><br><br><br>
+    <!-- Button trigger modal -->
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+
+        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <img id="bigger_img" class="bigger_img" src="">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">بستن</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 @endsection
 
@@ -114,6 +157,18 @@
     {
         $(".img_link").html(img_link);
     }
+
+    biggerImg = function(img_link)
+    {
+        $("#exampleModalLongTitle").html(img_link);
+
+        var img = document.getElementById("bigger_img").src=img_link;
+        //$(".modal-body").html(img_link);
+
+        $('#exampleModalLong').modal('show'); 
+    }
+
+
     </script>
 
 @endsection
