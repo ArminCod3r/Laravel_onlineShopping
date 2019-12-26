@@ -1,7 +1,7 @@
 @extends('admin/layouts/adminLayout')
 
 @section('header')
-    <title>افزودن نقد و بررسی</title>
+    <title>ویرایش نقد و بررسی - {{ $product->title }}</title>
 
     <!--Dropzone.css -->
 	<link href="{{ url('css/dropzone.css') }}" rel="stylesheet">
@@ -9,7 +9,13 @@
 @endsection
 
 @section('custom-title')
-  افزودن نقد و بررسی
+  ویرایش نقد و بررسی 
+  
+
+  <span class="edit_productTitle">
+    {{ $product->title }}
+  </span>
+
 @endsection
 
 
@@ -32,11 +38,13 @@
 
   <input type="hidden" name="_method" value="PATCH">
 
-	<input type="submit" name="submit" value="ثبت" class="btn btn-success">
+	<input type="submit" name="submit" value="ثبت" class="btn btn-primary">
 
 </form>
 
-<form method="post" action="{{url('admin/review/upload'.'/28')}}"
+<br/>
+
+<form method="post" action="{{url('admin/review/upload'.'/'.$product->id)}}"
 					class="dropzone"
 					id="upload-file"
 					enctype="multipart/form-data">

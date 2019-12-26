@@ -145,3 +145,10 @@ body{
 {
   border: 1px solid #00bfd6 !important;
 }
+.edit_productTitle
+{
+  font-size     : 18px;
+  padding-top   : 30px;
+  color         : #666;
+  padding-right : 10px;
+}

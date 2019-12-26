@@ -64,7 +64,7 @@ Route::delete('admin/review/{product_id}/destroy', 'admin\ReviewController@destr
 Route::get('admin/review/{product_id}/show', 'admin\ReviewController@show')
 	 ->name('review.show');
 
-Route::put('admin/review/{product_id}/update', 'admin\ReviewController@update')
+Route::patch('admin/review/{product_id}/update', 'admin\ReviewController@update')
 	  ->name('review.update');
 
 Route::get('admin/review/{product_id}/edit', 'admin\ReviewController@edit')
