@@ -135,4 +135,25 @@ class ReviewController extends Controller
         else
             return 0;
     }
+
+    public function deleteImage($img)
+    {
+        //return 'hi';
+
+        $image = ProductImage::findOrFail($img);
+
+        if ($image->url)
+        {
+            $path = 'upload/'.$image->url;            
+
+            if(file_exists($path))
+            {
+                $image->delete();
+
+                unlink($path);
+            }
+        }
+
+        return redirect()->back();
+    }
 }

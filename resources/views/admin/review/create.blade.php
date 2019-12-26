@@ -100,7 +100,18 @@
         </button>
       </div>
       <div class="modal-body">
-        <img id="bigger_img" class="bigger_img" src="">
+
+
+            <img id="bigger_img" class="bigger_img" src="">
+
+            <form action="#" method="POST"  accept-charset="utf-8" class="deleteImage" id="deleteImage"
+                    onsubmit="return confirm('آیا قصد حذف این دسته را دارید؟')"> <!--stack: 39790082-->
+                {{ csrf_field() }}      
+                <input type="hidden" name="_method" value="DELETE">
+                <input type="submit" name="submit" value="حذف" class="btn btn-default">
+            </form>        
+
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">بستن</button>
@@ -163,10 +174,25 @@
         $("#exampleModalLongTitle").html(img_link);
 
         var img = document.getElementById("bigger_img").src=img_link;
+
+        var img_name = (img_link.split("/"))[4];
+        var img_del_link = "http://localhost:8000/admin/review/deleteImage/"+img_name;
+        document.getElementById("deleteImage").action=img_del_link;
+
         //$(".modal-body").html(img_link);
 
         $('#exampleModalLong').modal('show'); 
     }
+
+    $(".modal-body").mouseover(function() {
+        $(this).children(".deleteImage").show();
+
+         // bluring: https://www.w3schools.com/howto/howto_css_image_effects.asp
+         document.getElementById("bigger_img").style.filter = "blur(5px)";
+    }).mouseout(function() {
+        $(this).children(".deleteImage").hide();
+         document.getElementById("bigger_img").style.filter = "blur(0px)";
+    });
 
 
     </script>
