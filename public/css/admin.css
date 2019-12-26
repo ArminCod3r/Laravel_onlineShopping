@@ -135,3 +135,13 @@ body{
   pointer-events : auto;
   overflow-y     : auto;
 }
+
+.imgDelBtn
+{
+  margin-right     : 20px;
+}
+
+.imgDelBtn:hover , .closeModalimg:hover
+{
+  border: 1px solid #00bfd6 !important;
+}

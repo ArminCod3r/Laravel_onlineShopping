@@ -59,10 +59,10 @@
 
         @foreach($review_images as $key=>$item)
 
-            <?php $img_link = url('upload'.'/'.$item); ?>
+            <?php $img_link = url('upload'.'/'.$item->url); ?>
             <img src="{{ $img_link }}" class="review_images"
                                        onclick="get_link('{{ $img_link }}')"
-                                       ondblclick="biggerImg('{{ $img_link }}')">
+                                       ondblclick="biggerImg('{{ $item->id }}','{{ $img_link }}')">
 
         @endforeach
 
@@ -104,17 +104,18 @@
 
             <img id="bigger_img" class="bigger_img" src="">
 
-            <form action="#" method="POST"  accept-charset="utf-8" class="deleteImage" id="deleteImage"
-                    onsubmit="return confirm('آیا قصد حذف این دسته را دارید؟')"> <!--stack: 39790082-->
-                {{ csrf_field() }}      
-                <input type="hidden" name="_method" value="DELETE">
-                <input type="submit" name="submit" value="حذف" class="btn btn-default">
-            </form>        
-
 
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">بستن</button>
+      <div class="modal-footer" style="position: absolute;padding-top: 110%;">
+
+        <button type="button" class="btn btn-default closeModalimg" data-dismiss="modal">بستن</button>
+
+        <form action="#" method="POST"  accept-charset="utf-8" class="deleteImage" id="deleteImage" onsubmit="return confirm('آیا قصد حذف این دسته را دارید؟')"> <!--stack: 39790082-->
+                {{ csrf_field() }}      
+                <input type="hidden" name="_method" value="DELETE">
+                <input type="submit" name="submit" value="حذف" class="btn btn-default imgDelBtn">
+            </form> 
+
       </div>
     </div>
   </div>
@@ -169,14 +170,14 @@
         $(".img_link").html(img_link);
     }
 
-    biggerImg = function(img_link)
+    biggerImg = function(img_id, img_link)
     {
         $("#exampleModalLongTitle").html(img_link);
 
         var img = document.getElementById("bigger_img").src=img_link;
 
         var img_name = (img_link.split("/"))[4];
-        var img_del_link = "http://localhost:8000/admin/review/deleteImage/"+img_name;
+        var img_del_link = "http://localhost:8000/admin/review/deleteImage/"+img_id;
         document.getElementById("deleteImage").action=img_del_link;
 
         //$(".modal-body").html(img_link);
@@ -186,12 +187,6 @@
 
     $(".modal-body").mouseover(function() {
         $(this).children(".deleteImage").show();
-
-         // bluring: https://www.w3schools.com/howto/howto_css_image_effects.asp
-         document.getElementById("bigger_img").style.filter = "blur(5px)";
-    }).mouseout(function() {
-        $(this).children(".deleteImage").hide();
-         document.getElementById("bigger_img").style.filter = "blur(0px)";
     });
 
 
