@@ -131,7 +131,27 @@ class ReviewController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // 1. row
+        $review = Review::findOrFail($id);
+        $review->delete();
+
+        // 2. img
+        $images = ProductImage::where('product_id', $review->product_id)
+                              ->where('tag', "review")
+                              ->pluck("url");
+                              
+        foreach ($images as $key => $item)
+        {              
+            $path = 'upload/'.$item;
+
+            if(file_exists($path))
+            {
+                unlink($path);
+            }
+        }
+
+        return redirect()->back();
+        
     }
 
     public function upload(Request $request, $id)

@@ -37,7 +37,7 @@
 			<td>
 				<a href="review/{{ $item->product_id }}/edit" class="fa fa-edit"> </a>
 
-				<form action="{{ action('admin\ReviewController@destroy', ['id' => $item->product_id]) }}" method="POST"  accept-charset="utf-8" class="pull-right"  onsubmit="return confirm('آیا قصد حذف این دسته را دارید؟')"> <!--stack: 39790082-->
+				<form action="{{ action('admin\ReviewController@destroy', ['id' => $item->id]) }}" method="POST"  accept-charset="utf-8" class="pull-right"  onsubmit="return confirm('آیا قصد حذف این دسته را دارید؟')"> <!--stack: 39790082-->
                         {{ csrf_field() }}      
                         <input type="hidden" name="_method" value="DELETE">
                         <input type="submit" name="submit" value="X" class="submitStyle">
