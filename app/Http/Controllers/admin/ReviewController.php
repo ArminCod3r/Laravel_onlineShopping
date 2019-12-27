@@ -19,7 +19,9 @@ class ReviewController extends Controller
      */
     public function index()
     {
-        //
+        $reviews = Review::with('Product')->get(); //reviews + products
+
+        return view('admin/review/index')->with(['reviews'=> $reviews]);
     }
 
     /**
@@ -136,7 +138,7 @@ class ReviewController extends Controller
     {
         $id = str_replace(' ', '-', $id); // Replaces all spaces with hyphens.
         $id = preg_replace('/[^A-Za-z0-9\-]/', '', $id); // Removes special chars.
-        
+
         $files = $request->file('file');
 
         $rules = array(

@@ -102,4 +102,9 @@ class Product extends Model
     {
         return $this->hasMany(Color::class, 'product_id', 'id');
     }
+
+    public function Review()
+    {
+        return $this->hasOne(Review::class, 'product_id', 'id');
+    }
 }

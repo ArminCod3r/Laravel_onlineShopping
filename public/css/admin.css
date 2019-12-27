@@ -152,3 +152,16 @@ body{
   color         : #666;
   padding-right : 10px;
 }
+
+
+.submitStyle
+{
+  background-color: Transparent;
+  background-repeat:no-repeat;
+  border: none;
+  cursor:pointer;
+  overflow: hidden;
+  outline:none;
+  color: red;
+  font-weight: bold;
+}
