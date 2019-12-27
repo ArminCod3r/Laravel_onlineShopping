@@ -6,6 +6,8 @@
 
   <link rel="stylesheet" href="{{ url('css/flipclock.css') }}">
   <script src="{{ url('js/flipclock.js') }}"></script>
+
+
 @endsection
 
 @section('content')
@@ -116,6 +118,30 @@
 	</div>
 </div>
 
+<div class="tabs">
+
+	  <!-- Nav tabs -->
+	  <ul class="nav nav-tabs" role="tablist">
+	    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Home</a></li>
+
+	    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profile</a></li>
+
+	    <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Messages</a></li>
+
+	    <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Settings</a></li>
+
+	  </ul>
+
+	  <!-- Tab panes -->
+	  <div class="tab-content">
+	    <div role="tabpanel" class="tab-pane active" id="home"> home </div>
+	    <div role="tabpanel" class="tab-pane" id="profile"> profile </div>
+	    <div role="tabpanel" class="tab-pane" id="messages"> messages </div>
+	    <div role="tabpanel" class="tab-pane" id="settings"> settings </div>
+	  </div>
+
+</div>
+
 
 @endsection
 
@@ -123,6 +149,9 @@
 
     <script type="text/javascript" src="{{ url('js/jscolor.js') }}"></script>
     <script type="text/javascript" src="{{ url('js/jquery.elevateZoom-3.0.8.min.js') }}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 
 
     <script type="text/javascript">
@@ -162,6 +191,13 @@
 			var ez = $("#product_img").data("elevateZoom");
 			ez.swaptheimage(prev_img, img);
 		}
+
+
+		// Tab: Review-features-comments-questions
+		$('#myTabs a').click(function (e) {
+		  e.preventDefault()
+		  $(this).tab('show')
+		})
 
     </script>
 
