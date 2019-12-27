@@ -10,6 +10,12 @@
 
 @section('custom-title')
   افزودن نقد و بررسی
+
+<br/>
+  <span class="edit_productTitle">    
+    <a href="{{ url('admin/product/'.$product->id.'/'.'edit') }}">{{ $product->title }}</a>
+  </span>
+
 @endsection
 
 
