@@ -134,8 +134,9 @@ class ReviewController extends Controller
 
     public function upload(Request $request, $id)
     {
-        $id = 28;
-
+        $id = str_replace(' ', '-', $id); // Replaces all spaces with hyphens.
+        $id = preg_replace('/[^A-Za-z0-9\-]/', '', $id); // Removes special chars.
+        
         $files = $request->file('file');
 
         $rules = array(
