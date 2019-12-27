@@ -34,7 +34,7 @@ class ReviewController extends Controller
         $product = Product::findOrFail($product_id);
 
         // To access the ID of the images, NOT: ProductImage::where('tag', 'review')->pluck('url');
-        $review_images = $product->ProductImage->where('tag', 'review'); 
+        $review_images = $product->ProductImage->where('tag', 'review');
 
         return view('admin/review/create')->with([
                                                   'product'       => $product,
@@ -131,24 +131,25 @@ class ReviewController extends Controller
      */
     public function destroy($id)
     {
-        // 1. row
+        // 1. review
         $review = Review::findOrFail($id);
         $review->delete();
 
         // 2. img
         $images = ProductImage::where('product_id', $review->product_id)
-                              ->where('tag', "review")
-                              ->pluck("url");
-                              
-        foreach ($images as $key => $item)
+                              ->where('tag', "review");
+
+        foreach ($images->get() as $key => $item)
         {              
-            $path = 'upload/'.$item;
+            $path = 'upload/'.$item->url;
 
             if(file_exists($path))
             {
                 unlink($path);
             }
         }
+
+        $images->delete();
 
         return redirect()->back();
         
