@@ -313,6 +313,25 @@
                 </li>
               </ul>
             </li>
+
+
+            <li class="nav-item has-treeview">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fa fa-search-plus"></i>
+                <p>
+                  نقد و بررسی
+                  <i class="fa fa-angle-left right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="{{ url('admin/review') }}" class="nav-link">
+                    <p>لیست</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+
             <li class="nav-header">مثال‌ها</li>
             <li class="nav-item">
               <a href="pages/calendar.html" class="nav-link">
