@@ -7,6 +7,7 @@ use View;
 use DB;
 use App\Product;
 use App\AmazingProducts;
+use App\Review;
 
 class SiteController extends Controller
 {
@@ -55,7 +56,12 @@ class SiteController extends Controller
 
                                                 ->firstOrFail();
 
-        return view('site.showProduct')->with('product', $product);
+        $review = Review::where('product_id', $product->id)->firstOrFail();
+
+        return view('site.showProduct')->with([
+                                               'product' => $product,
+                                               'review' => $review
+                                              ]);
     }
 
 

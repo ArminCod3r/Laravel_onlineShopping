@@ -122,22 +122,40 @@
 
 	  <!-- Nav tabs -->
 	  <ul class="nav nav-tabs" role="tablist">
-	    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Home</a></li>
+	    <li role="presentation" class="active"><a href="#review" aria-controls="review" role="tab" data-toggle="tab">نقد و بررسی تخصصی</a></li>
 
-	    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profile</a></li>
+	    <li role="presentation"><a href="#features" aria-controls="features" role="tab" data-toggle="tab">مشخصات</a></li>
 
-	    <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Messages</a></li>
+	    <li role="presentation"><a href="#comments" aria-controls="comments" role="tab" data-toggle="tab">نظرات کاربران</a></li>
 
-	    <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Settings</a></li>
+	    <li role="presentation"><a href="#questions" aria-controls="questions" role="tab" data-toggle="tab">پرسش و پاسخ</a></li>
 
 	  </ul>
 
 	  <!-- Tab panes -->
 	  <div class="tab-content">
-	    <div role="tabpanel" class="tab-pane active" id="home"> home </div>
-	    <div role="tabpanel" class="tab-pane" id="profile"> profile </div>
-	    <div role="tabpanel" class="tab-pane" id="messages"> messages </div>
-	    <div role="tabpanel" class="tab-pane" id="settings"> settings </div>
+
+	    <div role="tabpanel" class="tab-pane active" id="review" style="font-size: 15px;">
+
+	    	<div style="width:95% ; margin-top:30px ; margin-right:30px">
+	    		<h3 style="padding-bottom: 20px"> نقد و بررسی متخصصین </h3>
+
+	    		@if($review)
+	    			{!! nl2br(strip_tags($review->desc, '<img>')) !!}
+
+	    		@else
+
+	    			<p style="color:red ; text-align:center ; padding-top:30px; padding-bottom:30px;">
+		    			 نقد و بررسی ای برای این محصول ثبت نشده
+	    			 </p>
+
+	    		@endif
+	    	</div>
+	    </div>
+
+	    <div role="tabpanel" class="tab-pane" id="features"> features </div>
+	    <div role="tabpanel" class="tab-pane" id="comments"> comments </div>
+	    <div role="tabpanel" class="tab-pane" id="questions"> questions </div>
 	  </div>
 
 </div>
