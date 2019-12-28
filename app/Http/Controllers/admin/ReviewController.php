@@ -31,6 +31,13 @@ class ReviewController extends Controller
      */
     public function create($product_id)
     {
+        $review = Review::where('product_id',$product_id)->first();
+
+        if($review)
+        {
+            return redirect('admin/review/'.$product_id.'/edit');
+        }
+
         $product = Product::findOrFail($product_id);
 
         // To access the ID of the images, NOT: ProductImage::where('tag', 'review')->pluck('url');
