@@ -211,7 +211,7 @@
             </li>
 
             
-            <li class="nav-item has-treeview">
+            <li class="nav-item has-treeview" id="products">
               <a href="#" class="nav-link">
                 <i class="nav-icon fa fa-modx"></i>
                 <p>
@@ -221,13 +221,13 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="/admin/product/" class="nav-link">
+                  <a href="/admin/product#products" class="nav-link">
                     <i class="fa fa-circle-o nav-icon"></i>
                     <p>لیست محصولات</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="/admin/product/create" class="nav-link">
+                  <a href="/admin/product/create#products" class="nav-link">
                     <i class="fa fa-circle-o nav-icon"></i>
                     <p>افزودن محصول</p>
                   </a>
@@ -235,7 +235,7 @@
                 
               </ul>
             </li>
-            <li class="nav-item has-treeview">
+            <li class="nav-item has-treeview" id="slider">
               <a href="#" class="nav-link">
                 <i class="nav-icon fa fa-tree"></i>
                 <p>
@@ -245,20 +245,20 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="{{ url('admin/slider/') }}" class="nav-link">
+                  <a href="{{ url('admin/slider#slider') }}" class="nav-link">
                     <i class="fa fa-circle-o nav-icon"></i>
                     <p>لیست اسلاید ها</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="{{ url('admin/slider/create') }}" class="nav-link">
+                  <a href="{{ url('admin/slider/create#slider') }}" class="nav-link">
                     <i class="fa fa-circle-o nav-icon"></i>
                     <p>افزودن اسلایدر</p>
                   </a>
                 </li>
               </ul>
             </li>
-            <li class="nav-item has-treeview">
+            <li class="nav-item has-treeview" id="category">
               <a href="#" class="nav-link">
                 <i class="nav-icon fa fa-edit"></i>
                 <p>
@@ -268,21 +268,21 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="/admin/category" class="nav-link">
+                  <a href="/admin/category#category" class="nav-link">
                     <i class="fa fa-circle-o nav-icon"></i>
                     <p>لیست دسته ها</p>
                   </a>
                 </li>
 
                 <li class="nav-item">
-                  <a href="/admin/category/create" class="nav-link">
+                  <a href="/admin/category/create#category" class="nav-link">
                     <i class="fa fa-circle-o nav-icon"></i>
                     <p>افزودن دسته</p>
                   </a>
                 </li>
               </ul>
             </li>
-            <li class="nav-item has-treeview">
+            <li class="nav-item has-treeview" id="amazing_products">
               <a href="#" class="nav-link">
                 <i class="nav-icon fa fa-bolt"></i>
                 <p>
@@ -292,13 +292,13 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="{{ url('admin/amazing_products') }}" class="nav-link">
+                  <a href="{{ url('admin/amazing_products#amazing_products') }}" class="nav-link">
                     <i class="fa fa-circle-o nav-icon"></i>
                     <p>لیست</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="{{ url('admin/amazing_products/create') }}" class="nav-link">
+                  <a href="{{ url('admin/amazing_products/create#amazing_products') }}" class="nav-link">
                     <i class="fa fa-circle-o nav-icon"></i>
                     <p>افزودن</p>
                   </a>
@@ -307,7 +307,7 @@
             </li>
 
 
-            <li class="nav-item has-treeview">
+            <li class="nav-item has-treeview" id="review">
               <a href="#" class="nav-link">
                 <i class="nav-icon fa fa-search-plus"></i>
                 <p>
@@ -317,7 +317,7 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="{{ url('admin/review') }}" class="nav-link">
+                  <a href="{{ url('admin/review#review') }}" class="nav-link">
                     <p>لیست</p>
                   </a>
                 </li>
@@ -325,7 +325,7 @@
             </li>
 
 
-            <li class="nav-item has-treeview">
+            <li class="nav-item has-treeview" id="filter">
               <a href="#" class="nav-link">
                 <i class="nav-icon fa fa-filter"></i>
                 <p>
@@ -335,14 +335,14 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="{{ url('admin/feature/list') }}" class="nav-link">
+                  <a href="{{ url('admin/feature/list#filter') }}" class="nav-link">
                     <p>لیست</p>
                   </a>
                 </li>
               </ul>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="{{ url('admin/feature') }}" class="nav-link">
+                  <a href="{{ url('admin/feature#filter') }}" class="nav-link">
                     <p>افزودن</p>
                   </a>
                 </li>
@@ -475,6 +475,18 @@
 <script src="{{ url('dist/js/pages/dashboard.js') }}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{ url('dist/js/demo.js') }}"></script>
+
+
+<script>
+
+  // Keeping the selected nav-bar open
+  document.addEventListener('DOMContentLoaded', function() {
+
+        $(window.location.hash).addClass('menu-open');
+    }, false);
+
+</script>
+
 
 @yield('footer')
 
