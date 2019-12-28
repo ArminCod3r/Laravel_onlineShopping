@@ -332,6 +332,31 @@
               </ul>
             </li>
 
+
+            <li class="nav-item has-treeview">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fa fa-filter"></i>
+                <p>
+                  فیلتر ها
+                  <i class="fa fa-angle-left right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="{{ url('admin/feature/list') }}" class="nav-link">
+                    <p>لیست</p>
+                  </a>
+                </li>
+              </ul>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="{{ url('admin/feature') }}" class="nav-link">
+                    <p>افزودن</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+
             <li class="nav-header">مثال‌ها</li>
             <li class="nav-item">
               <a href="pages/calendar.html" class="nav-link">
