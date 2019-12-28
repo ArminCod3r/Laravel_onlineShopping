@@ -46,6 +46,7 @@ Route::post('admin/filter', 'admin\FilterController@create');
 // Products' Features
 Route::get('admin/feature' , 'admin\FeatureController@index');
 Route::post('admin/feature', 'admin\FeatureController@create');
+Route::get('admin/feature/list', 'admin\FeatureController@list');
 
 // Amazin Products
 Route::resource('admin/amazing_products','admin\AmazingProductController');

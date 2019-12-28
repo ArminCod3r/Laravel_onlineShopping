@@ -26,4 +26,9 @@ class Category extends Model
     {
         return $this->hasOne(Category::class, 'id', 'parent_id')->withDefault(['cat_name'=>'-']);
     }
+
+    public function Feature()
+    {
+        return $this->hasMany(Feature::class, 'category_id', 'id');
+    }
 }

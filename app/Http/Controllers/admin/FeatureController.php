@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use DB;
 use App\Feature;
+use App\Category;
 
 class FeatureController extends Controller
 {
@@ -152,6 +153,16 @@ class FeatureController extends Controller
         }
         return redirect()->back();
     }
+
+
+    public function list()
+    {
+        $features = Category::with('Feature')->get();
+
+        return view('admin/feature/list')->with('features', $features);
+    }
+
+
 
 
     // Recursive Method to get all the categories/subcategories

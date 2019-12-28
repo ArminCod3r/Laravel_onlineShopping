@@ -14,4 +14,9 @@ class Feature extends Model
     {
     	return $this->hasMany(Feature::class, 'parent_id', 'id');
     }
+
+    public function Category()
+    {
+    	return $this->belongsTo(Category::class);
+    }
 }
