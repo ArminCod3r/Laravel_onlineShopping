@@ -107,4 +107,55 @@ class Product extends Model
     {
         return $this->hasOne(Review::class, 'product_id', 'id');
     }
+
+
+
+
+    public static function ProductID_To_CategoryName($id)
+    {
+        /* Join 3 tables
+           Query:
+            --------------------
+            1.
+            SELECT *
+            FROM product
+
+            join parent_product
+            on product.id = parent_product.product_id
+
+            join category
+            on parent_product.parent_id=category.id
+
+            where product.id=28
+
+            ----------- OR ----------
+            2.
+            select *
+            from category
+            where id IN (
+                    select parent_id
+                    from parent_product
+                    where product_id IN (
+                                        select id
+                                        from product
+                                        where id=28
+                                        )
+                    )
+        */
+
+
+        $result = DB::table('product')
+
+                ->join('parent_product', 'product.id', '=', 'parent_product.product_id')
+                ->join('category', 'parent_product.parent_id', '=', 'category.id')
+
+                ->where('product_id',$id)
+                //->where('category.id', '=', 'category.parent_id')
+
+                ->get()
+                ->toArray();
+
+
+        return $result;
+    }
 }

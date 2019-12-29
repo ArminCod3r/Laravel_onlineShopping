@@ -15,8 +15,8 @@ class Feature extends Model
     	return $this->hasMany(Feature::class, 'parent_id', 'id');
     }
 
-    public function Category()
+    public function ParentProduct()
     {
-    	return $this->belongsTo(Category::class);
+        return $this->hasOne(ParentProduct::class, 'category_id');
     }
 }

@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use DB;
 use App\Feature;
 use App\Category;
+use App\Product;
+use App\ParentProduct;
 
 class FeatureController extends Controller
 {
@@ -161,6 +163,19 @@ class FeatureController extends Controller
 
         return view('admin/feature/list')->with('features', $features);
     }
+
+    public function add($product_id)
+    {
+        $product = Product::findOrFail($product_id);
+
+        $product_To_category = Product::ProductID_To_CategoryName($product_id);
+
+        $category_id=(array)$product_To_category[0]->parent_id;
+        $parents = Product::getParent($category_id);
+
+        return $parents;
+    }
+    
 
 
 
