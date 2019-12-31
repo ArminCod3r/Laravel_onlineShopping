@@ -9,6 +9,7 @@ use App\Feature;
 use App\Category;
 use App\Product;
 use App\ParentProduct;
+use App\Filter;
 
 class FeatureController extends Controller
 {
@@ -166,7 +167,7 @@ class FeatureController extends Controller
 
     public function add($product_id=null , $category_id=null)
     {
-        
+
         if( !empty($product_id) and empty($category_id)  )
         {
             $product = Product::findOrFail($product_id);
@@ -174,7 +175,7 @@ class FeatureController extends Controller
             $product_To_category = Product::ProductID_To_CategoryName($product_id);
 
             $category_id=(array)$product_To_category[0]->parent_id;
-            $parents = Product::getParent($category_id);;
+            $parents = Product::getParent($category_id);
 
             return view('admin/feature/add')->with(['product' => $product,
                                                     'parents' => $parents]);
@@ -184,10 +185,19 @@ class FeatureController extends Controller
         {
             if( !empty($product_id) and !empty($category_id) )
             {
-                return $product_id.":".$category_id;
+                $features = Feature::where('category_id', $category_id)->get();
+                $product  = Product::findOrFail($product_id);
+                $category = Category::findOrFail($category_id);
+
+                //return [$features, $product, $category];
+
+                return view('admin/feature/implement')->with(['features' => $features,
+                                                              'product'  => $product,
+                                                              'category' => $category,
+                                                            ]);
             }
 
-            else // empty($product_id) and empty($category_id)
+            else
             {
                 return abort(404);
             }
