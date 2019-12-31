@@ -175,7 +175,7 @@
         var img = document.getElementById("bigger_img").src=img_link;
 
         var img_name = (img_link.split("/"))[4];
-        var img_del_link = "http://localhost:8000/admin/review/deleteImage/"+img_id;
+        var img_del_link = window.location.origin+"/admin/review/deleteImage/"+img_id;
         document.getElementById("deleteImage").action=img_del_link;
 
         //$(".modal-body").html(img_link);
