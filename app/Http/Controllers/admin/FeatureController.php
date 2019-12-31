@@ -164,16 +164,35 @@ class FeatureController extends Controller
         return view('admin/feature/list')->with('features', $features);
     }
 
-    public function add($product_id)
+    public function add($product_id=null , $category_id=null)
     {
-        $product = Product::findOrFail($product_id);
+        
+        if( !empty($product_id) and empty($category_id)  )
+        {
+            $product = Product::findOrFail($product_id);
 
-        $product_To_category = Product::ProductID_To_CategoryName($product_id);
+            $product_To_category = Product::ProductID_To_CategoryName($product_id);
 
-        $category_id=(array)$product_To_category[0]->parent_id;
-        $parents = Product::getParent($category_id);
+            $category_id=(array)$product_To_category[0]->parent_id;
+            $parents = Product::getParent($category_id);;
 
-        return $parents;
+            return view('admin/feature/add')->with(['product' => $product,
+                                                    'parents' => $parents]);
+        }
+
+        else
+        {
+            if( !empty($product_id) and !empty($category_id) )
+            {
+                return $product_id.":".$category_id;
+            }
+
+            else // empty($product_id) and empty($category_id)
+            {
+                return abort(404);
+            }
+        }
+
     }
     
 
