@@ -33,14 +33,14 @@
 
 		<?php $i=1; ?>
 
-		@foreach($parents as $key=>$value)
+		@foreach($product_To_category as $key=>$value)
 
 			<tr>
 				<td style="width: 20%;"> {{ $i }} </td>
-				<td style="width: 20%;"> {{ $key }} </td>
-				<td> {{ $value }} </td>
+				<td style="width: 20%;"> {{ $value->id }} </td>
+				<td> {{ $value->cat_name }} </td>
 				<td>
-					<a href="/admin/feature/{{ $product->id }}/{{ $key }}/add" class="fa fa-edit">
+					<a href="/admin/feature/{{ $product->id }}/{{ $value->id }}/add" class="fa fa-edit">
 					</a>
 				</td>
 			</tr>

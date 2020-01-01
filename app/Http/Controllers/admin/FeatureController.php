@@ -178,7 +178,8 @@ class FeatureController extends Controller
             $parents = Product::getParent($category_id);
 
             return view('admin/feature/add')->with(['product' => $product,
-                                                    'parents' => $parents]);
+                                                    'parents' => $parents,
+                                                    'product_To_category' => $product_To_category]);
         }
 
         else
@@ -188,8 +189,6 @@ class FeatureController extends Controller
                 $features = Feature::where('category_id', $category_id)->get();
                 $product  = Product::findOrFail($product_id);
                 $category = Category::findOrFail($category_id);
-
-                //return [$features, $product, $category];
 
                 return view('admin/feature/implement')->with(['features' => $features,
                                                               'product'  => $product,
