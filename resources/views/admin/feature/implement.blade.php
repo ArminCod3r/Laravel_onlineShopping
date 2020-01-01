@@ -27,7 +27,7 @@
 
 @section('content1')
 
- <form action="#" method="POST" accept-charset="utf-8" enctype="multipart/form-data">
+ <form action="{{ action('admin\FeatureController@feature_assign', ['product_id' => $product->id]) }}" method="POST" accept-charset="utf-8" enctype="multipart/form-data">
 
 		{{ csrf_field() }}
 
@@ -45,7 +45,7 @@
 					<td> {{ $value->name }} </td>
 					<td>
 						@if($value->filled == 1)
-							<input type="text" class="form-control">
+							<input type="text" name="feature[{{$value->id}}]" class="form-control">
 						@endif
 					</td>
 				</tr>

@@ -203,7 +203,32 @@ class FeatureController extends Controller
         }
 
     }
+
+
+    public function feature_assign(Request $request, $product_id)
+    {
+        Product::findOrFail($product_id);
+
+        $feature = $request->post('feature');
+
+        if(is_array($feature))
+        {
+            DB::table('feature_assign')->where('product_id', $product_id)->delete();
+            
+            foreach ($feature as $key => $item)
+            {
+                DB::table('feature_assign')->insert([
+                                                     'feature_id' => $key ,
+                                                     'product_id' => $product_id ,
+                                                     'value'      => $item ,
+                                                     ]);
+            }
+        }
+
+        return "Inserted...";
+    }
     
+
 
 
 

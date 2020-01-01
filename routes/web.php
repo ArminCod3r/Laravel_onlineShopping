@@ -49,6 +49,7 @@ Route::post('admin/feature', 'admin\FeatureController@create');
 Route::get('admin/feature/list', 'admin\FeatureController@list');
 Route::get('admin/feature/{product_id}/add', 'admin\FeatureController@add');
 Route::get('admin/feature/{product_id}/{category_id}/add', 'admin\FeatureController@add');
+Route::post('admin/feature/{product_id}/feature_assign', 'admin\FeatureController@feature_assign');
 
 
 // Amazin Products
