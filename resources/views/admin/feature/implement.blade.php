@@ -33,7 +33,7 @@
 
 	<table class="table table-hover" style="margin-top: 20px">
 
-		<?php $counter=0;?>
+
 		@foreach($features as $key=>$value)
 			
 			@if($value->parent_id == 0)
@@ -49,7 +49,7 @@
 						@if($value->filled == 1)
 
 							<!-- Editing -->
-							@if( count($assigned_features_key) > 0 )
+							@if( array_key_exists($value->id, $assigned_features_key))
 
 								<input type="text" name="feature[{{$value->id}}]" class="form-control" value="{{ $assigned_features_key[$value->id] }}">
 
@@ -60,7 +60,6 @@
 
 							@endif
 
-							<?php $counter++;?>
 
 						@endif
 					</td>
