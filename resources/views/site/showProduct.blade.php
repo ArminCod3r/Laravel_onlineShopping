@@ -155,17 +155,56 @@
 
 	    <div role="tabpanel" class="tab-pane" id="features">
 
-		    <table class="table table-hover">
+	    	<div class="feature_heading">
+	    		 مشخصات فنی
+	    		 <span> {{ $product->code }} </span>
+	    	</div>
+
+		    <table class="feature_table">
 		    	
+
 		    	@foreach($features as $key=>$value)
-		    	<tr>
-		    		<td style="width: 25%;">{{$value->name}}</td>
-		    		<td style="width: 75%;">
-		    			@if( array_key_exists($value->id, $assigned_features_key))
-		    				{{$assigned_features_key[$value->id]}}
-		    			@endif
-		    		</td>
-		    	</tr>
+
+		    		@if( array_key_exists($value->id, $assigned_features_key) OR
+		    			 ($value->parent_id == 0)
+		    			)
+
+				    	@if($value->parent_id == 0)
+				    			
+							<tr>
+								<th colspan="2">
+									<span> {{ $value->name }} </span>
+								</th>
+							</tr>
+						@else
+							<tr>
+								<td style="width: 30%;">
+
+									<div class="feature_name">
+										@if( array_key_exists($value->id, $assigned_features_key))
+											{{ $value->name }}
+										@endif
+									</div>
+								
+
+								</td>
+
+								<td style="width: 70%;">
+									@if($value->filled == 1)
+
+										@if( array_key_exists($value->id, $assigned_features_key))
+
+											<div class="feature_value" style="width: 100%;">
+												{{$assigned_features_key[$value->id]}}
+											</div>										
+
+										@endif
+
+									@endif
+								</td>
+							</tr>
+						@endif
+					@endif
 	    		@endforeach
 
 		    </table>
