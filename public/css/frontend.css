@@ -868,6 +868,15 @@ body
     padding-bottom   : 50px;
 }
 
+.fa-list::before /* because we have flipped the list icon*/
+{
+    margin-right: 10px;
+}
+.fa-search::before, .fa-comment::before, .fa-question::before
+{
+    margin-left: 10px;
+}
+
 .feature_heading
 {
     color         : #6f6f6f;

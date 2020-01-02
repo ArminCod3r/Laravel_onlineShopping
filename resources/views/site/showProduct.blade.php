@@ -122,13 +122,34 @@
 
 	  <!-- Nav tabs -->
 	  <ul class="nav nav-tabs" role="tablist">
-	    <li role="presentation" class="active"><a href="#review" aria-controls="review" role="tab" data-toggle="tab">نقد و بررسی تخصصی</a></li>
 
-	    <li role="presentation"><a href="#features" aria-controls="features" role="tab" data-toggle="tab">مشخصات</a></li>
+	    <li role="presentation" class="active">
+	    	<a href="#review" aria-controls="review" role="tab" data-toggle="tab"> 
+		    	<i class="fa fa-search fa-2x"></i>
+		    	نقد و بررسی تخصصی
+	    	</a>
+	    </li>
 
-	    <li role="presentation"><a href="#comments" aria-controls="comments" role="tab" data-toggle="tab">نظرات کاربران</a></li>
+	    <li role="presentation">
+		    <a href="#features" aria-controls="features" role="tab" data-toggle="tab">
+			    <i class="fa fa-list fa-rotate-180 fa-2x"></i>
+			    مشخصات
+		    </a>
+	    </li>
 
-	    <li role="presentation"><a href="#questions" aria-controls="questions" role="tab" data-toggle="tab">پرسش و پاسخ</a></li>
+	    <li role="presentation">
+		    <a href="#comments" aria-controls="comments" role="tab" data-toggle="tab">
+			    <i class="fa fa-comment fa-2x"></i>
+			    نظرات کاربران
+		    </a>
+	    </li>
+
+	    <li role="presentation">
+		    <a href="#questions" aria-controls="questions" role="tab" data-toggle="tab">
+			    <i class="fa fa-question fa-2x"></i>
+			    پرسش و پاسخ
+		    </a>
+	    </li>
 
 	  </ul>
 
