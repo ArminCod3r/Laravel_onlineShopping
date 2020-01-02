@@ -153,7 +153,25 @@
 	    	</div>
 	    </div>
 
-	    <div role="tabpanel" class="tab-pane" id="features"> features </div>
+	    <div role="tabpanel" class="tab-pane" id="features">
+
+		    <table class="table table-hover">
+		    	
+		    	@foreach($features as $key=>$value)
+		    	<tr>
+		    		<td style="width: 25%;">{{$value->name}}</td>
+		    		<td style="width: 75%;">
+		    			@if( array_key_exists($value->id, $assigned_features_key))
+		    				{{$assigned_features_key[$value->id]}}
+		    			@endif
+		    		</td>
+		    	</tr>
+	    		@endforeach
+
+		    </table>
+	    	
+	    </div>
+
 	    <div role="tabpanel" class="tab-pane" id="comments"> comments </div>
 	    <div role="tabpanel" class="tab-pane" id="questions"> questions </div>
 	  </div>

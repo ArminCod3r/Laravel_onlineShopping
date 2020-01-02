@@ -8,6 +8,9 @@ use DB;
 use App\Product;
 use App\AmazingProducts;
 use App\Review;
+use App\FeatureAssign;
+use App\Category;
+use App\Feature;
 
 class SiteController extends Controller
 {
@@ -58,9 +61,44 @@ class SiteController extends Controller
 
         $review = Review::where('product_id', $product->id)->firstOrFail();
 
+        //$category = Category::findOrFail($category_id);
+
+        // get the parent(s)
+        $product_To_category = Product::ProductID_To_CategoryName($product->id);
+        $features="";
+
+        // get the categories
+        // get the one that is not empty
+        // BEST approach => taking controll of which one to show via admin panel.
+        foreach ($product_To_category as $key => $value)
+        {
+          $product_category = $value->id;
+
+          $features_temp = Feature::where('category_id', $product_category)->get();
+
+          if(count($features_temp)>0)
+            $features = $features_temp;
+        }
+        
+
+        $assigned_features = FeatureAssign::where('product_id', $product->id)->get();
+        $assigned_features_key = array();
+
+        if( count($assigned_features) > 0 )
+        {
+            // Sorting array -> [feature_id] = value
+            foreach ($assigned_features as $key => $value)
+            {
+                $assigned_features_key[$value['feature_id']] = $value['value'];
+            }
+        }
+
+
         return view('site.showProduct')->with([
-                                               'product' => $product,
-                                               'review' => $review
+                                               'product'  => $product,
+                                               'review'   => $review,
+                                               'features' => $features,
+                                               'assigned_features_key' => $assigned_features_key,
                                               ]);
     }
 
