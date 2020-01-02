@@ -10,6 +10,7 @@ use App\Category;
 use App\Product;
 use App\ParentProduct;
 use App\Filter;
+use App\FeatureAssign;
 
 class FeatureController extends Controller
 {
@@ -190,10 +191,25 @@ class FeatureController extends Controller
                 $product  = Product::findOrFail($product_id);
                 $category = Category::findOrFail($category_id);
 
-                return view('admin/feature/implement')->with(['features' => $features,
-                                                              'product'  => $product,
-                                                              'category' => $category,
-                                                            ]);
+
+                $assigned_features = FeatureAssign::where('product_id', $product_id)->get();
+                $assigned_features_key = array();
+
+                if( count($assigned_features) > 0 )
+                {
+                    // Sorting array -> [feature_id] = value
+                    foreach ($assigned_features as $key => $value)
+                    {
+                        $assigned_features_key[$value['feature_id']] = $value['value'];
+                    }
+                }
+
+                return view('admin/feature/implement')
+                                        ->with(['features' => $features,
+                                                'product'  => $product,
+                                                'category' => $category,
+                                                'assigned_features_key'=> $assigned_features_key
+                                                ]);
             }
 
             else
@@ -225,7 +241,7 @@ class FeatureController extends Controller
             }
         }
 
-        return "Inserted...";
+        return redirect()->back();
     }
     
 

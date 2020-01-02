@@ -32,8 +32,10 @@
 		{{ csrf_field() }}
 
 	<table class="table table-hover" style="margin-top: 20px">
-		@foreach($features as $key=>$value)
 
+		<?php $counter=0;?>
+		@foreach($features as $key=>$value)
+			
 			@if($value->parent_id == 0)
 				<tr>
 					<th colspan="2">
@@ -45,12 +47,25 @@
 					<td> {{ $value->name }} </td>
 					<td>
 						@if($value->filled == 1)
-							<input type="text" name="feature[{{$value->id}}]" class="form-control">
+
+							<!-- Editing -->
+							@if( count($assigned_features_key) > 0 )
+
+								<input type="text" name="feature[{{$value->id}}]" class="form-control" value="{{ $assigned_features_key[$value->id] }}">
+
+							<!-- Creating / Filling -->
+							@else
+
+								<input type="text" name="feature[{{$value->id}}]" class="form-control" value="">
+
+							@endif
+
+							<?php $counter++;?>
+
 						@endif
 					</td>
 				</tr>
 			@endif
-
 			
 		@endforeach
 	</table>
