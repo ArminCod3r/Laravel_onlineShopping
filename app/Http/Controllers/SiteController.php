@@ -59,7 +59,7 @@ class SiteController extends Controller
 
                                                 ->firstOrFail();
 
-        $review = Review::where('product_id', $product->id)->firstOrFail();
+        $review = Review::where('product_id', $product->id)->get();
 
         //$category = Category::findOrFail($category_id);
 

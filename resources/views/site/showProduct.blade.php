@@ -196,8 +196,8 @@
 	    	<div style="width:95% ; margin-top:30px ; margin-right:30px">
 	    		<h3 style="padding-bottom: 20px"> نقد و بررسی متخصصین </h3>
 
-	    		@if($review)
-	    			{!! nl2br(strip_tags($review->desc, '<img>')) !!}
+	    		@if(sizeof($review)>0)
+	    			{!! nl2br(strip_tags($review[0]->desc, '<img>')) !!}
 
 	    		@else
 

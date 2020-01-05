@@ -69,7 +69,7 @@
 				<!-- Details -->
 				<!-- <div class="col-md-12"> -->
 				<?php
-					$url = url('')."/".str_replace(' ','-', $value->Product_details->code)."/".$value->Product_details->title_url;
+					$url = url('')."/".($value->Product_details->code)."/".$value->Product_details->title_url;
 				?>
 				
 
@@ -286,7 +286,7 @@
 
 						<p>
 							<a class="newest_product_title"
-									href="{{ url('product').'/'.str_replace(' ','-', $value['code']).'/'.$value['title_url'] }}">
+									href="{{ url('product').'/'.$value['code'].'/'.$value['title_url'] }}">
 
 								@if(mb_strlen($value['title']) > 35)
 									{{ substr($value['title'],35).'...' }} 
