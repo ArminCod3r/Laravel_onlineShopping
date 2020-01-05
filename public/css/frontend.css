@@ -975,6 +975,11 @@ body
     border-radius    : 5px;
     float            : left;
     text-align       : center;
+    position         : absolute;
+    bottom           : 0;
+    margin-bottom    : 10%;
+    left             : 0px;
+    margin-left      : 2%;
 }
 
 .price_org
