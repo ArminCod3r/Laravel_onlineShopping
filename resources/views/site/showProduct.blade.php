@@ -80,73 +80,79 @@
 
 		    @if($product->product_status == 1)
 
-			    <?php
-			    	$color_count = $product->color_product_frontend;
-			    ?>
-			    @if(sizeof($color_count) > 0)
+		    	<form action="#" method="POST" accept-charset="utf-8">
+					{{ csrf_field() }}
 
-					<div class="">
-					 	<div class="row product_colors_list">
+				    <?php
+				    	$color_count = $product->color_product_frontend;
+				    ?>
+				    @if(sizeof($color_count) > 0)
 
-					    	@foreach($product->color_product_frontend as $key=>$item)
+						<div class="">
+						 	<div class="row product_colors_list">
 
-
-					    		<div class="col-sm-2 color_area list-group panel">
-									<a class="list-group-item color_a" style="cursor:pointer">
-
-										<input type="text" id="color"
-										class="jscolor {valueElement:null,value:'{{ $item->color_code }}'} colorStyle form-control"
-										value="" disabled>
-
-									</a>
-								</div>
-
-					    		<div class="col-sm-10">
-								</div>
+						    	@foreach($product->color_product_frontend as $key=>$item)
 
 
-							@endforeach
+						    		<div class="col-sm-2 color_area list-group panel">
+										<a class="list-group-item color_a" style="cursor:pointer" id="color_{{$item->id}}">
+
+											<input type="text" id="color"
+											class="jscolor {valueElement:null,value:'{{ $item->color_code }}'} colorStyle form-control"
+											value="" disabled>
+
+										</a>
+									</div>
+
+						    		<div class="col-sm-10">
+									</div>
 
 
+								@endforeach
+
+
+							</div>
 						</div>
+
+					@endif
+
+
+					<div class="price_product">
+						<?php
+
+							function toPersianNum($number)
+						    {
+						        $number = str_replace("1","۱",$number);
+						        $number = str_replace("2","۲",$number);
+						        $number = str_replace("3","۳",$number);
+						        $number = str_replace("4","۴",$number);
+						        $number = str_replace("5","۵",$number);
+						        $number = str_replace("6","۶",$number);
+						        $number = str_replace("7","۷",$number);
+						        $number = str_replace("8","۸",$number);
+						        $number = str_replace("9","۹",$number);
+						        $number = str_replace("0","۰",$number);
+
+						        return $number;
+						    }
+
+						    $product_price_persian = toPersianNum(number_format($product->price));
+
+						?>
+
+						<div class="price_org"> {{$product_price_persian}} </div>
+						<span style="color:#fb3449;"> تومان </span>
+
+
+						<input type="submit" value="افزودن به سبد خرید" class="add_cart_btn"
+							   id="add_cart_btn" />
+						 
+
 					</div>
 
-				@endif
+					<input type="hidden" name="color_session" id="color_session">
 
-
-				<div class="price_product">
-					<?php
-
-						function toPersianNum($number)
-					    {
-					        $number = str_replace("1","۱",$number);
-					        $number = str_replace("2","۲",$number);
-					        $number = str_replace("3","۳",$number);
-					        $number = str_replace("4","۴",$number);
-					        $number = str_replace("5","۵",$number);
-					        $number = str_replace("6","۶",$number);
-					        $number = str_replace("7","۷",$number);
-					        $number = str_replace("8","۸",$number);
-					        $number = str_replace("9","۹",$number);
-					        $number = str_replace("0","۰",$number);
-
-					        return $number;
-					    }
-
-					    $product_price_persian = toPersianNum(number_format($product->price));
-
-					?>
-
-					<div class="price_org"> {{$product_price_persian}} </div>
-					<span style="color:#fb3449;"> تومان </span>
-
-
-					<input type="submit" value="افزودن به سبد خرید" class="add_cart_btn" />
-					 
-
-				</div>
-
-
+				</form>
 		    @endif
 
 		</div>
@@ -300,6 +306,9 @@
 		   var $this = $(this);
 		    $('.list-group').find('.active').removeClass('active');
 		    $this.addClass('active');
+
+		    // color_session => color_id
+		    document.getElementById('color_session').value=event.srcElement.id;
 		});
 
     	// Preventing href="#" Going to Top of Page (13003044)
@@ -336,7 +345,21 @@
 		$('#myTabs a').click(function (e) {
 		  e.preventDefault()
 		  $(this).tab('show')
-		})
+		});
+
+		// Choosing/Setting default color
+		document.addEventListener('DOMContentLoaded', function() {
+
+			var $first_color = <?php echo json_encode($product->color_product_frontend[0]->id); ?>;
+
+			// Choosing
+			$('#color_'+$first_color).addClass('active');
+
+			// Setting: color_session => color_id (First color of the color[])			
+		    document.getElementById('color_session').value = "color_"+$first_color;
+
+		}, false);
+
 
     </script>
 
