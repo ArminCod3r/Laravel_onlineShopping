@@ -21,7 +21,7 @@
 				 class="product_img"
 				 id="product_img">
 
-			<div>
+			<div style="position: absolute;bottom: 0;margin-bottom: 10px;">
 				<?php $key; ?>
 				@foreach($product->ProductImage as $key=>$item)
 
