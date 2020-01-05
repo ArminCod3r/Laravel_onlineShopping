@@ -218,50 +218,57 @@
 
 		    <table class="feature_table">
 		    	
+		    	@if( count($assigned_features_key) > 0 )
 
-		    	@foreach($features as $key=>$value)
+			    	@foreach($features as $key=>$value)
 
-		    		@if( array_key_exists($value->id, $assigned_features_key) OR
-		    			 ($value->parent_id == 0)
-		    			)
+			    		@if( array_key_exists($value->id, $assigned_features_key) OR
+			    			 ($value->parent_id == 0)
+			    			)
 
-				    	@if($value->parent_id == 0)
-				    			
-							<tr>
-								<th colspan="2">
-									<span> {{ $value->name }} </span>
-								</th>
-							</tr>
-						@else
-							<tr>
-								<td style="width: 30%;">
+					    	@if($value->parent_id == 0)
+					    			
+								<tr>
+									<th colspan="2">
+										<span> {{ $value->name }} </span>
+									</th>
+								</tr>
+							@else
+								<tr>
+									<td style="width: 30%;">
 
-									<div class="feature_name">
-										@if( array_key_exists($value->id, $assigned_features_key))
-											{{ $value->name }}
+										<div class="feature_name">
+											@if( array_key_exists($value->id, $assigned_features_key))
+												{{ $value->name }}
+											@endif
+										</div>
+									
+
+									</td>
+
+									<td style="width: 70%;">
+										@if($value->filled == 1)
+
+											@if( array_key_exists($value->id, $assigned_features_key))
+
+												<div class="feature_value" style="width: 100%;">
+													{{$assigned_features_key[$value->id]}}
+												</div>										
+
+											@endif
+
 										@endif
-									</div>
-								
-
-								</td>
-
-								<td style="width: 70%;">
-									@if($value->filled == 1)
-
-										@if( array_key_exists($value->id, $assigned_features_key))
-
-											<div class="feature_value" style="width: 100%;">
-												{{$assigned_features_key[$value->id]}}
-											</div>										
-
-										@endif
-
-									@endif
-								</td>
-							</tr>
+									</td>
+								</tr>
+							@endif
 						@endif
-					@endif
-	    		@endforeach
+		    		@endforeach
+
+		    	@else
+		    		 <p style="color:red ; text-align:center ; padding-top:30px; padding-bottom:30px;">
+		    			 نقد و بررسی ای برای این محصول ثبت نشده
+	    			 </p>
+		    	@endif
 
 		    </table>
 	    	
