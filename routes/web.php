@@ -81,3 +81,7 @@ Route::post('admin/review/store/{product_id}', 'admin\ReviewController@store')
 Route::post('admin/review/upload/{product_id}', 'admin\ReviewController@upload');
 
 Route::delete('admin/review/deleteImage/{img}', 'admin\ReviewController@deleteImage');
+
+
+// Cart
+Route::resource('admin/cart','admin\CartController');
