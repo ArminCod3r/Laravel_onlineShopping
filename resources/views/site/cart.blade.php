@@ -8,8 +8,9 @@
 @if( count($cart) > 0 )
 
 	<div class="container">
-		<table class="table table-hover">
+		<table class="table table-hover" style="font-size: 16px">
 			<tr>
+				<th>تصویر</th>
 				<th>محصول</th>
 				<th>رنگ</th>
 				<th>تعداد</th>
@@ -17,9 +18,16 @@
 			</tr>
 
 			@foreach($cart as $p_c=>$count)
-				<tr>
-					<td> {{ $cart_details[$p_c][0]->title }} </td>
-					<td>						
+				<tr style="line-height: 80px;">
+					<td style="width: 10%;">
+						<img style="width: 50%;" src="{{ url('upload').'/'.$cart_details[$p_c][0]->url }}" </img>
+					</td>
+
+					<td style="width: 40%;">
+						{{ $cart_details[$p_c][0]->title }}
+					</td>
+
+					<td style="padding-top: 30px;">						
 						<input type="text" id="color"
 						class="jscolor {valueElement:null,value:'{{ $cart_details[$p_c][0]->color_code }}'} colorStyle form-control"
 						value="" disabled>

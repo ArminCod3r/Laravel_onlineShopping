@@ -181,9 +181,13 @@ class SiteController extends Controller
 
           $query = DB::table('product')
                       ->join('color_product', 'product.id', '=', 'color_product.product_id')
+                      ->join('product_images', 'product.id', '=', 'product_images.product_id')
 
                       ->where('product.id',$product_id_)
                       ->where('color_product.id',$color_id_)
+                      ->where('product_images.tag', '!=', 'review')
+
+                      ->limit(1)
 
                       ->get()
                       ->toArray();
