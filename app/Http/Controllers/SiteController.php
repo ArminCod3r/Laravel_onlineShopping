@@ -158,22 +158,49 @@ class SiteController extends Controller
 
             $request->session()->put('cart', $cart);
 
-            return $request->session()->get('cart');
+            //return $request->session()->get('cart');
         }
         else
         {
             return abort(404);
         }
+
+        // By using redirect we can hit => if($method =="GET")
+        return redirect('cart/');
       }
 
       // Show cart
       if( $method == "GET")
       {
-        if($request->session()->has('product'))
-          return view('site.cart')->with('cart_status', 'true');
+        $cart_details = array();
+
+        foreach ($request->session()->get('cart') as $key => $value)
+        {
+          $product_id_ = explode("-", $key)[0];
+          $color_id_   = explode("-", $key)[1];
+
+          $query = DB::table('product')
+                      ->join('color_product', 'product.id', '=', 'color_product.product_id')
+
+                      ->where('product.id',$product_id_)
+                      ->where('color_product.id',$color_id_)
+
+                      ->get()
+                      ->toArray();
+
+          $cart_details[$key] = $query;
+
+        }
+
+
+        if($request->session()->has('cart'))
+          return view('site.cart')->with([
+                                          'cart'         => $request->session()->get('cart'),
+                                          'cart_details' => $cart_details,
+                                        ]);
 
         else
-          return view('site.cart')->with('cart_status', 'false');
+          return view('site.cart')->with('cart', 'false');
       }
 
 

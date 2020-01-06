@@ -5,17 +5,24 @@
 
 @section('content')
 
-@if($cart_status == 'true')
+@if( count($cart) > 0 )
 
 	<div class="container">
 		<table class="table table-hover">
 			<tr>
 				<th>محصول</th>
 				<th>رنگ</th>
+				<th>تعداد</th>
 				<th>قیمت</th>
 			</tr>
 
-			@foreach()
+			@foreach($cart as $p_c=>$count)
+				<tr>
+					<td> {{ $cart_details[$p_c][0]->title }} </td>
+					<td> {{ $cart_details[$p_c][0]->color_code }} </td>
+					<td> {{ $count }} </td>
+					<td> {{ $cart_details[$p_c][0]->price }} </td>
+				</tr>
 			@endforeach
 		</table>
 	</div>
