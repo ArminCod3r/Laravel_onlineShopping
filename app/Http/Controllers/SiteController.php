@@ -124,16 +124,41 @@ class SiteController extends Controller
         {
             list($color_id, $product_id) = $checked; // Assigning array to variables (3340750)
 
-            if($request->session()->has('product'))
+
+            $cart = $request->session()->has('cart');
+
+            if($cart)
             {
-                return "Session : ".$request->session()->get('product');
+                $cart       = $request->session()->get('cart');
+                $custom_key = $product_id."-".$color_id;
+
+                // if same product-color => multiple orders :  [p-c]:n
+                if(array_key_exists($custom_key, $cart))
+                {
+
+                  $count_product = ((int)($cart[$custom_key]));
+                  $count_product++;
+
+                  $cart[$custom_key] = $count_product;                    
+
+                }
+
+                else
+                {
+                  $custom_key = $product_id."-".$color_id;
+                  $cart[$custom_key] = 1;
+                }
             }
+
             else
             {
-                $request->session()->put('product', $product_id.":".$color_id.":1");
-
-                return 'Session has been set...';
+                $custom_key = $product_id."-".$color_id;
+                $cart[$custom_key] = 1;
             }
+
+            $request->session()->put('cart', $cart);
+
+            return $request->session()->get('cart');
         }
         else
         {
@@ -145,14 +170,10 @@ class SiteController extends Controller
       if( $method == "GET")
       {
         if($request->session()->has('product'))
-        {
-          return 'something in the cart';
-        }
+          return view('site.cart')->with('cart_status', 'true');
 
         else
-        {
-          return 'cart is empty';
-        }
+          return view('site.cart')->with('cart_status', 'false');
       }
 
 
