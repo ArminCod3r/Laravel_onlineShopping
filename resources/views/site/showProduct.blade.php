@@ -80,7 +80,7 @@
 
 		    @if($product->product_status == 1)
 
-		    	<form action="{{ action('admin\CartController@store') }}" method="POST" accept-charset="utf-8">
+		    	<form action="{{ action('SiteController@cart') }}" method="POST" accept-charset="utf-8">
 					{{ csrf_field() }}
 
 				    <?php

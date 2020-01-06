@@ -11,9 +11,10 @@
 |
 */
 
-// site's index/product page
+// site's index/product/Cart pages
 Route::get('/', "SiteController@index");
 Route::get('product/{code}/{title_url}', 'SiteController@showProduct');
+Route::post('/cart', 'SiteController@cart');
 
 // Admin's idnex
 Route::get('admin', function () {
@@ -83,5 +84,3 @@ Route::post('admin/review/upload/{product_id}', 'admin\ReviewController@upload')
 Route::delete('admin/review/deleteImage/{img}', 'admin\ReviewController@deleteImage');
 
 
-// Cart
-Route::resource('admin/cart','admin\CartController');

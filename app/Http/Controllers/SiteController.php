@@ -12,6 +12,9 @@ use App\FeatureAssign;
 use App\Category;
 use App\Feature;
 
+use App\Lib\CheckColorProduct;
+
+
 class SiteController extends Controller
 {
 	private $categories = array();
@@ -101,6 +104,41 @@ class SiteController extends Controller
                                                'assigned_features_key' => $assigned_features_key,
                                               ]);
     }
+
+
+    // Cart
+    public function cart(Request $request)
+    {
+
+      $color      = $request->get('color_session');
+      $product_id = $request->get('product_session');
+
+      // Checking using class
+      $checked = CheckColorProduct::verify($color, $product_id);
+      
+      if ( is_array($checked) )
+      {
+          list($color_id, $product_id) = $checked; // Assigning array to variables (3340750)
+
+          if($request->session()->has('product'))
+          {
+              return "Session : ".$request->session()->get('product');
+          }
+          else
+          {
+              $request->session()->put('product', $product_id.":".$color_id.":1");
+
+              return 'Session has been set...';
+          }
+      }
+      else
+      {
+          return abort(404);
+      }
+    }
+
+
+
 
 
 
