@@ -109,32 +109,53 @@ class SiteController extends Controller
     // Cart
     public function cart(Request $request)
     {
+      $method = $_SERVER['REQUEST_METHOD'];
 
-      $color      = $request->get('color_session');
-      $product_id = $request->get('product_session');
-
-      // Checking using class
-      $checked = CheckColorProduct::verify($color, $product_id);
-      
-      if ( is_array($checked) )
+      // Set Session
+      if( $method == "POST")
       {
-          list($color_id, $product_id) = $checked; // Assigning array to variables (3340750)
+        $color      = $request->get('color_session');
+        $product_id = $request->get('product_session');
 
-          if($request->session()->has('product'))
-          {
-              return "Session : ".$request->session()->get('product');
-          }
-          else
-          {
-              $request->session()->put('product', $product_id.":".$color_id.":1");
+        // Checking using class
+        $checked = CheckColorProduct::verify($color, $product_id);
+        
+        if ( is_array($checked) )
+        {
+            list($color_id, $product_id) = $checked; // Assigning array to variables (3340750)
 
-              return 'Session has been set...';
-          }
+            if($request->session()->has('product'))
+            {
+                return "Session : ".$request->session()->get('product');
+            }
+            else
+            {
+                $request->session()->put('product', $product_id.":".$color_id.":1");
+
+                return 'Session has been set...';
+            }
+        }
+        else
+        {
+            return abort(404);
+        }
       }
-      else
+
+      // Show cart
+      if( $method == "GET")
       {
-          return abort(404);
+        if($request->session()->has('product'))
+        {
+          return 'something in the cart';
+        }
+
+        else
+        {
+          return 'cart is empty';
+        }
       }
+
+
     }
 
 
