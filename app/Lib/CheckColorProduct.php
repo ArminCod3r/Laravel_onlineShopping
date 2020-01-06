@@ -21,7 +21,7 @@ class CheckColorProduct
                        'product_id' => $product_id
                     ])->get();
 
-        return 1;
+        return [$color_id, $product_id];
     }
 }
 
