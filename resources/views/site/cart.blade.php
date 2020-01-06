@@ -19,7 +19,11 @@
 			@foreach($cart as $p_c=>$count)
 				<tr>
 					<td> {{ $cart_details[$p_c][0]->title }} </td>
-					<td> {{ $cart_details[$p_c][0]->color_code }} </td>
+					<td>						
+						<input type="text" id="color"
+						class="jscolor {valueElement:null,value:'{{ $cart_details[$p_c][0]->color_code }}'} colorStyle form-control"
+						value="" disabled>
+					</td>
 					<td> {{ $count }} </td>
 					<td> {{ $cart_details[$p_c][0]->price }} </td>
 				</tr>
@@ -32,5 +36,13 @@
 		 سبد محصول خالی می باشد
 	 </p>
 @endif
+
+@endsection
+
+
+@section('footer')
+
+    <script type="text/javascript" src="{{ url('js/jscolor.js') }}"></script>
+
 
 @endsection
