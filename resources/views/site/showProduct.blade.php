@@ -80,7 +80,7 @@
 
 		    @if($product->product_status == 1)
 
-		    	<form action="#" method="POST" accept-charset="utf-8">
+		    	<form action="{{ action('admin\CartController@store') }}" method="POST" accept-charset="utf-8">
 					{{ csrf_field() }}
 
 				    <?php
@@ -151,6 +151,7 @@
 					</div>
 
 					<input type="hidden" name="color_session" id="color_session">
+					<input type="hidden" name="product_session" id="product_session" value="{{ $product->id }}">
 
 				</form>
 		    @endif

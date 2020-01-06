@@ -5,6 +5,10 @@ namespace App\Http\Controllers\admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
+use App\Product;
+use App\Color;
+use App\Lib\CheckColorProduct;
+
 class CartController extends Controller
 {
     /**
@@ -35,7 +39,17 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $color      = $request->get('color_session');
+        $product_id = $request->get('product_session');
+
+        if (CheckColorProduct::verify($color, $product_id) == 1)
+        {
+            return 'ok';
+        }
+        else
+        {
+            return 'ko';
+        }
     }
 
     /**
