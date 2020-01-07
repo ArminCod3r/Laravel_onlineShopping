@@ -7,7 +7,7 @@
 
 @if( count($cart) > 0 )
 
-	<div class="container" style="background-color:white; border-radius:30px">
+	<div class="container" style="background-color:white; border-radius:15px">
 		<table class="table table-hover" style="font-size: 16px">
 			<tr>
 				<th>تصویر</th>
@@ -28,10 +28,24 @@
 						{{ $cart_details[$p_c][0]->title }}
 					</td>
 
-					<td style="padding-top: 30px;">
+					<td style="padding-top: 30px;">	
+
+						<div class="cart_plus">
+							<span>
+								+
+							</span>
+						</div>	
+
 						<input type="text" id="color"
 						class="jscolor {valueElement:null,value:'{{ $cart_details[$p_c][0]->color_code }}'} colorStyle form-control"
 						value="" disabled>
+
+						<div class="cart_negative">
+							<span>
+								-
+							</span>
+						</div>
+
 					</td>
 					<td> {{ $cart_details[$p_c][0]->price }} </td>
 					<td> {{ $count }} </td>

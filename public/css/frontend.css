@@ -1006,6 +1006,38 @@ body
 }
 
 
+.cart_plus
+{
+    float      : right;
+    margin-top : -20px;
+}
+
+.cart_plus span
+{
+    cursor      :pointer;
+    font-size   : 19px;
+    font-weight : bold;
+}
+
+.cart_negative
+{
+    float        : right;
+    margin-top   : -49px;
+    margin-right : 30px;
+}
+
+.cart_negative span
+{
+    cursor      : pointer;
+    font-size   : 32px;
+    font-weight : bold;
+}
+
+
+
+
+
+
 
 
 
