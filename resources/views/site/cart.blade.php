@@ -7,14 +7,15 @@
 
 @if( count($cart) > 0 )
 
-	<div class="container">
+	<div class="container" style="background-color:white; border-radius:30px">
 		<table class="table table-hover" style="font-size: 16px">
 			<tr>
 				<th>تصویر</th>
 				<th>محصول</th>
 				<th>رنگ</th>
-				<th>تعداد</th>
 				<th>قیمت</th>
+				<th>تعداد</th>
+				<th>قیمت کل</th>
 			</tr>
 
 			@foreach($cart as $p_c=>$count)
@@ -27,13 +28,15 @@
 						{{ $cart_details[$p_c][0]->title }}
 					</td>
 
-					<td style="padding-top: 30px;">						
+					<td style="padding-top: 30px;">
 						<input type="text" id="color"
 						class="jscolor {valueElement:null,value:'{{ $cart_details[$p_c][0]->color_code }}'} colorStyle form-control"
 						value="" disabled>
 					</td>
-					<td> {{ $count }} </td>
 					<td> {{ $cart_details[$p_c][0]->price }} </td>
+					<td> {{ $count }} </td>
+					<td> {{ (int)$cart_details[$p_c][0]->price * (int)$count }} </td>
+					
 				</tr>
 			@endforeach
 		</table>
