@@ -174,28 +174,30 @@ class SiteController extends Controller
       {
         $cart_details = array();
 
-        foreach ($request->session()->get('cart') as $key => $value)
-        {
-          $product_id_ = explode("-", $key)[0];
-          $color_id_   = explode("-", $key)[1];
+        if($request->session()->has('cart'))
+        {          
+          foreach ($request->session()->get('cart') as $key => $value)
+          {
+            $product_id_ = explode("-", $key)[0];
+            $color_id_   = explode("-", $key)[1];
 
-          $query = DB::table('product')
-                      ->join('color_product', 'product.id', '=', 'color_product.product_id')
-                      ->join('product_images', 'product.id', '=', 'product_images.product_id')
+            $query = DB::table('product')
+                        ->join('color_product', 'product.id', '=', 'color_product.product_id')
+                        ->join('product_images', 'product.id', '=', 'product_images.product_id')
 
-                      ->where('product.id',$product_id_)
-                      ->where('color_product.id',$color_id_)
-                      ->where('product_images.tag', '!=', 'review')
+                        ->where('product.id',$product_id_)
+                        ->where('color_product.id',$color_id_)
+                        ->where('product_images.tag', '!=', 'review')
 
-                      ->limit(1)
+                        ->limit(1)
 
-                      ->get()
-                      ->toArray();
+                        ->get()
+                        ->toArray();
 
-          $cart_details[$key] = $query;
+            $cart_details[$key] = $query;
 
+          }
         }
-
 
         if($request->session()->has('cart'))
           return view('site.cart')->with([
@@ -204,7 +206,7 @@ class SiteController extends Controller
                                         ]);
 
         else
-          return view('site.cart')->with('cart', 'false');
+          return view('site.cart')->with('cart', null);
       }
 
 
