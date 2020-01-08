@@ -7,8 +7,8 @@
 
 @if( count($cart) > 0 )
 
-	<div class="container" style="background-color:white; border-radius:15px">
-		<table class="table table-bordered" style="font-size: 16px">
+	<div class="container" style="background-color:white; border-radius:5px">
+		<table class="table" style="font-size: 16px">
 			<tr class="cart_headers">
 				<th>تصویر</th>
 				<th>محصول</th>
@@ -33,7 +33,7 @@
 						<label style="background-color: #{{ $cart_details[$p_c][0]->color_code }}" class="cart_product_color">
 						</label>
 					</td>
-					
+
 					<td> {{ $cart_details[$p_c][0]->price }} </td>
 					<td>
 
