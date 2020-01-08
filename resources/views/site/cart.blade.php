@@ -60,7 +60,13 @@
 
 					<td class="cart_operation">
 						<div>
-							<span class="fa fa-remove"></span>
+							<?php
+								$product_id = explode('-', $p_c)[0];
+								$color_id   = explode('-', $p_c)[1];
+							?>
+							<span class="fa fa-remove" style="cursor:pointer" 
+								  onclick="del_product('{{$product_id}}', '{{$color_id}}')">
+							</span>
 						</div>
 					</td>
 					
@@ -81,5 +87,12 @@
 @section('footer')
 
     <script type="text/javascript" src="{{ url('js/jscolor.js') }}"></script>
+
+    <script type="text/javascript">
+    	del_product = function(product_id, color_id)
+    	{
+    		alert(product_id+":"+color_id);
+    	}
+    </script>
 
 @endsection
