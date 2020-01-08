@@ -29,12 +29,11 @@
 						{{ $cart_details[$p_c][0]->title }}
 					</td>
 
-					<td style="padding-top: 30px;padding-right: 40px;">	
-
+					<td>
 						<label style="background-color: #{{ $cart_details[$p_c][0]->color_code }}" class="cart_product_color">
 						</label>
-
 					</td>
+					
 					<td> {{ $cart_details[$p_c][0]->price }} </td>
 					<td>
 
