@@ -1012,8 +1012,9 @@ body
     height        : 14px;
     border-radius : 50%;
     margin-bottom : 18px;
-    margin-top: 30px;
-    margin-right: 0px;
+    margin-top    : 30px;
+    margin-right  : 0px;
+    border        : 1px solid #adaba5;
 }
 
 .cart_headers
