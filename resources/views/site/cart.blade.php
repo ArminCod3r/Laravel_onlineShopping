@@ -34,11 +34,11 @@
 							<span>
 								+
 							</span>
-						</div>	
+						</div>
 
-						<input type="text" id="color"
-						class="jscolor {valueElement:null,value:'{{ $cart_details[$p_c][0]->color_code }}'} colorStyle form-control"
-						value="" disabled>
+						<label style="background-color: #{{ $cart_details[$p_c][0]->color_code }}" class="cart_product_color">
+						</label>
+
 
 						<div class="cart_negative">
 							<span>
@@ -68,6 +68,5 @@
 @section('footer')
 
     <script type="text/javascript" src="{{ url('js/jscolor.js') }}"></script>
-
 
 @endsection
