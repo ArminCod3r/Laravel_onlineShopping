@@ -8,18 +8,19 @@
 @if( count($cart) > 0 )
 
 	<div class="container" style="background-color:white; border-radius:15px">
-		<table class="table table-hover" style="font-size: 16px">
-			<tr>
+		<table class="table" style="font-size: 16px">
+			<tr class="cart_headers">
 				<th>تصویر</th>
 				<th>محصول</th>
 				<th>رنگ</th>
 				<th>قیمت</th>
 				<th>تعداد</th>
-				<th>قیمت کل</th>
+				<th colspan="2">قیمت کل</th>
 			</tr>
 
 			@foreach($cart as $p_c=>$count)
-				<tr style="line-height: 80px;">
+				<tr class="cart_values">
+
 					<td style="width: 10%;">
 						<img style="width: 50%;" src="{{ url('upload').'/'.$cart_details[$p_c][0]->url }}" </img>
 					</td>
@@ -50,6 +51,12 @@
 					<td> {{ $cart_details[$p_c][0]->price }} </td>
 					<td> {{ $count }} </td>
 					<td> {{ (int)$cart_details[$p_c][0]->price * (int)$count }} </td>
+
+					<td class="cart_operation">
+						<div>
+							<span class="fa fa-remove"></span>
+						</div>
+					</td>
 					
 				</tr>
 			@endforeach
