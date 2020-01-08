@@ -8,7 +8,7 @@
 @if( count($cart) > 0 )
 
 	<div class="container" style="background-color:white; border-radius:15px">
-		<table class="table" style="font-size: 16px">
+		<table class="table table-bordered" style="font-size: 16px">
 			<tr class="cart_headers">
 				<th>تصویر</th>
 				<th>محصول</th>
@@ -29,27 +29,34 @@
 						{{ $cart_details[$p_c][0]->title }}
 					</td>
 
-					<td style="padding-top: 30px;">	
-
-						<div class="cart_plus">
-							<span>
-								+
-							</span>
-						</div>
+					<td style="padding-top: 30px;padding-right: 40px;">	
 
 						<label style="background-color: #{{ $cart_details[$p_c][0]->color_code }}" class="cart_product_color">
 						</label>
 
-
-						<div class="cart_negative">
-							<span>
-								-
-							</span>
-						</div>
-
 					</td>
 					<td> {{ $cart_details[$p_c][0]->price }} </td>
-					<td> {{ $count }} </td>
+					<td>
+
+						<div class="row">
+							<div class="col-sm-3"></div>
+
+							<div class="col-sm-1 cart_quantity_plus">
+								<span onclick="add_quantity()" class="cart_quantity_plus"> + </span>
+							</div>
+
+							<div class="col-sm-2">
+								{{ $count }}
+							</div>
+
+							<div class="col-sm-1 cart_quantity_negative">
+								<span> - </span>
+							</div>
+
+							<div class="col-sm-5"></div>
+
+						</div>
+					</td>
 					<td> {{ (int)$cart_details[$p_c][0]->price * (int)$count }} </td>
 
 					<td class="cart_operation">

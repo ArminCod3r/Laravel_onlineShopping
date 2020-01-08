@@ -1006,19 +1006,6 @@ body
 }
 
 
-.cart_plus
-{
-    float      : right;
-    margin-top : -20px;
-}
-
-.cart_plus span
-{
-    cursor      :pointer;
-    font-size   : 19px;
-    font-weight : bold;
-}
-
 .cart_product_color
 {
     width         : 14px;
@@ -1026,20 +1013,6 @@ body
     border-radius : 50%;
     margin-right  : -60px;
     margin-bottom : 18px;
-}
-
-.cart_negative
-{
-    float        : right;
-    margin-top   : -20px;
-    margin-right : 34px;
-}
-
-.cart_negative span
-{
-    cursor      : pointer;
-    font-size   : 32px;
-    font-weight : bold;
 }
 
 .cart_headers
@@ -1051,6 +1024,20 @@ body
 {
     text-align: center;
     line-height: 80px;
+}
+
+.cart_quantity_plus
+{
+    cursor      : pointer;
+    font-size   : 20px;
+    font-weight : bold;
+}
+
+.cart_quantity_negative
+{
+    cursor      : pointer;
+    font-size   : 20px;
+    font-weight : bold;
 }
 
 .cart_operation
