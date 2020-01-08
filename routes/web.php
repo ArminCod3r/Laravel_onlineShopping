@@ -16,6 +16,7 @@ Route::get('/', "SiteController@index");
 Route::get('product/{code}/{title_url}', 'SiteController@showProduct');
 Route::post('/cart', 'SiteController@cart');
 Route::get('/cart', 'SiteController@cart');
+Route::post('/cart/change', 'SiteController@cart_change');
 
 // Admin's idnex
 Route::get('admin', function () {

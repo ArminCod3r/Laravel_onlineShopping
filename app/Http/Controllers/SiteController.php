@@ -212,6 +212,11 @@ class SiteController extends Controller
 
     }
 
+    public function cart_change(Request $request)
+    {
+      return 'hi';
+    }
+
 
 
 
