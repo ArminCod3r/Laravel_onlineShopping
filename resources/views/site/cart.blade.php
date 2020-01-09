@@ -7,6 +7,8 @@
 @section('content')
 
 @if( count($cart) > 0 )
+	<div class="loader" id="loader" style="display: none">
+	</div>
 
 	<div class="container" style="background-color:white; border-radius:5px" id="aaaa">
 		<table class="table" style="font-size: 16px">
@@ -117,6 +119,13 @@
     		
     		$.ajax(
 		    		{
+	    			beforeSend: function(){
+	    				document.getElementById("loader").style.display = "block";
+					},
+					complete: function(){
+						document.getElementById("loader").style.display = "none";
+					},
+
 		    		'url': '{{ $url }}',
 		    		'type': 'post',
 		    		'data': 'product_id='+product_id+"&color_id="+color_id+"&operation="+operation,
