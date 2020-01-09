@@ -8,8 +8,8 @@
 
 @if( count($cart) > 0 )
 
-	<div class="container" style="background-color:white; border-radius:5px">
-		<table class="table" style="font-size: 16px" id="aaaaaa">
+	<div class="container" style="background-color:white; border-radius:5px" id="aaaa">
+		<table class="table" style="font-size: 16px">
 			<tr class="cart_headers">
 				<th>تصویر</th>
 				<th>محصول</th>
@@ -111,8 +111,8 @@
 			    			'type': 'post',
 			    			'data': 'product_id='+product_id+"&color_id="+color_id+"&operation=1",
 			    			success:function(data){
-			    				alert(data);
-			    				console.log(data);
+			    				var redirectTo = window.location.origin+"/cart/";
+								document.location = redirectTo;
 			    			}
 			    		}
     			  );

@@ -214,7 +214,28 @@ class SiteController extends Controller
 
     public function cart_change(Request $request)
     {
-      return 'hi';
+      if($request->session()->has('cart'))
+      {
+        $product_id = $request->get('product_id');
+        $color_id   = $request->get('color_id');
+        $operation  = $request->get('operation');
+
+        $cart       = $request->session()->get('cart');
+        $cart_key   = $product_id.'-'.$color_id;
+
+        if(array_key_exists($cart_key, $cart))
+        {
+          // Removing product from the cart
+          if($operation == 1)
+          {
+              unset($cart[$cart_key]);
+
+              $request->session()->put('cart', $cart);
+          }
+        }
+      }
+
+      return "No cart in session";
     }
 
 
