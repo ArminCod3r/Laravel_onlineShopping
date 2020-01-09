@@ -103,6 +103,19 @@
 
     <script type="text/javascript">
 
+	    // showing "loader" if ajax takes less than 500 miliseconds (35349470)
+	    var ajaxLoadTimeout;
+
+		$(document).ajaxStart(function() {
+		    ajaxLoadTimeout = setTimeout(function() { 
+		        $("#loader").css("display","block");
+		    }, 500);
+
+		}).ajaxSuccess(function() {
+		    clearTimeout(ajaxLoadTimeout);
+		    $("#loader").css("display","none");
+		});
+
     	<?php
     		$url= url('cart/change');
     	?>
@@ -119,12 +132,6 @@
     		
     		$.ajax(
 		    		{
-	    			beforeSend: function(){
-	    				document.getElementById("loader").style.display = "block";
-					},
-					complete: function(){
-						document.getElementById("loader").style.display = "none";
-					},
 
 		    		'url': '{{ $url }}',
 		    		'type': 'post',
