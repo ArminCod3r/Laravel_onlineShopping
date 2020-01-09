@@ -39,13 +39,21 @@
 					<td>
 
 						<div class="row">
+							<?php
+								$product_id = explode('-', $p_c)[0];
+								$color_id   = explode('-', $p_c)[1];
+							?>
+
 							<div class="col-sm-3"></div>
 
 							<div class="col-sm-1 cart_quantity_plus">
-								<span onclick="add_quantity()" class="cart_quantity_plus"> + </span>
+								<span onclick="change('{{$product_id}}', '{{$color_id}}', 'add')"
+									  class="cart_quantity_plus">
+									+ 
+								</span>
 							</div>
 
-							<div class="col-sm-2">
+							<div class="col-sm-2" id="product_quantity">
 								{{ $count }}
 							</div>
 
@@ -111,13 +119,20 @@
 		    		'type': 'post',
 		    		'data': 'product_id='+product_id+"&color_id="+color_id+"&operation="+operation,
 		    		success:function(data){
-		    			var redirectTo = window.location.origin+"/cart/";
-						document.location = redirectTo;
+		    			if(operation == 'remove')
+		    			{
+		    				var redirectTo = window.location.origin+"/cart/";
+							document.location = redirectTo;
+		    			}
+		    			if(operation == 'add')
+							$("#product_quantity").html(data);
 		    		}
 
 		    		}
 			  );
 
     	}
+
+    	</script>
 
 @endsection

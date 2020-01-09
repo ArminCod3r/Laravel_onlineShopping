@@ -232,6 +232,19 @@ class SiteController extends Controller
 
               $request->session()->put('cart', $cart);
           }
+
+          // Adding quantity to the cart
+          if($operation == 'add')
+          {
+            $count_product = ((int)($cart[$cart_key]));
+            $count_product++;
+
+            $cart[$cart_key] = $count_product;
+
+            $request->session()->put('cart', $cart); 
+
+            return $count_product;
+          }
         }
       }
 
