@@ -47,13 +47,13 @@
 							<div class="col-sm-3"></div>
 
 							<div class="col-sm-1 cart_quantity_plus">
-								<span onclick="change('{{$product_id}}', '{{$color_id}}', 'add')"
+								<span onclick="change('{{$product_id}}', '{{$color_id}}', 'add', '{{ $cart_details[$p_c][0]->price }}')"
 									  class="cart_quantity_plus">
 									+ 
 								</span>
 							</div>
 
-							<div class="col-sm-2" id="product_quantity">
+							<div class="col-sm-2" id="product_quantity_{{$p_c}}">
 								{{ $count }}
 							</div>
 
@@ -65,7 +65,9 @@
 
 						</div>
 					</td>
-					<td> {{ (int)$cart_details[$p_c][0]->price * (int)$count }} </td>
+					<td class="total_price" id="total_price_{{$p_c}}">
+						{{ (int)$cart_details[$p_c][0]->price * (int)$count }}
+					</td>
 
 					<td class="cart_operation">
 						<div>
@@ -102,7 +104,7 @@
     	<?php
     		$url= url('cart/change');
     	?>
-    	change = function(product_id, color_id, operation)
+    	change = function(product_id, color_id, operation, price)
     	{
     		$.ajaxSetup(
 			    			{
@@ -124,8 +126,16 @@
 		    				var redirectTo = window.location.origin+"/cart/";
 							document.location = redirectTo;
 		    			}
+
 		    			if(operation == 'add')
-							$("#product_quantity").html(data);
+		    			{
+		    				// Quantity
+		    				cart_key = product_id+"-"+color_id;
+		    				$("#product_quantity_"+cart_key).html(data);
+
+		    				// Price
+		    				$("#total_price_"+cart_key).html(data*price);
+		    			}
 		    		}
 
 		    		}
