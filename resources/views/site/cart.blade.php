@@ -57,7 +57,7 @@
 								{{ $count }}
 							</div>
 
-							<div class="col-sm-1 cart_quantity_negative">
+							<div class="col-sm-1 cart_quantity_negative" onclick="change('{{$product_id}}', '{{$color_id}}', 'subtract', '{{ $cart_details[$p_c][0]->price }}')">
 								<span> - </span>
 							</div>
 
@@ -128,6 +128,16 @@
 		    			}
 
 		    			if(operation == 'add')
+		    			{
+		    				// Quantity
+		    				cart_key = product_id+"-"+color_id;
+		    				$("#product_quantity_"+cart_key).html(data);
+
+		    				// Price
+		    				$("#total_price_"+cart_key).html(data*price);
+		    			}
+
+		    			if(operation == 'subtract')
 		    			{
 		    				// Quantity
 		    				cart_key = product_id+"-"+color_id;

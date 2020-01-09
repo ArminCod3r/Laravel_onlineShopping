@@ -245,6 +245,24 @@ class SiteController extends Controller
 
             return $count_product;
           }
+
+          // Subtracting quantity from the cart
+          if($operation == 'subtract')
+          {
+            $count_product = ((int)($cart[$cart_key]));
+            $count_product--;
+
+            if($count_product > 0)
+            {
+              $cart[$cart_key] = $count_product;
+
+              $request->session()->put('cart', $cart);
+
+              return $count_product;
+            }
+            else
+              return 1;
+          }
         }
       }
 
