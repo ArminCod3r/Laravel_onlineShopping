@@ -226,7 +226,7 @@ class SiteController extends Controller
         if(array_key_exists($cart_key, $cart))
         {
           // Removing product from the cart
-          if($operation == 1)
+          if($operation == 'remove')
           {
               unset($cart[$cart_key]);
 

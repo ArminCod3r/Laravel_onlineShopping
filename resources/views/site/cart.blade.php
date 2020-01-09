@@ -66,7 +66,7 @@
 								$color_id   = explode('-', $p_c)[1];
 							?>
 							<span class="fa fa-remove" style="cursor:pointer" 
-								  onclick="del_product_cart('{{$product_id}}', '{{$color_id}}')">
+							onclick="change('{{$product_id}}', '{{$color_id}}' , 'remove')">
 							</span>
 						</div>
 					</td>
@@ -94,7 +94,7 @@
     	<?php
     		$url= url('cart/change');
     	?>
-    	del_product_cart = function(product_id, color_id)
+    	change = function(product_id, color_id, operation)
     	{
     		$.ajaxSetup(
 			    			{
@@ -106,18 +106,18 @@
     					);
     		
     		$.ajax(
-			    		{
-			    			'url': '{{ $url }}',
-			    			'type': 'post',
-			    			'data': 'product_id='+product_id+"&color_id="+color_id+"&operation=1",
-			    			success:function(data){
-			    				var redirectTo = window.location.origin+"/cart/";
-								document.location = redirectTo;
-			    			}
-			    		}
-    			  );
+		    		{
+		    		'url': '{{ $url }}',
+		    		'type': 'post',
+		    		'data': 'product_id='+product_id+"&color_id="+color_id+"&operation="+operation,
+		    		success:function(data){
+		    			var redirectTo = window.location.origin+"/cart/";
+						document.location = redirectTo;
+		    		}
+
+		    		}
+			  );
 
     	}
-    </script>
 
 @endsection
