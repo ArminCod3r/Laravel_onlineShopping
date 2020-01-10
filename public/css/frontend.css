@@ -1065,6 +1065,42 @@ body
                50% 50% no-repeat rgb(249,249,249);
 }
 
+.register_header
+{
+    background-color : #FAFCFC;
+    text-align       : center;
+    line-height      : 80px;
+    border-radius    : 5px;
+}
+
+.register .row
+{
+    margin-right : 0px;
+    margin-top   : 10px;
+}
+
+.register_name
+{
+    padding-top: 10px;
+}
+
+.register_name input
+{
+    width      : 80%;
+    text-align : left;
+    margin     : 0 auto;
+}
+
+.register_btn
+{
+    width            : 100%;
+    background-color : #00bfd6;
+    border           : 1px solid#41a7b4;
+    color            : #fff;
+    border-radius    : 8px;
+    line-height      : 40px;
+    font-size        : 18px;
+}
 
 
 
