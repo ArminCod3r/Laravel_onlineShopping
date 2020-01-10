@@ -14,12 +14,22 @@
 
                 <div class="form-group register_name">
                     <label> شماره همراه یا پست الکترونیکی : </label>
-                    <input type="text" class="form-control" name="username" placeholder="Phone number or Email" />
+                    <input type="text" class="form-control" name="username" id="username" placeholder="Phone number or Email"/>
+
+                    @if($errors->has('username'))
+                        <span class="has_error"> {{ $errors->first('username') }} </span>
+                    @endif
                 </div>
 
                 <div class="form-group register_name">
                     <label> کلمه عبور : </label>
-                    <input type="text" class="form-control" name="password" placeholder="Password" />
+                    <input type="password" class="form-control" name="password_" id="password_"/>
+
+                    @error('password_')
+                        <span class="has_error" role="alert">
+                            {{ $message }}
+                        </span>
+                    @enderror
                 </div>
 
                 <div class="form-group" style="padding-top: 10px">

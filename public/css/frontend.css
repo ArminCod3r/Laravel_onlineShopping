@@ -1119,6 +1119,11 @@ body
     text-align   : right;
 }
 
+.has_error
+{
+    color: red;
+}
+
 
 
 
