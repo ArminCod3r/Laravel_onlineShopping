@@ -86,7 +86,16 @@ Route::post('admin/review/upload/{product_id}', 'admin\ReviewController@upload')
 Route::delete('admin/review/deleteImage/{img}', 'admin\ReviewController@deleteImage');
 
 
-
+// Auth
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+// Captcha
+Route::get('captcha', function(){
+
+	$captcha = new \App\Lib\Captcha();
+	$captcha->create();
+
+});

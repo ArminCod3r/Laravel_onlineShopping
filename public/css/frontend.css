@@ -1102,6 +1102,23 @@ body
     font-size        : 18px;
 }
 
+.captcha
+{
+    text-align : center;
+}
+
+.captcha img
+{
+    width: 30%;
+}
+
+.captcha input
+{
+    width        : 50%;
+    margin       : 10px auto;
+    text-align   : right;
+}
+
 
 
 

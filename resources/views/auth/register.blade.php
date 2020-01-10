@@ -44,6 +44,13 @@
                 </div>
 
 
+
+                <div class="form-group captcha">
+                    <img src="{{ url('captcha') }}">
+                    <input type="text" class="form-control" name="password" placeholder="عبارت بالا را وارد کنید"/>
+                </div>
+
+
                 <div class="form-group">
                     <input type="submit" class="register_btn" value="ثبت‌نام در دیجی‌کالا" name="password"/>
                 </div>
