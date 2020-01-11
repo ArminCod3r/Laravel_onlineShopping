@@ -64,5 +64,15 @@ class AppServiceProvider extends ServiceProvider
             else
                 return true;
         });
+
+        Validator::extend('check_captcha', function($attribute, $value, $parameters)
+        {
+            $captcha = \Session::get('Captcha');
+
+            if($value == $captcha)
+                return true;
+            else
+                return false;
+        });
     }
 }

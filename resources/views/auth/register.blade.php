@@ -57,7 +57,11 @@
 
                 <div class="form-group captcha">
                     <img src="{{ url('captcha') }}">
-                    <input type="text" class="form-control" name="password" placeholder="عبارت بالا را وارد کنید"/>
+                    <input type="text" class="form-control" name="captcha" id="captcha" placeholder="کد امنیتی بالا را وارد کنید"/>
+
+                    @if($errors->has('captcha'))
+                        <span class="has_error"> {{ $errors->first('captcha') }} </span>
+                    @endif
                 </div>
 
 

@@ -11,6 +11,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Category;
 use View;
 use DB;
+use Session;
 
 class RegisterController extends Controller
 {
@@ -60,6 +61,7 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'username' => ['required', 'string', 'check_username', 'max:255', 'unique_username'],
             'password_' => ['required', 'string', 'min:8'],
+            'captcha' => ['required', 'check_captcha'],
             ],
 
             [
@@ -71,6 +73,7 @@ class RegisterController extends Controller
             [
                 'username' => 'شماره همراه یا پست الکترونیکی',
                 'password_' => 'کلمه عبور',
+                'captcha' => 'کد امنیتی',
                 ]);
     }
 
