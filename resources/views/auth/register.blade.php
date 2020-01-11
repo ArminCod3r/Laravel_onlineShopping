@@ -72,7 +72,33 @@
             </form>
         </div>
 
-        <div class="col-sm-6">
+        <div class="col-sm-6 register-icon-box">
+
+            <div class="icon login-icon">                
+            </div>
+
+            <li class="list-inline" style="margin-top: 10%">
+                <ul>
+                    <span class="icon icon-userbox-cart"></span>
+                    <span>سریع تر و ساده تر خرید کنید.</span>
+                </ul>
+
+                <ul>
+                    <span class="icon icon-userbox-list"></span>
+                    <span>به سادگی سوابق خرید و فعالیت های خود را مدیریت کنید.</span>
+                </ul> 
+                
+                <ul>
+                    <span class="icon icon-userbox-love"></span>
+                    <span>لیست علاقه مندی های خود را بسازید و تغییرات آنها را دنبال کنید.</span>
+                </ul> 
+                
+                <ul>
+                    <span class="icon icon-userbox-comment"></span>
+                    <span>نقد و بررسی و نظرات خود را با دیگران به اشتراک بگذارید</span>
+                </ul>
+            </li>
+
         </div>
 
         
