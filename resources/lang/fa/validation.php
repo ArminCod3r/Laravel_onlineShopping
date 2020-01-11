@@ -118,6 +118,7 @@ return [
     'uuid' => 'The :attribute must be a valid UUID.',
 
     'check_username' => ':attribute معتبر نمی باشد.',
+    'unique_username' => ':attribute قبلا ثبت شده است.',
 
     /*
     |--------------------------------------------------------------------------

@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Validator;
+use DB;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -52,6 +53,16 @@ class AppServiceProvider extends ServiceProvider
                         return false;
                 }
             }
+        });
+
+        Validator::extend('unique_username', function($attribute, $value, $parameters)
+        {
+            $user = DB::table('users')->where('username', $value)->first();
+
+            if($user)
+                return false;
+            else
+                return true;
         });
     }
 }
