@@ -117,6 +117,8 @@ return [
     'url' => 'قالب :attribute نادرست است.',
     'uuid' => 'The :attribute must be a valid UUID.',
 
+    'check_username' => ':attribute معتبر نمی باشد.',
+
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Language Lines

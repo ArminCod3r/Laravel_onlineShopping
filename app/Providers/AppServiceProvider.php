@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Validator;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,6 +24,34 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Validator::extend('check_username', function($attribute, $value, $parameters)
+        {
+            //code that would validate
+            //attribute its the field under validation
+            //values its the value of the field
+            //parameters its the value that it will validate againts 
+            if(filter_var($value, FILTER_VALIDATE_EMAIL))
+                return true;
+            else
+            {
+                $val_len = strlen($value);
+
+                if($val_len == 10)
+                {
+                    if(substr($value, 0, 1) == '9')
+                        return true;
+                }
+                
+                else
+                {
+                    if($val_len == 11)
+                        if(substr($value, 0, 2) == '09' )
+                            return true;
+
+                    else
+                        return false;
+                }
+            }
+        });
     }
 }

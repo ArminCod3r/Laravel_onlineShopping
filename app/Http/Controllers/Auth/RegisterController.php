@@ -58,12 +58,20 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'username' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'username' => ['required', 'string', 'check_username', 'max:255', 'unique:users'],
             'password_' => ['required', 'string', 'min:8'],
-        ], [], [
-            'username' => 'شماره همراه یا پست الکترونیکی',
-            'password_' => 'کلمه عبور',
-            ]);
+            ],
+
+            [
+                // custom validations message, whether:
+                // 1.in here: 'username.check_username' => 'Custom message'
+                // 2.public/lang/[...]/validation.php
+            ],
+
+            [
+                'username' => 'شماره همراه یا پست الکترونیکی',
+                'password_' => 'کلمه عبور',
+                ]);
     }
 
     /**
