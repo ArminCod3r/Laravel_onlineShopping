@@ -14,7 +14,7 @@
 
                 <div class="form-group register_name">
                     <label> شماره همراه یا پست الکترونیکی : </label>
-                    <input type="text" class="form-control" name="username" id="username" placeholder="Phone number or Email"/>
+                    <input type="text" class="form-control" name="username" id="username" placeholder="Phone number or Email" value="{{ old('username') }}" />
 
                     @if($errors->has('username'))
                         <span class="has_error"> {{ $errors->first('username') }} </span>
