@@ -68,6 +68,7 @@ class AppServiceProvider extends ServiceProvider
         Validator::extend('check_captcha', function($attribute, $value, $parameters)
         {
             $captcha = \Session::get('Captcha');
+            $captcha = strtolower($captcha);
 
             if($value == $captcha)
                 return true;
