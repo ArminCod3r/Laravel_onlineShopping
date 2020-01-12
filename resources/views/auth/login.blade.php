@@ -50,15 +50,79 @@
     
       <!-- Modal content-->
       <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Modal Header</h4>
+        <div class="modal-header"  style="direction: ltr">
+          <button type="button" class="close" data-dismiss="modal"></button>
+          <h4 class="modal-title" >ورود به دیجی آنلاین</h4>
         </div>
         <div class="modal-body">
-          <p>Some text in the modal.</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <form method="POST" action="{{ route('login') }}">
+                @csrf
+
+                <div class="form-group register_name">
+                    <label> شماره همراه یا پست الکترونیکی : </label>
+                    <input type="text" class="form-control" name="username" id="username" placeholder="Phone number or Email" value="{{ old('username') }}" autofocus/>
+
+                    @if($errors->has('username'))
+                        <span class="has_error"> {{ $errors->first('username') }} </span>
+                    @endif
+                </div>
+
+                <div class="form-group register_name">
+                    <label> کلمه عبور : </label>
+                    <input type="password" class="form-control" name="password_" id="password_"/>
+
+                    @error('password_')
+                        <span class="has_error" role="alert">
+                            {{ $message }}
+                        </span>
+                    @enderror
+                </div>
+
+                <div class="form-group" style="padding-top: 10px">
+                    <div class="row">
+
+                        <div class="col-sm-1">
+                        </div>
+
+                        <div class="col-sm-1">
+                            <input type="checkbox" value="1" name="privacy_check" id="privacy_check" checked="checked">
+                        </div>
+
+                        <div class="col-sm-9">
+                            <label onclick="privacy_checkbox()">
+                                حریم خصوصی و شرایط و قوانین استفاده از سرویس های سایت دیجی‌کالا را مطالعه نموده و با کلیه موارد آن موافقم.
+                            </label>
+                        </div>
+
+                        <div class="col-sm-1">
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="form-group captcha">
+                    <img src="{{ url('captcha') }}">
+                    <input type="text" class="form-control" name="captcha" id="captcha" placeholder="کد امنیتی بالا را وارد کنید"/>
+
+                    @if($errors->has('captcha'))
+                        <span class="has_error"> {{ $errors->first('captcha') }} </span>
+                    @endif
+                </div>
+
+
+                <div class="form-group">
+                    <p class="icon_login">
+                        <span class="fa fa-sign-in fa-rotate-180" style="color: #18838f"></span>
+                    </p>
+                    
+                    <input type="submit" class="register_btn" value="ورود"/>
+                    <div class="modal-exit-btn">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">خروج</button>
+                    </div>
+                </div>
+
+            </form>
         </div>
       </div>
       
@@ -106,5 +170,11 @@
 
         }
     </script>
+
+    @if($errors->any())
+        <script>
+            $('#myModal').modal('show');
+        </script>
+    @endif
 
 @endsection
