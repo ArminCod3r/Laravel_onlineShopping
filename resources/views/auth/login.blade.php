@@ -17,17 +17,17 @@
         <div class="col-sm-6 register-box-left">
             <div class="register-area">
                 <div class="icon"></div>
-                <p style="font-weight: bold">تازه وارد هستید</p>
+                <p style="fontweight: bold">تازه وارد هستید</p>
                 <p> برای تکمیل فرآیند خود ثبت نام کنید. </p>
                 <a href="{{url('register')}}" class="btn btn-success">ثبت نام در دیجی آنلاین</a>
 
-                <p style="padding-top: 25px;width: 80%; text-align: center;margin: 0 auto;">
+                <p style="padding-top: 25px;width: 80%; textalign: center;margin: 0 auto;">
                     با عضویت در دیجیکالا تجربه متفاوتی از خرید اینترنتی داشته باشید. وضعیت سفارش خود را پیگیری نموده و سوابق خریدتان را مشاهده کنید.
                 </p>
             </div>
         </div>
 
-        
+
     </div>
 </div>
 @endsection
