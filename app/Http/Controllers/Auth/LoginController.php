@@ -4,6 +4,10 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Category;
+use View;
+use DB;
+
 
 class LoginController extends Controller
 {
@@ -20,6 +24,8 @@ class LoginController extends Controller
 
     use AuthenticatesUsers;
 
+    private $categories = array();
+
     /**
      * Where to redirect users after login.
      *
@@ -35,5 +41,30 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+
+        $categories = self::categoryTree();
+        View::share('categories', $categories);
     }
+
+
+
+    // Recursive Method to get all the categories/subcategories
+    private function categoryTree($parent_id = 0, $sub_mark = '')
+    {
+        $query = DB::table('category')
+                ->select('*')
+                ->where('parent_id',$parent_id)
+                ->get()
+                ->pluck('cat_name','id');
+
+        
+        foreach ($query as $key => $value)
+        {
+            //echo $key." : ".$sub_mark.$value."</br>";
+            array_push($this->categories, $value.':'.$parent_id.'-'.$key);
+            $this->categoryTree($key, $sub_mark.'---');
+        }
+        return $this->categories;
+    }
+    
 }

@@ -1181,8 +1181,51 @@ body
     background-position : -982px -208px;
 }
 
+.login-box-right
+{
+    background-color : white;
+    border-radius    : 5px
+}
 
+.login-area
+{
+    text-align     : center;
+    padding-bottom : 20px;
+}
 
+.login-area .icon
+{
+    background          : transparent url('../images/slices.png') no-repeat scroll 0% 0%;
+    display             : inline-block;
+    position            : relative;
+    background-position : -860px -80px;
+    margin-top          : 10%;
+    width               : 80px;
+    height              : 80px;
+    -moz-transform      : scale(.95);
+}
+
+.register-box-left
+{
+   text-align       : center;
+   padding-bottom   : 20px;
+   background-color : #fafafa;
+   border-radius    : 5px;
+   border-right     : 1px solid #F0F1F2; 
+   color            : #737373;
+}
+
+.register-area .icon
+{
+    background          : transparent url('../images/slices.png') no-repeat scroll 0% 0%;
+    display             : inline-block;
+    position            : relative;
+    background-position : -860px -80px;
+    margin-top          : 10%;
+    width               : 80px;
+    height              : 80px;
+    -moz-transform      : scale(.95);
+}
 
 
 
