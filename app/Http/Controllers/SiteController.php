@@ -11,6 +11,7 @@ use App\Review;
 use App\FeatureAssign;
 use App\Category;
 use App\Feature;
+use Auth;
 
 use App\Lib\CheckColorProduct;
 
@@ -267,6 +268,20 @@ class SiteController extends Controller
       }
 
       return "No cart in session";
+    }
+
+    public function if_loggedin(Request $request)
+    {
+      if($request->ajax())
+      {
+        if(Auth::check())
+          return 'yes';
+
+        else
+          return 'no';
+      }
+      else
+        return 'no';
     }
 
 

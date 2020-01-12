@@ -99,3 +99,5 @@ Route::get('captcha', function(){
 	$captcha->create();
 
 });
+
+Route::post('if_loggedin', 'SiteController@if_loggedin');
