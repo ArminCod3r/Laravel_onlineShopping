@@ -115,15 +115,21 @@
 	<div class="row">
 		<div class="col-sm-8"></div>
 
-		<div class="col-sm-4">
+		<div class="col-sm-4 total-price-factor">
 			<table>
 				<tr>
-					<td>جمع کل خرید</td>
-					<td>{{$total_price}}</td>
+					<td style="padding-right: 15px">جمع کل خرید</td>
+					<td>
+						<strong>{{$total_price}}</strong>
+						تومان
+					</td>
 				</tr>
-				<tr>
-					<td>مبلغ قابل پرداخت</td>
-					<td>{{$discount_price}}</td>
+				<tr style="background-color:#c6f5d3;color:#32ad55;">
+					<td style="padding-right: 15px">مبلغ قابل پرداخت</td>
+					<td>
+						<strong>{{$discount_price}}</strong>
+						تومان
+					</td>
 				</tr>
 			</table>
 		</div>

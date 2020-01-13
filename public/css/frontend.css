@@ -1303,6 +1303,20 @@ body
     margin-right  : 130px;
 }
 
+.total-price-factor table
+{
+    width         : 75%;
+    border-radius : 5px;
+    font-size     : 15px;
+    border        : 1px solid #bec4c0;
+}
+
+.total-price-factor table tr
+{
+    line-height      : 50px;
+    background-color : white;
+}
+
 
 
 
