@@ -284,6 +284,25 @@ class SiteController extends Controller
         return 'no';
     }
 
+    public function count(Request $request)
+    {
+      if($request->session()->has('cart'))
+      {
+        $cart = $request->session()->get('cart');
+
+        $count = 0;
+        foreach ($cart as $key => $value)
+        {
+          $count++;
+        }
+
+        return $count;
+      }
+
+      else
+        return 0;
+    }
+
 
 
 

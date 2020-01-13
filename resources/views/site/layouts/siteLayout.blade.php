@@ -33,6 +33,8 @@ $shown_item = 0;
     <!-- jQuery -->
     <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     @yield('header')
 
 
@@ -82,7 +84,7 @@ $shown_item = 0;
                 
                 <div class="shopping-cart-text">
                   <span style="float: right;">سبد خرید</span>
-                  <span class="items-count-in-shopping-cart">0</span>
+                  <span class="items-count-in-shopping-cart" id="items-count-in-shopping-cart">0</span>
                 </div>
 
               </div>
@@ -248,6 +250,7 @@ $shown_item = 0;
     // why below code? if not, first hover all the the categories on last level will shown 
     $(document).ready(function(){
       $(".level3-ul").hide();
+      cart_count();
     });
 
     $(".level1-li").mouseover(function() {
@@ -269,5 +272,36 @@ $shown_item = 0;
                 var upDown_icon = "level1-li-"+this.value;
                 document.getElementById(upDown_icon).className="fa fa-chevron-down";
       });
+
+
+
+
+      // Cart count
+      <?php $url= url('cart/count'); ?>
+      
+      cart_count = function()
+      {        
+        $.ajaxSetup(
+                  {
+                    'headers':
+                    {
+                      'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
+                    }
+                  }
+                );
+          
+          $.ajax(
+              {
+
+              'url': '{{ $url }}',
+              'type': 'post',
+              success:function(data){
+                document.getElementById("items-count-in-shopping-cart").innerText = data;
+              }
+
+              }
+          );
+      }
+
   </script>
 </html>
