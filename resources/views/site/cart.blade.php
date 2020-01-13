@@ -88,6 +88,36 @@
 		</table>
 	</div>
 
+
+	<!-- Get the total price -->
+	<?php
+		$total_price = 0;
+
+		foreach ($cart as $key_count => $value_count)
+		{
+			$price = (int)$cart_details[$key_count][0]->price;
+			$total_price += $price * $value_count;
+		}
+	?>
+	
+
+	<div class="row">
+		<div class="col-sm-8"></div>
+
+		<div class="col-sm-4">
+			<table>
+				<tr>
+					<td>جمع کل خرید</td>
+					<td>{{$total_price}}</td>
+				</tr>
+				<tr>
+					<td>مبلغ قابل پرداخت</td>
+					<td></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+
 @else
 	<p style="color:red ; text-align:center ; padding-top:30px; padding-bottom:30px;">
 		 سبد محصول خالی می باشد
