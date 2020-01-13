@@ -1282,6 +1282,27 @@ body
     /*margin-top       : 10px;*/
 }
 
+.login-to-register-link
+{
+    direction   : ltr;
+    background  : #F3FFF3 none repeat scroll 0% 0%;
+    height      : 60px;
+    line-height : 58px;
+}
+
+.login-to-register-link a::after
+{
+    left          : 0;
+    right         : 0;
+    margin-top    : .85em;
+    content       : "";
+    position      : absolute;
+    border-bottom : 1px dashed #1ca2bd;
+    bottom        : 18px;
+    width         : 27%;
+    margin-right  : 130px;
+}
+
 
 
 

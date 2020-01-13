@@ -117,7 +117,12 @@
 
             </form>
         </div>
+      <div class="modal-footer login-to-register-link" style="">
+          <a href="{{url('register')}}" class=""> ثبت نام در دیجی آنلاین </a>
+          <span>کاربر جدید هستید؟  </span>
       </div>
+      </div>
+
       
     </div>
   </div>
