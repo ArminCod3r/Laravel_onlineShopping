@@ -55,37 +55,40 @@
           <h4 class="modal-title" >ورود به دیجی آنلاین</h4>
         </div>
         <div class="modal-body">
+
+            @if (count($errors) > 0)
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
           <form method="POST" action="{{ route('login') }}">
                 @csrf
 
                 <div class="form-group register_name">
                     <label> شماره همراه یا پست الکترونیکی : </label>
                     <input type="text" class="form-control" name="username" id="username" placeholder="Phone number or Email" value="{{ old('username') }}" autofocus/>
-
-                    @if($errors->has('username'))
-                        <span class="has_error"> {{ $errors->first('username') }} </span>
-                    @endif
                 </div>
 
                 <div class="form-group register_name">
                     <label> کلمه عبور : </label>
-                    <input type="password" class="form-control" name="password_" id="password_"/>
-
-                    @error('password_')
-                        <span class="has_error" role="alert">
-                            {{ $message }}
-                        </span>
-                    @enderror
+                    <input type="password" class="form-control" name="password" id="password"/>
                 </div>
 
+                <div class="form-group row">
+                    <div class="col-md-6 offset-md-4">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
-                <div class="form-group captcha">
-                    <img src="{{ url('captcha') }}">
-                    <input type="text" class="form-control" name="captcha" id="captcha" placeholder="کد امنیتی بالا را وارد کنید"/>
-
-                    @if($errors->has('captcha'))
-                        <span class="has_error"> {{ $errors->first('captcha') }} </span>
-                    @endif
+                            <label class="form-check-label" for="remember">
+                                {{ __('مرا به خاطر بسپار') }}
+                            </label>
+                        </div>
+                    </div>
                 </div>
 
 
@@ -104,7 +107,7 @@
                             <div class="modal-exit-btn">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">خروج</button>
                             </div>
-                            
+
                         </div>
                     </div>
 
