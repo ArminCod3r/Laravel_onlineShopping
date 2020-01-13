@@ -46,6 +46,11 @@ class LoginController extends Controller
         View::share('categories', $categories);
     }
 
+    public function username()
+    {
+        return 'username';
+    }
+
 
 
     // Recursive Method to get all the categories/subcategories
