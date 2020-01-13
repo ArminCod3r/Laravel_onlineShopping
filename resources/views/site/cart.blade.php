@@ -10,7 +10,26 @@
 	<div class="loader" id="loader" style="display: none">
 	</div>
 
-	<div class="container" style="background-color:white; border-radius:5px" id="aaaa">
+	<div class="row" style="margin-bottom:10px;">
+		<div class="col-sm-1"></div>
+
+		<div class="col-sm-2 cart-title">
+			<span>
+				سبد خرید شما در دیجی کالا
+			</span>
+		</div>
+
+		<div class="col-sm-6"></div>
+
+		<div class="col-sm-3" style="padding-right: 80px;">
+			<a href="{{ url('shipping') }}" class="btn btn-success">
+				<span>ادامه ثبت سفارش</span>
+				<span class="fa fa-arrow-left"></span>
+			</a>
+		</div>
+	</div>
+
+	<div class="container" style="background-color:white; border-radius:5px;" id="aaaa">
 		<table class="table" style="font-size: 16px">
 			<tr class="cart_headers">
 				<th>تصویر</th>
@@ -121,7 +140,7 @@
 					<td style="padding-right: 15px">جمع کل خرید</td>
 					<td>
 						<strong>{{$total_price}}</strong>
-						تومان
+						<span>تومان</span>
 					</td>
 				</tr>
 				<tr style="background-color:#c6f5d3;color:#32ad55;">
@@ -132,6 +151,11 @@
 					</td>
 				</tr>
 			</table>
+
+			<a href="{{ url('shipping') }}" class="btn btn-success cart-order-continue">
+				<span>ادامه ثبت سفارش</span>
+				<span class="fa fa-arrow-left"></span>
+			</a>
 		</div>
 	</div>
 
