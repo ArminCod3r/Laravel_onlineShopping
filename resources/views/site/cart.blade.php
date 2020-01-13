@@ -89,17 +89,28 @@
 	</div>
 
 
-	<!-- Get the total price -->
+	<!-- Get the total-price / discounted-price -->
 	<?php
 		$total_price = 0;
+		$discount_price = 0;
 
 		foreach ($cart as $key_count => $value_count)
 		{
 			$price = (int)$cart_details[$key_count][0]->price;
+
 			$total_price += $price * $value_count;
 		}
+
+		foreach ($cart as $key_count => $value_count)
+		{
+			$price    = (int)$cart_details[$key_count][0]->price;
+			$discount = (int)$cart_details[$key_count][0]->discounts;
+
+			$discount_price += ($price-(($price*$discount)/100))* $value_count;
+		}
+
 	?>
-	
+
 
 	<div class="row">
 		<div class="col-sm-8"></div>
@@ -112,7 +123,7 @@
 				</tr>
 				<tr>
 					<td>مبلغ قابل پرداخت</td>
-					<td></td>
+					<td>{{$discount_price}}</td>
 				</tr>
 			</table>
 		</div>
