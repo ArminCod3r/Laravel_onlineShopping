@@ -56,27 +56,26 @@
         </div>
         <div class="modal-body">
 
-            @if (count($errors) > 0)
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
-
           <form method="POST" action="{{ route('login') }}">
                 @csrf
 
                 <div class="form-group register_name">
                     <label> شماره همراه یا پست الکترونیکی : </label>
                     <input type="text" class="form-control" name="username" id="username" placeholder="Phone number or Email" value="{{ old('username') }}" autofocus/>
+
+                    @if($errors->has('username'))
+                        <span class="has_error"> {{ $errors->first('username') }} </span>
+                    @endif
                 </div>
 
                 <div class="form-group register_name">
                     <label> کلمه عبور : </label>
                     <input type="password" class="form-control" name="password" id="password"/>
+
+
+                    @if($errors->has('password'))
+                        <span class="has_error"> {{ $errors->first('password') }} </span>
+                    @endif
                 </div>
 
                 <div class="form-group row">
