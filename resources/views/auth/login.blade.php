@@ -78,28 +78,6 @@
                     @enderror
                 </div>
 
-                <div class="form-group" style="padding-top: 10px">
-                    <div class="row">
-
-                        <div class="col-sm-1">
-                        </div>
-
-                        <div class="col-sm-1">
-                            <input type="checkbox" value="1" name="privacy_check" id="privacy_check" checked="checked">
-                        </div>
-
-                        <div class="col-sm-9">
-                            <label onclick="privacy_checkbox()">
-                                حریم خصوصی و شرایط و قوانین استفاده از سرویس های سایت دیجی‌کالا را مطالعه نموده و با کلیه موارد آن موافقم.
-                            </label>
-                        </div>
-
-                        <div class="col-sm-1">
-                        </div>
-                    </div>
-                </div>
-
-
 
                 <div class="form-group captcha">
                     <img src="{{ url('captcha') }}">
@@ -112,14 +90,26 @@
 
 
                 <div class="form-group">
-                    <p class="icon_login">
-                        <span class="fa fa-sign-in fa-rotate-180" style="color: #18838f"></span>
-                    </p>
-                    
-                    <input type="submit" class="register_btn" value="ورود"/>
-                    <div class="modal-exit-btn">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">خروج</button>
+
+                    <div class="row">
+
+                        <div class="col-sm-6">
+                            <p class="icon_login">
+                                <span class="fa fa-sign-in fa-rotate-180" style="color: #18838f"></span>
+                            </p>                            
+                            <input type="submit" class="register_btn" value="ورود"/>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="modal-exit-btn">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">خروج</button>
+                            </div>
+                            
+                        </div>
                     </div>
+
+                    
+                    
                 </div>
 
             </form>
