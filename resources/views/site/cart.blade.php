@@ -221,7 +221,7 @@
 		    				$("#product_quantity_"+cart_key).html(data);
 
 		    				// Price
-		    				$("#total_price_"+cart_key).html(data*price);
+		    				$("#total_price_"+cart_key).html((data*price).toLocaleString());
 		    			}
 
 		    			if(operation == 'subtract')
@@ -231,7 +231,7 @@
 		    				$("#product_quantity_"+cart_key).html(data);
 
 		    				// Price
-		    				$("#total_price_"+cart_key).html(data*price);
+		    				$("#total_price_"+cart_key).html((data*price).toLocaleString());
 		    			}
 		    		}
 
