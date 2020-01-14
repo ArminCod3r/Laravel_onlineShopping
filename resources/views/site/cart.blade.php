@@ -56,7 +56,7 @@
 						</label>
 					</td>
 
-					<td> {{ $cart_details[$p_c][0]->price }} </td>
+					<td> {{ number_format($cart_details[$p_c][0]->price) }} </td>
 					<td>
 
 						<div class="row">
@@ -87,7 +87,7 @@
 						</div>
 					</td>
 					<td class="total_price" id="total_price_{{$p_c}}">
-						{{ (int)$cart_details[$p_c][0]->price * (int)$count }}
+						{{ number_format((int)$cart_details[$p_c][0]->price * (int)$count) }}
 					</td>
 
 					<td class="cart_operation">
@@ -139,14 +139,14 @@
 				<tr>
 					<td style="padding-right: 15px">جمع کل خرید</td>
 					<td>
-						<strong>{{$total_price}}</strong>
+						<strong>{{number_format($total_price)}}</strong>
 						<span>تومان</span>
 					</td>
 				</tr>
 				<tr style="background-color:#c6f5d3;color:#32ad55;">
 					<td style="padding-right: 15px">مبلغ قابل پرداخت</td>
 					<td>
-						<strong>{{$discount_price}}</strong>
+						<strong>{{number_format($discount_price)}}</strong>
 						تومان
 					</td>
 				</tr>
