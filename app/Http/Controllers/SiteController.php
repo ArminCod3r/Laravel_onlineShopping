@@ -242,9 +242,16 @@ class SiteController extends Controller
 
             $cart[$cart_key] = $count_product;
 
+            //$request->session()->forget('cart');
             $request->session()->put('cart', $cart); 
 
-            return $count_product;
+            $new_cart = array();
+            foreach ($request->session()->get('cart') as $key => $value)
+            {
+              $new_cart[$key] = $value;
+            }
+
+            return $new_cart;
           }
 
           // Subtracting quantity from the cart
