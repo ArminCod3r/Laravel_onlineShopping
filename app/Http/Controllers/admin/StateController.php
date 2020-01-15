@@ -65,7 +65,7 @@ class StateController extends Controller
             $state->name = $request->input('state');
             $state->save();
 
-            return view('admin/state/index');
+            return redirect('admin/state/');
         }
         
 
