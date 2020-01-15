@@ -121,6 +121,10 @@ class StateController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $state = State::findOrFail($id);
+
+        $state->delete();
+
+        return redirect('admin/state/');
     }
 }
