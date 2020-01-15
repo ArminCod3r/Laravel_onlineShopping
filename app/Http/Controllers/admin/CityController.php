@@ -38,8 +38,18 @@ class CityController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        return $request->all();
+    {        
+        $state_id  = $request->input('state');
+        $city_name = $request->input('city');
+
+        State::findOrFail($state_id);
+
+        $city = new City();
+        $city->name = $city_name;
+        $city->state_id = $state_id;
+        $city->save();
+
+        return redirect('admin/city/');
     }
 
     /**

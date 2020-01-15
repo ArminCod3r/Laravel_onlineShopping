@@ -50,7 +50,7 @@
 
 			 	@if(!empty($states))
 					@foreach($states as $key=>$value)
-						<option value="{{$value->name}}" style="width: 500px;">{{$value->name}}</option>
+						<option value="{{$value->id}}" style="width: 500px;">{{$value->name}}</option>
 					@endforeach
 				@else
 					nothing in here
