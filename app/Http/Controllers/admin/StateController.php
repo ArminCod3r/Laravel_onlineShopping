@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Validator;
 use App\State;
+use DB;
 
 class StateController extends Controller
 {
@@ -89,7 +90,9 @@ class StateController extends Controller
      */
     public function edit($id)
     {
-        //
+        $state = State::findOrFail($id);
+
+        return view('admin/state/edit')->with('state', $state);
     }
 
     /**
@@ -101,7 +104,13 @@ class StateController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        State::findOrFail($id);
+
+        $state = $request->input('state');
+
+        DB::table('state')->where('id', $id)->update(['name' => $state]);
+
+        return redirect('admin/state/');
     }
 
     /**
