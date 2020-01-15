@@ -39,14 +39,13 @@ class StateController extends Controller
      */
     public function store(Request $request)
     {
-        // TODO: unique state
-
         $rules = [
-                    'state' => 'required|max:250',
+                    'state' => 'required|max:250|unique:state,name',
                 ];
 
         $customMessages = [
-                    'required' => ':attribute الزامی است'
+                    'required' => ':attribute الزامی است',
+                    'unique' => ':attribute تکراری است',
                 ];
 
         $fieldsName=[
