@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Validator;
+use App\State;
 
 class StateController extends Controller
 {
@@ -53,9 +54,15 @@ class StateController extends Controller
 
         if ($validator->fails()) 
             $this->validate($request, $rules, $customMessages, $fieldsName);
-        
+
         else
-            return 'inserting...';
+        {
+            $state = new State();
+            $state->name = $request->input('state');
+            $state->save();
+
+            return 'done';
+        }
         
 
     }
