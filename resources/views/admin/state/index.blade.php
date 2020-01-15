@@ -26,6 +26,9 @@
 				<?php $count++; ?>
 			@endforeach
 		</table>
+		
+		{{ $states->links() }}
+		
 	@else
 		nothing in here
 	@endif
