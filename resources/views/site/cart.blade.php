@@ -262,11 +262,41 @@
 		    			if(operation == 'subtract')
 		    			{
 		    				// Quantity
-		    				cart_key = product_id+"-"+color_id;
-		    				$("#product_quantity_"+cart_key).html(data);
+		    				//cart_key = product_id+"-"+color_id;
+		    				//$("#product_quantity_"+cart_key).html(data);
 
 		    				// Price
-		    				$("#total_price_"+cart_key).html((data*price).toLocaleString());
+		    				//$("#total_price_"+cart_key).html((data*price).toLocaleString());
+
+		    				const objectArray = Object.entries(data);
+		    				var total_price=0;
+		    				cart_key = product_id+"-"+color_id;
+
+							objectArray.forEach(([key, value]) => {
+							  console.log(key+":"+value);
+
+							  if (key == cart_key) 
+							  {
+								  // Quantity			    				  
+			    				  $("#product_quantity_"+cart_key).html(value);
+
+			    				  // Price
+			    				  price_temp = value*price;
+			    				  $("#total_price_"+cart_key).html(price_temp.toLocaleString());
+			    				  total_price += price_temp;
+		    				  }
+		    				  else
+		    				  {
+		    				  	var other_prices = $("#total_price_"+key)[0];
+		    				  	other_prices = (other_prices['innerText']).replace(/,/gi,"");
+		    				  	other_prices = parseInt(other_prices);
+		    				  	
+		    				  	total_price += other_prices;
+		    				  }
+							})
+			    			
+			    			console.log(total_price.toLocaleString());
+		    				$("#invoice_total_price").html(total_price.toLocaleString());
 		    			}
 		    		}
 

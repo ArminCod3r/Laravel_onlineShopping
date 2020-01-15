@@ -266,6 +266,14 @@ class SiteController extends Controller
 
               $request->session()->put('cart', $cart);
 
+            $new_cart = array();
+            foreach ($request->session()->get('cart') as $key => $value)
+            {
+              $new_cart[$key] = $value;
+            }
+
+            return $new_cart;
+
               return $count_product;
             }
             else
