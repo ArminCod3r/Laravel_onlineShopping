@@ -349,6 +349,31 @@
               </ul>
             </li>
 
+
+            <li class="nav-item has-treeview" id="state">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fa fa-compass"></i>
+                <p>
+                  استان
+                  <i class="fa fa-angle-left right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="{{ url('admin/state#state') }}" class="nav-link">
+                    <p>لیست</p>
+                  </a>
+                </li>
+              </ul>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="{{ url('admin/state/create#state') }}" class="nav-link">
+                    <p>افزودن</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+
             
         </nav>
         <!-- /.sidebar-menu -->
