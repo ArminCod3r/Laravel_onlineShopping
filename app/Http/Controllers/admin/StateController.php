@@ -16,7 +16,9 @@ class StateController extends Controller
      */
     public function index()
     {
-        return view('admin/state/index');
+        $states = State::all();
+
+        return view('admin/state/index')->with('states', $states);
     }
 
     /**
@@ -37,6 +39,8 @@ class StateController extends Controller
      */
     public function store(Request $request)
     {
+        // TODO: unique state
+
         $rules = [
                     'state' => 'required|max:250',
                 ];
@@ -61,7 +65,7 @@ class StateController extends Controller
             $state->name = $request->input('state');
             $state->save();
 
-            return 'done';
+            return view('admin/state/index');
         }
         
 
