@@ -24,7 +24,7 @@ class StateController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin/state/create');
     }
 
     /**
@@ -35,7 +35,7 @@ class StateController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return 'storing';
     }
 
     /**
