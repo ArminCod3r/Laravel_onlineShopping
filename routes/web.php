@@ -102,3 +102,7 @@ Route::get('captcha', function(){
 });
 
 Route::post('if_loggedin', 'SiteController@if_loggedin');
+
+
+// ostan
+Route::resource('admin/state','admin\StateController');
