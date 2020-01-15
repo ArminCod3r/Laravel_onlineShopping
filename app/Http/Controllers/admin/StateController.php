@@ -48,7 +48,15 @@ class StateController extends Controller
                     'state' => 'نام استان',
                 ];
 
-        $this->validate($request, $rules, $customMessages, $fieldsName);
+        $validator = Validator::make($request->all(), $rules, $customMessages, $fieldsName);
+
+
+        if ($validator->fails()) 
+            $this->validate($request, $rules, $customMessages, $fieldsName);
+        
+        else
+            return 'inserting...';
+        
 
     }
 
