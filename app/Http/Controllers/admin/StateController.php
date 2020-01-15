@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Validator;
 
 class StateController extends Controller
 {
@@ -35,7 +36,20 @@ class StateController extends Controller
      */
     public function store(Request $request)
     {
-        return 'storing';
+        $rules = [
+                    'state' => 'required|max:250',
+                ];
+
+        $customMessages = [
+                    'required' => ':attribute الزامی است'
+                ];
+
+        $fieldsName=[
+                    'state' => 'نام استان',
+                ];
+
+        $this->validate($request, $rules, $customMessages, $fieldsName);
+
     }
 
     /**
