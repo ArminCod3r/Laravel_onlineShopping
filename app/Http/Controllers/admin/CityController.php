@@ -4,6 +4,8 @@ namespace App\Http\Controllers\admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\City;
+use App\State;
 
 class CityController extends Controller
 {
@@ -24,7 +26,9 @@ class CityController extends Controller
      */
     public function create()
     {
-        //
+        $states = State::all();
+
+        return view('admin/city/create')->with('states', $states);
     }
 
     /**
@@ -35,7 +39,7 @@ class CityController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return $request->all();
     }
 
     /**
