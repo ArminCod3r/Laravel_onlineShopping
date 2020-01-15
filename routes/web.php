@@ -104,5 +104,8 @@ Route::get('captcha', function(){
 Route::post('if_loggedin', 'SiteController@if_loggedin');
 
 
-// ostan
+// state
 Route::resource('admin/state','admin\StateController');
+
+// city
+Route::resource('admin/city','admin\CityController');
