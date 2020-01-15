@@ -218,13 +218,6 @@
 
 		    			if(operation == 'add')
 		    			{
-		    				// Quantity
-		    				//cart_key = product_id+"-"+color_id;
-		    				//$("#product_quantity_"+cart_key).html(data);
-
-		    				// Price
-		    				//$("#total_price_"+cart_key).html((data*price).toLocaleString());
-
 		    				// https://www.samanthaming.com/tidbits/76-converting-object-to-array
 
 		    				const objectArray = Object.entries(data);
@@ -261,13 +254,6 @@
 
 		    			if(operation == 'subtract')
 		    			{
-		    				// Quantity
-		    				//cart_key = product_id+"-"+color_id;
-		    				//$("#product_quantity_"+cart_key).html(data);
-
-		    				// Price
-		    				//$("#total_price_"+cart_key).html((data*price).toLocaleString());
-
 		    				const objectArray = Object.entries(data);
 		    				var total_price=0;
 		    				cart_key = product_id+"-"+color_id;
