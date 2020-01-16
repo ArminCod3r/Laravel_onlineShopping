@@ -73,7 +73,13 @@ class CityController extends Controller
      */
     public function edit($id)
     {
-        //
+        $city = City::findOrFail($id);
+        $states = State::all();
+
+        return view('admin/city/edit')->with([
+                                             'city' => $city,
+                                             'states' => $states,
+                                             ]);
     }
 
     /**
