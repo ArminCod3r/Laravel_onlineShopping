@@ -166,6 +166,11 @@ body{
   font-weight: bold;
 }
 
+.city-edit-header
+{
+  font-size : 20px;
+  color     : #737373;
+}
 
 .city-index-table
 {
