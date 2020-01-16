@@ -214,7 +214,7 @@
             
             <li class="nav-item has-treeview" id="products">
               <a href="#" class="nav-link">
-                <i class="nav-icon fa fa-modx"></i>
+                <i class="nav-icon fa fa-cart-plus"></i>
                 <p>
                   محصول
                   <i class="right fa fa-angle-left"></i>
