@@ -70,7 +70,10 @@
 	                        <input type="submit" name="submit" value="X" class="submitStyle" style="margin-top: 10px">
 	                    </form>
 
-	                    <span class="fa fa-eye" style="cursor:pointer;" id="{{ $value->id }}" onclick="show_cities('{{ $value }}')"></span>
+	                    <a href="#" data-toggle="tooltip" data-placement="left" title="نمایش همه شهرها">
+	                    	<span class="fa fa-eye" style="cursor:pointer; color: green" id="{{ $value->id }}" onclick="show_cities('{{ $value }}')"></span>
+	                    </a>
+
 					</td>
 
 
@@ -112,6 +115,18 @@
 
 	<script type="text/javascript">
 
+	$(document).ready(function(){
+
+	  // showing bootstrap-tooltip
+	  $('[data-toggle="tooltip"]').tooltip();
+
+	  // hiding tooltip when item got clicked
+	  $('[data-toggle="tooltip').on('click', function () {
+	    $(this).tooltip('hide');
+	  });
+
+	});
+
 		show_cities = function(state)
 		{
 			// clearing the previous result
@@ -119,7 +134,7 @@
 
 			//string to JSON
 			var state = JSON.parse(state);
-			
+
 
 			// check to see if city exits
 			if(state["city"].length > 0)
