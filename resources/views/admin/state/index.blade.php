@@ -3,6 +3,23 @@
 @section('header')
 	<link rel="stylesheet" type="text/css" href="{{ url('css/bootstrap-select.css') }}">
 	<title>لیست استان ها</title>
+
+	<style type="text/css">
+
+    	.bootstrap-select > .dropdown-toggle
+    	{
+    		background-color: white;
+    		width: 230px;
+    		text-align-last: right;
+    	}
+
+    	.filter-option-inner-inner
+    	{
+    		color: black;
+    	}
+
+	</style>
+
 @endsection
 
 @section('custom-title')
@@ -25,32 +42,35 @@
 					<td>{{ $count }}</td>
 					<td>
 
-					      <select class="form-control" id="cities_dropdown" class="selectpicker" data-live-search="true">
-					        <option>{{ $value->name }}</option>
+					      <div class="form-group">
+							 <select name="state" class="selectpicker" data-live-search="true">
+							 <!--stack: 24627902-->
 
-					    		@if( sizeof($value->city) > 0)
-									@foreach($value->city as $key_city=>$item_city)
+							 	<option disabled selected value style="background-color: white !important"> {{$value->name}} </option>
 
-										<option value="{{$item_city->id}}" style="width: 500px;">{{$item_city->name}}</option>	
-
+							 	@if(sizeof($value->city) > 0)
+									@foreach($value->city as $key_city=>$value_city)
+										<option value="{{$value_city->id}}">{{$value_city->name}}</option>
 									@endforeach
+								@else
+									nothing in here
 								@endif
-
-					      </select>
+							  
+							 </select> 
+						</div>
 
 					</td>
 					<td>
-						<a href="state/{{ $value->id }}/edit" class="fa fa-edit"> </a>
+						<a href="state/{{ $value->id }}/edit" class="fa fa-edit" style="margin-top: 10px"> </a>
 
 						<form action="{{ action('admin\StateController@destroy', ['id' => $value->id]) }}" method="POST"  accept-charset="utf-8" class="pull-right"  onsubmit="return confirm('آیا قصد حذف این دسته را دارید؟')"> <!--stack: 39790082-->
 		                        {{ csrf_field() }} 
 
 	                        <input type="hidden" name="_method" value="DELETE">
-	                        <input type="submit" name="submit" value="X" class="submitStyle">
+	                        <input type="submit" name="submit" value="X" class="submitStyle" style="margin-top: 10px">
 	                    </form>
 					</td>
-					<td></td>
-					<td></td>
+
 
 				</tr>
 				<?php $count++; ?>
