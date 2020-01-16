@@ -17,6 +17,7 @@
 				<th style="width: 20%;">ردیف</th>
 				<th>نام استان</th>
 				<th>عملیات</th>
+				<th>شهرها</th>
 			</tr>
 
 			@foreach($states as $key=>$value)			
@@ -33,6 +34,21 @@
 	                        <input type="submit" name="submit" value="X" class="submitStyle">
 	                    </form>
 					</td>
+					<td></td>
+
+					@if( sizeof($value->city) > 0)
+	 					@foreach($value->city as $key_city=>$item_city)
+	 						<tr>
+			 					<td></td>
+			 					<td></td>
+			 					<td></td>
+			 					<td>
+			 						<div style="padding-right:20px"> {{ $item_city->name }} </div>
+			 					</td>
+			 				</tr>
+	 					@endforeach
+	 				@endif
+
 				</tr>
 				<?php $count++; ?>
 			@endforeach
