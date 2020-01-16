@@ -9,6 +9,7 @@
   
   <!-- Font Awesome -->
   <link rel="stylesheet" href="{{ url('plugins/font-awesome/css/font-awesome.min.css') }}">
+  <script src='{{ url("js/fontAwesomKit.js") }}'></script>  <!--source: https://www.w3schools.com/icons/fontawesome_icons_webapp.asp-->
   
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
