@@ -30,7 +30,7 @@
 
 	@if(!empty($states))
 		<?php $count=1; ?>
-		<table class="table table-hover" style="width: 60%; margin: 20px 20px 20px 0px;">
+		<table class="table table-hover" style="width: 80%; margin: 20px 20px 20px 0px;">
 			<tr>
 				<th style="width: 20%;">ردیف</th>
 				<th style="width: 50%;">نام استان</th>
@@ -69,6 +69,8 @@
 	                        <input type="hidden" name="_method" value="DELETE">
 	                        <input type="submit" name="submit" value="X" class="submitStyle" style="margin-top: 10px">
 	                    </form>
+
+	                    <span class="fa fa-eye" style="cursor:pointer;" id="{{ $value->id }}" onclick="show_cities('{{ $value->id }}')"></span>
 					</td>
 
 
@@ -85,9 +87,50 @@
 
 @endsection
 
+@section('content4')
+
+<div class="form-group" id="cities" style="text-align: rtl;" dir="rtl">
+	<!-- cities will be shown here-->			
+</div>
+
+@endsection
+
 
 
 @section('footer')
 	<script type="text/javascript" src="{{ url('js/bootstrap-select.js') }}"></script>
 	<script type="text/javascript" src="{{ url('js/defaults-fa_IR.js') }}"></script>
+
+	<script type="text/javascript">
+
+		show_cities = function(state_id)
+		{
+			document.getElementById('cities').innerHTML = "";
+
+			<?php foreach ($states as $key=>$value): ?>
+
+				<?php if (sizeof($value->city) > 0): ?>
+
+					if (<?php echo $value->id ?> == state_id)
+					{
+						<?php foreach ($value->city as $key_city=>$value_city): ?>
+						 
+							 var cities = '<p>'+
+										    <?php echo json_encode($value_city->name); ?>+
+										  "</p>";
+
+							$("#cities").append(cities);
+							
+						<?php endforeach ?>
+					}
+
+				<?php endif ?>
+
+
+			<?php endforeach ?>
+							
+		}
+
+	</script>
+
 @endsection	
