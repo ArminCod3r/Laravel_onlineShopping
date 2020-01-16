@@ -28,6 +28,9 @@
 
 @section('content1')
 
+	<a href="{{ url('admin/state/create') }}" class="btn btn-success"> افزودن استان </a>
+	<br><br>
+
 	@if(!empty($states))
 		<?php $count=1; ?>
 		<table class="table table-hover" style="width: 80%; margin: 20px 20px 20px 0px;">
