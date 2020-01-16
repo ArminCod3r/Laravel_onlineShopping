@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\City;
 use App\State;
+use DB;
 
 class CityController extends Controller
 {
@@ -91,7 +92,20 @@ class CityController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $city_id   = $id;
+        $city_name = $request->input('city');
+        $state_id  = $request->input('state');
+
+        $city  = City::findOrFail($id);
+        $state = State::findOrFail($state_id);
+
+        DB::table('city')->where('id', $id)
+                         ->update([
+                            'name'     => $city_name,
+                            'state_id' => $state_id
+                         ]);
+
+        return redirect('admin/city/');
     }
 
     /**
