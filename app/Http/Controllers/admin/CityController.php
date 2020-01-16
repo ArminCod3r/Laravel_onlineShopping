@@ -63,7 +63,7 @@ class CityController extends Controller
      */
     public function show($id)
     {
-        //
+        abort(404);
     }
 
     /**
