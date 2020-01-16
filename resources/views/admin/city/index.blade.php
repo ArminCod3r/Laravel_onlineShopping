@@ -13,17 +13,19 @@
 
 	@if(!empty($cities))
 		<?php $count=1; ?>
-		<table class="table table-hover" style="width: 60%; margin: 20px 20px 20px 0px;">
+		<table class="table table-hover" style="width: 90%; margin: 20px 20px 20px 0px;">
 			<tr>
-				<th style="width: 20%;">ردیف</th>
-				<th>نام شهر</th>
+				<th style="width: 20%;text-align: center;">ردیف</th>
+				<th class="city-index-table">نام شهر</th>
+				<th class="city-index-table">نام استان</th>
 				<th>عملیات</th>
 			</tr>
 
 			@foreach($cities as $key=>$value)			
 				<tr>
-					<td>{{ $count }}</td>
-					<td>{{$value->name}}</td>
+					<td class="city-index-table">{{ $count }}</td>
+					<td class="city-index-table">{{$value->name}}</td>					
+					<td class="city-index-table"> {{ $value->state->name }} </td>
 					<td>
 						<a href="city/{{ $value->id }}/edit" class="fa fa-edit"> </a>
 
