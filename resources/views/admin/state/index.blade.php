@@ -70,7 +70,7 @@
 	                        <input type="submit" name="submit" value="X" class="submitStyle" style="margin-top: 10px">
 	                    </form>
 
-	                    <span class="fa fa-eye" style="cursor:pointer;" id="{{ $value->id }}" onclick="show_cities('{{ $value->id }}')"></span>
+	                    <span class="fa fa-eye" style="cursor:pointer;" id="{{ $value->id }}" onclick="show_cities('{{ $value }}')"></span>
 					</td>
 
 
@@ -89,8 +89,17 @@
 
 @section('content4')
 
-<div class="form-group" id="cities" style="text-align: rtl;" dir="rtl">
-	<!-- cities will be shown here-->			
+<div class="form-group list-group" id="cities" style="width: 90%">
+	<!-- cities will be shown here-->
+	<span id="link_to_create_city" style="display: none">
+		<span>شهری وارد نشده...</span>
+		<span>
+			<a href="/admin/city/create"> افزودن شهر</a>
+		</span>
+	</span>
+	 
+	 <ul class="list-group" id="cities_list">
+	</ul> 		
 </div>
 
 @endsection
@@ -103,32 +112,34 @@
 
 	<script type="text/javascript">
 
-		show_cities = function(state_id)
+		show_cities = function(state)
 		{
-			document.getElementById('cities').innerHTML = "";
+			// clearing the previous result
+			document.getElementById('cities_list').innerHTML = "";
 
-			<?php foreach ($states as $key=>$value): ?>
+			//string to JSON
+			var state = JSON.parse(state);
+			
 
-				<?php if (sizeof($value->city) > 0): ?>
+			// check to see if city exits
+			if(state["city"].length > 0)
+			{
+				document.getElementById("link_to_create_city").style.display = "none";
 
-					if (<?php echo $value->id ?> == state_id)
-					{
-						<?php foreach ($value->city as $key_city=>$value_city): ?>
-						 
-							 var cities = '<p>'+
-										    <?php echo json_encode($value_city->name); ?>+
-										  "</p>";
+				// Loop on array
+				for (var i = 0; i < state["city"].length; i++)
+				{
+					city_name = state["city"][i]["name"];
 
-							$("#cities").append(cities);
-							
-						<?php endforeach ?>
-					}
+					var cities = '<li class="list-group-item">'+city_name+'</li>';
+					$("#cities_list").append(cities);
+				}
+			}
 
-				<?php endif ?>
-
-
-			<?php endforeach ?>
-							
+			else
+			{
+				document.getElementById("link_to_create_city").style.display = "block";
+			}
 		}
 
 	</script>
