@@ -11,6 +11,9 @@
 
 @section('content1')
 
+	<a href="{{ url('admin/city/create') }}" class="btn btn-success"> افزودن شهر </a>
+	<br><br>
+
 	@if(!empty($cities))
 		<?php $count=1; ?>
 		<table class="table table-hover" style="width: 90%; margin: 20px 20px 20px 0px;">
