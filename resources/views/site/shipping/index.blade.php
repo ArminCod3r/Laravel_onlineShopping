@@ -8,7 +8,7 @@
 <div class="shipping-steps">
 
 	<div class="shipping-steps-dash">
-		<div style="margin-right: 40px"></div>
+		<div style="margin-right: 25px"></div>
 		<div></div>
 		<div></div>
 		<div></div>
