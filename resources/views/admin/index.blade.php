@@ -131,14 +131,14 @@
                   <!-- Message. Default to the left -->
                   <div class="direct-chat-msg">
                     <div class="direct-chat-info clearfix">
-                      <span class="direct-chat-name float-left">حسام موسوی</span>
+                      <span class="direct-chat-name float-left">User 1</span>
                       <span class="direct-chat-timestamp float-right">23 Jan 2:00 pm</span>
                     </div>
                     <!-- /.direct-chat-info -->
-                    <img class="direct-chat-img" src="dist/img/user1-128x128.jpg" alt="message user image">
+                    <img class="direct-chat-img" src="{{ url('images/avatar.png') }}" alt="message user image" style="border: 1px solid black">
                     <!-- /.direct-chat-img -->
                     <div class="direct-chat-text">
-                      واقعا این قالب رایگانه ؟ قابل باور نیست
+                      msg...msg...
                     </div>
                     <!-- /.direct-chat-text -->
                   </div>
@@ -147,50 +147,19 @@
                   <!-- Message to the right -->
                   <div class="direct-chat-msg right">
                     <div class="direct-chat-info clearfix">
-                      <span class="direct-chat-name float-right">سارا</span>
+                      <span class="direct-chat-name float-right">user 2</span>
                       <span class="direct-chat-timestamp float-left">23 Jan 2:05 pm</span>
                     </div>
                     <!-- /.direct-chat-info -->
-                    <img class="direct-chat-img" src="dist/img/user3-128x128.jpg" alt="message user image">
+                    <img class="direct-chat-img" src="{{ url('images/avatar.png') }}" alt="message user image" style="border: 1px solid black">
                     <!-- /.direct-chat-img -->
                     <div class="direct-chat-text">
-                      بهتره اینو باور کنی :)
+                      msg...msg...
                     </div>
                     <!-- /.direct-chat-text -->
                   </div>
                   <!-- /.direct-chat-msg -->
 
-                  <!-- Message. Default to the left -->
-                  <div class="direct-chat-msg">
-                    <div class="direct-chat-info clearfix">
-                      <span class="direct-chat-name float-left">حسام موسوی</span>
-                      <span class="direct-chat-timestamp float-right">23 Jan 5:37 pm</span>
-                    </div>
-                    <!-- /.direct-chat-info -->
-                    <img class="direct-chat-img" src="dist/img/user1-128x128.jpg" alt="message user image">
-                    <!-- /.direct-chat-img -->
-                    <div class="direct-chat-text">
-                      میخوام با این قالب یه اپلیکیشن باحال بزنم ؟‌ تو هم همکاری میکنی ؟
-                    </div>
-                    <!-- /.direct-chat-text -->
-                  </div>
-                  <!-- /.direct-chat-msg -->
-
-                  <!-- Message to the right -->
-                  <div class="direct-chat-msg right">
-                    <div class="direct-chat-info clearfix">
-                      <span class="direct-chat-name float-right">سارا</span>
-                      <span class="direct-chat-timestamp float-left">23 Jan 6:10 pm</span>
-                    </div>
-                    <!-- /.direct-chat-info -->
-                    <img class="direct-chat-img" src="dist/img/user3-128x128.jpg" alt="message user image">
-                    <!-- /.direct-chat-img -->
-                    <div class="direct-chat-text">
-                      اره حتما
-                    </div>
-                    <!-- /.direct-chat-text -->
-                  </div>
-                  <!-- /.direct-chat-msg -->
 
                 </div>
                 <!--/.direct-chat-messages-->
