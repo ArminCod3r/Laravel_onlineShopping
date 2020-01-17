@@ -1335,6 +1335,97 @@ body
     margin-top   : 7px;
 }
 
+.shipping-steps
+{
+    width            : 95%;
+    height           : 110px;
+    background-color : white;
+    margin           : auto;
+    border-radius    : 5px;
+}
+
+.shipping-steps-dash div
+{
+    width            : 20px;
+    height           : 2px;
+    background-color : #62B965;
+    margin-top       : 47px;
+    margin-right     : 10px;
+    float            : right;
+}
+
+.bullet
+{
+    border        : 3px solid #BEC2CC;
+    float         : right;
+    border-radius : 100%;
+    width         : 22px;
+    height        : 22px;
+    position      : relative;
+    margin        : 37px 5px 0px 0px;
+}
+
+.bullet.green
+{
+    background   : #EBFFEB none repeat scroll 0% 0% !important;
+    border-color : #62B965;
+}
+
+.bullet.green.tick
+{
+    background  : #62B965 url("../images/slices.png") no-repeat scroll -810px -476px !important;
+    border-color: #62B965;
+}
+
+.bullet span
+{
+    display      : block;
+    padding-top  : 22px;
+    margin-right : -33px;
+    width        : 100px;
+}
+
+
+.shipping-line
+{
+    height : 2px;
+    width  : 23%;
+    float  : right;
+    margin : 47px 5px 0px 0px;
+}
+
+.green-line
+{
+    background : #62B965 !important;
+}
+
+.gray-line
+{
+    background:#BEC2CC !important;
+}
+
+
+.shipping-steps-dash-gray div
+{
+    width            : 20px;
+    height           : 2px;
+    background-color : #BEC2CC;
+    margin-top       : 47px;
+    margin-right     : 10px;
+    float            : right;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
