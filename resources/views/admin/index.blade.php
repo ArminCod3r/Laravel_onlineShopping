@@ -293,13 +293,13 @@
                     <!-- checkbox -->
                     <input type="checkbox" value="" name="">
                     <!-- todo text -->
-                    <span class="text">طراحی یک قالب زیبا</span>
+                    <span class="text">TODO 1</span>
                     <!-- Emphasis label -->
                     <small class="badge badge-danger"><i class="fa fa-clock-o"></i> 2 دقیقه</small>
                     <!-- General tools such as edit or delete-->
                     <div class="tools">
                       <i class="fa fa-edit"></i>
-                      <i class="fa fa-trash-o"></i>
+                      <i class="fa fa-trash"></i>
                     </div>
                   </li>
                   <li>
@@ -308,11 +308,11 @@
                       <i class="fa fa-ellipsis-v"></i>
                     </span>
                     <input type="checkbox" value="" name="">
-                    <span class="text">رسپانسیو کردن قالب مورد نظر</span>
+                    <span class="text">TODO 2</span>
                     <small class="badge badge-info"><i class="fa fa-clock-o"></i> 4 ساعت</small>
                     <div class="tools">
                       <i class="fa fa-edit"></i>
-                      <i class="fa fa-trash-o"></i>
+                      <i class="fa fa-trash"></i>
                     </div>
                   </li>
                   <li>
@@ -321,11 +321,11 @@
                       <i class="fa fa-ellipsis-v"></i>
                     </span>
                     <input type="checkbox" value="" name="">
-                    <span class="text">ارائه قالب برای استفاده بقیه</span>
+                    <span class="text">TODO 3</span>
                     <small class="badge badge-warning"><i class="fa fa-clock-o"></i> 1 روز</small>
                     <div class="tools">
                       <i class="fa fa-edit"></i>
-                      <i class="fa fa-trash-o"></i>
+                      <i class="fa fa-trash"></i>
                     </div>
                   </li>
                   <li>
@@ -334,11 +334,11 @@
                       <i class="fa fa-ellipsis-v"></i>
                     </span>
                     <input type="checkbox" value="" name="">
-                    <span class="text">بهینه سازی بخش های بوجود اومده</span>
+                    <span class="text">TODO 4</span>
                     <small class="badge badge-success"><i class="fa fa-clock-o"></i> 3 روز</small>
                     <div class="tools">
                       <i class="fa fa-edit"></i>
-                      <i class="fa fa-trash-o"></i>
+                      <i class="fa fa-trash"></i>
                     </div>
                   </li>
                   <li>
@@ -347,11 +347,11 @@
                       <i class="fa fa-ellipsis-v"></i>
                     </span>
                     <input type="checkbox" value="" name="">
-                    <span class="text">چک کردن پیام ها و نوتیفیکیشن ها</span>
+                    <span class="text">TODO 5</span>
                     <small class="badge badge-primary"><i class="fa fa-clock-o"></i> 1 هفته</small>
                     <div class="tools">
                       <i class="fa fa-edit"></i>
-                      <i class="fa fa-trash-o"></i>
+                      <i class="fa fa-trash"></i>
                     </div>
                   </li>
                   <li>
@@ -360,11 +360,11 @@
                       <i class="fa fa-ellipsis-v"></i>
                     </span>
                     <input type="checkbox" value="" name="">
-                    <span class="text">طراحی صفحه ایمیل جدید</span>
+                    <span class="text">TODO 6</span>
                     <small class="badge badge-secondary"><i class="fa fa-clock-o"></i> 1 ماه</small>
                     <div class="tools">
                       <i class="fa fa-edit"></i>
-                      <i class="fa fa-trash-o"></i>
+                      <i class="fa fa-trash"></i>
                     </div>
                   </li>
                 </ul>
