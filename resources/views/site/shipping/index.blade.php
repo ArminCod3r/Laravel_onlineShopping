@@ -100,7 +100,7 @@
 
 			</select>
 
-			<select>
+			<select id="cities_list">
 			 	<option value="">شهر</option>			  
 			</select> 
     	</div>
@@ -145,12 +145,24 @@
 	    		'type': 'post',
 	    		'data': 'state='+state,
 	    		success:function(data){
+
 	    			data = JSON.parse(data);
-	    			//console.log(data);
+
+	    			var generat_options = "";
 
 	    			for (var i = 0; i < data.length; i++)
 	    			{
-	    				console.log(data[i]);
+	    				generat_options = '<option value="'+data[i]["id"]+'">'+
+	    							  	  data[i]["name"]+
+	    							  	  '</option>';
+
+	    				$("#cities_list").html(generat_options);
+	    			}
+
+	    			if(data.length == 0)
+	    			{
+	    				generat_options = '<option value="">شهر</option>';
+	    				$("#cities_list").html(generat_options);
 	    			}
 	    		}
 
