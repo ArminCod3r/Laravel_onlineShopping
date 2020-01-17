@@ -1,6 +1,8 @@
 @extends('site/layouts/siteLayout')
 
 @section('header')
+	<meta name="csrf-token" content="{{ csrf_token() }}">
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 @endsection
@@ -85,7 +87,7 @@
 
         <div class="modal-body">
 
-        	<select onchange="state_changed()">
+        	<select onchange="state_changed()" id="state_list">
 			 	<option value="">استان</option>
 
 			 	@if(sizeof($states) > 0)
@@ -122,9 +124,38 @@
 		$('#myAddress').modal('show');
 	}
 
+	<?php $url= url('shipping/ajax_view_cities'); ?>
 	state_changed = function()
 	{
-		alert(1);
+		state = document.getElementById("state_list").value;
+		
+		$.ajaxSetup(
+		    			{
+		    				'headers':
+		    				{
+		    					'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
+		    				}
+		    			}
+					);
+		
+		$.ajax(
+	    		{
+
+	    		'url': '{{ $url }}',
+	    		'type': 'post',
+	    		'data': 'state='+state,
+	    		success:function(data){
+	    			data = JSON.parse(data);
+	    			//console.log(data);
+
+	    			for (var i = 0; i < data.length; i++)
+	    			{
+	    				console.log(data[i]);
+	    			}
+	    		}
+
+	    		}
+		  );
 	}
 
 </script>

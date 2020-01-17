@@ -112,3 +112,5 @@ Route::resource('admin/city','admin\CityController');
 
 // shipping
 Route::resource('/shipping','ShippingController');
+Route::post('/shipping/ajax_view_cities','ShippingController@ajax_view_cities');
+

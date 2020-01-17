@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use DB;
 use View;
 Use App\State;
+Use App\City;
 
 class ShippingController extends Controller
 {
@@ -95,6 +96,33 @@ class ShippingController extends Controller
     public function destroy($id)
     {
         //
+    }
+    
+
+    public function ajax_view_cities(Request $request)
+    {
+        $state_id = $request->get('state');
+
+        $state = State::findOrFail($state_id);
+
+        if(!empty($state))
+        {
+            $cities = City::select(['id','name'])
+                            ->where('state_id', $state_id)
+                            ->get()
+                            ->toJSON();
+
+            if(!empty($state))
+            {
+                return $cities;
+            }
+
+            else
+                return 0;
+        }
+        else
+            return 0;
+
     }
 
 
