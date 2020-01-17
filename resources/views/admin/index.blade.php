@@ -169,14 +169,14 @@
                   <ul class="contacts-list">
                     <li>
                       <a href="#">
-                        <img class="contacts-list-img" src="dist/img/user1-128x128.jpg">
+                        <img class="contacts-list-img" src="{{ url('images/avatar.png') }}">
 
                         <div class="contacts-list-info">
                           <span class="contacts-list-name">
-                            حسام موسوی
+                            contact 1
                             <small class="contacts-list-date float-left">1397/10/01</small>
                           </span>
-                          <span class="contacts-list-msg">تا حالا کجا بودی ؟‌من...</span>
+                          <span class="contacts-list-msg">msg...</span>
                         </div>
                         <!-- /.contacts-list-info -->
                       </a>
@@ -184,14 +184,14 @@
                     <!-- End Contact Item -->
                     <li>
                       <a href="#">
-                        <img class="contacts-list-img" src="dist/img/user7-128x128.jpg">
+                        <img class="contacts-list-img" src="{{ url('images/avatar.png') }}">
 
                         <div class="contacts-list-info">
                           <span class="contacts-list-name">
-                            سارا فرهانی
+                            contact 2
                             <small class="contacts-list-date float-left">2/23/2015</small>
                           </span>
-                          <span class="contacts-list-msg">تا حالا منتظر تو بودم...</span>
+                          <span class="contacts-list-msg">msg...</span>
                         </div>
                         <!-- /.contacts-list-info -->
                       </a>
@@ -199,14 +199,14 @@
                     <!-- End Contact Item -->
                     <li>
                       <a href="#">
-                        <img class="contacts-list-img" src="dist/img/user3-128x128.jpg">
+                        <img class="contacts-list-img" src="{{ url('images/avatar.png') }}">
 
                         <div class="contacts-list-info">
                           <span class="contacts-list-name">
-                            نکیسا کیانی
+                            contact 3
                             <small class="contacts-list-date float-left">2/20/2015</small>
                           </span>
-                          <span class="contacts-list-msg">پس بیشتر صبر کن تا برگردم...</span>
+                          <span class="contacts-list-msg">msg...</span>
                         </div>
                         <!-- /.contacts-list-info -->
                       </a>
@@ -214,14 +214,14 @@
                     <!-- End Contact Item -->
                     <li>
                       <a href="#">
-                        <img class="contacts-list-img" src="dist/img/user5-128x128.jpg">
+                        <img class="contacts-list-img" src="{{ url('images/avatar.png') }}">
 
                         <div class="contacts-list-info">
                           <span class="contacts-list-name">
-                            رحمت موسوی
+                            contact 4
                             <small class="contacts-list-date float-left">2/10/2015</small>
                           </span>
-                          <span class="contacts-list-msg"> حالتون چطورههههه !...</span>
+                          <span class="contacts-list-msg">msg...</span>
                         </div>
                         <!-- /.contacts-list-info -->
                       </a>
@@ -229,29 +229,14 @@
                     <!-- End Contact Item -->
                     <li>
                       <a href="#">
-                        <img class="contacts-list-img" src="dist/img/user6-128x128.jpg">
+                        <img class="contacts-list-img" src="{{ url('images/avatar.png') }}">
 
                         <div class="contacts-list-info">
                           <span class="contacts-list-name">
-                            جکسون عبداللهی
+                            contact 5
                             <small class="contacts-list-date float-left">1/27/2015</small>
                           </span>
-                          <span class="contacts-list-msg">عالیییییییییی...</span>
-                        </div>
-                        <!-- /.contacts-list-info -->
-                      </a>
-                    </li>
-                    <!-- End Contact Item -->
-                    <li>
-                      <a href="#">
-                        <img class="contacts-list-img" src="dist/img/user8-128x128.jpg">
-
-                        <div class="contacts-list-info">
-                          <span class="contacts-list-name">
-                            کتایون ریحانی
-                            <small class="contacts-list-date float-left">1/4/2015</small>
-                          </span>
-                          <span class="contacts-list-msg">بیخیالش پیداش میکنم...</span>
+                          <span class="contacts-list-msg">msg...</span>
                         </div>
                         <!-- /.contacts-list-info -->
                       </a>
