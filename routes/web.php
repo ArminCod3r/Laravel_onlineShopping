@@ -109,3 +109,6 @@ Route::resource('admin/state','admin\StateController');
 
 // city
 Route::resource('admin/city','admin\CityController');
+
+// shipping
+Route::resource('/shipping','ShippingController');
