@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use View;
+Use App\State;
 
 class ShippingController extends Controller
 {
@@ -25,7 +26,9 @@ class ShippingController extends Controller
      */
     public function index()
     {
-        return view("site/shipping/index");
+        $states = State::all();
+
+        return view("site/shipping/index")->with('states', $states);
     }
 
     /**

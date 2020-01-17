@@ -1415,7 +1415,19 @@ body
     float            : right;
 }
 
+.shipping-address
+{
+    width            : 95%;
+    height           : 110px;
+    background-color : white;
+    margin           : 15px auto;
+    border-radius    : 5px;
+}
 
+.add-address
+{
+    padding: 20px 20px 0px 0px;
+}
 
 
 
