@@ -5,6 +5,7 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
 @endsection
 
 @section('content')
@@ -87,22 +88,65 @@
 
         <div class="modal-body">
 
-        	<select onchange="state_changed()" id="state_list">
-			 	<option value="">استان</option>
 
-			 	@if(sizeof($states) > 0)
-					@foreach($states as $key_state=>$value_state)
-						<option value="{{$value_state->id}}">{{$value_state->name}}</option>
-					@endforeach
-				@else
-					nothing in here
-				@endif
+          		 <form action="#" method="POST" accept-charset="utf-8" enctype="multipart/form-data">
+					{{ csrf_field() }}
 
-			</select>
+	        	<label>نام و نام خانوادگی</label>
+	        	<input type="text" class="form-control" name="username" id="username" value="{{ old('username') }}" />
 
-			<select id="cities_list">
-			 	<option value="">شهر</option>			  
-			</select> 
+
+	        	<div>
+	        		<div class="newAddressModal"> انتخاب استان و شهر:</div>
+		        	<select onchange="state_changed()" id="state_list" class="form-control newAddressInputs">
+					 	<option value="">استان</option>
+
+					 	@if(sizeof($states) > 0)
+							@foreach($states as $key_state=>$value_state)
+								<option value="{{$value_state->id}}">{{$value_state->name}}</option>
+							@endforeach
+						@else
+							nothing in here
+						@endif
+					</select>
+
+					<select id="cities_list" class="form-control newAddressInputs">
+					 	<option value="">شهر</option>
+					</select>
+	        	</div>
+
+	        	<br/>
+
+				<div class="newAddressInputs">
+					<div> تلفن ثابت</div>
+	        		<input type="text" class="form-control" name="telephone" id="telephone" value="{{ old('telephone') }}" />
+				</div>
+
+	        	<div class="newAddressInputs">
+	        		<div> کد شهر </div>
+	        		<input type="text" class="form-control" name="cit_code" id="cit_code" value="{{ old('cit_code') }}" />
+	        	</div>
+
+				<div class="newAddressInputs">
+					<div> شماره موبایل</div>
+	        		<input type="text" class="form-control" name="mobile" id="mobile" value="{{ old('mobile') }}" />
+				</div>
+
+	        	<div class="newAddressInputs">
+	        		<div> کد پستی </div>
+	        		<input type="text" class="form-control" name="postalCode" id="postalCode" value="{{ old('postalCode') }}" />
+	        	</div>
+
+	        	<div style="margin: 10px 0px 10px 0px"></div>
+
+	        	<div class="newAddressTextArea">
+	        		<div> کد پستی </div>
+	        		<textarea class="form-control" name="postalCode" id="postalCode" value="{{ old('postalCode') }}" > </textarea>
+	        	</div>
+
+	        	<input type="submit" class="btn btn-success newAddrSubmit" value="ثبت" />
+			</form>
+
     	</div>
 
       </div>      

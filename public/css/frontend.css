@@ -1429,6 +1429,39 @@ body
     padding: 20px 20px 0px 0px;
 }
 
+.newAddressModal
+{
+    margin-top: 10px;
+}
+
+.newAddressInputs
+{
+    width       : 48%;
+    float       : right;
+    margin-left : 5px;
+}
+
+.newAddressInputs div
+{
+    margin-top: 10px;
+}
+
+.newAddressTextArea, .newAddressTextArea div
+{
+    width: 97%;
+}
+
+.newAddressTextArea textarea
+{
+    resize: none;
+}
+
+.newAddrSubmit
+{
+    margin-top: 25px;
+    width: 100%;
+}
+
 
 
 
