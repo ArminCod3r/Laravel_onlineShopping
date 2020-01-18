@@ -89,7 +89,7 @@
         <div class="modal-body">
 
 
-          		 <form action="#" method="POST" accept-charset="utf-8" enctype="multipart/form-data">
+          		 <form action="{{ action('ShippingController@storeAddress') }}" method="POST" accept-charset="utf-8" enctype="multipart/form-data">
 					{{ csrf_field() }}
 
 	        	<label>نام و نام خانوادگی</label>
@@ -98,7 +98,7 @@
 
 	        	<div>
 	        		<div class="newAddressModal"> انتخاب استان و شهر:</div>
-		        	<select onchange="state_changed()" id="state_list" class="form-control newAddressInputs">
+		        	<select onchange="state_changed()" name="state" id="state_list" class="form-control newAddressInputs">
 					 	<option value="">استان</option>
 
 					 	@if(sizeof($states) > 0)
@@ -110,7 +110,7 @@
 						@endif
 					</select>
 
-					<select id="cities_list" class="form-control newAddressInputs">
+					<select id="cities_list" class="form-control newAddressInputs" name="city">
 					 	<option value="">شهر</option>
 					</select>
 	        	</div>
@@ -124,7 +124,7 @@
 
 	        	<div class="newAddressInputs">
 	        		<div> کد شهر </div>
-	        		<input type="text" class="form-control" name="cit_code" id="cit_code" value="{{ old('cit_code') }}" />
+	        		<input type="text" class="form-control" name="city_code" id="city_code" value="{{ old('city_code') }}" />
 	        	</div>
 
 				<div class="newAddressInputs">
@@ -213,7 +213,6 @@
 	    		}
 		  );
 	}
-
 </script>
 
 @endsection

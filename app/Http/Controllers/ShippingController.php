@@ -7,6 +7,7 @@ use DB;
 use View;
 Use App\State;
 Use App\City;
+use Validator;
 
 class ShippingController extends Controller
 {
@@ -131,6 +132,51 @@ class ShippingController extends Controller
             abort(404);
         }
 
+    }
+
+    public function storeAddress(Request $request)
+    {
+        //return $request->all();
+
+        $rules = [
+                    'username'  => 'required|max:250',
+                    'state'     => 'required|max:250',
+                    'city'      => 'required|max:250',
+                    'telephone' => 'required|max:20',
+                    'city_code' => 'required|max:10',
+                    'mobile'    => 'required|max:11',
+                    'postalCode'=> 'required|max:12',
+                    'Address'   => 'required',
+                ];
+
+        $customMessages = [
+                    'required' => ':attribute الزامی است',
+                ];
+
+        $fieldsName=[
+                    'username'  => 'نام و نام خانوادگی',
+                    'state'     => 'استان',
+                    'city'      => 'شهر',
+                    'telephone' => 'تلفن ثابت',
+                    'city_code' => 'کد شهر ',
+                    'mobile'    => 'شماره موبایل',
+                    'postalCode'=> 'کد پستی ',
+                    'Address'   => 'آدرس ',
+                ];
+                
+
+        $validator = Validator::make($request->all(), $rules, $customMessages, $fieldsName);
+
+
+        if ($validator->fails())
+        {
+            return $validator->messages()->getMessages();
+        }
+
+        else
+        {
+            return 'no errors';
+        }
     }
 
 
