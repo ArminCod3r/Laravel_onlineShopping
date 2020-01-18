@@ -140,8 +140,8 @@
 	        	<div style="margin: 10px 0px 10px 0px"></div>
 
 	        	<div class="newAddressTextArea">
-	        		<div> کد پستی </div>
-	        		<textarea class="form-control" name="postalCode" id="postalCode" value="{{ old('postalCode') }}" > </textarea>
+	        		<div> آدرس </div>
+	        		<textarea class="form-control" name="Address" id="Address" value="{{ old('Address') }}" > </textarea>
 	        	</div>
 
 	        	<input type="submit" class="btn btn-success newAddrSubmit" value="ثبت" />
