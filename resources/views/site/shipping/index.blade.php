@@ -177,7 +177,7 @@
 @section('footer')
 
 <script type="text/javascript">
-	
+
 	add_address = function()
 	{
 		$('#myAddress').modal('show');
@@ -250,17 +250,30 @@
 	    		'type': 'post',
 	    		'data': 'form_data='+form_data,
 	    		success:function(data){
+
+	    			clear_errors();
+
 	    			var data = Object.entries(data);
 
 	    			data.forEach(([key, value]) => {
-					  console.log(key+":"+value);
 					  $("#"+key+"_error").html(value);
-
 					});
 	    		}
 
 	    		}
 		  );
+	}
+
+
+
+	function clear_errors()
+	{
+		var error_fields = ['username','state','city','telephone','city_code','mobile','postalCode','Address'];
+
+		for (var i = 0; i < error_fields.length; i++)
+		{
+			$("#"+error_fields[i]+"_error").html(" ");
+		}
 	}
 
 </script>
