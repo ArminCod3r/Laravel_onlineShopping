@@ -89,15 +89,17 @@
         <div class="modal-body">
 
 
-          		 <form action="{{ action('ShippingController@storeAddress') }}" method="POST" accept-charset="utf-8" enctype="multipart/form-data">
+          	<form action="#" onsubmit="address_submit() ; return false;" method="POST" accept-charset="utf-8" enctype="multipart/form-data" id="address_form" >
 					{{ csrf_field() }}
 
 	        	<label>نام و نام خانوادگی</label>
 	        	<input type="text" class="form-control" name="username" id="username" value="{{ old('username') }}" />
+	        	<span style="color: red;" id="username_error"></span>
 
 
-	        	<div>
-	        		<div class="newAddressModal"> انتخاب استان و شهر:</div>
+	        	<div class="newAddressModal">
+	        		<div>
+	        			<div> انتخاب استان و شهر:</div>
 		        	<select onchange="state_changed()" name="state" id="state_list" class="form-control newAddressInputs">
 					 	<option value="">استان</option>
 
@@ -109,10 +111,18 @@
 							nothing in here
 						@endif
 					</select>
+	        		</div>
 
+					<div>
 					<select id="cities_list" class="form-control newAddressInputs" name="city">
 					 	<option value="">شهر</option>
 					</select>
+					</div>
+
+					<span style="color: red;" id="state_error"></span>
+
+					<span style="color:red; margin-right:28%;" id="city_error"></span>
+
 	        	</div>
 
 	        	<br/>
@@ -120,21 +130,25 @@
 				<div class="newAddressInputs">
 					<div> تلفن ثابت</div>
 	        		<input type="text" class="form-control" name="telephone" id="telephone" value="{{ old('telephone') }}" />
+	        		<span style="color: red;" id="telephone_error"></span>
 				</div>
 
 	        	<div class="newAddressInputs">
 	        		<div> کد شهر </div>
 	        		<input type="text" class="form-control" name="city_code" id="city_code" value="{{ old('city_code') }}" />
+	        		<span style="color: red;" id="city_code_error"></span>
 	        	</div>
 
 				<div class="newAddressInputs">
 					<div> شماره موبایل</div>
 	        		<input type="text" class="form-control" name="mobile" id="mobile" value="{{ old('mobile') }}" />
+	        		<span style="color: red;" id="mobile_error"></span>
 				</div>
 
 	        	<div class="newAddressInputs">
 	        		<div> کد پستی </div>
 	        		<input type="text" class="form-control" name="postalCode" id="postalCode" value="{{ old('postalCode') }}" />
+	        		<span style="color: red;" id="postalCode_error"></span>
 	        	</div>
 
 	        	<div style="margin: 10px 0px 10px 0px"></div>
@@ -142,6 +156,7 @@
 	        	<div class="newAddressTextArea">
 	        		<div> آدرس </div>
 	        		<textarea class="form-control" name="Address" id="Address" value="{{ old('Address') }}" > </textarea>
+	        		<span style="color: red;" id="Address_error"></span>
 	        	</div>
 
 	        	<input type="submit" class="btn btn-success newAddrSubmit" value="ثبت" />
@@ -213,6 +228,41 @@
 	    		}
 		  );
 	}
+
+	<?php $url= url('shipping/storeAddress'); ?>
+	address_submit = function()
+	{
+		var form_data = $("#address_form").serialize();
+
+		$.ajaxSetup(
+		    			{
+		    				'headers':
+		    				{
+		    					'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
+		    				}
+		    			}
+					);
+		
+		$.ajax(
+	    		{
+
+	    		'url': '{{ $url }}',
+	    		'type': 'post',
+	    		'data': 'form_data='+form_data,
+	    		success:function(data){
+	    			var data = Object.entries(data);
+
+	    			data.forEach(([key, value]) => {
+					  console.log(key+":"+value);
+					  $("#"+key+"_error").html(value);
+
+					});
+	    		}
+
+	    		}
+		  );
+	}
+
 </script>
 
 @endsection

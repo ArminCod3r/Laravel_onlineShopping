@@ -163,14 +163,14 @@ class ShippingController extends Controller
                     'postalCode'=> 'کد پستی ',
                     'Address'   => 'آدرس ',
                 ];
-                
+
 
         $validator = Validator::make($request->all(), $rules, $customMessages, $fieldsName);
 
 
         if ($validator->fails())
         {
-            return $validator->messages()->getMessages();
+            return $validator->messages()->toArray();
         }
 
         else
