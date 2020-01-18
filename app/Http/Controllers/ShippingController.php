@@ -101,27 +101,35 @@ class ShippingController extends Controller
 
     public function ajax_view_cities(Request $request)
     {
-        $state_id = $request->get('state');
-
-        $state = State::findOrFail($state_id);
-
-        if(!empty($state))
+        if($request->ajax())
         {
-            $cities = City::select(['id','name'])
-                            ->where('state_id', $state_id)
-                            ->get()
-                            ->toJSON();
+            $state_id = $request->get('state');
+
+            $state = State::findOrFail($state_id);
 
             if(!empty($state))
             {
-                return $cities;
-            }
+                $cities = City::select(['id','name'])
+                                ->where('state_id', $state_id)
+                                ->get()
+                                ->toJSON();
 
+                if(!empty($state))
+                {
+                    return $cities;
+                }
+
+                else
+                    return 0;
+            }
             else
                 return 0;
         }
+
         else
-            return 0;
+        {
+            abort(404);
+        }
 
     }
 
