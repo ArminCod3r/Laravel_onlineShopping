@@ -32,6 +32,14 @@ class ShippingController extends Controller
     {
         $states = State::all();
 
+        $user_id = Auth::user()->id;
+        $user_address = UsersAddress::with('State')
+                                    ->with('City')
+                                    ->where('user_id', $user_id)
+                                    ->get();
+
+        return $user_address;
+
         return view("site/shipping/index")->with('states', $states);
     }
 
