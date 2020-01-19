@@ -75,8 +75,8 @@
 			<table class="table table-bordered">
 				<tbody>
 					<tr>
-						<td rowspan="3" style="width:3% ; background-color: #d5f2db">
-							
+						<td rowspan="3" class="select-address" onclick="change_address()">
+							<span class="fa fa-circle" id="select_address"></span>
 						</td>
 						<td colspan="3"> {{ $user_address[0]->username }} </td>
 
@@ -358,6 +358,11 @@
 		{
 			$("#"+error_fields[i]+"_error").html(" ");
 		}
+	}
+
+	change_address = function()
+	{
+		document.getElementById('select_address').style.color="#828181";
 	}
 
 </script>
