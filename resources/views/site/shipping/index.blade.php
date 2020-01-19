@@ -155,8 +155,8 @@
 
 	        	<div class="newAddressTextArea">
 	        		<div> آدرس </div>
-	        		<textarea class="form-control" name="Address" id="Address" value="{{ old('Address') }}" > </textarea>
-	        		<span style="color: red;" id="Address_error"></span>
+	        		<textarea class="form-control" name="address" id="address" value="{{ old('address') }}" > </textarea>
+	        		<span style="color: red;" id="address_error"></span>
 	        	</div>
 
 	        	<input type="submit" class="btn btn-success newAddrSubmit" value="ثبت" />
@@ -268,7 +268,7 @@
 
 	function clear_errors()
 	{
-		var error_fields = ['username','state','city','telephone','city_code','mobile','postalCode','Address'];
+		var error_fields = ['username','state','city','telephone','city_code','mobile','postalCode','address'];
 
 		for (var i = 0; i < error_fields.length; i++)
 		{

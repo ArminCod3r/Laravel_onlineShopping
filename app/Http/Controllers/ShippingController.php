@@ -146,7 +146,7 @@ class ShippingController extends Controller
                     'city_code' => 'required|max:10',
                     'mobile'    => 'required|max:11',
                     'postalCode'=> 'required|max:12',
-                    'Address'   => 'required',
+                    'address'   => 'required',
                 ];
 
         $customMessages = [
@@ -161,7 +161,7 @@ class ShippingController extends Controller
                     'city_code' => 'کد شهر ',
                     'mobile'    => 'شماره موبایل',
                     'postalCode'=> 'کد پستی ',
-                    'Address'   => 'آدرس ',
+                    'address'   => 'آدرس ',
                 ];
 
 
