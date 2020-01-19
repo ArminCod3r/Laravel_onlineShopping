@@ -84,8 +84,8 @@
 
 						<td rowspan="3" class="users-address-operations">
 
-							<div class="edit">
-								<span class="fa fa-edit" id="edit_{{$key}}" onclick="edit_addr('{{$key}}', '{{$value}}')"></span>
+							<div class="edit" onclick="edit_addr('{{$key}}', '{{$value}}')">
+								<span class="fa fa-edit" id="edit_{{$key}}"></span>
 							</div>
 
 							<div class="remove">
@@ -240,7 +240,7 @@
   
 </div>
 
-
+<!-- Editing Modal -->
 <div class="container">
 
   <!-- Modal -->
@@ -252,7 +252,7 @@
 
         <div class="modal-header"  style="direction: ltr">
           <button type="button" class="close" data-dismiss="modal"></button>
-          <h5 class="modal-title" >آدرس</h5>
+          <h5 class="modal-title" >ویرایش آدرس</h5>
         </div>
 
         <div class="modal-body">
@@ -269,7 +269,7 @@
 	        	<div class="newAddressModal">
 	        		<div>
 	        			<div> انتخاب استان و شهر:</div>
-		        	<select onchange="state_changed()" name="state" id="state_list" class="form-control newAddressInputs">
+		        	<select onchange="state_changed_edit()" name="state_edit" id="state_list_edit" class="form-control newAddressInputs">
 					 	<option value="">استان</option>
 
 					 	@if(sizeof($states) > 0)
@@ -283,7 +283,7 @@
 	        		</div>
 
 					<div>
-					<select id="cities_list" class="form-control newAddressInputs" name="city">
+					<select id="cities_list_edit" class="form-control newAddressInputs" name="city">
 					 	<option value="">شهر</option>
 					</select>
 					</div>
@@ -328,7 +328,7 @@
 	        		<span style="color: red;" id="address_error"></span>
 	        	</div>
 
-	        	<input type="submit" class="btn btn-success newAddrSubmit" value="ثبت" />
+	        	<input type="submit" class="btn btn-primary newAddrSubmit" value="ویریش" />
 			</form>
 
     	</div>
@@ -353,7 +353,7 @@
 		$('#myAddress').modal('show');
 	}
 
-	<?php $url= url('shipping/ajax_view_cities'); ?>
+	<?php $url_view_cities = url('shipping/ajax_view_cities'); ?>
 	state_changed = function()
 	{
 		state = document.getElementById("state_list").value;
@@ -370,7 +370,7 @@
 		$.ajax(
 	    		{
 
-	    		'url': '{{ $url }}',
+	    		'url': '{{ $url_view_cities }}',
 	    		'type': 'post',
 	    		'data': 'state='+state,
 	    		success:function(data){
@@ -399,7 +399,7 @@
 		  );
 	}
 
-	<?php $url= url('shipping/storeAddress'); ?>
+	<?php $url_storeAddress= url('shipping/storeAddress'); ?>
 	address_submit = function()
 	{
 		var form_data = $("#address_form").serialize();
@@ -416,7 +416,7 @@
 		$.ajax(
 	    		{
 
-	    		'url': '{{ $url }}',
+	    		'url': '{{ $url_storeAddress }}',
 	    		'type': 'post',
 	    		'data': 'form_data='+form_data,
 	    		success:function(data){
@@ -477,15 +477,115 @@
 	{
 		value = JSON.parse(value);
 
-		var fields = ['username','telephone','city_code','mobile','postalCode','address'];
+		var fields = ['username','telephone','city_code','mobile','postalCode','address' ];
 
 		for (var i = 0; i < fields.length; i++)
 		{
 			document.getElementById(fields[i]+"_edit").value= value[fields[i]];
 		}
 
+		var state_id = value['state']['id'];
+
+		document.getElementById("state_list_edit").value = state_id;
+		
+
+		$.ajaxSetup(
+		    			{
+		    				'headers':
+		    				{
+		    					'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
+		    				}
+		    			}
+					);
+		
+		$.ajax(
+	    		{
+
+	    		'url': '{{ $url_view_cities }}',
+	    		'type': 'post',
+	    		'data': 'state='+state_id,
+	    		success:function(data){
+	    			data = JSON.parse(data);
+
+	    			var generat_options = "";
+
+	    			for (var i = 0; i < data.length; i++)
+	    			{
+	    				if( value['city']['id'] == data[i]["id"])
+	    				{
+	    					generat_options += '<option value="'+data[i]["id"]+'" selected >'+
+	    							  	  data[i]["name"]+
+	    							  	  '</option>';
+	    				}
+	    				else
+	    				{
+	    					generat_options += '<option value="'+data[i]["id"]+'">'+
+	    							  	  data[i]["name"]+
+	    							  	  '</option>';
+	    				}
+
+	    				$("#cities_list_edit").html(generat_options);
+	    			}
+
+	    			if(data.length == 0)
+	    			{
+	    				generat_options = '<option value="">شهر</option>';
+	    				$("#cities_list_edit").html(generat_options);
+	    			}
+
+	    			}
+
+	    		}
+		  );
+
 		$('#myAddressEdit').modal('show');
 	}
+
+	state_changed_edit = function()
+	{
+		state = document.getElementById("state_list_edit").value;
+		
+		$.ajaxSetup(
+		    			{
+		    				'headers':
+		    				{
+		    					'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
+		    				}
+		    			}
+					);
+		
+		$.ajax(
+	    		{
+
+	    		'url': '{{ $url_view_cities }}',
+	    		'type': 'post',
+	    		'data': 'state='+state,
+	    		success:function(data){
+
+	    			data = JSON.parse(data);
+
+	    			var generat_options = "";
+
+	    			for (var i = 0; i < data.length; i++)
+	    			{
+	    				generat_options += '<option value="'+data[i]["id"]+'">'+
+	    							  	  data[i]["name"]+
+	    							  	  '</option>';
+
+	    				$("#cities_list_edit").html(generat_options);
+	    			}
+
+	    			if(data.length == 0)
+	    			{
+	    				generat_options = '<option value="">شهر</option>';
+	    				$("#cities_list_edit").html(generat_options);
+	    			}
+	    		}
+
+	    		}
+		  );
+	}
+
 
 </script>
 
