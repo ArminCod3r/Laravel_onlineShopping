@@ -85,7 +85,7 @@
 						<td rowspan="3" class="users-address-operations">
 
 							<div class="edit">
-								<span class="fa fa-edit"></span>
+								<span class="fa fa-edit" id="edit_{{$key}}" onclick="edit_addr('{{$key}}', '{{$value}}')"></span>
 							</div>
 
 							<div class="remove">
@@ -241,6 +241,106 @@
 </div>
 
 
+<div class="container">
+
+  <!-- Modal -->
+  <div class="modal fade" id="myAddressEdit" role="dialog" style="background-color:transparent !important">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+
+        <div class="modal-header"  style="direction: ltr">
+          <button type="button" class="close" data-dismiss="modal"></button>
+          <h5 class="modal-title" >آدرس</h5>
+        </div>
+
+        <div class="modal-body">
+
+
+          	<form action="#" onsubmit="address_submit() ; return false;" method="POST" accept-charset="utf-8" enctype="multipart/form-data" id="address_form" >
+					{{ csrf_field() }}
+
+	        	<label>نام و نام خانوادگی</label>
+	        	<input type="text" class="form-control" name="username_edit" id="username_edit" value="" />
+	        	<span style="color: red;" id="username_error"></span>
+
+
+	        	<div class="newAddressModal">
+	        		<div>
+	        			<div> انتخاب استان و شهر:</div>
+		        	<select onchange="state_changed()" name="state" id="state_list" class="form-control newAddressInputs">
+					 	<option value="">استان</option>
+
+					 	@if(sizeof($states) > 0)
+							@foreach($states as $key_state=>$value_state)
+								<option value="{{$value_state->id}}">{{$value_state->name}}</option>
+							@endforeach
+						@else
+							nothing in here
+						@endif
+					</select>
+	        		</div>
+
+					<div>
+					<select id="cities_list" class="form-control newAddressInputs" name="city">
+					 	<option value="">شهر</option>
+					</select>
+					</div>
+
+					<span style="color: red;" id="state_error"></span>
+
+					<span style="color:red; margin-right:28%;" id="city_error"></span>
+
+	        	</div>
+
+	        	<br/>
+
+				<div class="newAddressInputs">
+					<div> تلفن ثابت</div>
+	        		<input type="text" class="form-control" name="telephone_edit" id="telephone_edit" value="" />
+	        		<span style="color: red;" id="telephone_error"></span>
+				</div>
+
+	        	<div class="newAddressInputs">
+	        		<div> کد شهر </div>
+	        		<input type="text" class="form-control" name="city_code_edit" id="city_code_edit" value="" />
+	        		<span style="color: red;" id="city_code_error"></span>
+	        	</div>
+
+				<div class="newAddressInputs">
+					<div> شماره موبایل</div>
+	        		<input type="text" class="form-control" name="mobile_edit" id="mobile_edit" value="" />
+	        		<span style="color: red;" id="mobile_error"></span>
+				</div>
+
+	        	<div class="newAddressInputs">
+	        		<div> کد پستی </div>
+	        		<input type="text" class="form-control" name="postalCode_edit" id="postalCode_edit" value="" />
+	        		<span style="color: red;" id="postalCode_error"></span>
+	        	</div>
+
+	        	<div style="margin: 10px 0px 10px 0px"></div>
+
+	        	<div class="newAddressTextArea">
+	        		<div> آدرس </div>
+	        		<textarea class="form-control" name="address_edit" id="address_edit" value="" > </textarea>
+	        		<span style="color: red;" id="address_error"></span>
+	        	</div>
+
+	        	<input type="submit" class="btn btn-success newAddrSubmit" value="ثبت" />
+			</form>
+
+    	</div>
+
+      </div>      
+    </div>
+  </div>
+  
+</div>
+
+
+
 
 @endsection
 
@@ -371,6 +471,20 @@
 		}
 		
 		document.getElementById('select_address_'+key).style.color="#828181";
+	}
+
+	edit_addr = function(key, value)
+	{
+		value = JSON.parse(value);
+
+		var fields = ['username','telephone','city_code','mobile','postalCode','address'];
+
+		for (var i = 0; i < fields.length; i++)
+		{
+			document.getElementById(fields[i]+"_edit").value= value[fields[i]];
+		}
+
+		$('#myAddressEdit').modal('show');
 	}
 
 </script>
