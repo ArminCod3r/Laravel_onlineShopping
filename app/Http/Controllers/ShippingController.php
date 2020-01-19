@@ -38,9 +38,10 @@ class ShippingController extends Controller
                                     ->where('user_id', $user_id)
                                     ->get();
 
-        return $user_address;
-
-        return view("site/shipping/index")->with('states', $states);
+        return view("site/shipping/index")->with([
+                                                  'states'       => $states,
+                                                  'user_address' => $user_address
+                                                ]);
     }
 
     /**
