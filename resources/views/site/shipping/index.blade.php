@@ -251,13 +251,28 @@
 	    		'data': 'form_data='+form_data,
 	    		success:function(data){
 
-	    			clear_errors();
+	    			if(data == 'ok')
+	    			{
+	    				alert("ثبت اطلاعات با موفقیت انجام شد.");
+	    			}
 
-	    			var data = Object.entries(data);
+	    			else
+	    			{
+	    				if(data == 'error')
+	    					alert("مجددا تلاش کنید");
 
-	    			data.forEach(([key, value]) => {
-					  $("#"+key+"_error").html(value);
-					});
+	    				else
+	    				{
+	    					clear_errors();
+
+			    			var data = Object.entries(data);
+
+			    			data.forEach(([key, value]) => {
+							  $("#"+key+"_error").html(value);
+							});
+	    				}
+	    			}
+	    			
 	    		}
 
 	    		}

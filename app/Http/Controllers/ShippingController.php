@@ -8,6 +8,8 @@ use View;
 Use App\State;
 Use App\City;
 use Validator;
+use App\UsersAddress;
+use Auth;
 
 class ShippingController extends Controller
 {
@@ -175,7 +177,27 @@ class ShippingController extends Controller
 
         else
         {
-            return 'no errors';
+            $users_address = new UsersAddress();
+
+            $user_id = Auth::user()->id;
+            $users_address->user_id = $user_id;
+            $users_address->username = $request->input('username');
+            $users_address->state_id = $request->input('state');
+            $users_address->city_id = $request->input('city');
+            $users_address->telephone = $request->input('telephone');
+            $users_address->city_code = $request->input('city_code');
+            $users_address->mobile = $request->input('mobile');
+            $users_address->postalCode = $request->input('postalCode');
+            $users_address->address = $request->input('address');
+
+
+            //$users_address->save();
+
+            if($users_address->save())
+                return 'ok';
+
+            else
+                return 'error';
         }
     }
 
