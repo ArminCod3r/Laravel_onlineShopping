@@ -254,6 +254,8 @@
 	    			if(data == 'ok')
 	    			{
 	    				alert("ثبت اطلاعات با موفقیت انجام شد.");
+	    				var redirectTo = window.location.origin+"/shipping/";
+						document.location = redirectTo;
 	    			}
 
 	    			else
