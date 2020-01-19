@@ -381,7 +381,7 @@
 
 	    			for (var i = 0; i < data.length; i++)
 	    			{
-	    				generat_options = '<option value="'+data[i]["id"]+'">'+
+	    				generat_options += '<option value="'+data[i]["id"]+'">'+
 	    							  	  data[i]["name"]+
 	    							  	  '</option>';
 
