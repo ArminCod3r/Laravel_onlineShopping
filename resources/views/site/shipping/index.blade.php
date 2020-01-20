@@ -257,6 +257,7 @@
 
         <div class="modal-body">
 
+        	<div class="loading" id="loading"></div>
 
           	<form action="#" onsubmit="address_submit() ; return false;" method="POST" accept-charset="utf-8" enctype="multipart/form-data" id="address_form" >
 					{{ csrf_field() }}
