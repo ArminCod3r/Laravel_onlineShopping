@@ -476,6 +476,10 @@
 
 	edit_addr = function(key, value)
 	{
+		$('#myAddressEdit').modal('show');
+
+		show_loading();
+
 		value = JSON.parse(value);
 
 		var fields = ['username','telephone','city_code','mobile','postalCode','address' ];
@@ -537,9 +541,7 @@
 	    			}
 
 	    		}
-		  );
-
-		$('#myAddressEdit').modal('show');
+		  );		
 	}
 
 	state_changed_edit = function()
@@ -587,6 +589,21 @@
 		  );
 	}
 
+	function show_loading()
+	{
+		// showing "loader" if ajax takes more than 500 miliseconds (35349470)
+	    var ajaxLoadTimeout;
+
+		$(document).ajaxStart(function() {
+		    ajaxLoadTimeout = setTimeout(function() { 
+		        $("#loading").css("display","block");
+		    }, 500);
+
+		}).ajaxSuccess(function() {
+		    clearTimeout(ajaxLoadTimeout);
+		    $("#loading").css("display","none");
+		});
+	}
 
 </script>
 
