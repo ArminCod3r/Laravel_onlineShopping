@@ -440,7 +440,7 @@
 
 	    				else
 	    				{
-	    					clear_errors();
+	    					clear_errors("");
 
 			    			var data = Object.entries(data);
 
@@ -458,13 +458,13 @@
 
 
 
-	function clear_errors()
+	function clear_errors(edit)
 	{
 		var error_fields = ['username','state','city','telephone','city_code','mobile','postalCode','address'];
 
 		for (var i = 0; i < error_fields.length; i++)
 		{
-			$("#"+error_fields[i]+"_error").html(" ");
+			$("#"+error_fields[i]+edit+"_error").html(" ");
 		}
 	}
 
