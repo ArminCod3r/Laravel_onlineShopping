@@ -266,7 +266,7 @@
 
 	        	<label>نام و نام خانوادگی</label>
 	        	<input type="text" class="form-control" name="username_edit" id="username_edit" value="" />
-	        	<span style="color: red;" id="username_error"></span>
+	        	<span style="color: red;" id="username_edit_error"></span>
 
 
 	        	<div class="newAddressModal">
@@ -291,9 +291,9 @@
 					</select>
 					</div>
 
-					<span style="color: red;" id="state_error"></span>
+					<span style="color: red;" id="state_edit_error"></span>
 
-					<span style="color:red; margin-right:28%;" id="city_error"></span>
+					<span style="color:red; margin-right:28%;" id="city_edit_error"></span>
 
 	        	</div>
 
@@ -302,25 +302,25 @@
 				<div class="newAddressInputs">
 					<div> تلفن ثابت</div>
 	        		<input type="text" class="form-control" name="telephone_edit" id="telephone_edit" value="" />
-	        		<span style="color: red;" id="telephone_error"></span>
+	        		<span style="color: red;" id="telephone_edit_error"></span>
 				</div>
 
 	        	<div class="newAddressInputs">
 	        		<div> کد شهر </div>
 	        		<input type="text" class="form-control" name="city_code_edit" id="city_code_edit" value="" />
-	        		<span style="color: red;" id="city_code_error"></span>
+	        		<span style="color: red;" id="city_code_edit_error"></span>
 	        	</div>
 
 				<div class="newAddressInputs">
 					<div> شماره موبایل</div>
 	        		<input type="text" class="form-control" name="mobile_edit" id="mobile_edit" value="" />
-	        		<span style="color: red;" id="mobile_error"></span>
+	        		<span style="color: red;" id="mobile_edit_error"></span>
 				</div>
 
 	        	<div class="newAddressInputs">
 	        		<div> کد پستی </div>
 	        		<input type="text" class="form-control" name="postalCode_edit" id="postalCode_edit" value="" />
-	        		<span style="color: red;" id="postalCode_error"></span>
+	        		<span style="color: red;" id="postalCode_edit_error"></span>
 	        	</div>
 
 	        	<div style="margin: 10px 0px 10px 0px"></div>
@@ -328,12 +328,12 @@
 	        	<div class="newAddressTextArea">
 	        		<div> آدرس </div>
 	        		<textarea class="form-control" name="address_edit" id="address_edit" value="" > </textarea>
-	        		<span style="color: red;" id="address_error"></span>
+	        		<span style="color: red;" id="address_edit_error"></span>
 	        	</div>
 
 	        	<input type="hidden" name="_method" value="PATCH">
 
-	        	<input type="submit" class="btn btn-primary newAddrSubmit" value="ویریش" />
+	        	<input type="submit" class="btn btn-primary newAddrSubmit" value="ویرایش" />
 			</form>
 
     	</div>
@@ -645,7 +645,25 @@
 	    				}
 	    				else
 	    				{
-	    					alert("خطا رخ داده است. مجدد تلاش کنید.");
+	    					if(data == 'error')
+	    					{
+	    						alert("خطا رخ داده است. مجدد تلاش کنید.");
+	    					}
+
+	    					else
+		    				{
+		    					
+
+				    			var data = Object.entries(data);
+
+				    			console.log(data);
+
+				    			//clear_errors();
+
+				    			data.forEach(([key, value]) => {
+								  $("#"+key+"_error").html(value);
+								});
+		    				}
 	    				}
 	    			}
 	    		}

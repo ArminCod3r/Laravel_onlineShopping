@@ -212,32 +212,72 @@ class ShippingController extends Controller
 
     public function updateAddress(Request $request, $id)
     {
-        $user_addr = UsersAddress::where([
-                                        'id'=>$id,
-                                        'user_id'=> Auth::user()->id,
-                                    ])->first();
+        $rules = [
+                    'username_edit'  => 'required|max:250',
+                    'state_edit'     => 'required|max:250',
+                    'city_edit'      => 'required|max:250',
+                    'telephone_edit' => 'required|max:20',
+                    'city_code_edit' => 'required|max:10',
+                    'mobile_edit'    => 'required|max:11',
+                    'postalCode_edit'=> 'required|max:12',
+                    'address_edit'   => 'required',
+                ];
 
-        if ($user_addr)
+        $customMessages = [
+                    'required' => ':attribute الزامی است',
+                ];
+
+        $fieldsName=[
+                    'username_edit'  => 'نام و نام خانوادگی',
+                    'state_edit'     => 'استان',
+                    'city_edit'      => 'شهر',
+                    'telephone_edit' => 'تلفن ثابت',
+                    'city_code_edit' => 'کد شهر ',
+                    'mobile_edit'    => 'شماره موبایل',
+                    'postalCode_edit'=> 'کد پستی ',
+                    'address_edit'   => 'آدرس ',
+                ];
+
+
+        $validator = Validator::make($request->all(), $rules, $customMessages, $fieldsName);
+
+
+
+        if ($validator->fails())
         {
-            DB::table('users_address')->where([
-                                                'id'=>$id,
-                                                'user_id'=> Auth::user()->id,
-                                             ])
-                                        ->update([
-                                            'username'   => $request["username_edit"],
-                                            'state_id'   => $request["state_edit"],
-                                            'city_id'    => $request["city_edit"],
-                                            'telephone'  => $request["telephone_edit"],
-                                            'city_code'  => $request["city_code_edit"],
-                                            'mobile'     => $request["mobile_edit"],
-                                            'postalCode' => $request["postalCode_edit"],
-                                            'address'    => $request["address_edit"],
-                                            ]);
-
-            return "ok";
+            return $validator->messages()->toArray();
         }
+
         else
-            return "error";
+        {
+            $user_addr = UsersAddress::where([
+                                            'id'=>$id,
+                                            'user_id'=> Auth::user()->id,
+                                        ])->first();
+
+            if ($user_addr)
+            {
+                DB::table('users_address')->where([
+                                                    'id'=>$id,
+                                                    'user_id'=> Auth::user()->id,
+                                                 ])
+                                            ->update([
+                                                'username'   => $request["username_edit"],
+                                                'state_id'   => $request["state_edit"],
+                                                'city_id'    => $request["city_edit"],
+                                                'telephone'  => $request["telephone_edit"],
+                                                'city_code'  => $request["city_code_edit"],
+                                                'mobile'     => $request["mobile_edit"],
+                                                'postalCode' => $request["postalCode_edit"],
+                                                'address'    => $request["address_edit"],
+                                                ]);
+
+                return "ok";
+            }
+            else
+                return "error";
+
+        }
     }
 
 
