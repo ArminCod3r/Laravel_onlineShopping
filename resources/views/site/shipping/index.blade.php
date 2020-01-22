@@ -480,6 +480,8 @@
 
 	edit_addr = function(key, value)
 	{
+		clear_errors("_edit");
+		
 		$('#myAddressEdit').modal('show');
 
 		show_loading();
@@ -652,11 +654,7 @@
 
 	    					else
 		    				{
-		    					
-
 				    			var data = Object.entries(data);
-
-				    			console.log(data);
 
 				    			clear_errors("_edit");
 
