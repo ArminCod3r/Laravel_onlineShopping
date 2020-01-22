@@ -149,34 +149,8 @@ class ShippingController extends Controller
     {
         //return $request->all();
 
-        $rules = [
-                    'username'  => 'required|max:250',
-                    'state'     => 'required|max:250',
-                    'city'      => 'required|max:250',
-                    'telephone' => 'required|max:20',
-                    'city_code' => 'required|max:10',
-                    'mobile'    => 'required|max:11',
-                    'postalCode'=> 'required|max:12',
-                    'address'   => 'required',
-                ];
 
-        $customMessages = [
-                    'required' => ':attribute الزامی است',
-                ];
-
-        $fieldsName=[
-                    'username'  => 'نام و نام خانوادگی',
-                    'state'     => 'استان',
-                    'city'      => 'شهر',
-                    'telephone' => 'تلفن ثابت',
-                    'city_code' => 'کد شهر ',
-                    'mobile'    => 'شماره موبایل',
-                    'postalCode'=> 'کد پستی ',
-                    'address'   => 'آدرس ',
-                ];
-
-
-        $validator = Validator::make($request->all(), $rules, $customMessages, $fieldsName);
+        $validator = $this->cutomValidator($request, "");
 
 
         if ($validator->fails())
@@ -212,35 +186,8 @@ class ShippingController extends Controller
 
     public function updateAddress(Request $request, $id)
     {
-        $rules = [
-                    'username_edit'  => 'required|max:250',
-                    'state_edit'     => 'required|max:250',
-                    'city_edit'      => 'required|max:250',
-                    'telephone_edit' => 'required|max:20',
-                    'city_code_edit' => 'required|max:10',
-                    'mobile_edit'    => 'required|max:11',
-                    'postalCode_edit'=> 'required|max:12',
-                    'address_edit'   => 'required',
-                ];
-
-        $customMessages = [
-                    'required' => ':attribute الزامی است',
-                ];
-
-        $fieldsName=[
-                    'username_edit'  => 'نام و نام خانوادگی',
-                    'state_edit'     => 'استان',
-                    'city_edit'      => 'شهر',
-                    'telephone_edit' => 'تلفن ثابت',
-                    'city_code_edit' => 'کد شهر ',
-                    'mobile_edit'    => 'شماره موبایل',
-                    'postalCode_edit'=> 'کد پستی ',
-                    'address_edit'   => 'آدرس ',
-                ];
-
-
-        $validator = Validator::make($request->all(), $rules, $customMessages, $fieldsName);
-
+        
+        $validator = $this->cutomValidator($request, "_edit");
 
 
         if ($validator->fails())
@@ -278,6 +225,39 @@ class ShippingController extends Controller
                 return "error";
 
         }
+    }
+
+
+    private function cutomValidator(Request $request, $edit)
+    {
+        $rules = [
+                    'username'.$edit   => 'required|max:250',
+                    'state'.$edit      => 'required|max:250',
+                    'city'.$edit       => 'required|max:250',
+                    'telephone'.$edit  => 'required|max:20',
+                    'city_code'.$edit  => 'required|max:10',
+                    'mobile'.$edit     => 'required|max:11',
+                    'postalCode'.$edit => 'required|max:12',
+                    'address'.$edit    => 'required',
+                ];
+
+        $customMessages = [
+                    'required' => ':attribute الزامی است',
+                ];
+
+        $fieldsName=[
+                    'username'.$edit   => 'نام و نام خانوادگی',
+                    'state'.$edit      => 'استان',
+                    'city'.$edit       => 'شهر',
+                    'telephone'.$edit  => 'تلفن ثابت',
+                    'city_code'.$edit  => 'کد شهر ',
+                    'mobile'.$edit     => 'شماره موبایل',
+                    'postalCode'.$edit => 'کد پستی ',
+                    'address'.$edit    => 'آدرس ',
+                ];
+
+
+        return Validator::make($request->all(), $rules, $customMessages, $fieldsName);
     }
 
 
