@@ -1504,14 +1504,14 @@ body
     margin-right: 25%;
 }
 
-.select-address
+.active-address
 {
     width:3%;
     background-color: #d5f2db;
     position: relative;
 }
 
-.select-address .fa-circle
+.active-address .fa-circle
 {
     color:white;
     position: absolute;

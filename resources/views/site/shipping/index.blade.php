@@ -77,8 +77,8 @@
 			<table class="table table-bordered">
 				<tbody>
 					<tr>
-						<td rowspan="3" class="select-address" onclick="change_address('{{$key}}')">
-							<span class="fa fa-circle" id="select_address_{{$key}}"></span>
+						<td rowspan="3" class="active-address" onclick="active_address('{{$key}}')">
+							<span class="fa fa-circle" id="active_address_{{$key}}"></span>
 						</td>
 						<td colspan="3"> {{ $value->username }} </td>
 
@@ -468,20 +468,20 @@
 		}
 	}
 
-	change_address = function(key)
+	active_address = function(key)
 	{
 		for (var i = 0; i < (<?= $user_address; ?>).length; i++)
 		{
-			document.getElementById('select_address_'+i).style.color="white";
+			document.getElementById('active_address_'+i).style.color="white";
 		}
 		
-		document.getElementById('select_address_'+key).style.color="#828181";
+		document.getElementById('active_address_'+key).style.color="#828181";
 	}
 
 	edit_addr = function(key, value)
 	{
 		clear_errors("_edit");
-		
+
 		$('#myAddressEdit').modal('show');
 
 		show_loading();
