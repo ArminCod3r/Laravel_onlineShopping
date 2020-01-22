@@ -210,6 +210,11 @@ class ShippingController extends Controller
         }
     }
 
+    public function updateAddress(Request $request, $id)
+    {
+        return 'hi';
+    }
+
 
 
 

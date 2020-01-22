@@ -115,4 +115,7 @@ Route::resource('/shipping','ShippingController');
 Route::post('/shipping/ajax_view_cities','ShippingController@ajax_view_cities');
 // ---- store shipping Address
 Route::post('/shipping/storeAddress','ShippingController@storeAddress'); 
+// ---- edit shipping Address
+Route::PATCH('/shipping/updateAddress/{Address}','ShippingController@updateAddress')
+		->name('shipping.updateAddress');
 

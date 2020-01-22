@@ -259,8 +259,10 @@
 
         	<div class="loading" id="loading"></div>
 
-          	<form action="#" onsubmit="address_submit() ; return false;" method="POST" accept-charset="utf-8" enctype="multipart/form-data" id="address_form" >
+          	<form action="#" onsubmit="edit_submit() ; return false;" method="POST" accept-charset="utf-8" enctype="multipart/form-data" id="edit_addr_form" >
 					{{ csrf_field() }}
+
+        		<input type="hidden" id="addr_id_edit" name="addr_id_edit">
 
 	        	<label>نام و نام خانوادگی</label>
 	        	<input type="text" class="form-control" name="username_edit" id="username_edit" value="" />
@@ -328,6 +330,8 @@
 	        		<textarea class="form-control" name="address_edit" id="address_edit" value="" > </textarea>
 	        		<span style="color: red;" id="address_error"></span>
 	        	</div>
+
+	        	<input type="hidden" name="_method" value="PATCH">
 
 	        	<input type="submit" class="btn btn-primary newAddrSubmit" value="ویریش" />
 			</form>
@@ -481,8 +485,9 @@
 		show_loading();
 
 		value = JSON.parse(value);
+		document.getElementById("addr_id_edit").value = value["id"];
 
-		var fields = ['username','telephone','city_code','mobile','postalCode','address' ];
+		var fields = ['username','telephone','city_code','mobile','postalCode','address'];
 
 		for (var i = 0; i < fields.length; i++)
 		{
@@ -603,6 +608,39 @@
 		    clearTimeout(ajaxLoadTimeout);
 		    $("#loading").css("display","none");
 		});
+	}
+
+	<?php $url_storeAddress= url('shipping/updateAddress'); ?>
+	edit_submit = function()
+	{
+		var address_id = document.getElementById("addr_id_edit").value;
+
+		url_update = <?php echo json_encode($url_storeAddress); ?>+"/"+address_id;
+
+
+
+		$.ajaxSetup(
+		    			{
+		    				'headers':
+		    				{
+		    					'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
+		    				}
+		    			}
+					);
+		
+		$.ajax(
+	    		{
+
+	    		'url': url_update,
+	    		'type': 'patch',
+	    		'data': 'id='+address_id,
+	    		success:function(data){
+	    				alert(data);
+	    			}
+	    		}
+		  );
+
+
 	}
 
 </script>
