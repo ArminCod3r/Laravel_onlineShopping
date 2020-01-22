@@ -78,7 +78,14 @@
 				<tbody>
 					<tr>
 						<td rowspan="3" class="active-address" onclick="active_address('{{$key}}')">
-							<span class="fa fa-circle" id="active_address_{{$key}}"></span>
+
+							@if($key==0)
+								<span class="fa fa-circle" id="active_address_{{$key}}" style="color:#828181"></span>
+							@else
+								<span class="fa fa-circle" id="active_address_{{$key}}"></span>
+							@endif
+
+							
 						</td>
 						<td colspan="3"> {{ $value->username }} </td>
 
