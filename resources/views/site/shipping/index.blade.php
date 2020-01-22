@@ -286,7 +286,7 @@
 	        		</div>
 
 					<div>
-					<select id="cities_list_edit" class="form-control newAddressInputs" name="city">
+					<select id="cities_list_edit" class="form-control newAddressInputs" name="city_edit">
 					 	<option value="">شهر</option>
 					</select>
 					</div>
@@ -617,6 +617,8 @@
 
 		url_update = <?php echo json_encode($url_storeAddress); ?>+"/"+address_id;
 
+		data = $("#edit_addr_form").serialize();
+
 
 
 		$.ajaxSetup(
@@ -633,9 +635,18 @@
 
 	    		'url': url_update,
 	    		'type': 'patch',
-	    		'data': 'id='+address_id,
+	    		'data': 'data='+data,
 	    		success:function(data){
-	    				alert(data);
+	    				if(data == 'ok')
+	    				{
+							alert("ویرایش اطلاعات با موفقیت انجام شد.");
+		    				var redirectTo = window.location.origin+"/shipping/";
+							document.location = redirectTo;
+	    				}
+	    				else
+	    				{
+	    					alert("خطا رخ داده است. مجدد تلاش کنید.");
+	    				}
 	    			}
 	    		}
 		  );

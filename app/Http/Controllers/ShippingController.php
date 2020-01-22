@@ -212,7 +212,32 @@ class ShippingController extends Controller
 
     public function updateAddress(Request $request, $id)
     {
-        return 'hi';
+        $user_addr = UsersAddress::where([
+                                        'id'=>$id,
+                                        'user_id'=> Auth::user()->id,
+                                    ])->first();
+
+        if ($user_addr)
+        {
+            DB::table('users_address')->where([
+                                                'id'=>$id,
+                                                'user_id'=> Auth::user()->id,
+                                             ])
+                                        ->update([
+                                            'username'   => $request["username_edit"],
+                                            'state_id'   => $request["state_edit"],
+                                            'city_id'    => $request["city_edit"],
+                                            'telephone'  => $request["telephone_edit"],
+                                            'city_code'  => $request["city_code_edit"],
+                                            'mobile'     => $request["mobile_edit"],
+                                            'postalCode' => $request["postalCode_edit"],
+                                            'address'    => $request["address_edit"],
+                                            ]);
+
+            return "ok";
+        }
+        else
+            return "error";
     }
 
 
