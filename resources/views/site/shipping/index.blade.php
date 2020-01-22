@@ -658,7 +658,7 @@
 
 				    			console.log(data);
 
-				    			//clear_errors();
+				    			clear_errors("_edit");
 
 				    			data.forEach(([key, value]) => {
 								  $("#"+key+"_error").html(value);
