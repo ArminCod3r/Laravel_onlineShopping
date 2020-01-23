@@ -165,7 +165,7 @@
 		</span>
 	</div>
 
-	<input type="text" value="1" id="selected_shipping_type">
+	<input type="hidden" value="1" id="selected_shipping_type">
 
 	<div class="width_range">
 		<table class="table table-bordered" style="width: 100%">
