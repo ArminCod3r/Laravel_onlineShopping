@@ -57,6 +57,11 @@
 </div>
 	
 
+
+ <form action="{{ action('ShippingController@store') }}" method="POST">
+		{{ csrf_field() }}
+
+
 <div class="shipping-address">
 
 	<div class="add-address">
@@ -221,6 +226,24 @@
 	</div>
 	
 </div>
+
+
+<div class="submit_shipping">
+	<div style="padding-top: 10px">
+		<div class="row">
+			<div class="col-sm-10"></div>
+
+			<div class="col-sm-2">
+				<input type="submit" value="ثبت اطلاعات و ادامه خرید" class="btn btn-success">
+			</div>
+
+		</div>
+	</div>
+</div>
+
+</form>
+
+
 
 
 
