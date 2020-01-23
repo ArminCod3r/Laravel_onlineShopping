@@ -552,7 +552,11 @@
 	    				$("#cities_list_edit").html(generat_options);
 	    			}
 
-	    			}
+	    			},
+	    		error:function()
+	    		{
+	    			window.location = '<?= url("login"); ?>';
+	    		}
 
 	    		}
 		  );		
