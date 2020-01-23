@@ -118,4 +118,6 @@ Route::post('/shipping/storeAddress','ShippingController@storeAddress');
 // ---- edit shipping Address
 Route::PATCH('/shipping/updateAddress/{Address}','ShippingController@updateAddress')
 		->name('shipping.updateAddress');
-
+// ---- delete shipping Address		
+Route::delete('shipping/{Address}/destroyAddress', 'ShippingController@destroyAddress')
+	 ->name('shipping.destroyAddress');

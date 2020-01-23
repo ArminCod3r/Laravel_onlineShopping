@@ -95,8 +95,12 @@
 								<span class="fa fa-edit" id="edit_{{$key}}"></span>
 							</div>
 
-							<div class="remove">
+							<div class="remove" onclick="remove_shipping_address()">
 								<span class="fa fa-remove"></span>
+
+								<form action="{{ action('ShippingController@destroyAddress', ['id' => $value->id]) }}" id="url_delete_shipping">
+	                    </form>
+
 							</div>
 
 						</td>
@@ -679,6 +683,47 @@
 		  );
 
 
+	}
+
+	<?php $url_destroyAddress= url('shipping'); ?>
+	remove_shipping_address = function()
+	{
+		var url_delete_shipping = document.getElementById('url_delete_shipping').action;
+		var redirectTo          = window.location.origin+"/shipping/";
+
+		$.ajaxSetup(
+		    			{
+		    				'headers':
+		    				{
+		    					'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
+		    				}
+		    			}
+					);
+		
+		$.ajax(
+	    		{
+
+		    		'url': url_delete_shipping,
+		    		'type': 'delete',
+		    		//'data': 'id='+id,
+		    		success:function(data)
+		    		{
+		    			if(data == 'ok')
+		    			{
+		    				alert("حذف آدرس با موفقیت انجام شد.");
+							document.location = redirectTo;
+		    			}
+		    			if(data == 'ko')
+		    			{
+		    				alert("حذف آدرس با خطا مواجه شد.");
+		    			}
+		    		},
+		    		error:function()
+		    		{
+						document.location = redirectTo;	
+		    		}
+	    		}
+		  );
 	}
 
 </script>

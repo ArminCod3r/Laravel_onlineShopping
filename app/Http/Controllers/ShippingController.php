@@ -260,6 +260,33 @@ class ShippingController extends Controller
         return Validator::make($request->all(), $rules, $customMessages, $fieldsName);
     }
 
+    public function destroyAddress($id)
+    {
+        $user_addr = UsersAddress::where([
+                                            'id'=>$id,
+                                            'user_id'=> Auth::user()->id,
+                                        ])->first();
+
+        if ($user_addr)
+        {
+            $del_user_addr = UsersAddress::where([
+                                            'id'=>$id,
+                                            'user_id'=> Auth::user()->id,
+                                        ])->first();
+
+            if ($del_user_addr)
+            {
+                $del_user_addr->delete();
+
+                return 'ok';
+            }
+        }
+
+        else
+        {
+            return 'ko';
+        }
+    }
 
 
 
