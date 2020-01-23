@@ -69,6 +69,8 @@
 
 	<div>
 
+		<input type="hidden" value="" id="selected_shipping_addr">
+
 		@foreach($user_address as $key=>$value)
 		<div style="width: 95%; margin: 10px auto">
 
@@ -77,10 +79,13 @@
 			<table class="table table-bordered">
 				<tbody>
 					<tr>
-						<td rowspan="3" class="active-address" onclick="active_address('{{$key}}')">
+						<td rowspan="3" class="active-address" onclick="active_address('{{$key}}', '{{$value->id}}')">
 
 							@if($key==0)
 								<span class="fa fa-circle" id="active_address_{{$key}}" style="color:#828181"></span>
+
+								<input type="hidden" value="{{ $value->id }}" id="default_shipping_addr">
+
 							@else
 								<span class="fa fa-circle" id="active_address_{{$key}}"></span>
 							@endif
@@ -479,8 +484,12 @@
 		}
 	}
 
-	active_address = function(key)
+	active_address = function(key, shipping_id)
 	{
+		document.getElementById('default_shipping_addr').value='';
+		document.getElementById('selected_shipping_addr').value=shipping_id;
+
+
 		for (var i = 0; i < (<?= $user_address; ?>).length; i++)
 		{
 			document.getElementById('active_address_'+i).style.color="white";
