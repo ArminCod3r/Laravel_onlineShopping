@@ -1539,6 +1539,62 @@ body
 }
 
 
+.shipping_type
+{
+    width            : 95%;
+    background-color : white;
+    margin           : 15px auto;
+    border-radius    : 5px;
+    padding-bottom   : 20px;
+}
+
+.shipping_type .width_range
+{
+    width       : 95%;
+    margin      : auto;
+    padding-top : 20px;
+}
+
+.active_shipping_type
+{
+    width:3%;
+    background-color: #d5f2db;
+    position: relative;
+}
+
+.active_shipping_type .fa-circle
+{
+    color:white;
+    position: absolute;
+    top: 45%;
+    text-shadow: 0 0 2px #000;
+}
+
+.shipping_type_img
+{
+    text-align:center;
+    width: 9%;
+    padding-top: 2%;
+}
+
+.shipping_type_price
+{
+    width:120px;
+    text-align:center;
+    padding-top: 2%;
+}
+
+.shipping_type_2_desc
+{
+    padding-top: 20px;
+}
+
+.shipping_type_2_desc p
+{
+    padding-right:15px;
+}
+
+
 
 
 

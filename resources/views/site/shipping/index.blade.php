@@ -55,6 +55,7 @@
 	<br/>
 	<br/>
 </div>
+	
 
 <div class="shipping-address">
 
@@ -154,6 +155,71 @@
 		@endforeach
 	</div>
 
+</div>
+
+<div class="shipping_type">
+
+	<div style="padding: 20px 20px 0px 0px">
+		<span>
+			انتخاب شیوه ارسال:
+		</span>
+	</div>
+
+	<input type="text" value="1" id="selected_shipping_type">
+
+	<div class="width_range">
+		<table class="table table-bordered" style="width: 100%">
+			<tbody>
+
+				<tr>
+					<td class="active_shipping_type" onclick="active_shipping_type('1')">
+						<span class="fa fa-circle" id="shipping_type_1" style="color: #828181"></span>
+					</td>
+
+					<td class="shipping_type_img">
+						<img src="{{ url('images/post_48_icon.png') }}">
+					</td>
+
+					<td style="padding-top: 20px;">
+						<p>تحويل اکسپرس ديجي‌کالا</p>
+						<p>
+							زمان تحويل: 1 روز کاري درصورت ثبت سفارش تا ساعت 12 (به‌جز جشنواره‌هاي فروش و روزهاي تعطيل)
+						</p>
+					</td>
+
+					<td class="shipping_type_price">
+                       <p>هزینه ارسال </p>
+                       <p>15,000 تومان</p>
+                   </td>
+
+				</tr>
+
+				<tr>
+					<td class="active_shipping_type" onclick="active_shipping_type('2')">
+						<span class="fa fa-circle" id="shipping_type_2"></span>
+					</td>
+
+					<td class="shipping_type_img">
+						<img src="{{ url('images/vtn_48_icon.png') }}">
+					</td>
+
+					<td class="shipping_type_2_desc">
+						<p>باربري (پس کرايه | لوازم خانگي سنگين)</p>
+                        <p>ويژه لوازم خانگي سنگين</p>
+					</td>
+
+					<td class="shipping_type_price">
+                       <p>هزینه ارسال </p>
+                       <p>پس کرايه</p>
+                   </td>
+
+				</tr>
+
+			</tbody>
+		</table>
+
+	</div>
+	
 </div>
 
 
@@ -733,6 +799,16 @@
 		    		}
 	    		}
 		  );
+	}
+
+	active_shipping_type = function(id)
+	{
+		document.getElementById('selected_shipping_type').value=id;
+
+		document.getElementById('shipping_type_1').style.color="white";
+		document.getElementById('shipping_type_2').style.color="white";
+		
+		document.getElementById('shipping_type_'+id).style.color="#828181";
 	}
 
 </script>
