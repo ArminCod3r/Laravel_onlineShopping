@@ -10,6 +10,7 @@ Use App\City;
 use Validator;
 use App\UsersAddress;
 use Auth;
+use Session;
 
 class ShippingController extends Controller
 {
@@ -30,18 +31,25 @@ class ShippingController extends Controller
      */
     public function index()
     {
-        $states = State::all();
+        $cart = Session::get('cart',array());
 
-        $user_id = Auth::user()->id;
-        $user_address = UsersAddress::with('State')
-                                    ->with('City')
-                                    ->where('user_id', $user_id)
-                                    ->get();
+        if(sizeof($cart) > 0)
+        {
+            $states = State::all();
 
-        return view("site/shipping/index")->with([
-                                                  'states'       => $states,
-                                                  'user_address' => $user_address
-                                                ]);
+            $user_id = Auth::user()->id;
+            $user_address = UsersAddress::with('State')
+                                        ->with('City')
+                                        ->where('user_id', $user_id)
+                                        ->get();
+
+            return view("site/shipping/index")->with([
+                                                      'states'       => $states,
+                                                      'user_address' => $user_address
+                                                    ]);
+        }
+        else
+            return redirect("cart");
     }
 
     /**
