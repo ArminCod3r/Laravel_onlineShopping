@@ -76,7 +76,9 @@ $shown_item = 0;
           <ul class="list-inline">
 
             <li class="list-inline-item">
-              <div class="btn-shopping-cart">
+
+              <a href="{{ url('cart') }}">
+                <div class="btn-shopping-cart">
 
                 <div class="shopping-cart-icon">
                   <span class="fa fa-shopping-cart"></span>
@@ -88,6 +90,8 @@ $shown_item = 0;
                 </div>
 
               </div>
+              </a>
+
             </li>
 
             <li class="list-inline-item">              
