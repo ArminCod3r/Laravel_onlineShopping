@@ -356,7 +356,7 @@ class ShippingController extends Controller
                                                   'cart'         => $request->session()->get('cart'),
                                                   'cart_details' => $cart_details,
                                                 ]);
-                    
+
                 }
 
                 else
@@ -404,6 +404,8 @@ class ShippingController extends Controller
                                           'cart'         => $request->session()->get('cart'),
                                           'cart_details' => $cart_details,
                                         ]);
+            else
+                return redirect("cart");
 
         }
     }

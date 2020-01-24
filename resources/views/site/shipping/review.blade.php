@@ -130,7 +130,24 @@
 			@endforeach
 		</table>
 	</div>
-	
+
+
+
+	<div class="row shipping-review-invoice-summary">
+		<div class="col-sm-1"></div>
+
+		<div class="col-sm-2 cart-title">
+			<span style="font-weight: bold;">
+				خلاصه صورت حساب
+			</span>
+		</div>
+
+		<div class="col-sm-6"></div>
+
+		<div class="col-sm-3" style="padding-right: 80px;">
+			
+		</div>
+	</div>
 
 @else
 	<p style="color:red ; text-align:center ; padding-top:30px; padding-bottom:30px;">

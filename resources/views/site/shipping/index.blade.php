@@ -573,7 +573,6 @@
 
 	active_address = function(key, shipping_id)
 	{
-		document.getElementById('default_shipping_addr').value='';
 		document.getElementById('selected_shipping_addr').value=shipping_id;
 
 
