@@ -75,7 +75,7 @@
 
 	<div>
 
-		<input type="hidden" value="" id="selected_shipping_addr">
+		<input type="hidden" value="{{ $user_address[0]->id }}" id="selected_shipping_addr" name="selected_shipping_addr">
 
 		@foreach($user_address as $key=>$value)
 		<div style="width: 95%; margin: 10px auto">
@@ -89,8 +89,6 @@
 
 							@if($key==0)
 								<span class="fa fa-circle" id="active_address_{{$key}}" style="color:#828181"></span>
-
-								<input type="hidden" value="{{ $value->id }}" id="default_shipping_addr">
 
 							@else
 								<span class="fa fa-circle" id="active_address_{{$key}}"></span>
@@ -170,7 +168,7 @@
 		</span>
 	</div>
 
-	<input type="hidden" value="1" id="selected_shipping_type">
+	<input type="hidden" value="1" id="selected_shipping_type" name="selected_shipping_type">
 
 	<div class="width_range">
 		<table class="table table-bordered" style="width: 100%">
