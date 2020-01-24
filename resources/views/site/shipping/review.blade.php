@@ -149,6 +149,77 @@
 		</div>
 	</div>
 
+
+	<!-- Get the total-price / discounted-price -->
+	<?php
+		$total_price = 0;
+		$discount_price = 0;
+		$discount = 0;
+
+		foreach ($cart as $key_count => $value_count)
+		{
+			$price = (int)$cart_details[$key_count][0]->price;
+
+			$total_price += $price * $value_count;
+		}
+
+		foreach ($cart as $key_count => $value_count)
+		{
+			$price    = (int)$cart_details[$key_count][0]->price;
+			$discount = (int)$cart_details[$key_count][0]->discounts;
+
+			$discount_price += ($price-(($price*$discount)/100))* $value_count;
+		}
+
+	?>
+
+
+	<div class="container">
+		<table class="table" style="width: 100%">
+			<tr>
+				<td> جمع کل خرید </td>
+				<td style="width: 10%"> {{number_format($total_price)}} </td>
+				<td style="width: 5%"> تومان </td>
+			</tr>
+
+			<tr style="background-color:#cdf2fa">
+				<td> هزینه ارسال و بیمه و بسته بندی سفارش </td>
+				<td style="width: 10%">
+					@if($shipping_data == 0)
+						{{number_format(150000)}}
+					@else
+						پس کرایه
+					@endif
+				</td>
+				<td style="width: 5%">
+					@if($shipping_data == 1)
+						تومان
+					@endif
+				</td>
+			</tr>
+
+			<tr>
+				<td> هزینه با تخفیف </td>
+				<td style="width: 10%"> {{number_format($discount_price)}} </td>
+				<td style="width: 5%"> تومان </td>
+			</tr>
+
+			<tr style="background-color:#cdf2fa">
+				<td> مبلغ قابل پرداخت </td>
+				<td style="width: 10%">
+					@if($shipping_data == 0)
+						{{number_format($discount_price + 150000 )}}
+					@else
+						{{number_format($discount_price)}}
+					@endif
+				
+				</td>
+				<td style="width: 5%"> تومان </td>
+			</tr>
+
+		</table>
+	</div>
+
 @else
 	<p style="color:red ; text-align:center ; padding-top:30px; padding-bottom:30px;">
 		 سبد محصول خالی می باشد

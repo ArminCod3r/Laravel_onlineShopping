@@ -353,8 +353,9 @@ class ShippingController extends Controller
 
                     if($request->session()->has('cart'))
                         return view('site/shipping/review')->with([
-                                                  'cart'         => $request->session()->get('cart'),
-                                                  'cart_details' => $cart_details,
+                                          'cart'          => $request->session()->get('cart'),
+                                          'cart_details'  => $cart_details,
+                                          'shipping_data' => Session::get('shipping_data'),
                                                 ]);
 
                 }
@@ -403,6 +404,7 @@ class ShippingController extends Controller
                 return view('site/shipping/review')->with([
                                           'cart'         => $request->session()->get('cart'),
                                           'cart_details' => $cart_details,
+                                          'shipping_data' => Session::get('shipping_data'),
                                         ]);
             else
                 return redirect("cart");
