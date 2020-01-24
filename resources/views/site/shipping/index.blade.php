@@ -58,7 +58,7 @@
 	
 
 
- <form action="{{ action('ShippingController@store') }}" method="POST">
+ <form action="{{ action('ShippingController@review') }}" method="POST">
 		{{ csrf_field() }}
 
 

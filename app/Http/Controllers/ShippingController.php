@@ -296,6 +296,91 @@ class ShippingController extends Controller
         }
     }
 
+    public function review(Request $request)
+    {
+
+        $method = $request->method();
+
+        if( $method == 'POST')
+        {
+            $cart = Session::get('cart',array());
+
+            if(sizeof($cart) > 0)
+            {
+                $shipping_addr =  $request->input('selected_shipping_addr', 0); //set default value
+                $shipping_type =  $request->input('selected_shipping_type');
+
+                $shipping_addr_db = UsersAddress::findOrFail($shipping_addr);
+
+                if($shipping_addr && $shipping_type)
+                {
+                    // temprary saving data in the session untill
+                    // the last step that will store into the database.
+                    $shipping_data = array();
+
+                    $shipping_data['addr'] = $shipping_addr;
+                    $shipping_data['type'] = $shipping_type;
+
+                    Session::put('shipping_data', $shipping_data);
+
+                    return view('site/shipping/review');
+                }
+
+                else
+                {
+                    return redirect("shipping");
+                }
+            }
+            else
+            {
+                return redirect("shipping");
+            }
+        }
+
+        else
+        {
+            $cart_details = array();
+
+        if($request->session()->has('cart'))
+        {          
+          foreach ($request->session()->get('cart') as $key => $value)
+          {
+            $product_id_ = explode("-", $key)[0];
+            $color_id_   = explode("-", $key)[1];
+
+            $query = DB::table('product')
+                        ->join('color_product', 'product.id', '=', 'color_product.product_id')
+                        ->join('product_images', 'product.id', '=', 'product_images.product_id')
+
+                        ->where('product.id',$product_id_)
+                        ->where('color_product.id',$color_id_)
+                        ->where('product_images.tag', '!=', 'review')
+
+                        ->limit(1)
+
+                        ->get()
+                        ->toArray();
+
+            $cart_details[$key] = $query;
+
+          }
+        }
+
+        if($request->session()->has('cart'))
+          return view('site/shipping/review')->with([
+                                          'cart'         => $request->session()->get('cart'),
+                                          'cart_details' => $cart_details,
+                                        ]);
+
+            //return view('site/shipping/review');
+        }
+    }
+
+
+
+
+
+
 
 
 

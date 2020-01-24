@@ -111,6 +111,11 @@ Route::resource('admin/state','admin\StateController');
 Route::resource('admin/city','admin\CityController');
 
 // shipping
+
+// ---- shipping's review
+Route::post('/shipping/review', 'ShippingController@review');
+Route::get('/shipping/review', 'ShippingController@review');
+
 Route::resource('/shipping','ShippingController');
 Route::post('/shipping/ajax_view_cities','ShippingController@ajax_view_cities');
 // ---- store shipping Address
