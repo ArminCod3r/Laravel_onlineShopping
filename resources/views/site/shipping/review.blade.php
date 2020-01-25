@@ -287,7 +287,7 @@
 
 			<div class="col-sm-2">
 				
-				<a href="#" class="btn btn-success shipping-summary-confirmation">
+				<a href="{{ url('shipping/payment') }}" class="btn btn-success shipping-summary-confirmation">
 					<span>تایید و ادامه</span>
 					<span class="fa fa-arrow-left"></span>
 				</a>

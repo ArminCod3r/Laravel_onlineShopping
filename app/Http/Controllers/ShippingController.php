@@ -408,6 +408,25 @@ class ShippingController extends Controller
             return redirect("cart");
     }
 
+    public function payment()
+    {
+        $cart = Session::get('cart',array());
+
+        if(sizeof($cart) > 0)
+        {
+            if(Session::has('shipping_data'))
+            {
+                return 'ok';
+            }
+        }
+
+        else
+        {
+            return redirect("cart");
+        }
+              
+    }
+
 
 
 

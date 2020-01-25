@@ -116,6 +116,9 @@ Route::resource('admin/city','admin\CityController');
 Route::post('/shipping/review', 'ShippingController@review');
 Route::get('/shipping/review', 'ShippingController@review');
 
+// ---- payment	
+Route::get('shipping/payment', 'ShippingController@payment');
+
 Route::resource('/shipping','ShippingController');
 Route::post('/shipping/ajax_view_cities','ShippingController@ajax_view_cities');
 // ---- store shipping Address
