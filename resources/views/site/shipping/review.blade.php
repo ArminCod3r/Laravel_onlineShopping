@@ -241,7 +241,7 @@
 
 
 	<div class="container">
-		<table class="table" style="width: 100%">
+		<table class="table" style="width: 100% ; border-bottom: 1px solid #dee2e6;">
 			<tr>
 				<td style="width: 5%">
 					<span class="shipping-review-location"></span>
@@ -280,6 +280,20 @@
 	</div>
 
 
+	<!-- Button to go to the next step -->
+	<div style="width:96%">
+		<div class="row">
+			<div class="col-sm-10"></div>
+
+			<div class="col-sm-2">
+				
+				<a href="#" class="btn btn-success shipping-summary-confirmation">
+					<span>تایید و ادامه</span>
+					<span class="fa fa-arrow-left"></span>
+				</a>
+			</div>
+		</div>
+	</div>
 
 @else
 	<p style="color:red ; text-align:center ; padding-top:30px; padding-bottom:30px;">

@@ -1653,6 +1653,14 @@ body
     -moz-transform      : scale(.95);
 }
 
+.shipping-summary-confirmation
+{
+    margin: 15px 0px 30px 35px;
+    float: left
+}
+
+
+
 
 
 
