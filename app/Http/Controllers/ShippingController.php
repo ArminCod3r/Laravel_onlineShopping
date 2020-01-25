@@ -358,7 +358,7 @@ class ShippingController extends Controller
                 $addr_id = Session::get('shipping_data')['addr'];
 
                 $shipping_addr = UsersAddress::findOrFail($addr_id);
-                
+
 
 
                 return view('site/shipping/review')->with([
@@ -378,28 +378,34 @@ class ShippingController extends Controller
     {
         $cart_details = array();
 
-        foreach (Session::get('cart') as $key => $value)
+        if(Session::has('cart'))
         {
-            $product_id_ = explode("-", $key)[0];
-            $color_id_   = explode("-", $key)[1];
+            foreach (Session::get('cart') as $key => $value)
+            {
+                $product_id_ = explode("-", $key)[0];
+                $color_id_   = explode("-", $key)[1];
 
-            $query = DB::table('product')
-                    ->join('color_product', 'product.id', '=', 'color_product.product_id')
-                    ->join('product_images', 'product.id', '=', 'product_images.product_id')
+                $query = DB::table('product')
+                        ->join('color_product', 'product.id', '=', 'color_product.product_id')
+                        ->join('product_images', 'product.id', '=', 'product_images.product_id')
 
-                    ->where('product.id',$product_id_)
-                    ->where('color_product.id',$color_id_)
-                    ->where('product_images.tag', '!=', 'review')
+                        ->where('product.id',$product_id_)
+                        ->where('color_product.id',$color_id_)
+                        ->where('product_images.tag', '!=', 'review')
 
-                    ->limit(1)
+                        ->limit(1)
 
-                    ->get()
-                    ->toArray();
+                        ->get()
+                        ->toArray();
 
-            $cart_details[$key] = $query;
+                $cart_details[$key] = $query;
+            }
+
+            return $cart_details;
         }
 
-        return $cart_details;
+        else
+            return redirect("cart");
     }
 
 
