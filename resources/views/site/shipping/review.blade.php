@@ -185,14 +185,14 @@
 			<tr style="background-color:#cdf2fa">
 				<td> هزینه ارسال و بیمه و بسته بندی سفارش </td>
 				<td style="width: 10%">
-					@if($shipping_data == 0)
-						{{number_format(150000)}}
+					@if($shipping_data['type'] == 1)
+						{{number_format(15000)}}
 					@else
 						پس کرایه
 					@endif
 				</td>
 				<td style="width: 5%">
-					@if($shipping_data == 1)
+					@if($shipping_data['type'] == 1)
 						تومان
 					@endif
 				</td>
@@ -207,7 +207,7 @@
 			<tr style="background-color:#cdf2fa">
 				<td> مبلغ قابل پرداخت </td>
 				<td style="width: 10%">
-					@if($shipping_data == 0)
+					@if($shipping_data['type'] == 1)
 						{{number_format($discount_price + 150000 )}}
 					@else
 						{{number_format($discount_price)}}
