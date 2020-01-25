@@ -298,7 +298,6 @@ class ShippingController extends Controller
 
     public function review(Request $request)
     {
-
         $method = $request->method();
 
         if( $method == 'POST')
@@ -333,6 +332,7 @@ class ShippingController extends Controller
                                        'cart'          => $request->session()->get('cart'),
                                        'cart_details'  => $cart_details,
                                        'shipping_data' => Session::get('shipping_data'),
+                                       'shipping_addr' => $shipping_addr_db,
                                       ]);
                     }
 
@@ -353,12 +353,21 @@ class ShippingController extends Controller
         {
             $cart_details = self::cartDetails();
 
-            if($request->session()->has('cart'))
+            if( Session::has('cart') && Session::has('shipping_data') )
+            {
+                $addr_id = Session::get('shipping_data')['addr'];
+
+                $shipping_addr = UsersAddress::findOrFail($addr_id);
+                
+
+
                 return view('site/shipping/review')->with([
                                           'cart'         => $request->session()->get('cart'),
                                           'cart_details' => $cart_details,
                                           'shipping_data' => Session::get('shipping_data'),
+                                          'shipping_addr' => $shipping_addr,
                                         ]);
+            }
             else
                 return redirect("cart");
 
