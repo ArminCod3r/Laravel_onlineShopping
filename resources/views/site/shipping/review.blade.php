@@ -60,6 +60,7 @@
 	<div class="loader" id="loader" style="display: none">
 	</div>
 
+	<!-- Cart's Summary -->
 	<div class="row shipping-review-cart">
 		<div class="col-sm-1"></div>
 
@@ -132,7 +133,7 @@
 	</div>
 
 
-
+	<!-- Invoice's Summary -->
 	<div class="row shipping-review-invoice-summary">
 		<div class="col-sm-1"></div>
 
@@ -219,6 +220,66 @@
 
 		</table>
 	</div>
+
+	<!-- Shipping's Summary -->
+	<div class="row shipping-review-shipping-summary">
+		<div class="col-sm-1"></div>
+
+		<div class="col-sm-2 cart-title">
+			<span style="font-weight: bold;">
+				اطلاعات ارسال سفارش
+			</span>
+		</div>
+
+		<div class="col-sm-6"></div>
+
+		<div class="col-sm-3" style="padding-right: 80px;">
+			
+		</div>
+	</div>
+
+
+
+	<div class="container">
+		<table class="table" style="width: 100%">
+			<tr>
+				<td style="width: 5%">
+					<span class="shipping-review-location"></span>
+				</td>
+				<td>
+					<span> این سفارش به  </span>
+					<span style="font-weight:bold">{{$shipping_addr['username']}}</span>
+
+					<span> به آدرس </span>
+					<span style="font-weight:bold">{{$shipping_addr['address']}}</span>
+
+					<span> به شماره تماس </span>
+					<span style="font-weight:bold">{{$shipping_addr['mobile']}}</span>
+
+					<span> ارسال می شود.</span>
+				</td>
+			</tr>
+
+			<tr>
+				<td>
+					<span style="width:26px; height: 19px">
+						<span class="shipping-review-car"></span>
+					</span>
+					
+				</td>
+				<td>
+					@if($shipping_data['type'] == 1)
+						هزینه ارسال مبلغ <span style="font-weight:bold">{{number_format(15000)}}</span> تومان می باشد.
+					@else
+						سفارش شما به صورت پس کرایه ارائه می شود.
+					@endif
+				</td>
+			</tr>
+
+		</table>
+	</div>
+
+
 
 @else
 	<p style="color:red ; text-align:center ; padding-top:30px; padding-bottom:30px;">

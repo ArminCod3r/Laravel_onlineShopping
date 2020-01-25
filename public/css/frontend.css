@@ -1625,7 +1625,33 @@ body
     padding-top   : 20px;
 }
 
+.shipping-review-shipping-summary
+{
+    margin-bottom : 20px;
+    padding-top   : 40px;
+}
 
+.shipping-review-location
+{
+    background          : transparent url('../images/slices.png') no-repeat scroll 0% 0%;
+    display             : inline-block;
+    position            : relative;
+    background-position : -810px -205px;
+    width               : 18px;
+    height              : 26px;
+    -moz-transform      : scale(.95);
+}
+
+.shipping-review-car
+{
+    background          : transparent url('../images/slices.png') no-repeat scroll 0% 0%;
+    display             : inline-block;
+    position            : relative;
+    background-position : -806px -250px;
+    width               : 26px;
+    height              : 19px;
+    -moz-transform      : scale(.95);
+}
 
 
 
