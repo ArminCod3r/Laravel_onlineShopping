@@ -416,7 +416,7 @@ class ShippingController extends Controller
         {
             if(Session::has('shipping_data'))
             {
-                return 'ok';
+                return view("site/shipping/payment");
             }
         }
 

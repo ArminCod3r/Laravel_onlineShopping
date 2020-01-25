@@ -1660,6 +1660,59 @@ body
 }
 
 
+.payment_type_title
+{
+    width            : 95%;
+    background-color : white;
+    margin           : 15px auto;
+    border-radius    : 5px;
+    padding-bottom   : 20px;
+}
+
+.payment_type_title .width_range
+{
+    width       : 95%;
+    margin      : auto;
+    padding-top : 20px;
+}
+
+.payment_type
+{
+    width:8%;
+    background-color: #d5f2db;
+    position: relative;
+}
+
+.payment_type .fa-circle
+{
+    color:white;
+    position: absolute;
+    top: 35%;
+    text-shadow: 0 0 2px #000;
+}
+
+.order_confirmation
+{
+    width:95%;
+    background-color: white;
+    margin: auto;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+/*.order_confirmation.btn
+{
+    margin: 15px 0px 30px 35px;
+    float: left;
+}
+
+.order_confirmation input
+{
+    margin: auto;
+}
+*/
+
+
 
 
 
