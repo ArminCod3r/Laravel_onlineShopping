@@ -323,40 +323,18 @@ class ShippingController extends Controller
 
                     Session::put('shipping_data', $shipping_data);
 
-                    
-                    $cart_details = array();
 
                     if($request->session()->has('cart'))
-                    {          
-                      foreach ($request->session()->get('cart') as $key => $value)
-                      {
-                        $product_id_ = explode("-", $key)[0];
-                        $color_id_   = explode("-", $key)[1];
+                    {
+                        $cart_details = self::cartDetails();
 
-                        $query = DB::table('product')
-                                    ->join('color_product', 'product.id', '=', 'color_product.product_id')
-                                    ->join('product_images', 'product.id', '=', 'product_images.product_id')
-
-                                    ->where('product.id',$product_id_)
-                                    ->where('color_product.id',$color_id_)
-                                    ->where('product_images.tag', '!=', 'review')
-
-                                    ->limit(1)
-
-                                    ->get()
-                                    ->toArray();
-
-                        $cart_details[$key] = $query;
-
-                      }
+                        return view('site/shipping/review')
+                                ->with([
+                                       'cart'          => $request->session()->get('cart'),
+                                       'cart_details'  => $cart_details,
+                                       'shipping_data' => Session::get('shipping_data'),
+                                      ]);
                     }
-
-                    if($request->session()->has('cart'))
-                        return view('site/shipping/review')->with([
-                                          'cart'          => $request->session()->get('cart'),
-                                          'cart_details'  => $cart_details,
-                                          'shipping_data' => Session::get('shipping_data'),
-                                                ]);
 
                 }
 
@@ -373,32 +351,7 @@ class ShippingController extends Controller
 
         else
         {
-            $cart_details = array();
-
-            if($request->session()->has('cart'))
-            {          
-              foreach ($request->session()->get('cart') as $key => $value)
-              {
-                $product_id_ = explode("-", $key)[0];
-                $color_id_   = explode("-", $key)[1];
-
-                $query = DB::table('product')
-                            ->join('color_product', 'product.id', '=', 'color_product.product_id')
-                            ->join('product_images', 'product.id', '=', 'product_images.product_id')
-
-                            ->where('product.id',$product_id_)
-                            ->where('color_product.id',$color_id_)
-                            ->where('product_images.tag', '!=', 'review')
-
-                            ->limit(1)
-
-                            ->get()
-                            ->toArray();
-
-                $cart_details[$key] = $query;
-
-              }
-            }
+            $cart_details = self::cartDetails();
 
             if($request->session()->has('cart'))
                 return view('site/shipping/review')->with([
@@ -410,6 +363,34 @@ class ShippingController extends Controller
                 return redirect("cart");
 
         }
+    }
+
+    private function cartDetails()
+    {
+        $cart_details = array();
+
+        foreach (Session::get('cart') as $key => $value)
+        {
+            $product_id_ = explode("-", $key)[0];
+            $color_id_   = explode("-", $key)[1];
+
+            $query = DB::table('product')
+                    ->join('color_product', 'product.id', '=', 'color_product.product_id')
+                    ->join('product_images', 'product.id', '=', 'product_images.product_id')
+
+                    ->where('product.id',$product_id_)
+                    ->where('color_product.id',$color_id_)
+                    ->where('product_images.tag', '!=', 'review')
+
+                    ->limit(1)
+
+                    ->get()
+                    ->toArray();
+
+            $cart_details[$key] = $query;
+        }
+
+        return $cart_details;
     }
 
 
