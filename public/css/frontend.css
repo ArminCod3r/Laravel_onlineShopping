@@ -1667,6 +1667,7 @@ body
     margin           : 15px auto;
     border-radius    : 5px;
     padding-bottom   : 20px;
+    cursor           : pointer;
 }
 
 .payment_type_title .width_range
@@ -1699,18 +1700,6 @@ body
     border-radius: 5px;
     margin-bottom: 20px;
 }
-
-/*.order_confirmation.btn
-{
-    margin: 15px 0px 30px 35px;
-    float: left;
-}
-
-.order_confirmation input
-{
-    margin: auto;
-}
-*/
 
 
 
