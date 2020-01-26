@@ -15,7 +15,7 @@ class Order extends Model
 
     public function order_insert($pay_type)
     {
-    	$response = 1;
+    	$response = array();
 
     	$this->address_id   = Session::get('shipping_data')['addr'];
     	$this->user_id      = Auth::user()->id;
@@ -50,17 +50,17 @@ class Order extends Model
 	    		$order_row->number     = $product_count;
 
 	    		if( $order_row->save() )
-	    			$response = 1;
+	    			$response['id'] = $this->id;
 	    		else
-	    			$response = 0;
+	    			$response['error'] = 1;
 	    	}
     	}
     	else
     	{
-    		$response = 0;
+    		$response['error'] = 1;
     	}
 
-    	return 	$response;
+    	return $response;
     }
 
 
