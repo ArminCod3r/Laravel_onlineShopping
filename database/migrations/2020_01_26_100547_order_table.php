@@ -21,7 +21,7 @@ class OrderTable extends Migration
             $table->string('date');
             $table->smallInteger('pay_type');
             $table->smallInteger('pay_status');
-            $table->smallInteger('order_status');
+            $table->smallInteger('order_step');
             $table->integer('total_price');
             $table->integer('price');
             $table->string('code1')->nullable();
