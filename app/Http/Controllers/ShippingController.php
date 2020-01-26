@@ -408,21 +408,31 @@ class ShippingController extends Controller
             return redirect("cart");
     }
 
-    public function payment()
+    public function payment(Request $request)
     {
-        $cart = Session::get('cart',array());
+        $method = $request->method();
 
-        if(sizeof($cart) > 0)
+        if($method == 'GET')
         {
-            if(Session::has('shipping_data'))
+            $cart = Session::get('cart',array());
+
+            if(sizeof($cart) > 0)
             {
-                return view("site/shipping/payment");
+                if(Session::has('shipping_data'))
+                {
+                    return view("site/shipping/payment");
+                }
+            }
+
+            else
+            {
+                return redirect("cart");
             }
         }
 
-        else
+        if($method == 'POST')
         {
-            return redirect("cart");
+            return 'hi';
         }
               
     }
