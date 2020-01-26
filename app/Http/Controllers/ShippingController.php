@@ -446,7 +446,15 @@ class ShippingController extends Controller
                     case (int)$payment_type == 2:
                         $order  = new Order();
                         $result = $order->order_insert(2);
-                        return $result;
+
+                        if(array_key_exists('id', $result))
+                        {
+                            return 'done';
+                        }
+                        else
+                        {
+                            return redirect()->back()->with('error', 'خطا به وجو آمده');
+                        }
 
                         break;
 

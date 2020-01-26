@@ -61,6 +61,12 @@
 
 		<div class="payment_type_title">
 
+			@if(Session::has('error'))
+				<div class="alert alert-danger">
+					{{ Session::get('error') }}
+				</div>
+			@endif
+
 			<div style="padding: 20px 20px 0px 0px">
 				<span>
 					انتخاب شیوه پرداخت:
