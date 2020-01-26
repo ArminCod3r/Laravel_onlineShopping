@@ -11,6 +11,7 @@ use Validator;
 use App\UsersAddress;
 use Auth;
 use Session;
+use App\Order;
 
 class ShippingController extends Controller
 {
@@ -443,7 +444,10 @@ class ShippingController extends Controller
                         break;
 
                     case (int)$payment_type == 2:
-                        return 'inperson payment';
+                        $order = new Order();
+                        $result = $order->order_insert();
+                        return 'ok';
+
                         break;
 
                     case (int)$payment_type == 3:
