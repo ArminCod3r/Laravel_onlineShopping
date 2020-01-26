@@ -434,22 +434,29 @@ class ShippingController extends Controller
         {
             $payment_type = $request->input('selected_payment_type');
 
-            switch(true)
+            if(Session::has('cart') && Session::has('shipping_data'))
             {
-                case (int)$payment_type == 1:
-                    return 'online payment';
-                    break;
+                switch(true)
+                {
+                    case (int)$payment_type == 1:
+                        return 'online payment';
+                        break;
 
-                case (int)$payment_type == 2:
-                    return 'inperson payment';
-                    break;
+                    case (int)$payment_type == 2:
+                        return 'inperson payment';
+                        break;
 
-                case (int)$payment_type == 3:
-                    return 'deposit';
-                    break;
+                    case (int)$payment_type == 3:
+                        return 'deposit';
+                        break;
 
-                default:
-                    return redirect("shipping/payment");
+                    default:
+                        return redirect("shipping/payment");
+                }
+            }
+            else
+            {
+                return redirect("cart");
             }
         }
               
