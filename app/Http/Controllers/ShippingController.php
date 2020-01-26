@@ -432,7 +432,25 @@ class ShippingController extends Controller
 
         if($method == 'POST')
         {
-            return 'hi';
+            $payment_type = $request->input('selected_payment_type');
+
+            switch(true)
+            {
+                case (int)$payment_type == 1:
+                    return 'online payment';
+                    break;
+
+                case (int)$payment_type == 2:
+                    return 'inperson payment';
+                    break;
+
+                case (int)$payment_type == 3:
+                    return 'deposit';
+                    break;
+
+                default:
+                    return redirect("shipping/payment");
+            }
         }
               
     }
