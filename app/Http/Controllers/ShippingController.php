@@ -440,7 +440,7 @@ class ShippingController extends Controller
                 switch(true)
                 {
                     case (int)$payment_type == 1:
-                        return 'online payment';
+                        return redirect()->back()->with('error', 'در دست ساخت');
                         break;
 
                     case (int)$payment_type == 2:
@@ -459,7 +459,7 @@ class ShippingController extends Controller
                         break;
 
                     case (int)$payment_type == 3:
-                        return 'deposit';
+                        return redirect()->back()->with('error', 'در دست ساخت');
                         break;
 
                     default:
