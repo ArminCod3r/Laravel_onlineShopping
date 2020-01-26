@@ -444,9 +444,9 @@ class ShippingController extends Controller
                         break;
 
                     case (int)$payment_type == 2:
-                        $order = new Order();
-                        $result = $order->order_insert();
-                        return 'ok';
+                        $order  = new Order();
+                        $result = $order->order_insert(2);
+                        return $result;
 
                         break;
 
