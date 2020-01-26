@@ -31,10 +31,27 @@ class Order extends Model
 
     	$this->order_read   = 1;
 
-    	$this->save();
+    	if($this->save())
+    	{
+    		foreach (Session::get('cart') as $key => $value)
+	        {
+	        	$product_id    = explode('-', $key)[0];
+	        	$product_color = explode('-', $key)[1];
+	        	$product_count = $value;
 
+	    		$order_row = new OrderRow();
 
-    	return 'inserted';
+	    		$order_row->order_id   = $this->id;
+	    		$order_row->product_id = $product_id;
+	    		$order_row->color_id   = $product_color;
+	    		$order_row->service_id = 0; // No warranty
+	    		$order_row->number     = $product_count;
+
+	    		$order_row->save();
+	    	}
+
+    		return 'inserted';
+    	}	
     }
 
 
