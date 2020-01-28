@@ -449,6 +449,8 @@ class ShippingController extends Controller
 
                         if(array_key_exists('id', $result))
                         {
+                            Session::forget('cart');
+
                             $url = url('/shipping/payment/cash-on-delivery')."/".$result['id'];
                             return redirect($url);
                         }
