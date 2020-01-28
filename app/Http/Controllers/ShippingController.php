@@ -12,6 +12,8 @@ use App\UsersAddress;
 use Auth;
 use Session;
 use App\Order;
+use App\User;
+use App\OrderRow;
 
 class ShippingController extends Controller
 {
@@ -479,7 +481,18 @@ class ShippingController extends Controller
 
     public function cashOnDelivery($id)
     {
-        return $id ;
+        $order = Order::where([
+                                'id'      => $id,
+                                'user_id' => Auth::user()->id,
+                              ])->get();
+
+        $users_details = User::findOrFail($order[0]->user_id);
+        $users_addr    = UsersAddress::findOrFail($order[0]->address_id);
+
+        return view("site/shipping/cash-on-delivery")->with([
+                                                             'order'      => $order,
+                                                             'users_addr' => $users_addr,
+                                                            ]);
     }
 
 

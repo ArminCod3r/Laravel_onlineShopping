@@ -1701,6 +1701,66 @@ body
     margin-bottom: 20px;
 }
 
+.cash-on-delivery
+{
+    padding-top      : 20px;
+    width            : 95%;
+    background-color : white;
+    margin           : auto;
+    border-radius    : 5px;
+}
+
+.cash-on-delivery h4
+{
+    text-align     : center;
+    color          : #737373;
+    padding-bottom : 20px;
+}
+
+.cash-on-delivery .code
+{
+    color           : #00bfd6;
+    background-color: #ebfdff;
+}
+
+.cash-on-delivery p
+{
+    line-height : 1.67;
+    color       : #7d7d7d;
+    text-align  : center;
+    padding-bottom : 20px;
+}
+
+.cash-on-delivery-details
+{
+    padding-top      : 20px;
+    width            : 95%;
+    background-color : white;
+    margin           : auto;
+    border-radius    : 5px;
+    padding-bottom   : 25px;
+    margin-bottom: 20px;
+}
+
+.cash-on-delivery-details .code
+{
+    margin      : 10px 20px 10px 0px;
+    font-size   : 19px;
+    font-weight : bold;
+}
+
+.cash-on-delivery-details p
+{
+    color        : #a0a0a0;
+    margin-right : 20px;
+}
+
+.cash-on-delivery-details p span
+{
+    background-color : #ebfdff;
+    color            : #00bfd6;
+}
+
 
 
 
