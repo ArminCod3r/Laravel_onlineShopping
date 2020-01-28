@@ -501,12 +501,21 @@ class ShippingController extends Controller
                                 'user_id' => Auth::user()->id,
                               ])->get();
 
-        $users_details = User::findOrFail($order[0]->user_id);
-        $users_addr    = UsersAddress::findOrFail($order[0]->address_id);
+        $addr       = $order[0]->address_text;
+        $addr_array = json_decode($addr, true);
+
+        // Checking if user-inputed-address still exists
+        $if_addr_exists = UsersAddress::where('id',$order[0]->address_id)->get();
+        $addr_exists    = true;
+
+        if($if_addr_exists)
+            $addr_exists = false;
+
 
         return view("site/shipping/cash-on-delivery")->with([
                                                              'order'      => $order,
-                                                             'users_addr' => $users_addr,
+                                                             'users_addr' => $addr_array,
+                                                             'addr_exists'=> $addr_exists,
                                                             ]);
     }
 

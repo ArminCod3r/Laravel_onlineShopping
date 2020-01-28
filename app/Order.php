@@ -10,7 +10,7 @@ class Order extends Model
 {
     protected $table = 'order';
     public $primaryKey = 'id';
-    protected $fillable = ['address_id','user_id','time','date','pay_type','pay_status','order_step','total_price','price','code1','code2','order_read', 'count'];
+    protected $fillable = ['address_id','user_id','time','date','pay_type','pay_status','order_step','total_price','price','code1','code2','order_read', 'count', 'address_text'];
     public $timestamps = true;
 
     public function order_insert($pay_type)
@@ -25,6 +25,7 @@ class Order extends Model
     	$this->pay_status   = 0;
         $this->order_step   = 1;
     	$this->count        = count(Session::get('cart'));
+        $this->address_text = UsersAddress::find(Session::get('shipping_data')['addr']);
 
     	// getting the price and discount
     	$price_details = $this->price_details();

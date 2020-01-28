@@ -65,11 +65,11 @@
 			<tr>
 				<td>
 					<span>نام تحویل گیرنده:</span>
-					<span> {{ $users_addr->username }} </span>
+					<span> {{ $users_addr['username'] }} </span>
 				</td>
 				<td>
 					<span>شماره تماس: </span>
-					<span> {{ $users_addr->mobile }} </span>
+					<span> {{ $users_addr['mobile'] }} </span>
 				</td>
 			</tr>
 
@@ -98,11 +98,18 @@
 			<tr>
 				<td colspan="2">
 					<span> آدرس: </span>
-					<span> {{ $users_addr->address }} </span>
+					<span> {{ $users_addr['address'] }} </span>
 				</td>
 			</tr>
 
 		</table>
+
+		<!-- Checking if user-inputed-address still exists -->
+		@if(!($addr_exists))
+			<div style="margin: 10px 20px 0px 0px; font-size: 14px; color: #a0a0a0">
+				این آدرس در آدرس های فعلی شما قرار ندارد.
+			</div>
+		@endif
 	</div>
 
 </div>
