@@ -506,10 +506,10 @@ class ShippingController extends Controller
 
         // Checking if user-inputed-address still exists
         $if_addr_exists = UsersAddress::where('id',$order[0]->address_id)->get();
-        $addr_exists    = true;
+        $addr_exists    = false;
 
         if($if_addr_exists)
-            $addr_exists = false;
+            $addr_exists = true;
 
 
         return view("site/shipping/cash-on-delivery")->with([
