@@ -74,7 +74,7 @@
 	</div>
 
 	<div>
-
+	@if(count($user_address) > 0)
 		<input type="hidden" value="{{ $user_address[0]->id }}" id="selected_shipping_addr" name="selected_shipping_addr">
 
 		@foreach($user_address as $key=>$value)
@@ -104,11 +104,8 @@
 								<span class="fa fa-edit" id="edit_{{$key}}"></span>
 							</div>
 
-							<div class="remove" onclick="remove_shipping_address()">
+							<div class="remove" onclick="remove_shipping_address('{{$value->id}}')">
 								<span class="fa fa-remove"></span>
-
-								<form action="{{ action('ShippingController@destroyAddress', ['id' => $value->id]) }}" id="url_delete_shipping">
-	                    </form>
 
 							</div>
 
@@ -156,6 +153,7 @@
 
 		</div>
 		@endforeach
+	@endif
 	</div>
 
 </div>
@@ -781,9 +779,9 @@
 	}
 
 	<?php $url_destroyAddress= url('shipping'); ?>
-	remove_shipping_address = function()
+	remove_shipping_address = function(value)
 	{
-		var url_delete_shipping = document.getElementById('url_delete_shipping').action;
+		var url_delete_shipping = '{{$url_destroyAddress}}'+"/"+value+"/destroyAddress";
 		var redirectTo          = window.location.origin+"/shipping/";
 
 		$.ajaxSetup(
