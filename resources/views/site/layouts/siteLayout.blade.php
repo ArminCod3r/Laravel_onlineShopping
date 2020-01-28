@@ -112,7 +112,9 @@ $shown_item = 0;
         </div>
 
         <div class="col-md-3 col-sm-3">
-          <img src="{{ url('/images/logo.png') }}" class="logo">
+          <a href=" {{ url('/') }} ">
+            <img src="{{ url('/images/logo.png') }}" class="logo">
+          </a>
         </div>
         
       </div>
