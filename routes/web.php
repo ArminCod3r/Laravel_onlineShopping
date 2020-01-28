@@ -119,6 +119,7 @@ Route::get('/shipping/review', 'ShippingController@review');
 // ---- payment	
 Route::get('shipping/payment', 'ShippingController@payment');
 Route::post('shipping/payment', 'ShippingController@payment');
+Route::get('shipping/payment/cash-on-delivery/{id}', 'ShippingController@cashOnDelivery');
 
 Route::resource('/shipping','ShippingController');
 Route::post('/shipping/ajax_view_cities','ShippingController@ajax_view_cities');

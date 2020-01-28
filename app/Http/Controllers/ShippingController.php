@@ -449,7 +449,8 @@ class ShippingController extends Controller
 
                         if(array_key_exists('id', $result))
                         {
-                            return 'done';
+                            $url = url('/shipping/payment/cash-on-delivery')."/".$result['id'];
+                            return redirect($url);
                         }
                         else
                         {
@@ -472,6 +473,11 @@ class ShippingController extends Controller
             }
         }
               
+    }
+
+    public function cashOnDelivery($id)
+    {
+        return $id ;
     }
 
 
