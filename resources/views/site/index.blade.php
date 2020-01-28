@@ -276,7 +276,10 @@
 								@if($key_img == 0 )
 
 									<div class="newest_products_image">
-										<img src="{{ url('upload/'.$value_img['url']) }}">
+										<a href="{{ url('product').'/'.$value['code'].'/'.$value['title_url'] }}">
+											<img src="{{ url('upload/'.$value_img['url']) }}">
+										</a>
+										
 									</div>
 
 								@endif
