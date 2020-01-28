@@ -71,6 +71,12 @@
 			<i class="fa fa-plus"></i> 
             <span style="font-size: 16px">افزودن آدرس </span>
         </a>
+
+		<div style="margin-top: 10px">
+			@if($errors->has('selected_shipping_addr'))
+				<span style="color: red;"> {{ $errors->first('selected_shipping_addr') }} </span>
+			@endif
+		</div>
 	</div>
 
 	<div>

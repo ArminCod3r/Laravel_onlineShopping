@@ -301,6 +301,12 @@ class ShippingController extends Controller
 
     public function review(Request $request)
     {
+        $rules          = ['selected_shipping_addr' => 'required'];
+        $customMessages = ['required'               => ':attribute الزامی است.'];
+        $fieldsName     = ['selected_shipping_addr' => 'آدرس'];
+
+        Validator::make($request->all(), $rules, $customMessages, $fieldsName)->validate();
+
         $method = $request->method();
 
         if( $method == 'POST')
