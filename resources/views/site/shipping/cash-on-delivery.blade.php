@@ -2,6 +2,10 @@
 
 @section('header')
 	<meta name="csrf-token" content="{{ csrf_token() }}">
+
+	<link rel="stylesheet" type="text/css" href="{{ url('slick/slick/slick.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{url('slick/slick/slick-theme.css')}}">
+
 @endsection
 
 @section('content')
@@ -112,6 +116,80 @@
 		@endif
 	</div>
 
+
+
 </div>
 
+<div class="posts_steps" dir="rtl">
+
+		<div>
+			<span>
+				<img class="step" src="{{ url('images/posts_steps/'.'2.svg') }}"  >
+			</span>
+			<span>سفارش انجام شده</span>
+		</div>
+
+		<img class="link opacity" src="{{ url('images/posts_steps/link.png') }}"  >
+
+
+		<div class="opacity">
+			<span>
+				<img class="step" src="{{ url('images/posts_steps/'.'1.svg') }}"  >
+			</span>
+			<span>در انتظار تایید</span>
+		</div>
+
+		<img class="link opacity" src="{{ url('images/posts_steps/link.png') }}"  >
+
+
+		<div class="opacity">
+			<span>
+				<img class="step" src="{{ url('images/posts_steps/'.'3.svg') }}"  >
+			</span>
+			<span>آماده سازی سفارش</span>
+		</div>
+
+		<img class="link opacity" src="{{ url('images/posts_steps/link.png') }}"  >
+
+		<div class="opacity">
+			<span>
+				<img class="step" src="{{ url('images/posts_steps/'.'4.svg') }}"  >
+			</span>
+			<span>ارسال</span>
+		</div>
+
+		<img class="link opacity" src="{{ url('images/posts_steps/link.png') }}"  >
+
+
+		
+		<div class="opacity">
+			<span style="position: relative;">
+				<img src="{{ url('images/posts_steps/'.'6.svg') }}" style="-moz-transform: scale(0.55); margin-top:-25px" >
+			</span>
+			<span style="position:absolute ; top: 0px; left:140px ; margin-top: 130px;">
+				تحویل مرسوله به مشتری
+			</span>
+		</div>
+
+		
+		<div>
+		</div>
+
+	</div>
+
+@endsection
+
+@section('footer')
+	<script type="text/javascript" src="{{ url('slick/slick/slick.js') }}" charset="utf-8"></script>
+
+	<script type="text/javascript">
+
+		$(".posts_steps").slick({
+	        infinite: false,
+	        slidesToShow: 8,
+	        slidesToScroll:1,
+	        rtl: true
+	     });
+
+	</script>
 @endsection
