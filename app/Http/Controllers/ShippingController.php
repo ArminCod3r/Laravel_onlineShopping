@@ -44,6 +44,7 @@ class ShippingController extends Controller
             $user_address = UsersAddress::with('State')
                                         ->with('City')
                                         ->where('user_id', $user_id)
+                                        ->orderBy('id', 'desc')
                                         ->get();
 
             return view("site/shipping/index")->with([
@@ -188,7 +189,15 @@ class ShippingController extends Controller
             //$users_address->save();
 
             if($users_address->save())
+            {
+                $shipping_data = array();
+
+                $shipping_data['addr'] = $users_address->id;
+                $shipping_data['type'] = 1;
+                Session::put('shipping_data', $shipping_data);
+
                 return 'ok';
+            }
 
             else
                 return 'error';
