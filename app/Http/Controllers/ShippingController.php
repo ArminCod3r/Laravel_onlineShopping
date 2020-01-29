@@ -511,11 +511,18 @@ class ShippingController extends Controller
         if($if_addr_exists)
             $addr_exists = true;
 
+        // get bought-items details
+        $bought_items = OrderRow::where('order_id',$id)
+                                ->with("product")
+                                ->with("color")
+                                ->with("image")
+                                ->get();
 
         return view("site/shipping/cash-on-delivery")->with([
                                                              'order'      => $order,
                                                              'users_addr' => $addr_array,
                                                              'addr_exists'=> $addr_exists,
+                                                             'bought_items'=> $bought_items,
                                                             ]);
     }
 
