@@ -21,11 +21,11 @@ class check_admin
                 return $next($request);
 
             else
-                return redirect("site");
+                return redirect("/");
         }
         else
         {
-            return redirect("site");
+            return redirect("/");
         }
     }
 }
