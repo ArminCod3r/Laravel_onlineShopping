@@ -96,6 +96,9 @@ Route::middleware(['check_admin'])->group(function(){
 
 });
 
+// Admin login
+Route::get('admin_login','admin\AdminController@admin_login');
+
 
 
 Route::get('/categoryTree', "SiteController@categoryTree");
