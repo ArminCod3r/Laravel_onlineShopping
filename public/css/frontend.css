@@ -1825,6 +1825,40 @@ body
     margin-bottom    : 20px;
 }
 
+.admin_login
+{
+    background-color: #fafafa;
+}
+
+.admin_login .title
+{
+    text-align     : center;
+    border-bottom  : 3px solid white;
+    padding-bottom : 10px;
+    margin-bottom  : 20px;
+}
+
+.admin_login .title span
+{
+    font-size: 20px;
+}
+
+.admin_login .form_area
+{
+    width            : 50%;
+    margin           : auto;
+    margin-top       : 10%;
+    background-color : #ebebeb;
+    border-radius    : 10px;
+    padding          : 20px;
+}
+
+.admin_login .form_area .btn-primary {
+
+background-color: #3490dc;
+
+}
+
 
 
 
