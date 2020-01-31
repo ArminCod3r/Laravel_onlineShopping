@@ -7,7 +7,8 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Category;
 use View;
 use DB;
-
+use \Illuminate\Http\Request;
+use URL;
 
 class LoginController extends Controller
 {
@@ -50,6 +51,24 @@ class LoginController extends Controller
     {
         return 'username';
     }
+
+
+    protected function credentials(Request $request)
+    {
+        $arr = $request->only($this->username(), 'password');
+
+        $prev_url = URL::previous();
+
+        if( $prev_url == url('admin_login') )
+            $arr['role'] = 'admin';
+
+        else
+            $arr['role'] = 'user';
+
+        return $arr;
+    }
+
+
 
 
 
