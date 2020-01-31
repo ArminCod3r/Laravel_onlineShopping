@@ -9,6 +9,7 @@ use View;
 use DB;
 use \Illuminate\Http\Request;
 use URL;
+use Auth;
 
 class LoginController extends Controller
 {
@@ -67,6 +68,21 @@ class LoginController extends Controller
 
         return $arr;
     }
+
+    // Redirect users base on their roles
+    public function redirectPath()
+    {
+        $role = Auth::user()->role;
+
+        if( $role == 'admin')
+            return 'admin';
+
+        if( $role == 'role')
+            return '/';
+    }
+
+
+
 
 
 
