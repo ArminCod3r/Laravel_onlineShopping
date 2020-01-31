@@ -11,6 +11,8 @@
 
 @section('content1')
 
+	<section class="col-lg-7 connectedSortable">
+
 	<a href="{{ url('admin/city/create') }}" class="btn btn-success"> افزودن شهر </a>
 	<br><br>
 
@@ -51,4 +53,8 @@
 		nothing in here
 	@endif
 
+@endsection
+
+@section('content4')
+	<section class="col-lg-5 connectedSortable">
 @endsection

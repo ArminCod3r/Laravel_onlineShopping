@@ -17,6 +17,8 @@
 
 @section('content1')
 
+<section class="col-lg-7 connectedSortable">
+
 <div style="margin-top: 40px">
 	
 	<div>
@@ -53,6 +55,12 @@
 </div>
 
 @endsection
+
+@section('content4')
+	<section class="col-lg-5 connectedSortable">
+@endsection
+
+
 
 @section('footer')
 

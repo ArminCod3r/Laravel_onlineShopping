@@ -21,6 +21,8 @@
 
 
 @section('content1')
+<section class="col-lg-7 connectedSortable">
+
 <a href="{{ url('admin/category/create') }}" class="btn btn-success"> افزودن دسته </a>
 <br><br>
 
@@ -85,6 +87,10 @@
 
 @section('content2')
     <br><br><br><br><br><br>
+@endsection
+
+@section('content')
+<section class="col-lg-5 connectedSortable">
 @endsection
 
 @section('footer')

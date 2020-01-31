@@ -27,6 +27,7 @@
 @endsection
 
 @section('content1')
+	<section class="col-lg-7 connectedSortable">
 
 	<a href="{{ url('admin/state/create') }}" class="btn btn-success"> افزودن استان </a>
 	<br><br>
@@ -94,6 +95,8 @@
 @endsection
 
 @section('content4')
+
+<section class="col-lg-5 connectedSortable">
 
 <div class="form-group list-group" id="cities" style="width: 90%">
 	<!-- cities will be shown here-->

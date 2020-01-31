@@ -9,6 +9,8 @@
 @endsection
 
 @section('content1')
+<section class="col-lg-10 connectedSortable">
+
 <br/>
 
  <table class="table table-hover">
@@ -48,4 +50,8 @@
  		<?php $i++; ?> 
  	@endforeach
  </table>
+@endsection
+
+@section('content4')
+	<section class="col-lg-2 connectedSortable">
 @endsection

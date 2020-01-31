@@ -22,6 +22,8 @@
 
 @section('content1')
 
+<section class="col-lg-7 connectedSortable">
+
     @if(isset($selected_id))
      <form action="{{ url('admin/feature?id='.$selected_id) }}" method="POST" accept-charset="utf-8" enctype="multipart/form-data">
      {{ csrf_field() }}
@@ -109,6 +111,12 @@
     @endif
 
 @endsection
+
+@section('content4')
+  <section class="col-lg-5 connectedSortable">
+@endsection
+
+
 
 
 @section('footer')

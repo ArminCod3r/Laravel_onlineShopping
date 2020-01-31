@@ -70,6 +70,7 @@
 @endsection
 
 @section('content1')
+<section class="col-lg-12 connectedSortable">
 <a href="{{ url('admin/product/create') }}" class="btn btn-success"> افزودن محصول </a>
 <br><br>
 

@@ -27,6 +27,8 @@
 
 @section('content1')
 
+ <section class="col-lg-7 connectedSortable">
+
  <form action="{{ action('admin\FeatureController@feature_assign', ['product_id' => $product->id]) }}" method="POST" accept-charset="utf-8" enctype="multipart/form-data">
 
 		{{ csrf_field() }}
@@ -73,5 +75,9 @@
 	<input type="submit" name="submit" value="ثبت" class="btn btn-success">
 
 </form>
+@endsection
+
+@section('content4')
+	<section class="col-lg-5 connectedSortable">
 @endsection
 

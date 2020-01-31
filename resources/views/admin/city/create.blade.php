@@ -23,6 +23,9 @@
 @endsection
 
 @section('content1')
+
+ <section class="col-lg-7 connectedSortable">
+ 
  <form action="{{ action('admin\CityController@store') }}" method="POST" accept-charset="utf-8" enctype="multipart/form-data">
 		{{ csrf_field() }}
 		
@@ -76,6 +79,11 @@
 
 	</form>
 @endsection
+
+@section('content4')
+	<section class="col-lg-5 connectedSortable">
+@endsection
+
 
 @section('footer')
 	<script type="text/javascript" src="{{ url('js/bootstrap-select.js') }}"></script>

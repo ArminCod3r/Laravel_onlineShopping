@@ -11,6 +11,8 @@
 @endsection
 
 @section('content1')
+<section class="col-lg-7 connectedSortable">
+
 <br/>
 
  <table class="table table-hover">
@@ -51,3 +53,8 @@
  	@endforeach
  </table>
 @endsection
+
+@section('content4')
+	<section class="col-lg-5 connectedSortable">
+@endsection
+

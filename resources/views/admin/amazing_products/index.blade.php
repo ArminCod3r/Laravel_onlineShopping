@@ -26,6 +26,8 @@
 
 
 @section('content1')
+<section class="col-lg-10 connectedSortable">
+
 <a href="{{ url('admin/amazing_products/create') }}" class="btn btn-success"> افزودن محصول </a>
 <br><br>
 
@@ -78,4 +80,8 @@
 </table>
     
 {{ $amazing->links() }}
+@endsection
+
+@section('content4')
+  <section class="col-lg-2 connectedSortable">
 @endsection

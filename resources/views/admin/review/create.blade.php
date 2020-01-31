@@ -20,6 +20,7 @@
 
 
 @section('content1')
+<section class="col-lg-7 connectedSortable">
 
  <form action="{{route('review.store', $product->id ) }}" method="POST" accept-charset="utf-8">
 	{{ csrf_field() }}
@@ -116,7 +117,9 @@
 
 @endsection
 
-
+@section('content4')
+    <section class="col-lg-5 connectedSortable">
+@endsection
 
 @section('footer')
 	<!-- CKEditor -->

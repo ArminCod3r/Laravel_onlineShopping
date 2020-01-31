@@ -11,6 +11,8 @@
 
 
 @section('content1')
+<section class="col-lg-7 connectedSortable">
+
 <a href="{{ url('admin/slider/create') }}" class="btn btn-success"> افزودن اسلاید </a>
 <br><br>
 
@@ -66,6 +68,7 @@
 @endsection
 
 @section('content4')
+    <section class="col-lg-5 connectedSortable">
     <br><br><br>
     <img src="" id="bigger_img" style="width: 90%;">
 @endsection

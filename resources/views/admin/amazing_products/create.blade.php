@@ -12,6 +12,8 @@
 
 @section('content1')
 
+<section class="col-lg-7 connectedSortable">
+
 <hr style="margin-bottom: 5%" />
 
 <form action="{{ action('admin\AmazingProductController@store') }}" method="POST" accept-charset="utf-8" enctype="multipart/form-data">
@@ -106,6 +108,10 @@
 
 @section('content2')
 	<br><br><br><br><br><br>
+@endsection
+
+@section('content4')
+	<section class="col-lg-5 connectedSortable">
 @endsection
 
 

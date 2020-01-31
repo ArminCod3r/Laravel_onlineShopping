@@ -79,6 +79,8 @@
 
 @section('content1')
 
+<section class="col-lg-7 connectedSortable">
+
 <div class="card">
               <div class="card-header d-flex p-0">
                 <h3 class="card-title p-3">
@@ -377,7 +379,7 @@
 @endsection
 
 @section('content4')
-
+<section class="col-lg-5 connectedSortable">
 <div class="card bg-primary-gradient">
               <div class="card-header no-border">
                 <h3 class="card-title">
