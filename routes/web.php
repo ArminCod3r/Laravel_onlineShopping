@@ -97,6 +97,9 @@ Route::middleware(['throttle:60,1'])->group(function(){
 		// city
 		Route::resource('admin/city','admin\CityController');
 
+		// Order managing
+		Route::resource('admin/order','admin\OrderController');
+
 	});
 
 	// Admin login
