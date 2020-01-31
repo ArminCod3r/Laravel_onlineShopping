@@ -17,7 +17,9 @@ class OrderController extends Controller
     {
         $orders = Order::orderBy('id', 'DESC')->get();
 
-        return $orders;
+        //return $orders[0]->address_text;
+
+        return view('admin/order/index')->with('orders', $orders);
     }
 
     /**
