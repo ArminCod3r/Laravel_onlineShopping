@@ -13,11 +13,24 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $orders = Order::orderBy('id', 'DESC')->get();
+        $orders="";
 
-        //return $orders[0]->address_text;
+        if(sizeof($request) > 0)
+        {
+            $order_id = $request->get('order_id');
+
+            $orders = Order::where('order_id', 'like', "%".$order_id."%")
+                            ->orderBy('id', 'DESC')
+                            ->paginate(5);
+
+            $path = "order?order_id=".$order_id;
+            $orders->SetPath($path);
+        }
+
+        else
+            $orders = Order::orderBy('id', 'DESC')->paginate(10);
 
         return view('admin/order/index')->with('orders', $orders);
     }

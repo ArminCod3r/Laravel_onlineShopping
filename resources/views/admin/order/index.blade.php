@@ -14,7 +14,33 @@
 <section class="col-lg-12 connectedSortable">
 
 
-<table class="table table-hover" dir="rtl" style="width:98%;">
+
+<form action="{{ url('admin/order') }}" method="GET">
+    <div class="row">
+        <div class="col-sm-2 form-group">
+            <label for="order_id">شماره سفارش</label>
+        </div>
+
+        <div class="col-sm-5 form-group">
+            <input type="text" name="order_id" id="order_id" class="form-control" value="{{ app('request')->input('order_id') }}" placeholder=""><br>
+        </div>
+
+        <div class="col-sm-5"></div>
+
+        
+    </div>
+    
+    <div class="row">
+        <div class="col-sm-2 form-group">
+            <input type="submit" class="btn btn-primary" value="جست و جو" style="width:100%">
+        </div>
+        <div class="col-sm-10"></div>        
+    </div>
+
+</form>
+
+
+<table class="table table-striped" dir="rtl" style="width:98%; margin-top: 20px">
     <thead>
       <tr>
         <th>ردیف</th>
@@ -34,7 +60,7 @@
     	?>
     	<tr>
     		<td> {{ $i }} </td>
-    		<td>{{substr($value->time,0,5).$value->user_id.substr($value->time,5,10)}}</td>
+    		<td> {{ $value->order_id }}</td>
     		<td> {{ $users_details['mobile'] }} </td>
     		<td>
     			<?php
@@ -44,7 +70,7 @@
     			<span>{{ $time }}</span>
     			<span>{{ $date }}</span>
     		</td>
-    		<td> {{ $value->price }} نومان </td>
+    		<td> {{ number_format($value->price) }} تومان </td>
     		<td>
     			@if($value->pay_status == 1)
     				<span style="color: green">پرداخت شده</span>
@@ -62,10 +88,9 @@
     @endforeach
 
 
-
 </table>
-    
 
 
-</form>
+{{ $orders->links() }}
+
 @endsection
