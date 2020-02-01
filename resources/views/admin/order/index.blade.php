@@ -3,6 +3,7 @@
 
 @section('header')
     <title>مدیریت سفارش ها</title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
 @endsection
 
 @section('custom-title')
@@ -12,8 +13,6 @@
 
 @section('content1')
 <section class="col-lg-12 connectedSortable">
-
-
 
 <form action="{{ url('admin/order') }}" method="GET">
     <div class="row">
@@ -25,10 +24,48 @@
             <input type="text" name="order_id" id="order_id" class="form-control" value="{{ app('request')->input('order_id') }}" placeholder=""><br>
         </div>
 
-        <div class="col-sm-5"></div>
-
-        
+        <div class="col-sm-5"></div>        
     </div>
+
+    <!-- From date -->
+    <div class="row" style="margin-top:-30px">
+        <div class="col-sm-2 form-group">
+            <label for="from_date">از تاریخ</label>
+        </div>
+
+        <div class="col-sm-3 form-group">
+
+            <!-- 51968355 -->
+            <input type="date" name="from_date" id="from_date" class="form-control" value="{{ app('request')->input('from_date') }}"></input>
+            <!-- Either pf these:
+                <input type="date" ></input>
+                <input type="text" name="date" id="datepicker"></input>
+            -->
+        </div>
+
+        <div class="col-sm-7"></div>        
+    </div>
+
+    <!-- To date -->
+    <div class="row" style="margin-top:-10px">
+        <div class="col-sm-2 form-group">
+            <label for="from_date">تا تاریخ</label>
+        </div>
+
+        <div class="col-sm-3 form-group">
+
+            <!-- 51968355 -->
+            <input type="date" name="to_date" id="to_date"class="form-control" value="{{ app('request')->input('to_date') }}"></input>
+            <!-- Either pf these:
+                <input type="date" ></input>
+                <input type="text" name="date" id="datepicker"></input>
+            -->
+        </div>
+
+        <div class="col-sm-7"></div>        
+    </div>
+
+
     
     <div class="row">
         <div class="col-sm-2 form-group">
@@ -94,3 +131,21 @@
 {{ $orders->links() }}
 
 @endsection
+
+
+@section('footer')
+
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+
+  <!-- 51968355 -->
+  <script>
+  $(function() {
+    $( "#datepicker" ).datepicker();
+  });
+
+  </script>
+
+
+@endsection
+
