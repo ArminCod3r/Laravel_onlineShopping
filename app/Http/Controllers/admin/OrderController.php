@@ -19,13 +19,25 @@ class OrderController extends Controller
 
         if(sizeof($request) > 0)
         {
-            $order_id = $request->get('order_id');
+            // Getting data
+            $order_id  = $request->get('order_id');
+            $from_date = $request->get('from_date');
+            $to_date   = $request->get('to_date');
 
+            // Handling data-null situations
+            $order_id  = (is_null($order_id) ? ""         : $order_id);
+            $from_date = (is_null($from_date)? "1-1-1"    : $from_date.' 00:00:00');
+            $to_date   = (is_null($to_date)  ? "4040-1-1" : $to_date.' 00:00:00');
+
+            // Query
             $orders = Order::where('order_id', 'like', "%".$order_id."%")
+                            ->where('created_at', '>=', $from_date)
+                            ->where('created_at', '<=', $to_date)
                             ->orderBy('id', 'DESC')
-                            ->paginate(5);
+                            ->paginate(10);
 
-            $path = "order?order_id=".$order_id;
+            // Set path
+            $path = "order?order_id=".$order_id."&from_date=".$from_date."&to_date=".$to_date;
             $orders->SetPath($path);
         }
 
