@@ -31,7 +31,13 @@
 	    		<td> {{ $i }} </td>
 	    		<td> {{ $value->username }} </td>
 	    		<td> {{ explode(' ' ,$value->created_at)[0] }} </td>
-	    		<td> {{ $value->role }} </td>
+	    		<td>
+	    			@if($value->role == 'admin')
+	    				مدیر
+	    			@else
+	    				کاربر عادی
+	    			@endif
+	    		</td>
 	    		<td>
 	    			<a href="#" class="fa fa-eye" style="color: green"></a>
 	    			<a href="#" class="fa fa-edit"></a>
