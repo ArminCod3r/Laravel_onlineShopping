@@ -39,7 +39,9 @@
 	    			@endif
 	    		</td>
 	    		<td>
-	    			<a href="#" class="fa fa-eye" style="color: green"></a>
+	    			<!-- Showing -->
+	    			<a href="{{ action('admin\UserController@show', ['id' => $value->id]) }}" class="fa fa-eye" style="color: green"></a>
+
 	    			<a href="#" class="fa fa-edit"></a>
 	    			<a href="#" class="fa fa-remove" style="color: red"></a>
 	    		</td>

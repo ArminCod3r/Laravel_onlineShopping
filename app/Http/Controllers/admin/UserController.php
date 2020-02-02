@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
+use App\Order;
 
 class UserController extends Controller
 {
@@ -49,7 +50,13 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $user   = User::findOrFail($id);
+        $orders = Order::where('user_id', $id)->orderBy('id', 'DESC')->get();
+
+        return view('admin/users/show')->with([
+                                               'user'   => $user,
+                                               'orders' => $orders,
+                                             ]);
     }
 
     /**

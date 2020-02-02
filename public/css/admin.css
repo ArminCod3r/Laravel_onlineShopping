@@ -177,7 +177,7 @@ body{
   text-align: center;
 }
 
-.details_1
+.details_1, .users_account, .orders_list
 {
   background-color : white;
   border-radius    : 10px;
@@ -186,7 +186,7 @@ body{
   margin           : auto;
 }
 
-.details_1 .code
+.details_1 .code, .orders_list .code
 {
   margin      : 10px 20px 10px 0px;
   padding-top : 20px;
@@ -330,7 +330,19 @@ body{
   margin-top: 20px
 }
 
-.users_details .table th, td
+.users_details .table th, .users_details .table td
+{
+  text-align: center;
+}
+
+.orders_list .table
+{
+  width  : 95%;
+  margin : auto;
+  /*border-bottom : 1px solid #dee2e6;*/
+}
+
+.orders_list .table th, .orders_list .table td
 {
   text-align: center;
 }
