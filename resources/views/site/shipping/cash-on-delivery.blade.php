@@ -95,7 +95,7 @@
 				</td>
 				<td>
 					<span>وضعیت سفارش: </span>
-					<span> {{ $order_status[$order[0]->order_step + 1] }} </span>
+					<span> {{ $order_status[$order[0]->order_step] }} </span>
 				</td>
 			</tr>
 
