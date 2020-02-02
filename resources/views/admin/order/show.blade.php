@@ -32,9 +32,7 @@
 
 ?>
 
-
-<section class="col-lg-12 connectedSortable">
-
+<!-- orders details -->
 <div class="details_1">
 
     <div class="code">
@@ -99,6 +97,7 @@
 </div>
 
 
+<!-- posts steps -->
 <div class="posts_steps" dir="rtl">
 
         <div>
@@ -117,7 +116,7 @@
             </span>
             <span>در انتظار تایید</span>
             <span class="confirmation">
-                <button class="btn btn-primary" id="confirm1" onclick="confirm_post_steps('1')" style="margin-top: 20px;">تایید کردن</button>
+                <button class="btn btn-primary" id="confirm2" onclick="confirm_post_steps('2')" style="margin-top: 20px;">تایید کردن</button>
             </span>
         </div>
 
@@ -130,7 +129,7 @@
             </span>
             <span>آماده سازی سفارش</span>
             <span class="confirmation">
-                <button class="btn btn-primary" id="confirm2" onclick="confirm_post_steps('2')" style="margin-top: 20px;">تایید کردن</button>
+                <button class="btn btn-primary" id="confirm3" onclick="confirm_post_steps('3')" style="margin-top: 20px;">تایید کردن</button>
             </span>
         </div>
 
@@ -142,7 +141,7 @@
             </span>
             <span>ارسال</span>
             <span class="confirmation">
-                <button class="btn btn-primary" id="confirm3" onclick="confirm_post_steps('3')" style="margin-top: 20px;">تایید کردن</button>
+                <button class="btn btn-primary" id="confirm4" onclick="confirm_post_steps('4')" style="margin-top: 20px;">تایید کردن</button>
             </span>
         </div>
 
@@ -158,7 +157,7 @@
                 تحویل مرسوله به مشتری
             </span>
             <span class="confirmation">
-                <button class="btn btn-primary" id="confirm4" onclick="confirm_post_steps('4')">تایید کردن</button>
+                <button class="btn btn-primary" id="confirm5" onclick="confirm_post_steps('5')">تایید کردن</button>
             </span>
         </div>
 
@@ -168,6 +167,7 @@
 </div>
 
 
+<!-- bought items -->
 <div class="bought_items" style="width: 95%; margin: auto">
 
 
@@ -275,6 +275,7 @@
         </div>
     </div>
 </div>
+
 
 @endsection
 
