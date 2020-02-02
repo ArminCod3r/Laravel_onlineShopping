@@ -23,8 +23,8 @@
     
     $order_status = array();
 
-    $order_status[1] = 'در انتظار پرداخت';
-    $order_status[2] = 'در انتظار تایید';
+    $order_status[1] = 'سفارش انجام شده';
+    $order_status[2] = 'تایید سفارش';
     $order_status[3] = 'آماده سازی سفارش';
     $order_status[4] = 'ارسال';
     $order_status[5] = 'تحویل داده شده';
