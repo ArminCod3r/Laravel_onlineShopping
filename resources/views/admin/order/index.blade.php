@@ -116,7 +116,7 @@
     			@endif
     		</td>
     		<td>
-    			<a href="#" class="fa fa-eye" style="cursor:pointer"></a>
+    			<a href="{{ action('admin\OrderController@show', ['id' => $value->id]) }}" class="fa fa-eye" style="cursor:pointer"></a>
     		</td>
     	</tr>
 

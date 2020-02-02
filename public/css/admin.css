@@ -176,3 +176,151 @@ body{
 {
   text-align: center;
 }
+
+.details_1
+{
+  background-color : white;
+  border-radius    : 10px;
+  padding-bottom   : 10px;
+  width            : 95%;
+  margin           : auto;
+}
+
+.details_1 .code
+{
+  margin      : 10px 20px 10px 0px;
+  padding-top : 20px;
+  font-size   : 18px;
+  font-weight : bold;
+}
+
+
+.posts_steps
+{
+    padding-top      : 20px;
+    width            : 95%;
+    background-color : white;
+    margin           : auto;
+    border-radius    : 5px;
+    padding-bottom   : 20px;
+    margin-bottom    : 20px;
+    margin-top       : 20px;
+}
+
+.posts_steps .opacity
+{
+    opacity: 0.4;
+}
+
+.opacity:hover
+{
+    opacity: 1;
+}
+
+.post_steps .confirmation
+{
+  position : absolute;
+  right    : 14%;
+  top      : 110%;
+}
+
+.posts_steps div
+{
+    text-align: center;
+}
+
+.posts_steps .step
+{
+    -moz-transform: scale(0.8);
+}
+
+.posts_steps .link
+{
+    -moz-transform: scale(0.5);
+    margin-top: 30px;
+}
+
+.posts_steps .slick-next
+{
+    right: 98% !important;
+}
+.posts_steps .slick-next::before
+{
+    content: '←' !important;
+    margin-right: -9px;
+
+}
+
+.posts_steps .slick-prev
+{
+    right: 2px !important;
+}
+
+.posts_steps .slick-prev::before
+{
+    content: '→' !important;
+}
+
+.bought_items .title
+{
+  margin      : 10px 10px 20px 0px;
+  font-size   : 17px;
+  font-weight : bold;
+  padding-top : 20px;
+}
+
+.bought_items .container
+{
+  background-color :white;
+  border-radius    :5px;
+  padding-bottom   : 10px;
+  margin-bottom    : 20px;
+}
+
+.bought_items .table
+{
+  font-size     : 16px;
+  border-bottom : 1px solid #dee2e6;
+}
+
+.cart_product_color
+{
+    width         : 14px;
+    height        : 14px;
+    border-radius : 50%;
+    margin-bottom : 18px;
+    margin-top    : 30px;
+    margin-right  : 0px;
+    border        : 1px solid #adaba5;
+}
+
+.cart_headers
+{
+    text-align: center;
+}
+
+.cart_values
+{
+    text-align: center;
+    line-height: 80px;
+}
+
+.total-price-factor table
+{
+    width         : 75%;
+    border-radius : 5px;
+    font-size     : 15px;
+    border        : 1px solid #bec4c0;
+}
+
+.total-price-factor table tr
+{
+    line-height      : 50px;
+    background-color : white;
+}
+
+.total-price-factor a
+{
+    margin: 15px 0px 30px 109px;
+    float: left
+}

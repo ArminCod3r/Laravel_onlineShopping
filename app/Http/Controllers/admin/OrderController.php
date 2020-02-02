@@ -5,6 +5,8 @@ namespace App\Http\Controllers\admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Order;
+use App\OrderRow;
+use App\UsersAddress;
 
 class OrderController extends Controller
 {
@@ -76,7 +78,30 @@ class OrderController extends Controller
      */
     public function show($id)
     {
-        //
+        $order = Order::findOrFail($id);
+
+        $addr       = $order->address_text;
+        $addr_array = json_decode($addr, true);
+
+        // Checking if user-inputed-address still exists
+        $if_addr_exists = UsersAddress::where('id',$order->address_id)->get();
+        $addr_exists    = false;
+
+        if($if_addr_exists)
+            $addr_exists = true;
+
+        // get bought-items details
+        $bought_items = OrderRow::where('order_id',$id)
+                                ->with("product")
+                                ->with("color")
+                                ->with("image")
+                                ->get();
+
+        return view('admin/order/show')->with(['order'        => $order,
+                                               'users_addr'   => $addr_array,
+                                               'addr_exists'  => $addr_exists,
+                                               'bought_items' => $bought_items,
+                                              ]);
     }
 
     /**
