@@ -324,3 +324,13 @@ body{
     margin: 15px 0px 30px 109px;
     float: left
 }
+
+.users_details
+{
+  margin-top: 20px
+}
+
+.users_details .table th, td
+{
+  text-align: center;
+}
