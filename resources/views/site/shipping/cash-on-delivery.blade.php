@@ -14,12 +14,12 @@
 	
 	$order_status = array();
 
-	$order_status[0] = 'در انتظار پرداخت';
-	$order_status[1] = 'در انتظار تایید';
-	$order_status[2] = 'آماده سازی سفارش';
-	$order_status[3] = 'ارسال';
-	$order_status[4] = 'تحویل داده شده';
-	$order_status[5] = 'عدم دریافت محصول';
+    $order_status[1] = 'در انتظار پرداخت';
+    $order_status[2] = 'در انتظار تایید';
+    $order_status[3] = 'آماده سازی سفارش';
+    $order_status[4] = 'ارسال';
+    $order_status[5] = 'تحویل داده شده';
+    $order_status[6] = 'عدم دریافت محصول';
 
 ?>
 
@@ -95,7 +95,7 @@
 				</td>
 				<td>
 					<span>وضعیت سفارش: </span>
-					<span> {{ $order_status[$order[0]->order_step] }} </span>
+					<span> {{ $order_status[$order[0]->order_step + 1] }} </span>
 				</td>
 			</tr>
 
