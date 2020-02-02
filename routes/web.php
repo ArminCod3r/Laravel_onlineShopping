@@ -100,6 +100,9 @@ Route::middleware(['throttle:60,1'])->group(function(){
 		// Order managing
 		Route::resource('admin/order','admin\OrderController');
 
+		// User
+		Route::resource('admin/user','admin\UserController');
+
 	});
 
 	// Admin login
