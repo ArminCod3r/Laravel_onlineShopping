@@ -32,6 +32,15 @@
 
 ?>
 
+<form action="{{route('order.update', $order->id ) }}" onsubmit="return false;" method="POST" name="confirmation_form" id="confirmation_form">
+    {{ csrf_field() }}
+    <input type="hidden" name="active_step" id="active_step" value="">
+    <input type="hidden" name="_method" value="PATCH">
+</form>
+
+<section class="col-lg-12 connectedSortable">
+
+
 <!-- orders details -->
 <div class="details_1">
 
@@ -110,7 +119,7 @@
         <img class="link opacity" src="{{ url('images/posts_steps/link.png') }}"  >
 
 
-        <div class="opacity" style="position: relative;">
+        <div class="opacity" style="position: relative;" id="post_step_2">
             <span>
                 <img class="step" src="{{ url('images/posts_steps/'.'1.svg') }}"  >
             </span>
@@ -123,7 +132,7 @@
         <img class="link opacity" src="{{ url('images/posts_steps/link.png') }}"  >
 
 
-        <div class="opacity">
+        <div class="opacity" id="post_step_3">
             <span>
                 <img class="step" src="{{ url('images/posts_steps/'.'3.svg') }}"  >
             </span>
@@ -135,7 +144,7 @@
 
         <img class="link opacity" src="{{ url('images/posts_steps/link.png') }}"  >
 
-        <div class="opacity">
+        <div class="opacity" id="post_step_4">
             <span>
                 <img class="step" src="{{ url('images/posts_steps/'.'4.svg') }}"  >
             </span>
@@ -149,7 +158,7 @@
 
 
         
-        <div class="opacity">
+        <div class="opacity" id="post_step_5">
             <span style="position: relative;">
                 <img src="{{ url('images/posts_steps/'.'6.svg') }}" style="-moz-transform: scale(0.4); margin-top:-49px;margin-right: -40px;" >
             </span>
@@ -293,8 +302,21 @@
 
         confirm_post_steps = function(step)
         {
-            alert(step);
+            document.getElementById('active_step').value=step;
+
+            document.getElementById("confirmation_form").submit();
         }
+
+        var order_step = <?php echo $order->order_step; ?>;
+        for (var i = 2; i <= order_step; i++)
+        {
+            // Removing opacity
+            $('#post_step_'+i).removeClass('opacity');
+
+            // Removing the confirmation-btn 
+            document.getElementById('confirm'+i).remove();
+        }
+        
 
     </script>
 @endsection

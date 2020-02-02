@@ -124,7 +124,16 @@ class OrderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $order = Order::findOrFail($id);
+
+        $active_step       = $request->input('active_step', 1);
+        $order->order_step = $active_step;
+        
+        if($order->update())
+            return $this->show($id);
+
+        else
+            return abort(404);
     }
 
     /**
