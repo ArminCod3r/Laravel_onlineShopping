@@ -132,7 +132,7 @@
 		<img class="link opacity" src="{{ url('images/posts_steps/link.png') }}"  >
 
 
-		<div class="opacity">
+		<div class="opacity" id="post_step_2">
 			<span>
 				<img class="step" src="{{ url('images/posts_steps/'.'1.svg') }}"  >
 			</span>
@@ -142,7 +142,7 @@
 		<img class="link opacity" src="{{ url('images/posts_steps/link.png') }}"  >
 
 
-		<div class="opacity">
+		<div class="opacity" id="post_step_3">
 			<span>
 				<img class="step" src="{{ url('images/posts_steps/'.'3.svg') }}"  >
 			</span>
@@ -151,7 +151,7 @@
 
 		<img class="link opacity" src="{{ url('images/posts_steps/link.png') }}"  >
 
-		<div class="opacity">
+		<div class="opacity" id="post_step_4">
 			<span>
 				<img class="step" src="{{ url('images/posts_steps/'.'4.svg') }}"  >
 			</span>
@@ -162,7 +162,7 @@
 
 
 		
-		<div class="opacity">
+		<div class="opacity" id="post_step_5">
 			<span style="position: relative;">
 				<img src="{{ url('images/posts_steps/'.'6.svg') }}" style="-moz-transform: scale(0.55); margin-top:-25px" >
 			</span>
@@ -303,6 +303,13 @@
 	        slidesToScroll:1,
 	        rtl: true
 	     });
+
+		var order_step = <?php echo $order[0]->order_step; ?>;
+        for (var i = 2; i <= order_step; i++)
+        {
+            // Removing opacity
+            $('#post_step_'+i).removeClass('opacity');
+        }
 
 	</script>
 @endsection
