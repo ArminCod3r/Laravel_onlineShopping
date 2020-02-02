@@ -419,6 +419,24 @@
               </ul>
             </li>
 
+
+            <li class="nav-item has-treeview" id="order">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-reorder"></i>
+                <p>
+                  سفارش ها
+                  <i class="fa fa-angle-left right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="{{ url('admin/order#order') }}" class="nav-link">
+                    <p>لیست</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+
             
         </nav>
         <!-- /.sidebar-menu -->
