@@ -346,3 +346,7 @@ body{
 {
   text-align: center;
 }
+
+.borderless td, .borderless th {
+    border: none;
+}
