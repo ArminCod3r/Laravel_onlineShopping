@@ -58,8 +58,9 @@
 	    		<td> نقش کاربری </td>
 	    		<td>
 	    			<select name="role" class="selectpicker">
-	    				<option value="admin">مدیر</option>
-	    				<option value="user">کاربر عادی</option>					  
+	    				<option disabled selected value style="background-color: white !important"> چیزی انتخاب نشده است </option>
+	    				<option value="user">کاربر عادی</option>	
+	    				<option value="admin">مدیر</option>				  
 					 </select> 
 
 	    			@if($errors->has('role'))
