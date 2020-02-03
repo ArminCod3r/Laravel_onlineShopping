@@ -26,9 +26,16 @@
 <section class="col-lg-11 connectedSortable">
 
 <div class="users_account">
+
+	@if(Session::has('message'))
+		<p class="alert {{ Session::get('alert-class', 'alert-success') }}">
+			{{ Session::get('message') }}
+		</p>
+	@endif
+
 	<div style="padding-top: 20px;"></div>
 
-	<form action="#" method="POST">
+	<form action="{{ route('user.update', $user->id) }}" method="POST">
 		{{ csrf_field() }}
 
 		<table class="table borderless" dir="rtl" style="width: 95%;margin: auto;">
@@ -70,6 +77,8 @@
 
 		    <tr>
 	    		<td>
+	    			<input type="hidden" name="_method" value="PATCH">
+
 	    			<input type="submit" name="submit" value="ویرایش" class="btn btn-primary" style="width: 100%;">
 	    		</td>
 	    	</tr>

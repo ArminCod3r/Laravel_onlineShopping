@@ -8,6 +8,7 @@ use App\User;
 use App\Order;
 use App\Http\Requests\UserRequest;
 use Hash;
+use Session;
 
 class UserController extends Controller
 {
@@ -93,9 +94,28 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UserRequest $request, $id)
     {
-        //
+        $username = $request->input('username');
+        $password = $request->input('password');
+        $role     = $request->input('role');
+
+        $user = User::findOrFail($id);
+
+        $user->username = $username;
+        $user->role     = $role;
+        if(sizeof($password)>0)
+            $user->password = Hash::make($password);
+
+        if($user->update())
+        {
+            // 21004310
+            Session::flash('message', 'ویرایش با موفقیت انجام شد.'); 
+            return redirect('admin/user/'.$id.'/edit');
+        }
+        else
+            return abort(404);
+        
     }
 
     /**
