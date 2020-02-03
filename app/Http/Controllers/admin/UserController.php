@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
 use App\Order;
+use App\Http\Requests\UserRequest;
+use Hash;
 
 class UserController extends Controller
 {
@@ -37,9 +39,21 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserRequest $request)
     {
-        //
+        $username = $request->input('username');
+        $password = $request->input('password');
+        $role     = $request->input('role');
+
+        $user = new User();
+
+        $user->username = $username;
+        $user->password = Hash::make($password);
+        $user->role     = $role;
+
+        $user->saveOrFail();
+
+        return 'inserted';
     }
 
     /**
