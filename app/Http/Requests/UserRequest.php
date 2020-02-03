@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Route;
 
 class UserRequest extends FormRequest
 {
@@ -23,11 +24,28 @@ class UserRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'username' => 'required|unique:users,username',
-            'password' => 'required',
-            'role'     => 'required',
-        ];
+        $called_function = Route::getCurrentRoute()->getActionMethod();
+
+        $rules = array();
+
+        if($called_function == 'store')
+        {
+            $rules = [
+                       'username' => 'required|unique:users,username',
+                       'password' => 'required',
+                       'role'     => 'required',
+                     ];
+        }
+
+        if($called_function == 'update')
+        {
+            $rules = [
+                       'username' => 'required',
+                       'role'     => 'required',
+                     ];
+        }
+
+        return $rules;
     }
 
 
