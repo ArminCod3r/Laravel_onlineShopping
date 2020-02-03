@@ -24,10 +24,7 @@ Route::middleware(['throttle:60,1'])->group(function(){
 
 	Route::middleware(['check_admin'])->group(function(){
 		// Admin's idnex
-		Route::get('admin', function () {
-		    return view('admin.index');
-		});
-
+		Route::get('/admin', 'admin\AdminController@index');
 
 		// Category
 		Route::resource('admin/category','admin\CategoryController');
