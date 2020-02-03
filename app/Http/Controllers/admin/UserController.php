@@ -53,7 +53,7 @@ class UserController extends Controller
 
         $user->saveOrFail();
 
-        return 'inserted';
+        return redirect('admin/user/'.$user->id.'/edit');
     }
 
     /**
@@ -81,7 +81,9 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::findOrFail($id);
+
+        return view('admin/users/edit')->with('user', $user);
     }
 
     /**
