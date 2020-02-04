@@ -8,6 +8,6 @@ class FilterAssign extends Model
 {
     protected $table = 'filter_assign';
     public $primaryKey = 'id';
-    protected $fillable = ['filter_id','product_id'];
+    protected $fillable = ['filter_id','product_id', 'value'];
     public $timestamps = false;
 }
