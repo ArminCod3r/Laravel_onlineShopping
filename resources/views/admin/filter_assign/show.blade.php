@@ -3,6 +3,8 @@
 
 @section('header')
     <title> اعمال فیلتر </title>
+    <link rel="stylesheet" type="text/css" href="{{ url('css/bootstrap-select.css') }}">
+
 @endsection
 
 @section('custom-title')
@@ -42,7 +44,31 @@
 							@if($value->name != "رنگ")
 								<input type="radio" name="{{$value->id}}" id="{{$value_child->id}}" value="{{$value_child->name}}"> {{$value_child->name}} <br>
 							@else
-								<input type="checkbox" name="{{$value->id}}" id="{{$value_child->id}}" value="{{$value_child->name}}"> {{$value_child->name}} <br>
+								<?php
+									$color_name = explode(':', $value_child->name)[0];
+									$color_code = explode(':', $value_child->name)[1];
+								?>
+								
+								
+								<div class="row">
+
+									<div class="col-sm-1">
+										<input type="checkbox" name="{{$value->id}}" id="{{$value_child->id}}" value="{{$value_child->name}}">
+									</div>
+
+									<div class="col-sm-1">
+										{{$color_name}}
+									</div>
+									<div class="col-sm-1">
+										<div class="filters_colors" style="background-color: #{{ $color_code }};"></div>
+									</div>
+
+									<div class="col-sm-9">
+									</div>
+
+								</div>
+
+								<br>
 							@endif
 
 
@@ -97,6 +123,8 @@
 
 
 @section('footer')
+
+<script type="text/javascript" src="{{ url('js/jscolor.js') }}"></script>
 
 <script type="text/javascript">
 	select_radio_when_tr_clicked = function(tr)
