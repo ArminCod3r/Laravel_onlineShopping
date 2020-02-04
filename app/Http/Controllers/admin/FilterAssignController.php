@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use App\Filter;
 use App\Category;
 use App\ProductImage;
+use App\FilterAssign;
+use DB;
 
 class FilterAssignController extends Controller
 {
@@ -38,7 +40,25 @@ class FilterAssignController extends Controller
      */
     public function store(Request $request)
     {
-        return $request->all();
+        $product_id = $request->input('product_id');
+        $filters    = $request->input('filter');
+
+        // Deleting prev. values
+        $filter_assigned = FilterAssign::where('product_id', $product_id)->delete();
+
+        // Inserting values to the database
+        foreach($filters as $key => $value)
+        {
+            $filter_assign = new FilterAssign();
+
+            $filter_assign->filter_id  = $key;
+            $filter_assign->product_id = $product_id;
+            $filter_assign->value      = $value;
+
+            $filter_assign->save();
+        }
+
+        return 'Inserted...';
     }
 
     /**

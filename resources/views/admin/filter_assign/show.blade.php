@@ -17,7 +17,10 @@
 
 @if(sizeof($filters) and sizeof($image))
 
-<form action="{{ action('admin\FilterAssignController@store') }}" method="POST">	
+<form action="{{ action('admin\FilterAssignController@store') }}" method="POST">
+
+	<!-- 46949049 -->
+	<input type="hidden" name="product_id" id="product_id" value="{{ Request::segment(5) }}">	
 
 	{{ csrf_field() }}
 
@@ -42,7 +45,7 @@
 						<td></td>
 						<td>
 							@if($value->name != "رنگ")
-								<input type="radio" name="{{$value->id}}" id="{{$value_child->id}}" value="{{$value_child->name}}"> {{$value_child->name}} <br>
+								<input type="radio" name="filter[{{$value->id}}]" id="{{$value_child->id}}" value="{{$value_child->name}}"> {{$value_child->name}} <br>
 							@else
 								<?php
 									$color_name = explode(':', $value_child->name)[0];
@@ -53,7 +56,7 @@
 								<div class="row">
 
 									<div class="col-sm-1">
-										<input type="checkbox" name="{{$value->id}}" id="{{$value_child->id}}" value="{{$value_child->name}}">
+										<input type="checkbox" name="filter[{{$value->id}}]" id="{{$value_child->id}}" value="{{$value_child->name}}">
 									</div>
 
 									<div class="col-sm-1">
