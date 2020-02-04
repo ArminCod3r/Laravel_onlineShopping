@@ -19,6 +19,7 @@ class FilterAssign extends Migration
             $table->integer('filter_id');
             $table->integer('product_id');
             $table->string('value');
+            $table->integer('value_id');
         });
     }
 
