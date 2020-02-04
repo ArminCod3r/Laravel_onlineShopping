@@ -355,14 +355,39 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="{{ url('admin/feature/list#filter') }}" class="nav-link">
+                  <a href="#" class="nav-link">
+                    <p>لیست (در دست ساخت)</p>
+                  </a>
+                </li>
+              </ul>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="{{ url('admin/filter#filter') }}" class="nav-link">
+                    <p>افزودن</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+
+            <li class="nav-item has-treeview" id="feature">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fa fa-newspaper-o"></i>
+                <p>
+                  مشخصات محصولات
+                  <i class="fa fa-angle-left right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="{{ url('admin/feature/list#feature') }}" class="nav-link">
                     <p>لیست</p>
                   </a>
                 </li>
               </ul>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="{{ url('admin/feature#filter') }}" class="nav-link">
+                  <a href="{{ url('admin/product#product') }}" class="nav-link">
                     <p>افزودن</p>
                   </a>
                 </li>

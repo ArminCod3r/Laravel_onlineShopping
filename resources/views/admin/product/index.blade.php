@@ -115,7 +115,7 @@
 
                 <td> <a href="{{ url('admin/product/gallery/'.$item->id) }}"> {{ $item->title }} </a> </td>
                 <td>
-                  <a href="{{ url('admin/feature/'.$item->id.'/add') }}" class="fa fa-filter"> 
+                  <a href="{{ url('admin/feature/'.$item->id.'/add') }}" class="fa fa-newspaper-o"> 
                   </a>
 
                   <div style="float:left;">
