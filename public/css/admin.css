@@ -350,3 +350,26 @@ body{
 .borderless td, .borderless th {
     border: none;
 }
+
+.filters_implementation
+{
+
+}
+
+.filters_implementation .header
+{
+  background-color : white;
+  pointer-events   : none;
+}
+
+.filters_implementation tr
+{
+  cursor: pointer;
+}
+
+.filters_implementation .header p
+{
+  color         : red;
+  margin-top    : 10px;
+  margin-bottom : 0px;
+}

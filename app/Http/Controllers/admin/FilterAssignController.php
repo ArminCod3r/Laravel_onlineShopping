@@ -4,6 +4,9 @@ namespace App\Http\Controllers\admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Filter;
+use App\Category;
+use App\ProductImage;
 
 class FilterAssignController extends Controller
 {
@@ -35,7 +38,7 @@ class FilterAssignController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return $request->all();
     }
 
     /**
@@ -44,9 +47,15 @@ class FilterAssignController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($category_id, $product_id)
     {
-        //
+        $filters = Filter::where('category_id', $category_id)->get();
+        $image   = ProductImage::where('product_id', $product_id)->first();
+
+        return view('admin/filter_assign/show')->with([
+                                                        'filters' => $filters,
+                                                        'image'   => $image
+                                                      ]);
     }
 
     /**
