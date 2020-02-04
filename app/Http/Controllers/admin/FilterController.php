@@ -176,8 +176,6 @@ class FilterController extends Controller
                                 // Inserting:  if key_child<0 => New Child-filter
                                 if($key_child<0 && !empty($value_child))
                                 {
-                                    return $value_child;
-
                                     $selected_option_item = array_key_exists($key, $select_option) ? $select_option[$key] : 1;                  
                                     DB::table('filter')->insert(
                                         ['category_id' => $id    ,
