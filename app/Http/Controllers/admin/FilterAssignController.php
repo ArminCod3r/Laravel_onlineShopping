@@ -8,6 +8,7 @@ use App\Filter;
 use App\Category;
 use App\ProductImage;
 use App\FilterAssign;
+use App\Product;
 use DB;
 
 class FilterAssignController extends Controller
@@ -94,9 +95,21 @@ class FilterAssignController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($category_id, $product_id)
     {
-        //
+        $filters  = Filter::where('category_id', $category_id)->get();
+        $product  = Product::select(['id','title','code'])->where('id', $product_id)->get();
+        $image    = ProductImage::where('product_id', $product_id)->first();
+        $assigned = FilterAssign::where('product_id', $product_id)->get();
+
+
+        return view('admin/filter_assign/edit')->with([
+                                                        'filters'    => $filters,
+                                                        'product'    => $product,
+                                                        'image'      => $image,
+                                                        'assigned'   => $assigned,
+                                                        'category_id'=> $category_id,
+                                                      ]);
     }
 
     /**
