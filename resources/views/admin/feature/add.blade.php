@@ -2,11 +2,11 @@
 
 
 @section('header')
-    <title>افزودن فیلتر به محصول</title>
+    <title>افزودن مشخصات محصول</title>
 @endsection
 
 @section('custom-title')
-  افزودن فیلتر به محصول
+  افزودن مشخصات محصول
   <br />
 
   <div class="productTitle">

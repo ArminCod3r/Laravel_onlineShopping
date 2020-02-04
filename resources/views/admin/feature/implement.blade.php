@@ -2,12 +2,12 @@
 
 
 @section('header')
-    <title>پیاده سازی فیلتر برای محصول</title>
+    <title>پیاده سازی مشخصات برای محصول</title>
 @endsection
 
 @section('custom-title')
 
-  پیاده سازی فیلتر برای محصول
+  پیاده سازی مشخصات برای محصول
   
   <br/><br/>
 
