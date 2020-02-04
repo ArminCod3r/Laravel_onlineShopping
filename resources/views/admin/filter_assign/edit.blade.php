@@ -21,15 +21,17 @@
 
 @if(sizeof($filters) and sizeof($product) and sizeof($image) and sizeof($assigned))
 
-<form action="#" method="POST">
+<form action="{{ route('filter_assign.update', $category_id.'/'.$product[0]->id) }}" method="POST">
 	
 	{{ csrf_field() }}
 
-	<!-- 46949049 -->
-	<input type="hidden" name="product_id" id="product_id" value="{{ Request::segment(5) }}">	
-	<input type="hidden" name="category_id" id="category_id" value="{{ Request::segment(4) }}">	
+	<!-- 
+		These inputs are necessary ,because in update() we will be redirected
+		to the store(), so existance of these two-inputs are a must.
+	-->
+	<input type="hidden" name="product_id" id="product_id" value="{{ $product[0]->id }}">	
+	<input type="hidden" name="category_id" id="category_id" value="{{ $category_id }}">
 
-	{{ csrf_field() }}
 
 	<table class="table table-hover filters_implementation">
 		
@@ -52,7 +54,7 @@
 						<td></td>
 						<td>
 							@if($value->name != "رنگ")
-								<input type="radio" name="filter[{{$value->id}}]" id="{{$value_child->id}}" value="{{$value_child->name}}"> {{$value_child->name}} <br>
+								<input type="radio" name="filter[{{$value->id}}]" id="{{$value_child->id}}" value="{{$value_child->id.'-'.$value_child->name}}"> {{$value_child->name}} <br>
 							@else
 								<?php
 									$color_name = explode(':', $value_child->name)[0];
@@ -63,7 +65,7 @@
 								<div class="row">
 
 									<div class="col-sm-1">
-										<input type="checkbox" name="filter[{{$value->id}}]" id="{{$value_child->id}}" value="{{$value_child->name}}">
+										<input type="checkbox" name="filter[]" id="{{$value_child->id}}" value="{{$value_child->id.'-'.$value_child->name}}">
 									</div>
 
 									<div class="col-sm-1">

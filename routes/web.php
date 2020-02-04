@@ -48,9 +48,10 @@ Route::middleware(['throttle:60,1'])->group(function(){
 		Route::get('admin/filter' , 'admin\FilterController@index');
 		Route::post('admin/filter', 'admin\FilterController@create');
 		Route::resource('admin/filter_assign', 'admin\FilterAssignController');
-		// ---- override 'show/edit' route		
+		// ---- override 'show/edit/update' route		
 		Route::get('admin/filter_assign/show/{category_id}/{product_id}' , 'admin\FilterAssignController@show');
 		Route::get('admin/filter_assign/{category_id}/{product_id}/edit' , 'admin\FilterAssignController@edit');
+		Route::patch('admin/filter_assign/{category_id}/{product_id}' , 'admin\FilterAssignController@update');
 
 		// Products' Features
 		Route::get('admin/feature' , 'admin\FeatureController@index');

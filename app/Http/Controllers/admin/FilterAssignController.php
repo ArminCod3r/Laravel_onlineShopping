@@ -119,9 +119,11 @@ class FilterAssignController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $category_id, $product_id)
     {
-        //
+        // Since deleting the previous data, won't affect relations or etc,
+        // we can delete the previous-data and inserting new ones.
+        return $this->store($request);
     }
 
     /**
