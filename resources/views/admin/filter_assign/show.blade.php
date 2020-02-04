@@ -57,7 +57,7 @@
 								<div class="row">
 
 									<div class="col-sm-1">
-										<input type="checkbox" name="filter[{{$value->id}}]" id="{{$value_child->id}}" value="{{$value_child->id.'-'.$value_child->name}}">
+										<input type="checkbox" name="filter[]" id="{{$value_child->id}}" value="{{$value_child->id.'-'.$value_child->name}}">
 									</div>
 
 									<div class="col-sm-1">
