@@ -18,7 +18,7 @@ class FilterAssign extends Migration
             $table->bigIncrements('id');
             $table->integer('filter_id');
             $table->integer('product_id');
-            $table->integer('value');
+            $table->string('value');
         });
     }
 
