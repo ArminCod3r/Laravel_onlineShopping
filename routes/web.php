@@ -47,6 +47,7 @@ Route::middleware(['throttle:60,1'])->group(function(){
 		// Products' Filter
 		Route::get('admin/filter' , 'admin\FilterController@index');
 		Route::post('admin/filter', 'admin\FilterController@create');
+		Route::resource('admin/filter_assign', 'admin\FilterAssignController');
 
 		// Products' Features
 		Route::get('admin/feature' , 'admin\FeatureController@index');
