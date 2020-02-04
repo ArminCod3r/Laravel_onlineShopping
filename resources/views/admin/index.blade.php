@@ -145,15 +145,24 @@
         subtitle: {
             text: '',
         },
-        //27144967
-        tooltip: {
-            useHTML: true,
-            style: {
-                fontSize: '14px',
-                fontFamily: 'tahoma',
-                direction: 'rtl',
-            },
-            pointFormat: '{series.name}: <b>{point.y}</b><br/>',
+        tooltip:{
+          useHTML: true,
+          style: {
+              fontSize: '14px',
+              fontFamily: 'tahoma',
+              direction: 'rtl',
+          },
+          formatter:function(){
+            if(this.series.name == 'میزان درآمد')
+            {
+              // https://www.highcharts.com/forum/viewtopic.php?f=9&t=7500
+              return this.x+"<br>"+this.series.name+":"+Highcharts.numberFormat(this.y, 0)+"تومان";
+            }
+            else
+            {
+              return this.x+"<br>"+this.series.name+":"+this.y+" بار";
+            }
+          }
         },
         xAxis: {
             categories: [<?php echo $dates_chart; ?>]
