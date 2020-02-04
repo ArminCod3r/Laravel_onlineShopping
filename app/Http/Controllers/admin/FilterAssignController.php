@@ -40,7 +40,10 @@ class FilterAssignController extends Controller
      */
     public function store(Request $request)
     {
+        // TODO: validation
+
         $product_id = $request->input('product_id');
+        $category_id= $request->input('category_id');
         $filters    = $request->input('filter');
 
         // Deleting prev. values
@@ -49,16 +52,22 @@ class FilterAssignController extends Controller
         // Inserting values to the database
         foreach($filters as $key => $value)
         {
+            $id   = explode('-', $value)[0];
+            $name = explode('-', $value)[1];
+
             $filter_assign = new FilterAssign();
 
             $filter_assign->filter_id  = $key;
             $filter_assign->product_id = $product_id;
-            $filter_assign->value      = $value;
+            $filter_assign->value      = $name;
+            $filter_assign->value_id   = $id;
 
             $filter_assign->save();
         }
 
-        return 'Inserted...';
+        $url = 'admin/filter_assign/'.$category_id.'/'.$product_id.'/edit';
+
+        return redirect($url);
     }
 
     /**
@@ -74,7 +83,8 @@ class FilterAssignController extends Controller
 
         return view('admin/filter_assign/show')->with([
                                                         'filters' => $filters,
-                                                        'image'   => $image
+                                                        'image'   => $image,
+                                                        'category_id' => $category_id,
                                                       ]);
     }
 
