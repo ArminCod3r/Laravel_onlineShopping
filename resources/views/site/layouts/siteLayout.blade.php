@@ -142,16 +142,20 @@ $shown_item = 0;
         ?>
 
         @if ( preg_match('/0\b/', $value) )
-            
+
+            <!-- Level 1 -->
+
           <li class="list-inline-item level1-li" id="level1-li" value="{{$key}}">
             <?php echo $cat_name?>     
 
             <span class="fa fa-chevron-down" id="level1-li-{{$key}}"></span>
 
             <ul class="list-inline level2-ul" id="level2-ul">
+
+            <!-- ./Level 1 -->
+
             <?php
               
-              // -------------------- Category Level 1 ------------------
               foreach ($categories as $key_L2_ => $value_L2)
               {
                 $cat_name_L2       = explode(':', $value_L2)[0];
@@ -164,12 +168,15 @@ $shown_item = 0;
                 {
                   if ($parent_L2 == $key)
                   {
+                    //  Level 2
                     echo '<li class="list-inline-item level2-li">';
                     echo '<span>'.$cat_name_L2.'</span>'; // style="color:#16C1F3"
 
-                    // -------------------- Category Level 3 ------------------
-                    echo '<ul class="level3-ul" id="level3-ul">';
+                    // ./Level 2
 
+                    
+                    echo '<ul class="level3-ul" id="level3-ul">';
+                    // Level 3
                     foreach ($categories as $key_L3 => $value_L3)
                     {
                       $cat_name_L3       = explode(':', $value_L3)[0];
@@ -207,6 +214,8 @@ $shown_item = 0;
                         }
                       }
                     }
+                    
+                    // ./ Level 3
                     $shown_item=0;
 
                     echo '</ul>';
