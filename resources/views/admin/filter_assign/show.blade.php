@@ -133,7 +133,10 @@
 <script type="text/javascript">
 	select_radio_when_tr_clicked = function(tr)
 	{
-		document.getElementById(tr).checked = true;
+		if(!document.getElementById(tr).checked)
+			document.getElementById(tr).checked= true;
+		else
+			document.getElementById(tr).checked = false;
 	}
 </script>
 
