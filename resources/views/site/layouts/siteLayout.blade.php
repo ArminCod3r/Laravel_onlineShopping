@@ -153,7 +153,7 @@
                                       <!-- Header -->
                                       @if($shown_item == 0)
                                           <span style="color:#16C1F3">
-                                              <a href="#">
+                                              <a href="{{ 'search/'.$value_L1['cat_ename'].'/'.$value_L2['cat_ename'].'/'.$value_L3['cat_ename']}}">
                                                 {{$value_L3['cat_name']}}
                                               </a>
                                           </span>
@@ -165,7 +165,7 @@
                                               
                                               @if($shown_item<10)
                                                 <li class="level3-li">
-                                                    <a href="#">
+                                                    <a href="{{ 'search/'.$value_L1['cat_ename'].'/'.$value_L2['cat_ename'].'/'.$value_L3['cat_ename'].'?q='.$value_L4['cat_ename']}}">
                                                       {{$value_L4['cat_name']}}
                                                     </a>
                                                 </li>
@@ -178,7 +178,7 @@
                                         <!-- More -->
                                         @if($shown_item == 10)
                                             <span style="color:#16C1F3">
-                                              <a href="#">
+                                              <a href="{{ 'search/'.$value_L1['cat_ename'].'/'.$value_L2['cat_ename'].'/'.$value_L3['cat_ename'].'/more'}}">
                                                 مشاهده موارد بیشتر
                                               </a>
                                             </span>
