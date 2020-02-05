@@ -29,6 +29,14 @@
     <script type="text/javascript">
       var cat_array = new Array();
     </script>
+
+    <style type="text/css">
+      .menu a
+      {
+          color: inherit;
+          text-decoration: none;
+      }
+    </style>
   </head>
   <body>
 
@@ -136,29 +144,46 @@
 
                           <ul class="level3-ul" id="level3-ul">
 
-                            <!-- Level 3 -->
+                            <!-- Level 3/4 (level4: will be shown on the area as the level3)-->
                             @foreach($categories as $key_L3=>$value_L3)
                                 @if( $value_L3['parent_id'] == $value_L2['id'] )
                                     
                                     <li class="level3-li">
 
-                                        @if($shown_item<10 && $shown_item != 0)
-                                          {{$value_L3['cat_name']}}</span>
+                                      <!-- Header -->
+                                      @if($shown_item == 0)
+                                          <span style="color:#16C1F3">
+                                              <a href="#">
+                                                {{$value_L3['cat_name']}}
+                                              </a>
+                                          </span>
+                                      @endif
 
-                                        @else
+                                      <!-- Content -->
+                                      @foreach($categories as $key_L4=>$value_L4)
+                                            @if( $value_L4['parent_id'] == $value_L3['id'] )
+                                              
+                                              @if($shown_item<10)
+                                                <li class="level3-li">
+                                                    <a href="#">
+                                                      {{$value_L4['cat_name']}}
+                                                    </a>
+                                                </li>
+                                                <?php $shown_item++; ?>
+                                              @endif
 
-                                          @if($shown_item == 0)
-                                            <span style="color:#16C1F3">{{$value_L3['cat_name']}}</span>
-                                          @else
-                                            @if($shown_item == 10)
-                                              <span style="color:#16C1F3">
-                                              مشاهده موارد بیشتر
-                                              </span>
                                             @endif
+                                        @endforeach
 
+                                        <!-- More -->
+                                        @if($shown_item == 10)
+                                            <span style="color:#16C1F3">
+                                              <a href="#">
+                                                مشاهده موارد بیشتر
+                                              </a>
+                                            </span>
                                           @endif
 
-                                        @endif
                                         <?php $shown_item++; ?>
                                     </li>
                                 @endif
