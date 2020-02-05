@@ -185,18 +185,28 @@ body
 }
 
 .level3-li
-{    
+{
     padding-top     : 2px;
     padding-bottom  : 2px;
 }
 
 .level3-li:hover
 {
-    width      : 25%;
     background : #FAFAFA;
 }
 
+.main
+{
+  /*border: 1px solid black;*/
+  display: flex;
+  flex-wrap:wrap;
+}
 
+.main div
+{
+  -ms-flex: 1;  /* IE 10 */  
+  flex: 1;
+}
 
 
 .li-menu

@@ -121,7 +121,7 @@
 
   <ul class="list-inline level1-ul">
 
-    <?php $shown_item=0; ?>
+    <?php $shown_item=0; $category_items=0; ?>
     <!-- Level 1 -->
     @foreach($categories as $key_L1=>$value_L1)      
 
@@ -142,50 +142,71 @@
                           <li class="list-inline-item level2-li">
                           <span>{{$value_L2['cat_name']}}</span> <!-- style="color:#16C1F3" -->
 
-                          <ul class="level3-ul" id="level3-ul">
+                          <ul class="level3-ul main" id="level3-ul">
 
                             <!-- Level 3/4 (level4: will be shown on the area as the level3)-->
                             @foreach($categories as $key_L3=>$value_L3)
                                 @if( $value_L3['parent_id'] == $value_L2['id'] )
                                     
-                                    <li class="level3-li">
+                                    <div>
+                                      <li class="level3-li">
 
-                                      <!-- Header -->
-                                      @if($shown_item == 0)
-                                          <span style="color:#16C1F3">
-                                              <a href="{{ 'search/'.$value_L1['cat_ename'].'/'.$value_L2['cat_ename'].'/'.$value_L3['cat_ename']}}">
-                                                {{$value_L3['cat_name']}}
-                                              </a>
-                                          </span>
-                                      @endif
-
-                                      <!-- Content -->
-                                      @foreach($categories as $key_L4=>$value_L4)
-                                            @if( $value_L4['parent_id'] == $value_L3['id'] )
-                                              
-                                              @if($shown_item<10)
-                                                <li class="level3-li">
-                                                    <a href="{{ 'search/'.$value_L1['cat_ename'].'/'.$value_L2['cat_ename'].'/'.$value_L3['cat_ename'].'?q='.$value_L4['cat_ename']}}">
-                                                      {{$value_L4['cat_name']}}
-                                                    </a>
-                                                </li>
-                                                <?php $shown_item++; ?>
-                                              @endif
-
-                                            @endif
-                                        @endforeach
-
-                                        <!-- More -->
-                                        @if($shown_item == 10)
+                                        <!-- Header -->
                                             <span style="color:#16C1F3">
-                                              <a href="{{ 'search/'.$value_L1['cat_ename'].'/'.$value_L2['cat_ename'].'/'.$value_L3['cat_ename'].'/more'}}">
-                                                مشاهده موارد بیشتر
-                                              </a>
+                                                <a href="{{ 'search/'.$value_L1['cat_ename'].'/'.$value_L2['cat_ename'].'/'.$value_L3['cat_ename']}}">
+                                                  {{$value_L3['cat_name']}}
+                                                </a>
                                             </span>
+                                            <?php $shown_item++; ?>
+                                            <?php $category_items++; ?>
+
+                                        <!-- Content -->
+                                        @foreach($categories as $key_L4=>$value_L4)
+                                              @if( $value_L4['parent_id'] == $value_L3['id'] )
+                                                @if($shown_item<13)
+                                                  <li class="level3-li">
+                                                      <a href="{{ 'search/'.$value_L1['cat_ename'].'/'.$value_L2['cat_ename'].'/'.$value_L3['cat_ename'].'?q='.$value_L4['cat_ename']}}">
+                                                        {{$value_L4['cat_name']}}
+                                                      </a>
+                                                  </li>
+                                                  <?php $shown_item++; ?>
+                                                  <?php $category_items++; ?>
+                                                @endif
+
+                                              @endif
+                                          @endforeach
+
+                                          <!-- More -->
+                                          @if($shown_item > 4)
+                                              <span style="color:#16C1F3">
+                                                <a href="{{ 'search/'.$value_L1['cat_ename'].'/'.$value_L2['cat_ename'].'/'.$value_L3['cat_ename'].'/more'}}">
+                                                  مشاهده موارد بیشتر
+                                                </a>
+                                                </li>
+                                              </div>
+                                              </span>
+                                              <?php $category_items++; ?>
+                                              <?php $shown_item++; ?>
+
                                           @endif
 
-                                        <?php $shown_item++; ?>
-                                    </li>
+                                          <?php
+                                              $shown_item++;
+                                              $category_items++;
+                                              echo "<br>";
+                                          ?>
+
+                                  <!-- will be shown right below each other -->
+                                  @if($shown_item > 12)
+                                    <?php $shown_item=0;?>
+                                  @endif
+
+                                  @if($category_items > 27)
+                                      </li>
+                                    </div>
+                                  @endif
+
+
                                 @endif
                             @endforeach
                             <!-- ./Level 3 -->
