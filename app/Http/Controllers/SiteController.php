@@ -28,6 +28,9 @@ class SiteController extends Controller
 
     public function index()
     {
+        $categories = Category::all();
+        $categories = json_decode($categories, true);
+
         // Get list of the sliders
         $sliders = DB::table('slider')->orderBy('id', 'DESC')->get();
 
@@ -48,6 +51,7 @@ class SiteController extends Controller
                                         'sliders'         => $sliders,
                                         'newest_products' => $newest_products,
                                         'amazing_products'=> $amazing_products,
+                                        'categories'      => $categories,
                                         ]); 
     }
 

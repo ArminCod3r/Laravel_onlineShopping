@@ -1,17 +1,3 @@
-<?php
-
-$value = $categories[0];
-
-$cat_name       = explode(':', $value)[0];
-$parent_and_key = explode(':', $value)[1];
-$parent         = explode('-', $parent_and_key)[0];
-$key            = explode('-', $parent_and_key)[1];
-
-preg_match('/([a-zA-Z0-9_]*)-/', $parent_and_key, $match);
-
-$shown_item = 0;
-
-?> 
 
 <!doctype html>
 <html lang="en">
@@ -126,132 +112,73 @@ $shown_item = 0;
 <div class="container-fluid menu">
 
   <ul class="list-inline level1-ul">
-     
-     <?php // -------------------- Category Level 1 ------------------ ?>
-    @foreach ($categories as $key => $value)
 
-    
-        <!-- No three-lines : level1-->  
-        <?php
-          $cat_name       = explode(':', $value)[0];
-          $parent_and_key = explode(':', $value)[1];
-          $parent         = explode('-', $parent_and_key)[0];
-          $key            = explode('-', $parent_and_key)[1];
+    <?php $shown_item=0; ?>
+    <!-- Level 1 -->
+    @foreach($categories as $key_L1=>$value_L1)      
 
-          preg_match('/([a-zA-Z0-9_]*)-/', $parent_and_key, $match);
-        ?>
+      @if($value_L1['parent_id'] == '0')
 
-        @if ( preg_match('/0\b/', $value) )
+          <li class="list-inline-item level1-li" id="level1-li" value="{{$key_L1}}">
+            {{$value_L1['cat_name']}}    
 
-            <!-- Level 1 -->
-
-          <li class="list-inline-item level1-li" id="level1-li" value="{{$key}}">
-            <?php echo $cat_name?>     
-
-            <span class="fa fa-chevron-down" id="level1-li-{{$key}}"></span>
+          <span class="fa fa-chevron-down" id="level1-li-{{$key_L1}}"></span>
 
             <ul class="list-inline level2-ul" id="level2-ul">
 
-            <!-- ./Level 1 -->
+              <!-- Level 2 -->
+              @foreach($categories as $key_L2=>$value_L2)
 
-            <?php
-              
-              foreach ($categories as $key_L2_ => $value_L2)
-              {
-                $cat_name_L2       = explode(':', $value_L2)[0];
-                $parent_and_key_L2 = explode(':', $value_L2)[1];
-                $parent_L2         = explode('-', $parent_and_key_L2)[0];
-                $key_L2            = explode('-', $parent_and_key_L2)[1];
-                
-
-                if ($parent_L2!=0)
-                {
-                  if ($parent_L2 == $key)
-                  {
-                    //  Level 2
-                    echo '<li class="list-inline-item level2-li">';
-                    echo '<span>'.$cat_name_L2.'</span>'; // style="color:#16C1F3"
-
-                    // ./Level 2
-
-                    
-                    echo '<ul class="level3-ul" id="level3-ul">';
-                    // Level 3
-                    foreach ($categories as $key_L3 => $value_L3)
-                    {
-                      $cat_name_L3       = explode(':', $value_L3)[0];
-                      $parent_and_key_L3 = explode(':', $value_L3)[1];
-                      $parent_L3         = explode('-', $parent_and_key_L3)[0];
+                  @if( $value_L2['parent_id'] == $value_L1['id'] )
                       
-                      //echo "<h1>".$cat_name_L3."</h1>";
+                          <li class="list-inline-item level2-li">
+                          <span>{{$value_L2['cat_name']}}</span> <!-- style="color:#16C1F3" -->
 
-                      if ($parent_L3!=0)
-                      {
-                        if ($parent_L3 == $key_L2)
-                        {
-                          if ($shown_item<10 && $shown_item != 0)
-                          {
-                            echo '<li class="level3-li">';
-                            echo $cat_name_L3;
-                            echo '</li>'; 
-                          }
-                          if ($shown_item == 0)
-                          {
-                            echo '<li class="level3-li">';
-                            echo '<span style="color:#16C1F3">'.$cat_name_L3.'</span>';
-                            echo '</li>';
-                          }
-                          else
-                          {
-                            if ($shown_item == 10)
-                            {
-                              echo '<li class="level3-li">';
-                              echo '<span style="color:#16C1F3">'.'+ مشاهده موارد بیشتر'.'</span>';
-                              echo '</li>';
-                            }
-                          }                       
-                          $shown_item++;                      
-                        }
-                      }
-                    }
-                    
-                    // ./ Level 3
-                    $shown_item=0;
+                          <ul class="level3-ul" id="level3-ul">
 
-                    echo '</ul>';
-                    //---------------------------------------------------------
+                            <!-- Level 3 -->
+                            @foreach($categories as $key_L3=>$value_L3)
+                                @if( $value_L3['parent_id'] == $value_L2['id'] )
+                                    
+                                    <li class="level3-li">
 
-                    echo '</li>';
-                  }                  
-                }
-              }
-            ?>            
+                                        @if($shown_item<10 && $shown_item != 0)
+                                          {{$value_L3['cat_name']}}</span>
+
+                                        @else
+
+                                          @if($shown_item == 0)
+                                            <span style="color:#16C1F3">{{$value_L3['cat_name']}}</span>
+                                          @else
+                                            @if($shown_item == 10)
+                                              <span style="color:#16C1F3">
+                                              مشاهده موارد بیشتر
+                                              </span>
+                                            @endif
+
+                                          @endif
+
+                                        @endif
+                                        <?php $shown_item++; ?>
+                                    </li>
+                                @endif
+                            @endforeach
+                            <!-- ./Level 3 -->
+
+                            <?php $shown_item=0;?>
+                          </ul>
+                  @endif
+              @endforeach
+              <!-- ./Level 2 -->
+
             </ul>
-        @endif
-
-        <!--
-        <ul class="list-inline">   
-          @foreach ($categories as $key2 => $value2)
-
-            @if ($key2 > $key) 
-
-              @if ( substr_count($value2, '---') == 1 )
-                  <li class="list-inline-item">
-                    {{$value2}}
-                  </li>
-              @else
-                  @break               
-              @endif
-
-            @endif
-
-          @endforeach               
-        </ul>
-      -->
-
+          </li>
+      @endif
     @endforeach
+    <!-- ./Level 1 -->
+  </ul>
 
-    </ul>
+
 </div>
 
 
