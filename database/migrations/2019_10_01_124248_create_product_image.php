@@ -17,6 +17,7 @@ class CreateProductImage extends Migration
             $table->bigIncrements('id');
             $table->integer('product_id');
             $table->string('url');
+            $table->string('tag');
         });
     }
 
