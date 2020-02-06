@@ -15,7 +15,7 @@
 
 <section class="col-lg-7 connectedSortable">
 
-@if(sizeof($filters) and sizeof($image))
+@if(sizeof($filters))
 
 <form action="{{ action('admin\FilterAssignController@store') }}" method="POST">
 
