@@ -182,8 +182,11 @@
                                                 <a href="{{ 'search/'.$value_L1['cat_ename'].'/'.$value_L2['cat_ename'].'/'.$value_L3['cat_ename'].'/more'}}">
                                                   مشاهده موارد بیشتر
                                                 </a>
+
+                                                <!-- After each 'Show More' close the </li></div> -->
                                                 </li>
                                               </div>
+
                                               </span>
                                               <?php $category_items++; ?>
                                               <?php $shown_item++; ?>
@@ -201,6 +204,7 @@
                                     <?php $shown_item=0;?>
                                   @endif
 
+                                  <!-- Using another variable for entering the third column -->
                                   @if($category_items > 27)
                                       </li>
                                     </div>
