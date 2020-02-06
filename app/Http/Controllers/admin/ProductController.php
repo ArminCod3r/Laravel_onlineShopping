@@ -325,6 +325,7 @@ class ProductController extends Controller
 
             $product_image->product_id = $id;
             $product_image->url = $fileName;
+            $product_image->tag = '-';
 
             $product_image->Save();
 
