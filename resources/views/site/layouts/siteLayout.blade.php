@@ -153,7 +153,7 @@
 
                                         <!-- Header -->
                                             <span style="color:#16C1F3">
-                                                <a href="{{ 'search/'.$value_L1['cat_ename'].'/'.$value_L2['cat_ename'].'/'.$value_L3['cat_ename']}}">
+                                                <a href="{{ '/search/'.$value_L1['cat_ename'].'/'.$value_L2['cat_ename'].'/'.$value_L3['cat_ename']}}">
                                                   {{$value_L3['cat_name']}}
                                                 </a>
                                             </span>
@@ -165,7 +165,7 @@
                                               @if( $value_L4['parent_id'] == $value_L3['id'] )
                                                 @if($shown_item<13)
                                                   <li class="level3-li">
-                                                      <a href="{{ 'search/'.$value_L1['cat_ename'].'/'.$value_L2['cat_ename'].'/'.$value_L3['cat_ename'].'?q='.$value_L4['cat_ename']}}">
+                                                      <a href="{{ '/search/'.$value_L1['cat_ename'].'/'.$value_L2['cat_ename'].'/'.$value_L3['cat_ename'].'?q='.$value_L4['cat_ename']}}">
                                                         {{$value_L4['cat_name']}}
                                                       </a>
                                                   </li>
@@ -179,7 +179,7 @@
                                           <!-- More -->
                                           @if($shown_item > 4)
                                               <span style="color:#16C1F3">
-                                                <a href="{{ 'search/'.$value_L1['cat_ename'].'/'.$value_L2['cat_ename'].'/'.$value_L3['cat_ename'].'/more'}}">
+                                                <a href="{{ '/search/'.$value_L1['cat_ename'].'/'.$value_L2['cat_ename'].'/'.$value_L3['cat_ename'].'/more'}}">
                                                   مشاهده موارد بیشتر
                                                 </a>
 
