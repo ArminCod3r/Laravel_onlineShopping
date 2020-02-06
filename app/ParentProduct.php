@@ -11,4 +11,9 @@ class ParentProduct extends Model
     public $primaryKey = 'id';
     protected $fillable = ['product_id','parent_id','created_at','updated_at'];
     public $timestamps = true;
+    
+    public function Product()
+    {
+        return $this->hasMany(Product::class, 'id', 'product_id');
+    }
 }

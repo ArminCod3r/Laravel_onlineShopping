@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Category;
+use App\ParentProduct;
 use App\Filter;
 use View;
 
@@ -45,6 +46,19 @@ class SearchController extends Controller
     		$cat3_filters = Filter::where('category_id', $cat3->id)->get();
     	}
 
-    	return view("site/search/index")->with('cat3_filters', $cat3_filters);
+        $cat4 = Category::where([
+                                    'cat_ename' => $cat4,
+                                    'parent_id' => $cat3->id,
+                                ])
+                                ->firstOrFail();
+
+        $products = ParentProduct::with('Product')
+                                 ->where('parent_id', $cat4->id)
+                                 ->get();
+
+    	return view("site/search/index")->with([
+                                                'cat3_filters'=> $cat3_filters,
+                                                'products'    => $products,
+                                              ]);
     }
 }
