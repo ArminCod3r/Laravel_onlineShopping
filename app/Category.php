@@ -31,5 +31,10 @@ class Category extends Model
     {
         return $this->hasMany(Feature::class, 'category_id', 'id');
     }
+    
+    public function Filter()
+    {
+        return $this->hasMany(Filter::class, 'category_id', 'id');
+    }
 
 }

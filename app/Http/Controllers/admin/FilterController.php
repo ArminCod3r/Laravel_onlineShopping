@@ -11,6 +11,15 @@ use App\Filter;
 class FilterController extends Controller
 {
     private $categories = array();
+
+
+    public function list()
+    {
+        $filter = Category::with('Filter')->get();
+
+        return view('admin/filter/list')->with('filter', $filter);
+    }
+
     
     /**
      * Display a listing of the resource.
