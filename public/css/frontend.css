@@ -1869,6 +1869,13 @@ background-color: #3490dc;
 
 }
 
+.filters_area
+{
+    background-color : white;
+    padding-top      : 20px;
+    margin-bottom   : 20px;
+}
+
 .filter_ul
 {
     cursor : pointer;
@@ -1888,6 +1895,8 @@ background-color: #3490dc;
     list-style : none;
     position   : relative;
     color      : #5c5c5c;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .filter_checkbox
@@ -1899,7 +1908,9 @@ background-color: #3490dc;
     border        : 1px solid #d4d5de;
     cursor        : pointer;
     border-radius : 5px;
-    top           : 3px;
+    top           : 12px;
+    bottom        : 10px;
+    margin-right  : 10px;
 }
 
 .filter_checkbox_true
@@ -1913,7 +1924,9 @@ background-color: #3490dc;
     border              : 1px solid #2196f3;
     cursor              : pointer;
     border-radius       : 5px;
-    top                 : 3px;
+    top                 : 12px;
+    bottom              : 10px;
+    margin-right        : 10px;
 }
 
 .filter_checkbox_true::before
@@ -1926,6 +1939,11 @@ background-color: #3490dc;
     width   : 15px;
     height  : 15px;
     color   : white;
+}
+
+.filter_item
+{
+    margin-right: 30px;
 }
 
 

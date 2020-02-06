@@ -7,7 +7,7 @@
 	<div>
 		<div class="row" style="margin: 0px 20px 0px 20px;">
 
-			<div class="col-sm-2" style="background-color: white">
+			<div class="col-sm-2 filters_area">
 
 				@foreach($cat3_filters as $key=>$value)
 					
@@ -25,7 +25,7 @@
 										<span class="filter_checkbox" id="{{$value_2->id}}"></span>
 									@endif
 
-									<span class="filter_item" style="margin-right: 20px"> {{$value_2->name}} </span>
+									<span class="filter_item"> {{$value_2->name}} </span>
 								</li>
 							@endif
 						@endforeach
