@@ -52,9 +52,10 @@ class SearchController extends Controller
                                 ])
                                 ->firstOrFail();
 
-        $products = ParentProduct::with('Product')
+        $products = ParentProduct::with('Product')->with('ProductImage')
                                  ->where('parent_id', $cat4->id)
                                  ->get();
+                                 
 
     	return view("site/search/index")->with([
                                                 'cat3_filters'=> $cat3_filters,

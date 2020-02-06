@@ -16,4 +16,9 @@ class ParentProduct extends Model
     {
         return $this->hasMany(Product::class, 'id', 'product_id');
     }
+    
+    public function ProductImage()
+    {
+        return $this->hasOne(ProductImage::class, 'product_id', 'product_id');
+    }
 }
