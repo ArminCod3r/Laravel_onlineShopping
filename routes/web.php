@@ -155,4 +155,11 @@ Route::middleware(['throttle:60,1'])->group(function(){
 		 ->name('shipping.destroyAddress');
 
 
+	// Searching
+	/*Route::get('/search/{cat1?}/{cat2?}/{cat3?}/{cat4?}', function($cat1=null, $cat2=null, $cat3=null, $cat4=null){
+		return [$cat1, $cat2, $cat3, $cat4];
+	});*/
+	Route::get('/search/{cat1?}/{cat2?}/{cat3?}/{cat4?}', 'SearchController@search');
+
+
 });
