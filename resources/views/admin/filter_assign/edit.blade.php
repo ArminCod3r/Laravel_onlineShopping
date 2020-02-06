@@ -8,18 +8,20 @@
 @endsection
 
 @section('custom-title')
-  ویرایش فیلتر - <span style="font-size: 20px;">{{ $product[0]->title }}</span>
+  ویرایش فیلتر
 
-  <div style="font-size: 16px; margin-top: 20px; color: #a7a7a7">
-  	{{ $product[0]->code }}
-  </div>
 @endsection
 
 @section('content1')
 
 <section class="col-lg-7 connectedSortable">
 
-@if(sizeof($filters) and sizeof($product) and sizeof($image) and sizeof($assigned))
+<div class="productTitle" style="margin: 0px 10px 20px 0px">
+	<p>{{ $product[0]->title }}</p>
+	<p style="font-size: 16px;color: #a7a7a7">{{ $product[0]->code }}</p>
+</div>
+
+@if(sizeof($filters) and sizeof($product) and sizeof($assigned))
 
 <form action="{{ route('filter_assign.update', $category_id.'/'.$product[0]->id) }}" method="POST">
 	
