@@ -81,11 +81,14 @@ class FilterAssignController extends Controller
     {
         $filters = Filter::where('category_id', $category_id)->get();
         $image   = ProductImage::where('product_id', $product_id)->first();
+        $product = Product::where('id', $product_id)->get();
+        
 
         return view('admin/filter_assign/show')->with([
                                                         'filters' => $filters,
                                                         'image'   => $image,
                                                         'category_id' => $category_id,
+                                                        'product'     => $product,
                                                       ]);
     }
 

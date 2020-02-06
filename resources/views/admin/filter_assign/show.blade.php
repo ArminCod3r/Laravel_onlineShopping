@@ -13,6 +13,11 @@
 
 @section('content1')
 
+<div class="productTitle" style="margin: 0px 10px 20px 0px">
+	<p>{{ $product[0]->title }}</p>
+	<p style="font-size: 16px">{{ $product[0]->code }}</p>
+</div>
+
 <section class="col-lg-7 connectedSortable">
 
 @if(sizeof($filters))
