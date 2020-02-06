@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use DB;
 use App\Category;
 use App\Filter;
+use App\Product;
 
 class FilterController extends Controller
 {
@@ -289,6 +290,35 @@ class FilterController extends Controller
         }
 
         return redirect()->back();
+    }
+
+
+
+    public function in_what_categories($product_id=null , $category_id=null)
+    {
+        if(!empty($product_id) and empty($category_id) )
+        {
+            $product = Product::findOrFail($product_id);
+
+            $parent_id = DB::table('parent_product')->select('parent_id')
+                        ->where('product_id', $product_id)->get();
+
+            $parent = array();
+            foreach ($parent_id as $key => $value)
+            {
+                $parent[$key] = (Category::where('id', $value->parent_id)->get())[0];
+            }
+
+            return view('admin/filter_assign/in_what_categories')->with([
+                                                                            'product' => $product,
+                                                                            'parent'  => $parent
+                                                                        ]);
+        }
+
+        if(!empty($product_id) and !empty($category_id) )
+        {
+            return 'hi';
+        }
     }
 
 

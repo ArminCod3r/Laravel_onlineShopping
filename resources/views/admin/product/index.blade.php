@@ -117,6 +117,8 @@
                 <td>
                   <a href="{{ url('admin/feature/'.$item->id.'/add') }}" class="fa fa-newspaper-o"> 
                   </a>
+                  <a href="{{ url('admin/filter/in_what_categories/'.$item->id) }}" class="fa fa-filter"> 
+                  </a>
 
                   <div style="float:left;">
                     <a href="/admin/product/{{ $item->id }}/edit" class="fa fa-edit">  </a>
