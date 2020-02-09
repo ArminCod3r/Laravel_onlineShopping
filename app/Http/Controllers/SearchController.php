@@ -36,7 +36,7 @@ class SearchController extends Controller
             if($request->has($url_filter))
             {
                 array_push($filter_name, $url_filter);
-                array_push($filters_content, $request->all($url_filter));
+                $filters_content[$url_filter] = $request->input($url_filter);
             }
         }
 
