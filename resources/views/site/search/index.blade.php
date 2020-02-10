@@ -9,7 +9,7 @@
 
 			<div class="col-sm-2 filters_area">
 
-				@foreach($cat3_filters as $key=>$value)
+				@foreach($cat4_filters as $key=>$value)
 					
 						
 					
@@ -17,7 +17,7 @@
 						{{$value->name}}
 
 						<ul class="filter_ul" id="filter_ul">
-						@foreach($cat3_filters as $key_2=>$value_2)
+						@foreach($cat4_filters as $key_2=>$value_2)
 							@if($value_2->parent_id == $value->id )
 
 								<li onclick="checking('{{$value_2->id}}')">

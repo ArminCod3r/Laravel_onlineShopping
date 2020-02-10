@@ -58,23 +58,21 @@ class SearchController extends Controller
         $brand = $arr;
 
         $arr = array();
-        foreach ($brand as $key => $value) { $arr[] = $value; }
-        $brand = $arr;
+        foreach ($color as $key => $value) { $arr[] = $value; }
+        $color = $arr;
 
 
         if( sizeof($brand) > 0 )
         {
-            $products = ParentProduct::whereIn('parent_id', $brand[0])->with('Product')->with('ProductImage')->with(["FilterAssign" => function($q){
-                                    $q->wherein('filter_assign.value_id', [68,69]);
+            $products = ParentProduct::whereIn('parent_id', $brand[0])->with('Product')->with('ProductImage')->with(["FilterAssign" => function($q) use ($color){
+                                    $q->wherein('filter_assign.value_id', $color);
                                 }])->get();
         }
 
         $cat4_filters = Filter::whereIn('category_id', $brand[0])->get();
 
-        //return $cat4_filters;
-
         return view("site/search/index")->with([
-                                                'cat3_filters'=> $cat4_filters,
+                                                'cat4_filters'=> $cat4_filters,
                                                 'products'    => $products,
                                               ]);
 
