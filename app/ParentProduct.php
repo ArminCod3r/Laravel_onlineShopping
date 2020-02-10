@@ -21,4 +21,9 @@ class ParentProduct extends Model
     {
         return $this->hasOne(ProductImage::class, 'product_id', 'product_id');
     }
+    
+    public function FilterAssign()
+    {
+        return $this->hasMany(FilterAssign::class, 'product_id', 'product_id');
+    }
 }

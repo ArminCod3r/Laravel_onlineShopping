@@ -37,6 +37,36 @@
 			</div>
 
 			<div class="col-sm-10">
+
+
+				
+
+					@foreach($products as $key=>$value)
+
+						@if($key % 4 == 0)
+						<div class="row">
+						@endif
+
+						<div class="col-sm-3">
+							<div style="height: 30% ; text-align: center ; background-color: white">
+								<img height="100%" src="{{ url('/upload/'. $value->ProductImage->url ) }}">
+							</div>
+
+							<div style="text-align: center ; background-color: white">
+								{{ $value->product[0]->title }}
+							</div>
+							
+								<br>			
+						</div>
+
+						@if($key % 3 == 0 and $key!=0)
+						</div>
+						@endif
+
+
+					@endforeach
+
+				</div>
 				
 			</div>
 
