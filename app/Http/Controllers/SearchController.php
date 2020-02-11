@@ -25,17 +25,6 @@ class SearchController extends Controller
 
     public function search(Request $request, $cat1=null, $cat2=null, $cat3=null)
     {
-        $brand = $request->all('brand');
-        $color = $request->all('color');
-
-
-        /*$arr = array();
-        foreach ($brand as $key => $value) { $arr[] = $value; }
-        $brand = $arr;
-
-        $categories = Category::whereIn('id', $brand[0])->get();
-
-        return $categories;*/
 
         $cat1 = Category::where('cat_ename', $cat1)->firstOrFail();
 
@@ -51,52 +40,76 @@ class SearchController extends Controller
                                 ])
                                 ->firstOrFail();
 
-        
-        // changing the $brands data format for 'whereIn' query-> whereIn: NO:(1,2,3) Yes:[1,2,3]
-        $arr = array();
-        foreach ($brand as $key => $value) { $arr[] = $value; }
-        $brand = $arr;
-
-        $arr = array();
-        foreach ($color as $key => $value) { $arr[] = $value; }
-        $color = $arr;
 
 
-        if( sizeof($brand) > 0 )
+        $data         = $request->all();
+        $products     = array();
+        $cat4_filters = array();
+
+        if(array_key_exists('brand', $data))
         {
-            $products = ParentProduct::whereIn('parent_id', $brand[0])->with('Product')->with('ProductImage')->with(["FilterAssign" => function($q) use ($color){
-                                    $q->wherein('filter_assign.value_id', $color);
-                                }])->get();
-        }
+            $brand = $data['brand'];
 
-        $cat4_filters = Filter::whereIn('category_id', $brand[0])->get();
+            if(sizeof($brand) == 1)
+            {
+                $products = ParentProduct::where('parent_id', $data['brand'])->with('Product')->with('ProductImage')->get();
+
+                $filters = Filter::where('category_id', $cat3->id)->get();
+            }
+            
+            if(sizeof($brand) > 1)
+            {
+                foreach ($brand as $key => $value) { $arr[] = $value; }
+                $brands = $arr;
+                $condition_values = array();
+
+
+                unset($data['brand']);
+
+                // Making an array of conditions
+                foreach ($data as $key => $value)
+                {
+                    foreach ($value as $key_2 => $value_2)
+                    {
+                        array_push($condition_values, $value_2);
+                    }
+                }
+
+                // Checking other filters has sent
+                if( sizeof($condition_values) > 0 )
+                {
+                    // get the products with affected filters ('brands' will not count)
+                    $products = ParentProduct::whereIn('parent_id', $brands)->with('Product')->with('ProductImage')->with(["FilterAssign" => function($q) use ($condition_values){
+                                        $q->wherein('filter_assign.value_id', $condition_values);
+                                    }])->get();
+
+                    // unset an item which has an empty 'FilterAssign'
+                    foreach ($products as $key => $value)
+                    {
+                        if( sizeof($value['FilterAssign']) == 0 )
+                        {
+                            unset($products[$key]);
+                        }
+                    }
+
+                }
+                else
+                    $products = ParentProduct::whereIn('parent_id', $brands)->with('Product')->with('ProductImage')->get();
+                
+
+                // if brands are more than one, we should get the parent's filters
+                $filters = Filter::where('category_id', $cat3->id)->get();
+
+            }
+            
+        }
+        
 
         return view("site/search/index")->with([
-                                                'cat4_filters'=> $cat4_filters,
+                                                'filters'=> $filters,
                                                 'products'    => $products,
                                               ]);
 
 
-
-
-
-
-        /*$filters = Filter::select('ename')->get();
-
-        $filter_name     = array();
-        $filters_content = array();
-
-        foreach ($filters as $key => $value)
-        {
-            $url_filter = $value->ename;
-
-            if($request->has($url_filter))
-            {
-                array_push($filter_name, $url_filter);
-                $filters_content[$url_filter] = $request->input($url_filter);
-            }
-        }
-
-        return [$filter_name, $filters_content];*/
     }
 }
