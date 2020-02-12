@@ -52,6 +52,7 @@ Route::middleware(['throttle:60,1'])->group(function(){
 		//Route::resource('admin/hierarchie', 'admin\HieraricheFilterController');
 		Route::get('admin/hierarchie' , 'admin\HieraricheFilterController@index');
 		Route::post('admin/hierarchie', 'admin\HieraricheFilterController@create');
+		Route::get('admin/hierarchie/sub_adding', 'admin\HieraricheFilterController@sub_adding');
 
 		Route::resource('admin/filter_assign', 'admin\FilterAssignController');
 		// ---- override 'show/edit/update' route		

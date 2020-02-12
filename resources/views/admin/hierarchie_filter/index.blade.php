@@ -55,24 +55,29 @@
         </div>
 
         <div>
+            <table class="table table-border">
             @foreach($filters_category_parent as $key=>$value)
 
-                <div class="row">
-                    <div class="col-sm-1" style="padding-right: 5%;">
+                <tr>
+                    <td style="width: 5%">
                         <input type="checkbox" name="parents_filters[]" id="" value="{{$value->parent_id.':'.$value->id}}">
-                    </div>
+                    </td>
 
-                    <div class="col-sm-9">
+                    <td style="width: 25%">
                         @if($value->parent_id == 0)
-                            <span style="color: red"> {{$value->name}} </span>
-                            <span> {{ $value->id.">".$value->parent_id }} </span>
+                            <span style="color: red; background-color: #ebebeb"> {{$value->name}} </span>
                         @else
-                        {{$value->name}}
-                        <span> {{ $value->id.">".$value->parent_id }} </span>
+                            <span> {{$value->name}} </span>
                         @endif
-                    </div>
-                </div>
+                    </td>
+
+                    <td>
+                        <span class="fa fa-plus" style="cursor:pointer" onclick="adding_sub('{{$value->parent_id}}', '{{$value->id}}')"></span>
+                    </td>
+
+                </tr>
             @endforeach
+            </table>
         </div>
     @endif
 
@@ -162,6 +167,16 @@
 
 @section('content4')
     <section class="col-lg-5 connectedSortable">
+
+    <form action="{{ action('admin\HieraricheFilterController@sub_adding') }}" method="get" class="sub_adding" id="sub_adding">
+
+        <input type="hidden" value="{{$selected_id}}" id="parent_id" name="parent_id">
+        <div class="sub_area" id="sub_area">            
+        </div>
+
+        <input type="submit" name="submit" value="ثبت" class="btn btn-primary" class="sub_adding" id="sub_adding">
+
+    </form>
 @endsection
 
 
@@ -300,6 +315,17 @@
             }
 
             count_child++;
+        }
+
+        var count=0;
+        adding_sub = function(parent_id, value_id)
+        {
+            console.log(parent_id+'-'+value_id+'-'+count);
+
+            var filter_child = '<input type="text" name="sub_childs['+value_id+']['+count+']" class="form-control col-md-4" style="margin-top:10px">';
+            count++;
+
+            $("#sub_area").append(filter_child);
         }
 
     </script>

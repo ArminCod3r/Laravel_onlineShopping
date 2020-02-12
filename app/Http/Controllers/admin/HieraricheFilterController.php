@@ -87,39 +87,54 @@ class HieraricheFilterController extends Controller
 
         $inserted_item_count = 0;
 
-        $arr = array();
+        $arr  = array();
+        $update_or_insert = array();
+
         if( sizeof($parents_filters) > 0)
         {
-            //$prev_filters = DB::table('hierarchie_filter')->where('category_id', $id);
-
             foreach ($parents_filters as $key => $value)
             {
                 $parents_id   = explode(':', $value)[0];
                 $selected_sub = explode(':', $value)[1];
 
-                $existance = DB::table('hierarchie_filter')->where(['name'=>$parents_id,'category_id'=> $id])->first();
+                array_push($arr, $parents_id.'-'.$selected_sub.'-'.$id);
+
+                // if new value(s) added there is where we can handle it to insert the new one(s)
+                array_push($update_or_insert, $selected_sub);
+
+                $existance = DB::table('hierarchie_filter')
+                                ->where(['name'=>$parents_id,'category_id'=> $id])
+                                //->wherein('parent_id', $update_or_insert)
+                                ->first();
+                
                 
                 // Inserting
                 if( sizeof($existance) == 0)
+                {
+                    array_push($arr, 'insert');
                     DB::table('hierarchie_filter')->insert(
-                                                            [
-                                                              'name'       => $parents_id ,
-                                                              'ename'      => '-' ,
-                                                              'parent_id'  => $selected_sub,
-                                                              'category_id'=> $id,
-                                                              'filled'     => 1,
-                                                             ]
-                                                          );
+                                                        [
+                                                          'name'       => $parents_id ,
+                                                          'ename'      => '-' ,
+                                                          'parent_id'  => $selected_sub,
+                                                          'category_id'=> $id,
+                                                          'filled'     => 1,
+                                                         ]
+                                                      );
+                }
                 // Updating
-                else
-                    DB::table('hierarchie_filter')->where(['name'=>$parents_id,'category_id'=> $id])
-                                                  ->update(['parent_id' => $selected_sub]);
+                else                    
+                {
+                    array_push($arr, 'update');
+                DB::table('hierarchie_filter')->where(['name'=>$parents_id,'category_id'=> $id])->update(['parent_id' => $selected_sub]);
+                }
             }
 
             
         }
 
-        return 'Done';
+        return $arr;
+
 
         foreach ($filter_name_parent as $key => $value)
         {
@@ -388,6 +403,66 @@ class HieraricheFilterController extends Controller
     }
 
 
+    public function sub_adding(Request $request)
+    {
+        $sub_childs = $request->all();
+        $parent_id  = $request->get('parent_id');
+        $arr        = array();
+
+        foreach ($sub_childs as $key => $value)
+        {
+            if( gettype($value) == 'array' )
+            {
+                foreach ($value as $key_2 => $value_2)
+                {
+                    foreach ($value_2 as $key_3 => $value_3)
+                    {
+                        $existance = DB::table('hierarchie_filter')->where('name', $value_3)->first();
+                        array_push($arr, $existance);
+
+                        // insert
+                        if(!$existance)
+                        DB::table('hierarchie_filter')->insert(
+                                                [
+                                                  'name'       => $value_3 ,
+                                                  'ename'      => '-' ,
+                                                  'parent_id'  => $key_2,
+                                                  'category_id'=> $parent_id,
+                                                  'filled'     => 1,
+                                                 ]
+                                              );
+
+                        // update
+                        else
+                        {
+                            DB::table('hierarchie_filter')
+                                      ->where([
+                                                'name'        => $value_3,
+                                                'category_id' => $parent_id
+                                             ])
+                                      ->update([
+                                                  'name'       => $value_3 ,
+                                                  'ename'      => '-' ,
+                                                  'parent_id'  => $key_2,
+                                                  'category_id'=> $parent_id,
+                                                ]);
+                        }
+                    }
+                }
+            }
+        }
+
+        
+
+        return 'Done';
+    }
+
+
+
+
+
+
+
     // Recursive Method to get all the categories/subcategories
     private function categoryTree($parent_id = 0, $sub_mark = '')
     {
@@ -406,6 +481,5 @@ class HieraricheFilterController extends Controller
         }
         return $this->categories;
     }
-
 
 }
