@@ -49,6 +49,10 @@ Route::middleware(['throttle:60,1'])->group(function(){
 		Route::post('admin/filter', 'admin\FilterController@create');
 		Route::get('admin/filter/list' , 'admin\FilterController@list');
 
+		//Route::resource('admin/hierarchie', 'admin\HieraricheFilterController');
+		Route::get('admin/hierarchie' , 'admin\HieraricheFilterController@index');
+		Route::post('admin/hierarchie', 'admin\HieraricheFilterController@create');
+
 		Route::resource('admin/filter_assign', 'admin\FilterAssignController');
 		// ---- override 'show/edit/update' route		
 		Route::get('admin/filter_assign/show/{category_id}/{product_id}' , 'admin\FilterAssignController@show');
