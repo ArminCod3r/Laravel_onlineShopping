@@ -22,7 +22,13 @@
 
 								<li onclick="checking('{{$value_2->id}}')">
 									@if($value_2->filled == 1)
-										<span class="filter_checkbox" id="{{$value_2->id}}"></span>
+
+										@if((in_array(array_search($value_2->id, $brands_names), $selected_brands)))
+											<span class="filter_checkbox_true" id="{{$value_2->id}}"></span>
+										@else
+											<span class="filter_checkbox" id="{{$value_2->id}}"></span>
+										@endif
+										
 									@endif
 
 									<span class="filter_item"> {{$value_2->name}} </span>
