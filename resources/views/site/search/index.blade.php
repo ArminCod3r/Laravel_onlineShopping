@@ -69,7 +69,8 @@
 						<div class="row products_list" style="height: 300px;">
 						@endif
 
-						<div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3" style="height:750px; width: 244px">
+						<a href="/product/{{$value->product[0]->code}}/{{$value->product[0]->title_url}}">
+							<div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3" style="height:750px; width: 244px">
 							<div class="img">
 								<img height="100%" src="{{ url('/upload/'. $value->ProductImage->url ) }}">
 							</div>
@@ -83,6 +84,7 @@
 										print $value->product[0]->title;
 								?>
 							</div>
+						</a>
 							
 								<br>			
 						</div>

@@ -1946,6 +1946,12 @@ background-color: #3490dc;
     margin-right: 30px;
 }
 
+.products_list a
+{
+    color          : black;
+    text-decoration: none;
+}
+
 .products_list .img
 {
     height: 32%;
