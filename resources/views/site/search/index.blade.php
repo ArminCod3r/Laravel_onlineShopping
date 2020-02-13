@@ -36,12 +36,12 @@
 										@if((in_array(array_search($value_2->id, $brands_names), $selected_brands)))
 											<span class="filter_checkbox_true" id="{{$value_2->id}}"></span>
 
-<input type="checkbox" value="{{$value->ename}}[]={{array_search($value_2->id, $brands_names)}}" checked="checked" name="checked_filters" id="checked_filters_{{$value_2->id}}" style="display: none">
+											<input type="checkbox" value="{{$value->ename}}[]={{array_search($value_2->id, $brands_names)}}" checked="checked" name="checked_filters" id="checked_filters_{{$value_2->id}}" style="display: none">
 
 										@else
 											<span class="filter_checkbox" id="{{$value_2->id}}"></span>
 
-<input type="checkbox" value="{{$value->ename}}[]={{array_search($value_2->id, $brands_names)}}" name="checked_filters" id="checked_filters_{{$value_2->id}}" style="display: none">
+											<input type="checkbox" value="{{$value->ename}}[]={{array_search($value_2->id, $brands_names)}}" name="checked_filters" id="checked_filters_{{$value_2->id}}" style="display: none">
 
 										@endif
 										
