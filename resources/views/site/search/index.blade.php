@@ -1,6 +1,16 @@
 @extends('site/layouts/siteLayout')
 
 @section('header')
+
+	<style type="text/css">
+	
+		.checked_filters_class
+		{
+			display: none;
+		}
+	
+	</style>
+	
 @endsection
 
 @section('content')
@@ -25,8 +35,12 @@
 
 										@if((in_array(array_search($value_2->id, $brands_names), $selected_brands)))
 											<span class="filter_checkbox_true" id="{{$value_2->id}}"></span>
+
+											<input type="checkbox" value="checked_filters[{{$value->id}}][{{$value_2->id}}]" checked="checked" class="checked_filters_class">
 										@else
 											<span class="filter_checkbox" id="{{$value_2->id}}"></span>
+
+											<input type="checkbox" value="checked_filters[{{$value->id}}][{{$value_2->id}}]"class="checked_filters_class">
 										@endif
 										
 									@endif
