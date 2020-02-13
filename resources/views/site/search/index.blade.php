@@ -17,7 +17,7 @@
 	<div>
 		<div class="row" style="margin: 0px 20px 0px 20px;">
 
-			<div class="col-sm-2 filters_area">
+			<div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 filters_area">
 
 				@foreach($filters as $key=>$value)
 					
@@ -58,7 +58,7 @@
 				@endforeach
 			</div>
 
-			<div class="col-sm-10">
+			<div class="col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
 
 
 				
@@ -66,16 +66,22 @@
 					@foreach($products as $key=>$value)
 
 						@if($key % 4 == 0)
-						<div class="row">
+						<div class="row products_list" style="height: 300px;">
 						@endif
 
-						<div class="col-sm-3">
-							<div style="height: 30% ; text-align: center ; background-color: white">
+						<div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3" style="height:750px; width: 244px">
+							<div class="img">
 								<img height="100%" src="{{ url('/upload/'. $value->ProductImage->url ) }}">
 							</div>
 
-							<div style="text-align: center ; background-color: white">
-								{{ $value->product[0]->title }}
+							<div class="text">
+								
+								<?php
+									if(strlen($value->product[0]->title) > 26)
+										echo mb_substr($value->product[0]->title, 0, 27, "utf-8")."...";
+									else
+										print $value->product[0]->title;
+								?>
 							</div>
 							
 								<br>			

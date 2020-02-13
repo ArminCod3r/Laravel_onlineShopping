@@ -1946,6 +1946,24 @@ background-color: #3490dc;
     margin-right: 30px;
 }
 
+.products_list .img
+{
+    height: 32%;
+    text-align: center;
+    background-color: white;
+    padding-top: 10px;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+}
+
+.products_list .text
+{
+    text-align: center;
+    background-color: white;
+    padding: 10px 0px 10px 0px; 
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
 
 
 
