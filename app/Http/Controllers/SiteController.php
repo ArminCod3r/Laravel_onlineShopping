@@ -57,6 +57,9 @@ class SiteController extends Controller
 
     public function showProduct($code, $title_url)
     {
+        $categories = Category::all();
+        $categories = json_decode($categories, true);
+
         $code = str_replace('-',' ', $code);
 
         $product = Product::with('ProductImage')->with("color_product_frontend")
@@ -107,6 +110,7 @@ class SiteController extends Controller
                                                'review'   => $review,
                                                'features' => $features,
                                                'assigned_features_key' => $assigned_features_key,
+                                               'categories'      => $categories,
                                               ]);
     }
 
