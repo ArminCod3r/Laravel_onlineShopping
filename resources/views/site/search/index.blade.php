@@ -121,47 +121,29 @@
 		}
 
 		var filter_checkbox = document.getElementsByName("checked_filters");
-		var url        = window.location.search;
-		const urlParams = new URLSearchParams(url);
+		var url            = window.location.search;
+		const urlParams    = new URLSearchParams(url);
+		filters            = new Array();
+		var url_attributes = window.location.origin + window.location.pathname+'?';
 
 		for(var i=0 ; i<filter_checkbox.length ; i++)
 		{
 			if(filter_checkbox[i].checked)
 			{
-				console.log(filter_checkbox[i].value);
-
-				url_filters = window.location.search.substring(1).split("&");
-
-				for(j=0 ; j<=url_filters.length ; j++)
-				{
-					if(filter_checkbox[i].value == url_filters[j])
-					{
-						console.log("Filter: "+url_filters[j]);
-					}
-				}
-
-				// https://www.sitepoint.com/get-url-parameters-with-javascript/
-				//filters_name  = filter_checkbox[i].value.split("_")[1];
-				//filters_value = filter_checkbox[i].value.split("_")[0];
-
-				//var array_format = filters_name+'[]';
-				//const product   = urlParams.getAll(array_format);
-				//console.log(array_format);
+				filters.push(filter_checkbox[i].value);
 			}				
 		}
 
-
-
-		// filters actual checkbox which is hidden
-		/*var filter_checkbox = document.getElementsByClassName("checked_filters_class");
-
-		for(var i=0 ; i<filter_checkbox.length ; i++)
+		if(filters.length > 1)
 		{
-			if(filter_checkbox[i].checked);
+			for(i=0 ; i<filters.length ; i++)
 			{
-				console.log(filter_checkbox[i].value);
+				url_attributes = url_attributes + filters[i] + "&";
 			}
-		}*/
+		}
+
+		window.location.replace(url_attributes);
+
 	}
 
 </script>
