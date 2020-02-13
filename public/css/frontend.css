@@ -1952,9 +1952,16 @@ background-color: #3490dc;
     text-decoration: none;
 }
 
+.products_list .product_area:hover
+{
+    border:1px solid #00bfd6;
+    -moz-transform: scale(1.02);
+    border-radius: 10px;
+}
+
 .products_list .img
 {
-    height: 32%;
+    height: 10%;
     text-align: center;
     background-color: white;
     padding-top: 10px;
