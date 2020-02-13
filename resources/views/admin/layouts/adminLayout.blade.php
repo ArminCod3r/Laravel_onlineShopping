@@ -387,7 +387,7 @@
               </ul>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="{{ url('admin/product#product') }}" class="nav-link">
+                  <a href="{{ url('/admin/feature/#feature') }}" class="nav-link">
                     <p>افزودن</p>
                   </a>
                 </li>
