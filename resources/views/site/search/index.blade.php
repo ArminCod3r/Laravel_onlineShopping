@@ -10,7 +10,7 @@
 		}
 	
 	</style>
-	
+
 @endsection
 
 @section('content')
@@ -36,11 +36,13 @@
 										@if((in_array(array_search($value_2->id, $brands_names), $selected_brands)))
 											<span class="filter_checkbox_true" id="{{$value_2->id}}"></span>
 
-											<input type="checkbox" value="checked_filters[{{$value->id}}][{{$value_2->id}}]" checked="checked" class="checked_filters_class">
+<input type="checkbox" value="[{{$value_2->id}}_{{$value->ename}}]" checked="checked" name="checked_filters" id="checked_filters_{{$value_2->id}}" class="aaaa">
+
 										@else
 											<span class="filter_checkbox" id="{{$value_2->id}}"></span>
 
-											<input type="checkbox" value="checked_filters[{{$value->id}}][{{$value_2->id}}]"class="checked_filters_class">
+<input type="checkbox" value="[{{$value_2->id}}_{{$value->ename}}]" name="checked_filters" id="checked_filters_{{$value_2->id}}" class="aaaa">
+
 										@endif
 										
 									@endif
@@ -106,13 +108,38 @@
 		{
 			document.getElementById(id).removeClass = 'filter_checkbox';
 			document.getElementById(id).className   = 'filter_checkbox_true';
+
+			document.getElementById("checked_filters_"+id).checked = true;
 		}
 
 		if(filter == 'filter_checkbox_true')
 		{
 			document.getElementById(id).removeClass = 'filter_checkbox_true';
 			document.getElementById(id).className   = 'filter_checkbox';
+
+			document.getElementById("checked_filters_"+id).checked = false;
 		}
+
+		var filter_checkbox = document.getElementsByName("checked_filters");
+
+		for(var i=0 ; i<filter_checkbox.length ; i++)
+		{
+			if(filter_checkbox[i].checked)
+			{
+				console.log(filter_checkbox[i].value);
+			}				
+		}
+
+		// filters actual checkbox which is hidden
+		/*var filter_checkbox = document.getElementsByClassName("checked_filters_class");
+
+		for(var i=0 ; i<filter_checkbox.length ; i++)
+		{
+			if(filter_checkbox[i].checked);
+			{
+				console.log(filter_checkbox[i].value);
+			}
+		}*/
 	}
 
 </script>
