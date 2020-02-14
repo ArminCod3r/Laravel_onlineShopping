@@ -127,66 +127,6 @@ class SearchController extends Controller
 
 
 
-
-
-        /*if(array_key_exists('brand', $data))
-        {
-            $brand = $data['brand'];
-
-            if(sizeof($brand) == 1)
-            {
-                $products = ParentProduct::where('parent_id', $data['brand'])->with('Product')->with('ProductImage')->get();
-
-                $filters = Filter::where('category_id', $cat3->id)->get();
-            }
-            
-            if(sizeof($brand) > 1)
-            {
-                foreach ($brand as $key => $value) { $arr[] = $value; }
-                $brands = $arr;
-                $condition_values = array();
-
-
-                unset($data['brand']);
-
-                // Making an array of conditions
-                foreach ($data as $key => $value)
-                {
-                    foreach ($value as $key_2 => $value_2)
-                    {
-                        array_push($condition_values, $value_2);
-                    }
-                }
-
-                // Checking other filters has sent
-                if( sizeof($condition_values) > 0 )
-                {
-                    // get the products with affected filters ('brands' will not count)
-                    $products = ParentProduct::whereIn('parent_id', $brands)->with('Product')->with('ProductImage')->with(["FilterAssign" => function($q) use ($condition_values){
-                                        $q->wherein('filter_assign.value_id', $condition_values);
-                                    }])->get();
-
-                    // unset an item which has an empty 'FilterAssign'
-                    foreach ($products as $key => $value)
-                    {
-                        if( sizeof($value['FilterAssign']) == 0 )
-                        {
-                            unset($products[$key]);
-                        }
-                    }
-
-                }
-                else
-                    $products = ParentProduct::whereIn('parent_id', $brands)->with('Product')->with('ProductImage')->get();
-                
-
-                // if brands are more than one, we should get the parent's filters
-                $filters = Filter::where('category_id', $cat3->id)->get();
-
-            }
-            
-        }*/
-
         $linking_filters = LinkCatFilter::all();
         $linked_filters  = array();
 
