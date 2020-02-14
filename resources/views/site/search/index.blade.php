@@ -20,10 +20,18 @@
 			<div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 filters_area">
 
 				<div>
+
 					@foreach($selected_names as $key=>$value)
-						{{ $value->FilterAssign[0]->value }}
+						<span style="background-color:#e1dfdf ; margin: 4px 4px 0px 0px; padding:4px ; border-radius: 4px; float: right;">
+
+							<span>{{ $value->FilterAssign[0]->value }}</span>
+							<span class="fa fa-remove"></span>
+
+						</span>
 					@endforeach
 				</div>
+
+				<div style="clear: both; padding-top: 20px"></div>
 
 				@foreach($filters as $key=>$value)
 					
