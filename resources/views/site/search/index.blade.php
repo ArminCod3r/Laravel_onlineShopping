@@ -33,7 +33,7 @@
 								<li onclick="checking('{{$value_2->id}}')">
 									@if($value_2->filled == 1)
 
-										@if((in_array(array_search($value_2->id, $linked_filters), $selected_brands)))
+										@if((in_array(array_search($value_2->id, $linked_filters), $selected_filters)))
 											<span class="filter_checkbox_true" id="{{$value_2->id}}"></span>
 
 											<input type="checkbox" value="{{$value->ename}}[]={{array_search($value_2->id, $linked_filters)}}" checked="checked" name="checked_filters" id="checked_filters_{{$value_2->id}}" style="display: none">

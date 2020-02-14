@@ -52,10 +52,12 @@ class SearchController extends Controller
 
         $search_result = array();
         $brand  = array();
+        $selected_filters = array();
 
         if(array_key_exists('brand', $data))
         {
             $brand    = $data['brand'];
+            $selected_filters = $data['brand'];
 
             $products = DB::select("select *
                             from product
@@ -74,6 +76,7 @@ class SearchController extends Controller
                 foreach ($value as $key_2 => $value_2)
                 {
                     array_push($conditions, $value_2);
+                    array_push($selected_filters, $value_2);
                 }
             }
 
@@ -192,12 +195,14 @@ class SearchController extends Controller
             $linked_filters[$value->category_id] = $value->filter_id;
         }
 
+
+
         return view("site/search/index")->with([
                                                 'filters'        => $filters,
                                                 'products'       => $search_result,
                                                 'images'         => $images,
                                                 'linked_filters' => $linked_filters,
-                                                'selected_brands'=> $brand,
+                                                'selected_filters'=> $selected_filters,
                                               ]);
 
 
