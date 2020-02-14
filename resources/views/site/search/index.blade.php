@@ -24,8 +24,11 @@
 					@foreach($selected_names as $key=>$value)
 						<span style="background-color:#e1dfdf ; margin: 4px 4px 0px 0px; padding:4px ; border-radius: 4px; float: right;">
 
-							<span>{{ $value->FilterAssign[0]->value }}</span>
-							<span class="fa fa-remove"></span>
+							<span style="cursor:pointer" onclick="delete_filter('{{$value->filter_id}}')">
+								<span>{{ $value->FilterAssign[0]->value }}</span>
+								<span class="fa fa-remove"></span>
+							</span>
+							
 
 						</span>
 					@endforeach
@@ -131,6 +134,14 @@
 		}
 
 		window.location.replace(url_attributes);
+
+	}
+
+	delete_filter = function(filter_id)
+	{
+		var filter_checkbox = document.getElementsByName("checked_filters");
+
+		checking(filter_id);
 
 	}
 
