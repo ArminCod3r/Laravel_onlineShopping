@@ -10,4 +10,9 @@ class LinkCatFilter extends Model
     public $primaryKey  = 'id';
     protected $fillable = ['category_id','filter_id', 'name'];
     public $timestamps  = false;
+
+    public function FilterAssign()
+    {
+        return $this->hasMany(FilterAssign::class, 'value_id', 'filter_id');
+    }
 }

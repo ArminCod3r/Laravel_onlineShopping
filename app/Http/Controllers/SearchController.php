@@ -47,7 +47,86 @@ class SearchController extends Controller
         $products     = array();
         $cat4_filters = array();
 
+
+        //$condition_values = $data['os'];
+
+        $search_result = array();
+        $brand  = array();
+
         if(array_key_exists('brand', $data))
+        {
+            $brand    = $data['brand'];
+
+            $products = DB::select("select *
+                            from product
+                            where id in (select product_id
+                                         from filter_assign
+                                         where value_id in(
+                                                            SELECT filter_id
+                                                            from link_category_filter
+                                                            where category_id in (".implode(", ",$data['brand']).")))");
+            
+            unset($data['brand']);
+            $conditions = array();
+
+            foreach ($data as $key => $value)
+            {
+                foreach ($value as $key_2 => $value_2)
+                {
+                    array_push($conditions, $value_2);
+                }
+            }
+
+            if( sizeof($conditions) > 0 )
+            {
+                $products_2 = DB::select("select *
+                            from product
+                            where id in (select product_id
+                                         from filter_assign
+                                         where value_id in(
+                                                            SELECT filter_id
+                                                            from link_category_filter
+                                                            where category_id in (".implode(", ",$conditions).")))");
+
+                if( sizeof($products_2) > 0 )
+                {
+                    foreach ($products as $key_1 => $value_1)
+                    {
+                        foreach ($products_2 as $key_2 => $value_2)
+                        {
+                            if( $value_1->id == $value_2->id )
+                            {
+                                array_push($search_result, $value_2);
+                            }
+                        }
+                    }
+                }
+            }
+
+            else
+                $search_result = $products;
+
+        }
+
+        $images = array();
+        foreach ($search_result as $key => $value)
+        {
+            $img = DB::select("select url
+                            from product_images
+                            where product_id=".$value->id." LIMIT 1");
+
+            $images[$value->id]=$img[0];
+
+        }
+
+
+        $filters = Filter::where('category_id', $cat3->id)->get();
+
+
+
+
+
+        /*if(array_key_exists('brand', $data))
         {
             $brand = $data['brand'];
 
@@ -103,7 +182,7 @@ class SearchController extends Controller
 
             }
             
-        }
+        }*/
 
         $linking_filters = LinkCatFilter::all();
         $linked_filters  = array();
@@ -112,11 +191,11 @@ class SearchController extends Controller
         {
             $linked_filters[$value->category_id] = $value->filter_id;
         }
-        
 
         return view("site/search/index")->with([
                                                 'filters'        => $filters,
-                                                'products'       => $products,
+                                                'products'       => $search_result,
+                                                'images'         => $images,
                                                 'linked_filters' => $linked_filters,
                                                 'selected_brands'=> $brand,
                                               ]);
