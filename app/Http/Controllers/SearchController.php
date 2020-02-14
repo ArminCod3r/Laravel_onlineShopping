@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Category;
 use App\ParentProduct;
 use App\Filter;
+use App\LinkCatFilter;
 use View;
 use DB;
 
@@ -104,22 +105,19 @@ class SearchController extends Controller
             
         }
 
-        // TODO : Dynamic brands' names
-        $brands_names = array();
-        $brands_names[13] = 80;
-        $brands_names[16] = 70;
-        $brands_names[15] = 66;
-        $brands_names[25] = 82;
-        $brands_names[27] = 83;
-        $brands_names[28] = 81;
-        $brands_names[29] = 84;
-        $brands_names[23] = 91;
+        $linking_filters = LinkCatFilter::all();
+        $linked_filters  = array();
+
+        foreach ($linking_filters as $key => $value)
+        {
+            $linked_filters[$value->category_id] = $value->filter_id;
+        }
         
 
         return view("site/search/index")->with([
                                                 'filters'        => $filters,
                                                 'products'       => $products,
-                                                'brands_names'   => $brands_names,
+                                                'linked_filters' => $linked_filters,
                                                 'selected_brands'=> $brand,
                                               ]);
 
