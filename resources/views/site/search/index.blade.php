@@ -108,7 +108,7 @@
 			}				
 		}
 
-		if(filters.length > 1)
+		if(filters.length > 0)
 		{
 			for(i=0 ; i<filters.length ; i++)
 			{
