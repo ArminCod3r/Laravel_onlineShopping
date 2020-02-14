@@ -136,6 +136,12 @@ class SearchController extends Controller
         }
 
 
+        // Get the names of the selected filters
+        $selected_names = LinkCatFilter::with('FilterAssign')
+                                       ->wherein('category_id',$selected_filters)
+                                       ->get();
+                                       
+
 
         return view("site/search/index")->with([
                                                 'filters'        => $filters,
@@ -143,6 +149,7 @@ class SearchController extends Controller
                                                 'images'         => $images,
                                                 'linked_filters' => $linked_filters,
                                                 'selected_filters'=> $selected_filters,
+                                                'selected_names'  => $selected_names,
                                               ]);
 
 

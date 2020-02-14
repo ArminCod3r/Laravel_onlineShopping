@@ -19,6 +19,12 @@
 
 			<div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 filters_area">
 
+				<div>
+					@foreach($selected_names as $key=>$value)
+						{{ $value->FilterAssign[0]->value }}
+					@endforeach
+				</div>
+
 				@foreach($filters as $key=>$value)
 					
 						
