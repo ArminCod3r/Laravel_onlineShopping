@@ -36,12 +36,47 @@
 
 				<div style="clear: both; padding-top: 20px"></div>
 
+				<?php
+					$count_to_show_search = 0;
+					$show_search_box = array();
+				?>
+
+				<!--
+					code  : which of the 'filter-parent' will have a search-box
+					output: show_search_box[parent_ids] = 1
+				-->
+				@foreach($filters as $key_count=>$value_count)
+
+					@foreach($filters as $key_count_2=>$value_count_2)
+
+						@if($value_count_2->parent_id == $value_count->id )
+
+							<?php $count_to_show_search++; ?>
+
+							@if($count_to_show_search == 10)
+								<?php $show_search_box[$value_count->id]=1; ?>
+								<br/>				
+							@endif
+
+						@endif
+
+					@endforeach
+
+					<?php $count_to_show_search = 0;?>
+
+				@endforeach
+
+
+
 				@foreach($filters as $key=>$value)
-					
-						
-					
+
 					@if($value->parent_id == 0)
+
 						{{$value->name}}
+
+						@if(array_key_exists($value->id, $show_search_box))
+							sEARCH
+						@endif
 
 						<ul class="filter_ul" id="filter_ul">
 						@foreach($filters as $key_2=>$value_2)
@@ -85,9 +120,14 @@
 
 		</div>
 	</div>
+
+
+
 @endsection
 
 @section('footer')
+
+<script type="text/javascript" src="{{ url('js/list.min.js') }}"></script>
 
 <script type="text/javascript">
 	
