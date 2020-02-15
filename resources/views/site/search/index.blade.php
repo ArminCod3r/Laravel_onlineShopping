@@ -54,8 +54,7 @@
 							<?php $count_to_show_search++; ?>
 
 							@if($count_to_show_search == 10)
-								<?php $show_search_box[$value_count->id]=1; ?>
-								<br/>				
+								<?php $show_search_box[$value_count->id]=1; ?>				
 							@endif
 
 						@endif
@@ -75,10 +74,11 @@
 						{{$value->name}}
 
 						@if(array_key_exists($value->id, $show_search_box))
-							sEARCH
+							<div id="search_{{ $value->id }}">
+							<input class="search" placeholder="جست و جو" onclick="filter_search('{{ $value->id }}')" />
 						@endif
 
-						<ul class="filter_ul" id="filter_ul">
+						<ul class="filter_ul list" id="filter_ul">
 						@foreach($filters as $key_2=>$value_2)
 							@if($value_2->parent_id == $value->id )
 
@@ -99,11 +99,15 @@
 										
 									@endif
 
-									<span class="filter_item"> {{$value_2->name}} </span>
+									<span class="filter_item name"> {{$value_2->name}} </span>
 								</li>
 							@endif
 						@endforeach
 						</ul>
+
+						@if(array_key_exists($value->id, $show_search_box))
+							</div>
+						@endif
 						
 					@endif
 					
@@ -120,6 +124,9 @@
 
 		</div>
 	</div>
+
+
+
 
 
 
@@ -184,6 +191,20 @@
 		checking(filter_id);
 
 	}
+
+	var selected_search = 0;
+	filter_search = function(search_id)
+	{
+		selected_search = search_id;
+
+		var options = {
+		  valueNames: [ 'name']
+		};
+
+		var userList = new List('search_'+selected_search, options);
+	}
+
+	
 
 </script>
 
