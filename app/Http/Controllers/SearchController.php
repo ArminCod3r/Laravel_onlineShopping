@@ -9,6 +9,7 @@ use App\Filter;
 use App\LinkCatFilter;
 use View;
 use DB;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class SearchController extends Controller
 {
@@ -60,17 +61,15 @@ class SearchController extends Controller
             $selected_filters = $data['brand'];
 
             // Query between tables: link_category_filter -> filter_assign -> product
-            $products = DB::select("select *
-                            from product
-                            where id in (select product_id
-                                         from filter_assign
-                                         where value_id in(
-                                                            SELECT filter_id
-                                                            from link_category_filter
-                                                            where category_id in (".implode(", ",$data['brand']).")))");
+            $products = DB::table('product')
+                      ->join('filter_assign', 'product.id', '=', 'filter_assign.product_id')
+                      ->join('link_category_filter', 'filter_assign.value_id', '=', 'link_category_filter.filter_id')
+                      ->wherein('link_category_filter.category_id', $data['brand'])
+                      ->get();
             
-            // pop the brand[] from the url to get the rest of filters services
+            // pop the brand[], page[] from the url to get the rest of filters services
             unset($data['brand']);
+            unset($data['page']); 
             $conditions = array();
 
             // make a new array to store all the filters
@@ -86,15 +85,12 @@ class SearchController extends Controller
             // processing the other filters in the URL
             if( sizeof($conditions) > 0 )
             {
-                // Query between tables: link_category_filter -> filter_assign -> product
-                $products_2 = DB::select("select *
-                            from product
-                            where id in (select product_id
-                                         from filter_assign
-                                         where value_id in(
-                                                            SELECT filter_id
-                                                            from link_category_filter
-                                                            where category_id in (".implode(", ",$conditions).")))");
+                // Query between tables: link_category_filter -> filter_assign -> product                
+                $products_2 = DB::table('product')
+                      ->join('filter_assign', 'product.id', '=', 'filter_assign.product_id')
+                      ->join('link_category_filter', 'filter_assign.value_id', '=', 'link_category_filter.filter_id')
+                      ->wherein('link_category_filter.category_id', $conditions)
+                      ->get();
 
                 // comapring brands[]-results and the otherFilters[]-results
                 // to get the ones that are in common with each other(comapre by products' id)
@@ -107,7 +103,7 @@ class SearchController extends Controller
                     {
                         foreach ($products_2 as $key_2 => $value_2)
                         {
-                            if( $value_1->id == $value_2->id )
+                            if( $value_1->product_id == $value_2->product_id )
                             {
                                 array_push($search_result, $value_2);
                             }
@@ -128,9 +124,9 @@ class SearchController extends Controller
         {
             $img = DB::select("select url
                             from product_images
-                            where product_id=".$value->id." LIMIT 1");
+                            where product_id=".$value->product_id." LIMIT 1");
 
-            $images[$value->id]=$img[0];
+            $images[$value->product_id]=$img[0];
 
         }
 
@@ -155,6 +151,31 @@ class SearchController extends Controller
                                        ->wherein('category_id',$selected_filters)
                                        ->get();
                                        
+       
+        
+
+
+        // pagination
+        // Array pagination: source: https://arjunphp.com/laravel-5-pagination-array/
+
+        $currentPage = LengthAwarePaginator::resolveCurrentPage();
+
+        // Create a new Laravel collection from the array data
+        $itemCollection = collect($search_result);
+ 
+        // Define how many items we want to be visible in each page
+        $perPage = 4;
+ 
+        // Slice the collection to get the items to display in current page
+        $currentPageItems = $itemCollection->slice(($currentPage * $perPage) - $perPage, $perPage)->all();
+ 
+        // Create our paginator and pass it to the view
+        $paginatedItems= new LengthAwarePaginator($currentPageItems , count($itemCollection), $perPage);
+ 
+        // set url path for generted links
+        $paginatedItems->setPath($request->url()); 
+
+        $search_result = $paginatedItems;
 
 
         return view("site/search/index")->with([

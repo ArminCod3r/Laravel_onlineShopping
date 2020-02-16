@@ -204,6 +204,35 @@
 		var userList = new List('search_'+selected_search, options);
 	}
 
+	// Handling pagination
+	$('.pagination a').click(function(event){
+		event.preventDefault();
+
+		var filter_checkbox = document.getElementsByName("checked_filters");
+		var url            = window.location.search;
+		const urlParams    = new URLSearchParams(url);
+		filters            = new Array();
+		var url_attributes = window.location.origin + window.location.pathname+'?';
+
+		for(var i=0 ; i<filter_checkbox.length ; i++)
+		{
+			if(filter_checkbox[i].checked)
+			{
+				filters.push(filter_checkbox[i].value);
+			}				
+		}
+
+		if(filters.length > 0)
+		{
+			for(i=0 ; i<filters.length ; i++)
+			{
+				url_attributes = url_attributes + filters[i] + "&";
+			}
+		}
+
+		window.location.replace(url_attributes+"page="+event['currentTarget']['innerText']);
+	});
+
 	
 
 </script>
