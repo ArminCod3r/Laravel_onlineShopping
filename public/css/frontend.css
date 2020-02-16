@@ -1978,7 +1978,15 @@ background-color: #3490dc;
     border-bottom-right-radius: 10px;
 }
 
+.paginate
+{
+    text-align: center;
+}
 
+.pagination
+{
+    display: inline-flex;
+}
 
 
 
