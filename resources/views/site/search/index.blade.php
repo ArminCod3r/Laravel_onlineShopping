@@ -142,6 +142,7 @@
 	{
 		filter = document.getElementById(id).className;
 
+		// Enabling filter's checkbox
 		if(filter == 'filter_checkbox')
 		{
 			document.getElementById(id).removeClass = 'filter_checkbox';
@@ -150,6 +151,7 @@
 			document.getElementById("checked_filters_"+id).checked = true;
 		}
 
+		// Disabling filter's checkbox
 		if(filter == 'filter_checkbox_true')
 		{
 			document.getElementById(id).removeClass = 'filter_checkbox_true';
@@ -158,12 +160,14 @@
 			document.getElementById("checked_filters_"+id).checked = false;
 		}
 
+		// URL operation to add/delete filters
 		var filter_checkbox = document.getElementsByName("checked_filters");
 		var url            = window.location.search;
 		const urlParams    = new URLSearchParams(url);
 		filters            = new Array();
 		var url_attributes = window.location.origin + window.location.pathname+'?';
 
+		// Getting filters to generating new url
 		for(var i=0 ; i<filter_checkbox.length ; i++)
 		{
 			if(filter_checkbox[i].checked)
@@ -172,6 +176,7 @@
 			}				
 		}
 
+		// Generationg new URL with filters(attribute)
 		if(filters.length > 0)
 		{
 			for(i=0 ; i<filters.length ; i++)
@@ -180,10 +185,12 @@
 			}
 		}
 
+		// Redirecting to the new URL
 		window.location.replace(url_attributes);
 
 	}
 
+	// Delteing filter from the selected-filters-box
 	delete_filter = function(filter_id)
 	{
 		var filter_checkbox = document.getElementsByName("checked_filters");
@@ -192,6 +199,7 @@
 
 	}
 
+	// Searching among the filters
 	var selected_search = 0;
 	filter_search = function(search_id)
 	{
@@ -206,14 +214,18 @@
 
 	// Handling pagination
 	$('.pagination a').click(function(event){
+
+		// prevent 'a' tag from redirecting
 		event.preventDefault();
 
+		// Generating new URL
 		var filter_checkbox = document.getElementsByName("checked_filters");
 		var url            = window.location.search;
 		const urlParams    = new URLSearchParams(url);
 		filters            = new Array();
 		var url_attributes = window.location.origin + window.location.pathname+'?';
 
+		// Getting filters to generating new url
 		for(var i=0 ; i<filter_checkbox.length ; i++)
 		{
 			if(filter_checkbox[i].checked)
@@ -222,6 +234,7 @@
 			}				
 		}
 
+		// Generating new url
 		if(filters.length > 0)
 		{
 			for(i=0 ; i<filters.length ; i++)
@@ -230,6 +243,7 @@
 			}
 		}
 
+		// Redirecting new URL
 		window.location.replace(url_attributes+"page="+event['currentTarget']['innerText']);
 	});
 
