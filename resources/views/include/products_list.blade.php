@@ -8,7 +8,7 @@
 @foreach($products as $key=>$value)
 
 	@if($key % 4 == 0)
-	<div class="row products_list" style="height: 300px;">
+	<div class="row products_list" style="height: 330px;">
 	@endif
 
 	<a href="/product/{{$value->code}}/{{$value->title_url}}">
@@ -26,6 +26,10 @@
 				else
 					print $value->title;
 			?>
+
+			<div class="search_products_price">
+				{{number_format($value->price)}} تومان
+			</div>
 		</div>
 		</div>
 	</a>

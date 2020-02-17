@@ -1993,6 +1993,13 @@ background-color: #3490dc;
     border-bottom-right-radius: 10px;
 }
 
+.search_products_price
+{
+    color: #ff5757;
+    font-weight:bold;
+    padding-top: 10px;
+}
+
 .paginate
 {
     text-align: center;
