@@ -169,7 +169,7 @@ class SearchController extends Controller
         $itemCollection = collect($search_result);
  
         // Define how many items we want to be visible in each page
-        $perPage = 4;
+        $perPage = 20;
  
         // Slice the collection to get the items to display in current page
         $currentPageItems = $itemCollection->slice(($currentPage * $perPage) - $perPage, $perPage)->all();
