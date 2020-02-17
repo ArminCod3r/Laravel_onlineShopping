@@ -2021,6 +2021,25 @@ background-color: #3490dc;
     font-weight: bold;  
 }
 
+.filter_name
+{
+    padding       : 10px 5px 10px 5px;
+    border-bottom : 1px solid #ebebeb;
+}
+
+.filter_name:hover
+{
+    cursor           : pointer;
+    background-color : #eee;
+    border-radius    : 5px;
+}
+
+.filter_name .icon
+{
+    float       : left;
+}
+
+
 
 
 

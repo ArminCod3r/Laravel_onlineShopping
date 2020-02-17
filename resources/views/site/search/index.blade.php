@@ -71,9 +71,9 @@
 
 					@if($value->parent_id == 0)
 
-						<div onclick="show_sub_filters('{{$value->id}}')">
-							{{$value->name}}
-							<span id="expand_icon_{{ $value->id }}" class="fa fa-angle-down" style="float:left"></span>
+						<div onclick="show_sub_filters('{{$value->id}}')" class="filter_name">
+							<span> {{$value->name}} </span>
+							<span id="expand_icon_{{ $value->id }}" class="fa fa-angle-down icon"></span>
 						</div>
 
 						@if(array_key_exists($value->id, $show_search_box))
