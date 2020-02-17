@@ -71,13 +71,17 @@
 
 					@if($value->parent_id == 0)
 
-						{{$value->name}}
+						<div onclick="show_sub_filters('{{$value->id}}')">
+							{{$value->name}}
+							<span id="expand_icon_{{ $value->id }}" class="fa fa-angle-down" style="float:left"></span>
+						</div>
 
 						@if(array_key_exists($value->id, $show_search_box))
 							<div id="search_{{ $value->id }}">
 							<input class="search" placeholder="جست و جو" onclick="filter_search('{{ $value->id }}')" />
 						@endif
 
+						<div id="sub_filter_{{ $value->id }}" style="display: none">
 						<ul class="filter_ul list" id="filter_ul">
 						@foreach($filters as $key_2=>$value_2)
 							@if($value_2->parent_id == $value->id )
@@ -129,7 +133,7 @@
 							@endif
 						@endforeach
 						</ul>
-
+						</div>
 						<div style="clear: both"></div>
 
 						@if(array_key_exists($value->id, $show_search_box))
@@ -290,6 +294,25 @@
 		window.location.replace(url_attributes+"page="+event['currentTarget']['innerText']);
 	});
 
+	// Collapsible filters
+	show_sub_filters = function(parent_filter_id)
+	{
+		var sub_filter  = document.getElementById("sub_filter_"+parent_filter_id);
+
+
+		if (sub_filter.style.display === "none")
+		{
+		    sub_filter.style.display = "block";
+		    $("#expand_icon_65").removeClass("fa-angle-down");
+		    $("#expand_icon_65").addClass("fa-angle-up");
+		}
+		else
+		{
+		    sub_filter.style.display = "none";
+		    $("#expand_icon_65").removeClass("fa-angle-up");
+		    $("#expand_icon_65").addClass("fa-angle-down");
+		}
+	}
 	
 
 </script>
