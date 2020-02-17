@@ -1,6 +1,8 @@
 @extends('site/layouts/siteLayout')
 
 @section('header')
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 	<style type="text/css">
 	
@@ -66,7 +68,7 @@
 				@endforeach
 
 
-
+				<?php $first_color=true; ?>
 				@foreach($filters as $key=>$value)
 
 					@if($value->parent_id == 0)
@@ -83,27 +85,54 @@
 							@if($value_2->parent_id == $value->id )
 
 								<li onclick="checking('{{$value_2->id}}')">
-									@if($value_2->filled == 1)
 
+									<!-- simple filters -->
+									@if($value_2->filled == 1)
+										<div class="filters_filled_1">
 										@if((in_array(array_search($value_2->id, $linked_filters), $selected_filters)))
 											<span class="filter_checkbox_true" id="{{$value_2->id}}"></span>
 
 											<input type="checkbox" value="{{$value->ename}}[]={{array_search($value_2->id, $linked_filters)}}" checked="checked" name="checked_filters" id="checked_filters_{{$value_2->id}}" style="display: none">
-
+											<span class="filter_item name"> {{$value_2->name}} </span>
 										@else
 											<span class="filter_checkbox" id="{{$value_2->id}}"></span>
 
 											<input type="checkbox" value="{{$value->ename}}[]={{array_search($value_2->id, $linked_filters)}}" name="checked_filters" id="checked_filters_{{$value_2->id}}" style="display: none">
 
+											<span class="filter_item name"> {{$value_2->name}} </span>
+
 										@endif
-										
+										</div>
+									<!-- color filters -->							
+									@else
+										<?php
+											$color_name = explode(':', $value_2->name)[0];
+											$color_code = explode(':', $value_2->name)[1];
+										?>
+
+										<a href="#" data-toggle="tooltip" data-placement="top" title="در دست ساخت">
+
+											@if($key_2 == $first_color)
+												<div style="padding: 0px 0px 50px 0px; float: right">
+												{{ $first_color = false }}
+												
+											@else
+												<div style="padding: 0px 50px 50px 0px; float: right">
+													
+											@endif
+													<span class="filter_color" style="background-color:#{{$color_code}}"></span>
+												</div>
+										</a>											
+
 									@endif
 
-									<span class="filter_item name"> {{$value_2->name}} </span>
+									
 								</li>
 							@endif
 						@endforeach
 						</ul>
+
+						<div style="clear: both"></div>
 
 						@if(array_key_exists($value->id, $show_search_box))
 							</div>
@@ -124,7 +153,6 @@
 
 		</div>
 	</div>
-
 
 
 
@@ -247,6 +275,12 @@
 		window.location.replace(url_attributes+"page="+event['currentTarget']['innerText']);
 	});
 
+
+	$(document).ready(function(){
+
+	  $('[data-toggle="tooltip"]').tooltip();
+
+	});
 	
 
 </script>
