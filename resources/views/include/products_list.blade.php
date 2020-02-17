@@ -1,6 +1,6 @@
 @if( sizeof($products) > 0 )
 
-	<div style="text-align: center">
+	<div style="text-align: center;background:white;margin: 5px 0px 5px 0px;border-radius: 5px;">
 		{!! $products->links() !!}
 	</div>
 @endif

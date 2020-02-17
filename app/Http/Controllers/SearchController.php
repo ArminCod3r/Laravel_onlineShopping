@@ -42,6 +42,11 @@ class SearchController extends Controller
                                 ])
                                 ->firstOrFail();
 
+        $page_cats    = array();
+        $page_cats[1] = $cat1;
+        $page_cats[2] = $cat2;
+        $page_cats[3] = $cat3;
+
 
 
         $data         = $request->all();
@@ -185,6 +190,7 @@ class SearchController extends Controller
                                                 'linked_filters' => $linked_filters,
                                                 'selected_filters'=> $selected_filters,
                                                 'selected_names'  => $selected_names,
+                                                'page_cats'       => $page_cats,
                                               ]);
 
 

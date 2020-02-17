@@ -1,8 +1,6 @@
 @extends('site/layouts/siteLayout')
 
 @section('header')
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 	<style type="text/css">
 	
@@ -110,8 +108,6 @@
 											$color_code = explode(':', $value_2->name)[1];
 										?>
 
-										<a href="#" data-toggle="tooltip" data-placement="top" title="در دست ساخت">
-
 											@if($key_2 == $first_color)
 												<div style="padding: 0px 0px 50px 0px; float: right">
 												{{ $first_color = false }}
@@ -122,7 +118,9 @@
 											@endif
 													<span class="filter_color" style="background-color:#{{$color_code}}"></span>
 												</div>
-										</a>											
+
+												<input type="checkbox" value="{{$value->ename}}[]=68" name="checked_filters" id="checked_filters_68" style="display: none">
+											
 
 									@endif
 
@@ -145,6 +143,22 @@
 
 			<div class="col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
 
+				<div class="current_path">
+					<?php $url = url('/search').'/'; ?>
+					@foreach($page_cats as $key=>$value)
+						<span>
+							<a href="{{ $url = $url.$value->cat_ename.'/' }}" class="item">
+								{{ $value->cat_name }}
+							</a>
+
+							@if(sizeof($page_cats) != $key)
+								/
+							@endif
+							
+						</span>
+					@endforeach
+				</div>
+
 				@include('include/products_list', ['products'=>$products])
 
 			</div>
@@ -153,6 +167,7 @@
 
 		</div>
 	</div>
+
 
 
 
@@ -275,12 +290,6 @@
 		window.location.replace(url_attributes+"page="+event['currentTarget']['innerText']);
 	});
 
-
-	$(document).ready(function(){
-
-	  $('[data-toggle="tooltip"]').tooltip();
-
-	});
 	
 
 </script>

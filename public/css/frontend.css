@@ -2003,6 +2003,24 @@ background-color: #3490dc;
     display: inline-flex;
 }
 
+.current_path
+{
+    font-size:13px;
+}
+
+.current_path a
+{
+    font-size:13px; 
+    text-decoration: none;
+    color: #646464;
+}
+
+.current_path .item:hover
+{
+    font-size:13px;
+    font-weight: bold;  
+}
+
 
 
 
