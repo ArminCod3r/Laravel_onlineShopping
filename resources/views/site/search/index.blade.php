@@ -78,7 +78,7 @@
 
 						@if(array_key_exists($value->id, $show_search_box))
 							<div id="search_{{ $value->id }}">
-							<input class="search" placeholder="جست و جو" onclick="filter_search('{{ $value->id }}')" />
+							<input class="search" placeholder="جست و جو" onclick="filter_search('{{ $value->id }}')" id="search_filter_{{ $value->id }}" style="display:none" />
 						@endif
 
 						<div id="sub_filter_{{ $value->id }}" style="display: none">
@@ -297,20 +297,33 @@
 	// Collapsible filters
 	show_sub_filters = function(parent_filter_id)
 	{
-		var sub_filter  = document.getElementById("sub_filter_"+parent_filter_id);
+		var sub_filter   = document.getElementById("sub_filter_"+parent_filter_id);
+		var search_filter= document.getElementById("search_filter_"+parent_filter_id);
 
 
 		if (sub_filter.style.display === "none")
 		{
+			// Showing sub-filter
 		    sub_filter.style.display = "block";
+
+		    // Changing the icon
 		    $("#expand_icon_65").removeClass("fa-angle-down");
 		    $("#expand_icon_65").addClass("fa-angle-up");
+
+			// Showing search-filter
+		    search_filter.style.display = "block";
 		}
 		else
 		{
+			// Hiding sub-filter
 		    sub_filter.style.display = "none";
+
+		    // Changing the icon
 		    $("#expand_icon_65").removeClass("fa-angle-up");
 		    $("#expand_icon_65").addClass("fa-angle-down");
+
+			// Hiding search-filter
+		    search_filter.style.display = "none";
 		}
 	}
 	
