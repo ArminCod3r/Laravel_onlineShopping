@@ -78,7 +78,7 @@
 
 						@if(array_key_exists($value->id, $show_search_box))
 							<div id="search_{{ $value->id }}">
-							<input class="search" placeholder="جست و جو" onclick="filter_search('{{ $value->id }}')" id="search_filter_{{ $value->id }}" style="display:none" />
+							<input class="search form-control" placeholder="جست و جو" onclick="filter_search('{{ $value->id }}')" id="search_filter_{{ $value->id }}" style="display:none" />
 						@endif
 
 						<div id="sub_filter_{{ $value->id }}" style="display: none">
