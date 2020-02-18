@@ -53,7 +53,7 @@
                 horizontal: {
                     dimension: 'width',
                     direction: 'left',
-                    directionStyle: 'left',
+                    directionStyle: 'right',
                     coordinate: 'x'
                 },
                 vertical: {
@@ -344,7 +344,7 @@
     Plugin.prototype.handleMove = function(e) {
         e.preventDefault();
         var pos = this.getRelativePosition(e);
-        var setPos = (this.orientation === 'vertical') ? (this.maxHandlePos - (pos - this.grabPos)) : (pos - this.grabPos);
+        var setPos = (this.orientation === 'vertical') ? (pos - this.grabPos) : (this.maxHandlePos - (pos - this.grabPos));
         this.setPosition(setPos);
     };
 
