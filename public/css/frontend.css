@@ -2046,29 +2046,29 @@ background-color: #3490dc;
     float       : left;
 }
 
-.commenting .rangeslider
+.scoring .rangeslider
 {
     background : url("../images/add-comment.png");
 }
 
-.commenting .rangeslider--horizontal
+.scoring .rangeslider--horizontal
 {
     height: 3px;
     width: 300px;
 }
 
-.commenting .rangeslider__fill
+.scoring .rangeslider__fill
 {
     background : url("../images/add-comment-active.png");
     position: absolute;
 }
 
-.commenting .rangeslider--horizontal .rangeslider__handle
+.scoring .rangeslider--horizontal .rangeslider__handle
 {
     top: -10px;
 }
 
-.commenting .rangeslider__handle
+.scoring .rangeslider__handle
 {
     width: 20px;
     height: 20px;

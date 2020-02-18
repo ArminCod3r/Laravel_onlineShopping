@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-	<div class="commenting" style="margin-bottom: 30px">
+	<div class="scoring" style="margin-bottom: 30px">
 		<div class="row" style="width: 95% ; margin: auto ; background-color: white ; border-radius: 5px">
 			<div class="col-sm-5" style="text-align: center">
 				<div>
