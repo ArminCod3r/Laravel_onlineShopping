@@ -170,5 +170,7 @@ Route::middleware(['throttle:60,1'])->group(function(){
 	});*/
 	Route::get('/search/{cat1?}/{cat2?}/{cat3?}/{cat4?}', 'SearchController@search');
 
+	// Products' comments
+	Route::resource('comment','CommentController');
 
 });
