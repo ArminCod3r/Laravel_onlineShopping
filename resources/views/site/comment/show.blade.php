@@ -29,41 +29,43 @@
 
 					<div style="margin-top: 30px">
 						<label>کیفیت ساخت</label>
-						<input type="range" min="0" max="5" step="1" name="score[1]" data-rangeslider id="range_1" />
+						<input type="range" min="0" max="5" step="1" name="score[1]" data-rangeslider id="range_1" value="<?php if(sizeof($score)>0) echo $score[0]->score_value; else echo 3;?>" />
 	                    <p id="output_range_1"></p>
 					</div>
 
 					<div style="margin-top: 20px">
 						<label>ارزش خرید نسبت به قیمت</label>
-						<input type="range" min="0" max="5" step="1" name="score[2]" data-rangeslider id="range_2" />
+						<input type="range" min="0" max="5" step="1" name="score[2]" data-rangeslider id="range_2" value="<?php if(sizeof($score)>0) echo $score[1]->score_value; else echo 3;?>"/>
 	                    <p id="output_range_2"></p>
 					</div>
 
 					<div style="margin-top: 20px">
 						<label>نوآوری</label>
-						<input type="range" min="0" max="5" step="1" name="score[3]" data-rangeslider id="range_3" />
+						<input type="range" min="0" max="5" step="1" name="score[3]" data-rangeslider id="range_3" value="<?php if(sizeof($score)>0) echo $score[2]->score_value; else echo 3;?>"/>
 	                    <p id="output_range_3"></p>
 					</div>
 
 					<div style="margin-top: 20px">
 						<label>امکانات و قابلیت ها</label>
-						<input type="range" min="0" max="5" step="1" name="score[4]" data-rangeslider id="range_4" />
+						<input type="range" min="0" max="5" step="1" name="score[4]" data-rangeslider id="range_4" value="<?php if(sizeof($score)>0) echo $score[3]->score_value; else echo 3;?>"/>
 	                    <p id="output_range_4"></p>
 					</div>
 
 					<div style="margin-top: 20px">
 						<label>سهولت استفاده</label>
-						<input type="range" min="0" max="5" step="1" name="score[5]" data-rangeslider id="range_5" />
+						<input type="range" min="0" max="5" step="1" name="score[5]" data-rangeslider id="range_5" value="<?php if(sizeof($score)>0) echo $score[4]->score_value; else echo 3;?>"/>
 	                    <p id="output_range_5"></p>
 					</div>
 
 					<div style="margin-top: 20px">
 						<label>طراحی و ظاهر</label>
-						<input type="range" min="0" max="5" step="1" name="score[6]" data-rangeslider id="range_6" />
+						<input type="range" min="0" max="5" step="1" name="score[6]" data-rangeslider id="range_6" value="<?php if(sizeof($score)>0) echo $score[5]->score_value; else echo 3;?>"/>
 	                    <p id="output_range_6"></p>
 					</div>
 
-					<input type="submit" value="ثبت" class="btn btn-primary" style="margin-bottom:30px ; width: 20% ; float:left">
+					@if(sizeof($score) == 0)
+						<input type="submit" value="ثبت" class="btn btn-primary" style="margin-bottom:30px ; width: 20% ; float:left">
+					@endif
 
 				</form>
 

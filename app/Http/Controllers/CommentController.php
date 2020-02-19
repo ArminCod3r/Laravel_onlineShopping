@@ -72,7 +72,7 @@ class CommentController extends Controller
 
                     $score->save();
                 }
-                return 'Done';
+                return $this->show($id);
             }
             else
                 return redirect()->back();
@@ -91,8 +91,12 @@ class CommentController extends Controller
     public function show($id)
     {
         $product = Product::with("ProductImage")->findOrFail($id);
+        $score   = ProductScore::where(['user_id'=> Auth::user()->id, 'product_id'=>$id])->get();
 
-        return view("site.comment.show")->with('product', $product);
+        return view("site.comment.show")->with([
+                                                'product' => $product,
+                                                'score'   => $score
+                                              ]);
     }
 
     /**
