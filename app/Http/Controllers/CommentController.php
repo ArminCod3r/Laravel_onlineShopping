@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Product;
 use App\ProductScore;
+use App\ProductComment;
 use App\Category;
 use View;
 use Auth;
@@ -84,7 +85,56 @@ class CommentController extends Controller
 
     public function store_comment(Request $request, $id)
     {
-        return $request->all();
+        $product      = Product::findOrFail($id);
+        $title        = $request->get('title');
+        $pros         = $request->get('pros');
+        $cons         = $request->get('cons');
+        $comment_text = $request->get('comment_text');
+
+        $pros_custom_string = "";
+        $cons_custom_string = "";
+
+        // Duplication checking
+        $is_duplicate = ProductComment::where(['user_id'=> Auth::user()->id, 'product_id'=>$id])->get();
+
+        if( sizeof($is_duplicate) == 0 ) 
+        {
+            // Verifications
+            if( is_array($pros) and is_array($cons) )
+            {
+                // Makeing custom string of pros/cons 
+                foreach ($pros as $key => $value)
+                {
+                    $pros_custom_string = $value."-::-".$pros_custom_string;
+                }
+
+                foreach ($cons as $key => $value)
+                {
+                    $cons_custom_string = $value."-::-".$cons_custom_string;
+                }
+
+                // Storing into the database
+                $comment = new ProductComment();
+
+                $comment->product_id   = $id;
+                $comment->user_id      = Auth::user()->id;
+                $comment->subject      = $title;
+                $comment->pros         = $pros_custom_string;
+                $comment->cons         = $cons_custom_string;
+                $comment->comment_text = $comment_text;
+
+                if($comment->save())
+                    return 'Done';
+
+                else
+                    return redirect()->back();
+            }
+            else
+                return redirect()->back();
+        }
+
+        else
+            return redirect()->back();
     }
 
     /**
