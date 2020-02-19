@@ -103,7 +103,20 @@
 				</div>
 			</div>
 
-			<div class="col-sm-6"></div>
+			<div class="col-sm-6">
+
+				<div class="form-group cons">
+					<p for="cons" style="color: red">نقاط ضعف</p>
+		  			<input type="text" name="cons[1]" id="cons" class="form-control header" value=""><br>
+		  			<span class="fa fa-plus-circle" onclick="add_cons()"></span>
+		  			<span class="fa fa-minus-circle" onclick="remove_cons()"></span>
+
+		  			<!-- User's commented 'cons' -->
+		  			<div id="cons_area">
+
+		  			</div>
+				</div>
+			</div>
 		</div>
 
 	</div>
@@ -148,7 +161,7 @@
     {
     	if(count > 2)
     		count--;
-    	
+
     	$("#pros_"+count).remove();
     }
 

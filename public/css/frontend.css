@@ -2100,14 +2100,19 @@ background-color: #3490dc;
     margin : auto;
 }
 
-.commenting .pros_cons .pros .header
+.commenting .pros_cons .pros .header, .commenting .pros_cons .cons .header
 {
     width : 80%;
     float : right;
     margin-bottom: 10px;
 }
 
-.commenting .pros_cons .pros span
+.commenting .pros_cons .pros p, .commenting .pros_cons .cons p
+{
+    font-weight: bold;
+}
+
+.commenting .pros_cons .pros span, .commenting .pros_cons .cons span
 {
     float     : right;
     font-size : 20px;
