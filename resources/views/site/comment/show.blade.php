@@ -75,7 +75,9 @@
 
 	<div class="commenting" <?php if(sizeof($score)==0) echo "style='background-color:#fff ; opacity:0.5 ; cursor:not-allowed'"; ?> >
 
-		<form>
+		<form action="{{ action('CommentController@store_comment', $product->id) }}" method="POST">
+
+			{{ csrf_field() }}
 		
 			<h5> دیگران را با نوشتن نقد و بررسی و نظرات خود برای انتخاب این محصول راهنمایی کنید </h5>	
 
@@ -127,9 +129,13 @@
 				<div class="col-sm-12">
 					<div class="form-group">
 						<p for="">متن نقد و بررسی شما (اجباری)</p>
-						<textarea class="form-control"></textarea>
+						<textarea class="form-control" name="comment_text" id="comment_text"></textarea>
 					</div>
 				</div>
+			</div>
+
+			<div style="text-align: left">
+				<input type="submit" value="ثبت نظر" class="btn btn-primary comment_submit_btn">
 			</div>
 		
 		</form>

@@ -82,6 +82,11 @@ class CommentController extends Controller
             return redirect()->back();
     }
 
+    public function store_comment(Request $request, $id)
+    {
+        return $request->all();
+    }
+
     /**
      * Display the specified resource.
      *

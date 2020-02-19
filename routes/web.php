@@ -172,7 +172,8 @@ Route::middleware(['throttle:60,1'])->group(function(){
 
 	// Products' comments
 	Route::middleware('auth')->group(function(){
-		Route::post('comment/store_score/{product_id}', 'CommentController@store_score')->name('comment.store_score');
+		Route::post('comment/store_score/{product_id}'  , 'CommentController@store_score')->name('comment.store_score');
+		Route::post('comment/store_comment/{product_id}', 'CommentController@store_comment')->name('comment.store_comment');
 		Route::resource('comment','CommentController');
 	});
 
