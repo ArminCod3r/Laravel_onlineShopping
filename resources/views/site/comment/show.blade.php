@@ -70,6 +70,43 @@
 			</div>
 		</div>
 	</div>
+
+	<div class="commenting">
+		
+		<h5> دیگران را با نوشتن نقد و بررسی و نظرات خود برای انتخاب این محصول راهنمایی کنید </h5>	
+
+		<div class="row title">
+			<div class="col-sm-6">
+
+				<div class="form-group">
+					<label for="title">عنوان نقد و بررسی (اجباری)</label>
+		  			<input type="text" name="title" id="title" class="form-control" value=""><br>
+				</div>
+			</div>
+
+			<div class="col-sm-6"></div>
+		</div>
+
+		<div class="row pros_cons">
+			<div class="col-sm-6">
+
+				<div class="form-group pros">
+					<p for="pros" style="color: green">نقاط قوت</p>
+		  			<input type="text" name="pros[1]" id="pros" class="form-control header" value=""><br>
+		  			<span class="fa fa-plus-circle" onclick="add_pros()"></span>
+		  			<span class="fa fa-minus-circle"></span>
+
+		  			<!-- User's commented 'pros' -->
+		  			<div id="pros_area">
+
+		  			</div>
+				</div>
+			</div>
+
+			<div class="col-sm-6"></div>
+		</div>
+
+	</div>
 @endsection
 
 @section('footer')
@@ -97,6 +134,16 @@
 
 
     });
+
+    count = 2;
+    add_pros = function()
+    {
+    	var custom_pros='<input type="text" id="pros_'+count+'" name="pros['+count+']" class="form-control" style="width:80%;margin-top:10px" placeholder="'+count+'">';
+        count++;
+
+        $("#pros_area").append(custom_pros);
+    }
+
 </script>
 
 

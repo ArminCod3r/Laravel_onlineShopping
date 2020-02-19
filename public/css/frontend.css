@@ -2074,6 +2074,48 @@ background-color: #3490dc;
     height: 20px;
 }
 
+.commenting
+{
+    width : 95%;
+    margin: auto;
+    background-color: white;
+    border-radius: 5px;
+    margin-bottom: 30px;
+}
+
+.commenting h5
+{
+    padding: 20px 10px 20px 0px;
+}
+
+.commenting .title
+{
+    width  : 100%;
+    margin : auto; 
+}
+
+.commenting .pros_cons
+{
+    width  : 100%;
+    margin : auto;
+}
+
+.commenting .pros_cons .pros .header
+{
+    width : 80%;
+    float : right;
+    margin-bottom: 10px;
+}
+
+.commenting .pros_cons .pros span
+{
+    float     : right;
+    font-size : 20px;
+    color     : #a6a1a1;
+    margin    : -14px 4px 0px 0px;
+    cursor    : pointer;
+}
+
 
 
 
