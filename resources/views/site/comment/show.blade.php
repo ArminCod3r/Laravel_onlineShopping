@@ -174,6 +174,14 @@
         $("#cons_area").append(custom_cons);
     }
 
+    remove_cons = function()
+    {
+    	if(count_cons > 2)
+    		count_cons--;
+
+    	$("#cons_"+count_cons).remove();
+    }
+
 </script>
 
 
