@@ -94,7 +94,7 @@
 					<p for="pros" style="color: green">نقاط قوت</p>
 		  			<input type="text" name="pros[1]" id="pros" class="form-control header" value=""><br>
 		  			<span class="fa fa-plus-circle" onclick="add_pros()"></span>
-		  			<span class="fa fa-minus-circle"></span>
+		  			<span class="fa fa-minus-circle" onclick="remove_pros()"></span>
 
 		  			<!-- User's commented 'pros' -->
 		  			<div id="pros_area">
@@ -142,6 +142,14 @@
         count++;
 
         $("#pros_area").append(custom_pros);
+    }
+
+    remove_pros = function()
+    {
+    	if(count > 2)
+    		count--;
+    	
+    	$("#pros_"+count).remove();
     }
 
 </script>
