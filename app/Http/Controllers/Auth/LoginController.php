@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Category;
+use App\Category;
 use View;
 use DB;
 use \Illuminate\Http\Request;
@@ -47,7 +47,10 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
 
-        $categories = self::categoryTree();
+        //$categories = self::categoryTree();
+        $categories = Category::all();
+        $categories = json_decode($categories, true);
+
         View::share('categories', $categories);
     }
 
