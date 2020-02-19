@@ -171,7 +171,9 @@ Route::middleware(['throttle:60,1'])->group(function(){
 	Route::get('/search/{cat1?}/{cat2?}/{cat3?}/{cat4?}', 'SearchController@search');
 
 	// Products' comments
-	Route::post('comment/store_score/{product_id}', 'CommentController@store_score')->name('comment.store_score');;
-	Route::resource('comment','CommentController');
+	Route::middleware('auth')->group(function(){
+		Route::post('comment/store_score/{product_id}', 'CommentController@store_score')->name('comment.store_score');
+		Route::resource('comment','CommentController');
+	});
 
 });
