@@ -119,6 +119,16 @@
 			</div>
 		</div>
 
+		<div class="row comment_text">
+			<div class="col-sm-12">
+				<div class="form-group">
+					<p for="">متن نقد و بررسی شما (اجباری)</p>
+					<textarea class="form-control"></textarea>
+				</div>
+			</div>
+		</div>
+
+
 	</div>
 @endsection
 

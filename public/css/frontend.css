@@ -2121,6 +2121,19 @@ background-color: #3490dc;
     cursor    : pointer;
 }
 
+.comment_text p
+{
+    padding: 20px 18px 0px 0px;
+}
+
+.comment_text textarea
+{
+    resize : none;
+    width  : 88%;
+    height : 200px;
+    margin-right: 18px;
+}
+
 
 
 
