@@ -73,7 +73,7 @@
 		</div>
 	</div>
 
-	<div class="commenting">
+	<div class="commenting" <?php if(sizeof($score)==0) echo "style='background-color:#fff ; opacity:0.5 ; cursor:not-allowed'"; ?> >
 
 		<form>
 		
@@ -97,8 +97,8 @@
 					<div class="form-group pros">
 						<p for="pros" style="color: green">نقاط قوت</p>
 			  			<input type="text" name="pros[1]" id="pros" class="form-control header" value=""><br>
-			  			<span class="fa fa-plus-circle" onclick="add_pros()"></span>
-			  			<span class="fa fa-minus-circle" onclick="remove_pros()"></span>
+			  			<span class="fa fa-plus-circle" @if(sizeof($score)>0) onclick="add_pros()" @endif></span>
+			  			<span class="fa fa-minus-circle" @if(sizeof($score)>0) onclick="remove_pros()" @endif></span>
 
 			  			<!-- User's commented 'pros' -->
 			  			<div id="pros_area">
