@@ -165,6 +165,15 @@
     	$("#pros_"+count).remove();
     }
 
+    count_cons = 2;
+    add_cons = function()
+    {
+    	var custom_cons='<input type="text" id="cons_'+count_cons+'" name="cons['+count_cons+']" class="form-control" style="width:80%;margin-top:10px" placeholder="'+count_cons+'">';
+        count_cons++;
+
+        $("#cons_area").append(custom_cons);
+    }
+
 </script>
 
 
