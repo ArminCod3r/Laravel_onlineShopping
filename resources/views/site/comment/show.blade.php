@@ -231,15 +231,13 @@
 				
 			</div>
 
-			<div class="col-sm-6">
+			<div class="col-sm-6" style="border-right: 1px solid #eeeded">
 				<div>{{ $comment[0]->subject }}</div>
-
 
 				<div style="color:green ; margin-top: 20px">
 					<span class="fa fa-arrow-up"></span>
 					نقاط قوت
-				</div>
-				
+				</div>				
 
 				@if(sizeof($comment)>0)
 					<?php
@@ -257,8 +255,7 @@
 				<div style="color:red ; margin-top: 20px">
 					<span class="fa fa-arrow-down"></span>
 					نقاط ضعف
-				</div>
-				
+				</div>				
 
 				@if(sizeof($comment)>0)
 					<?php
