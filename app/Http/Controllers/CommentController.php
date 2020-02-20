@@ -9,6 +9,7 @@ use App\ProductComment;
 use App\Category;
 use View;
 use Auth;
+use Validator;
 
 class CommentController extends Controller
 {
@@ -85,6 +86,17 @@ class CommentController extends Controller
 
     public function store_comment(Request $request, $id)
     {
+        // Validator for the subject
+        $rules = [ 'title'    => 'required' ];
+        $msg   = [ 'required' => ':attribute الزامی است' ];
+        $field = [ 'title'    => 'عنوان نقد و بررسی ' ];
+
+        $validator = Validator::make($request->all(), $rules, $msg, $field);
+
+        if($validator->fails())
+            return $validator->validate();
+
+
         $product      = Product::findOrFail($id);
         $title        = $request->get('title');
         $pros         = $request->get('pros');

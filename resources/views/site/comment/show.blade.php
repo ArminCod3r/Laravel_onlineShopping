@@ -90,6 +90,10 @@
 					<div class="form-group">
 						<label for="title">عنوان نقد و بررسی (اجباری)</label>
 			  			<input type="text" name="title" id="title" class="form-control" value="<?php if(sizeof($comment)>0) echo $comment[0]->subject; ?>"><br>
+
+			  			@if($errors->has('title'))
+			  				<p style="color: red; margin-top: -15px"> {{ $errors->first('title') }} </p>
+			  			@endif
 					</div>
 				</div>
 
