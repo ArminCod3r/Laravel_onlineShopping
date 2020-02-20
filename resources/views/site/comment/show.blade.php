@@ -201,6 +201,44 @@
 		</form>
 
 	</div>
+
+	<!-- Sum up -->
+	@if( sizeof($comment)>0 and sizeof($score)>0 )
+		<div class="row sumup">
+
+			<div class="col-sm-6">
+
+				<?php $score_names = ['ارزش خرید نسبت به قیمت', 'کیفیت ساخت', 'امکانات و قابلیت ها', 'شهولت استفاده ', 'کارایی و ظاهر', 'نوآوری']?>
+
+				<table>
+					@foreach($score_names as $key=>$value)
+						<tr>
+							<td>{{ $value }}</td>
+							<td>
+								@for($i=1 ; $i<=5 ; $i++)
+
+									@if($i <= $score[$key]->score_value)
+										<span class="bar done"></span>
+									@else
+										<span class="bar"></span>
+									@endif
+
+								@endfor
+							</td>
+						</tr>
+					@endforeach					
+				</table>
+				
+			</div>
+
+			<div class="col-sm-6">
+			</div>
+
+		</div>
+	@endif
+	
+
+
 @endsection
 
 @section('footer')
