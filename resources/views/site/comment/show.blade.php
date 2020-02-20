@@ -4,6 +4,8 @@
 <link rel="stylesheet" type="text/css" href="{{ url('css/rangeslider.css') }}">
 @endsection
 
+<?php $count_pros = 1;?>
+
 @section('content')
 	<div class="scoring" style="margin-bottom: 30px">
 		<div class="row" style="width: 95% ; margin: auto ; background-color: white ; border-radius: 5px">
@@ -86,26 +88,52 @@
 
 					<div class="form-group">
 						<label for="title">عنوان نقد و بررسی (اجباری)</label>
-			  			<input type="text" name="title" id="title" class="form-control" value=""><br>
+			  			<input type="text" name="title" id="title" class="form-control" value="<?php if(sizeof($comment)>0) echo $comment[0]->subject; ?>"><br>
 					</div>
 				</div>
 
 				<div class="col-sm-6"></div>
 			</div>
 
+			<!-- Pros and Cons -->
 			<div class="row pros_cons">
 				<div class="col-sm-6">
 
+					<!-- Pros -->
 					<div class="form-group pros">
 						<p for="pros" style="color: green">نقاط قوت</p>
-			  			<input type="text" name="pros[1]" id="pros" class="form-control header" value=""><br>
-			  			<span class="fa fa-plus-circle" @if(sizeof($score)>0) onclick="add_pros()" @endif></span>
-			  			<span class="fa fa-minus-circle" @if(sizeof($score)>0) onclick="remove_pros()" @endif></span>
+
+						@if(sizeof($comment)>0)
+							<?php
+								$pros_arr = explode("-::-", $comment[0]->pros);								
+								$pros_arr = array_filter($pros_arr);  // Remove an empty element
+							?>
+							@foreach($pros_arr as $key=>$item)
+
+								@if($key==0)
+									<input type="text" name="pros[{{$count_pros}}]" id="pros_{{$count_pros}}" class="form-control header" value="{{$item}}"><br>
+									<span class="fa fa-plus-circle" onclick="add_pros()"></span>
+			  						<span class="fa fa-minus-circle" onclick="remove_pros()"></span>
+
+			  						<?php $count_pros++;?>
+
+								@else
+									<input type="text" id="pros_{{$count_pros}}" name="pros[{{$count_pros}}]" class="form-control" style="width:80%;margin-top:10px" value="{{$item}}">
+									<?php $count_pros++;?>
+								@endif
+			  					
+			  				@endforeach
+
+						@else
+							<input type="text" name="pros[1]" id="pros" class="form-control header" value=""><br>
+							<span class="fa fa-plus-circle" @if(sizeof($score)>0) onclick="add_pros()" @endif></span>
+			  				<span class="fa fa-minus-circle" @if(sizeof($score)>0) onclick="remove_pros()" @endif></span>
+						@endif
 
 			  			<!-- User's commented 'pros' -->
 			  			<div id="pros_area">
-
 			  			</div>
+			  			
 					</div>
 				</div>
 
@@ -129,7 +157,7 @@
 				<div class="col-sm-12">
 					<div class="form-group">
 						<p for="">متن نقد و بررسی شما (اجباری)</p>
-						<textarea class="form-control" name="comment_text" id="comment_text"></textarea>
+						<textarea class="form-control" name="comment_text" id="comment_text"><?php if(sizeof($comment)>0) echo $comment[0]->comment_text; ?></textarea>
 					</div>
 				</div>
 			</div>
@@ -169,21 +197,26 @@
 
     });
 
-    count = 2;
+    count_pros = <?php echo $count_pros; ?>;
     add_pros = function()
     {
-    	var custom_pros='<input type="text" id="pros_'+count+'" name="pros['+count+']" class="form-control" style="width:80%;margin-top:10px" placeholder="'+count+'">';
-        count++;
+    	var custom_pros='<input type="text" id="pros_'+count_pros+'" name="pros['+count_pros+']" class="form-control" style="width:80%;margin-top:10px" placeholder="'+count_pros+'">';
+        count_pros++;
 
         $("#pros_area").append(custom_pros);
     }
 
     remove_pros = function()
     {
-    	if(count > 2)
-    		count--;
+    	count_pros--;
 
-    	$("#pros_"+count).remove();
+    	// Removing the created input
+    	if(count_pros > 1)
+    		$("#pros_"+count_pros).remove();
+		
+		// Empty the value of the first input
+		if(count_pros == 1)
+			$("#pros_"+count_pros).val('');
     }
 
     count_cons = 2;
