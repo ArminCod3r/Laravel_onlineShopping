@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="{{ url('css/flipclock.css') }}">
   <script src="{{ url('js/flipclock.js') }}"></script>
 
+  <meta name="csrf-token" content="{{ csrf_token() }}">
 
 @endsection
 
@@ -180,7 +181,7 @@
 	    </li>
 
 	    <li role="presentation">
-		    <a href="#comments" aria-controls="comments" role="tab" data-toggle="tab">
+		    <a href="#comments" aria-controls="comments" role="tab" data-toggle="tab" onclick="show_comments()">
 			    <i class="fa fa-comment fa-2x"></i>
 			    نظرات کاربران
 		    </a>
@@ -360,6 +361,35 @@
 		    document.getElementById('color_session').value = "color_"+$first_color;
 
 		}, false);
+
+
+		// Fetching comments using ajax
+		<?php $url= url('comment/ajax_fetch_comments'); ?>
+		show_comments = function()
+		{
+			$.ajaxSetup(
+			    			{
+			    				'headers':
+			    				{
+			    					'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
+			    				}
+			    			}
+    					);
+    		
+    		$.ajax(
+		    		{
+
+		    		'url': '{{ $url }}',
+		    		'type': 'post',
+		    		'data': 'product_id=11',
+		    		success:function(data)
+		    		{
+		    			alert(data);
+		    		}
+
+		    		}
+			  );
+		}
 
 
     </script>

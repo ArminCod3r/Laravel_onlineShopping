@@ -174,6 +174,7 @@ Route::middleware(['throttle:60,1'])->group(function(){
 	Route::middleware('auth')->group(function(){
 		Route::post('comment/store_score/{product_id}'  , 'CommentController@store_score')->name('comment.store_score');
 		Route::GET('comment/store_comment/{product_id}', 'CommentController@store_comment')->name('comment.store_comment');
+		Route::post('comment/ajax_fetch_comments/', 'CommentController@ajax_fetch_comments');
 		Route::resource('comment','CommentController');
 	});
 

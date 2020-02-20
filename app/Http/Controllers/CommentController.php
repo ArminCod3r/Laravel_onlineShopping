@@ -201,4 +201,9 @@ class CommentController extends Controller
     {
         //
     }
+
+    public function ajax_fetch_comments(Request $request)
+    {
+        return 'hi';
+    }
 }
