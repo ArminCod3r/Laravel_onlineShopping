@@ -5,6 +5,7 @@
 @endsection
 
 <?php $count_pros = 1;?>
+<?php $count_cons = 1;?>
 
 @section('content')
 	<div class="scoring" style="margin-bottom: 30px">
@@ -97,9 +98,9 @@
 
 			<!-- Pros and Cons -->
 			<div class="row pros_cons">
-				<div class="col-sm-6">
 
-					<!-- Pros -->
+				<!-- Pros -->
+				<div class="col-sm-6">
 					<div class="form-group pros">
 						<p for="pros" style="color: green">نقاط قوت</p>
 
@@ -133,17 +134,39 @@
 			  			<!-- User's commented 'pros' -->
 			  			<div id="pros_area">
 			  			</div>
-			  			
+
 					</div>
 				</div>
 
+				<!-- Cons -->
 				<div class="col-sm-6">
 
 					<div class="form-group cons">
 						<p for="cons" style="color: red">نقاط ضعف</p>
-			  			<input type="text" name="cons[1]" id="cons" class="form-control header" value=""><br>
-			  			<span class="fa fa-plus-circle" onclick="add_cons()"></span>
-			  			<span class="fa fa-minus-circle" onclick="remove_cons()"></span>
+
+
+						@if(sizeof($comment)>0)
+							<?php
+								$cons_arr = explode("-::-", $comment[0]->cons);								
+								$cons_arr = array_filter($cons_arr);  // Remove an empty element
+							?>
+							@foreach($cons_arr as $key=>$item)
+
+								@if($key==0)
+									<input type="text" name="cons[{{$count_cons}}]" id="cons_{{$count_cons}}" class="form-control header" value="{{$item}}"><br>
+									<span class="fa fa-plus-circle" onclick="add_cons()"></span>
+			  						<span class="fa fa-minus-circle" onclick="remove_cons()"></span>
+
+			  						<?php $count_cons++;?>
+
+								@else
+									<input type="text" id="cons_{{$count_cons}}" name="cons[{{$count_cons}}]" class="form-control" style="width:80%;margin-top:10px" value="{{$item}}">
+									<?php $count_cons++;?>
+								@endif
+			  					
+			  				@endforeach
+
+			  			@endif
 
 			  			<!-- User's commented 'cons' -->
 			  			<div id="cons_area">
@@ -219,21 +242,29 @@
 			$("#pros_"+count_pros).val('');
     }
 
-    count_cons = 2;
+    count_cons = <?php echo $count_cons; ?>;
     add_cons = function()
     {
+    	console.log(count_cons);
     	var custom_cons='<input type="text" id="cons_'+count_cons+'" name="cons['+count_cons+']" class="form-control" style="width:80%;margin-top:10px" placeholder="'+count_cons+'">';
         count_cons++;
 
         $("#cons_area").append(custom_cons);
+    	console.log(count_cons);
     }
 
     remove_cons = function()
     {
-    	if(count_cons > 2)
-    		count_cons--;
+    	count_cons--;
+    	console.log(count_cons);
 
-    	$("#cons_"+count_cons).remove();
+    	// Removing the created input
+    	if(count_cons > 1)
+    		$("#cons_"+count_cons).remove();
+		
+		// Empty the value of the first input
+		if(count_cons == 1)
+			$("#cons_"+count_cons).val('');
     }
 
 </script>
