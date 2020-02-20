@@ -78,7 +78,7 @@
 
 	<div class="commenting" <?php if(sizeof($score)==0) echo "style='background-color:#fff ; opacity:0.5 ; cursor:not-allowed'"; ?> >
 
-		<form action="{{ action('CommentController@store_comment', $product->id) }}" method="POST">
+		<form action="{{ action('CommentController@store_comment', $product->id) }}" method="GET">
 
 			{{ csrf_field() }}
 		
