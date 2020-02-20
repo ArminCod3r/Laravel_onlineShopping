@@ -232,6 +232,45 @@
 			</div>
 
 			<div class="col-sm-6">
+				<div>{{ $comment[0]->subject }}</div>
+
+
+				<div style="color:green ; margin-top: 20px">
+					<span class="fa fa-arrow-up"></span>
+					نقاط قوت
+				</div>
+				
+
+				@if(sizeof($comment)>0)
+					<?php
+						$pros_arr = explode("-::-", $comment[0]->pros);								
+						$pros_arr = array_filter($pros_arr);  // Remove an empty element
+					?>
+
+					@foreach($pros_arr as $key=>$item)
+						<div style="margin-right: 15px"> {{$item}} </div>	  					
+	  				@endforeach
+				@endif
+
+
+
+				<div style="color:red ; margin-top: 20px">
+					<span class="fa fa-arrow-down"></span>
+					نقاط ضعف
+				</div>
+				
+
+				@if(sizeof($comment)>0)
+					<?php
+						$cons_arr = explode("-::-", $comment[0]->cons);								
+						$cons_arr = array_filter($cons_arr);  // Remove an empty element
+					?>
+
+					@foreach($cons_arr as $key=>$item)
+						<div style="margin-right: 15px"> {{$item}} </div>	  					
+	  				@endforeach
+				@endif
+
 			</div>
 
 		</div>
