@@ -124,7 +124,7 @@ class CommentController extends Controller
                 $comment->comment_text = $comment_text;
 
                 if($comment->save())
-                    return 'Done';
+                    return $this->show($id);
 
                 else
                     return redirect()->back();
@@ -147,10 +147,12 @@ class CommentController extends Controller
     {
         $product = Product::with("ProductImage")->findOrFail($id);
         $score   = ProductScore::where(['user_id'=> Auth::user()->id, 'product_id'=>$id])->get();
+        $comment = ProductComment::where(['user_id'=> Auth::user()->id, 'product_id'=>$id])->get();
 
         return view("site.comment.show")->with([
                                                 'product' => $product,
-                                                'score'   => $score
+                                                'score'   => $score,
+                                                'comment' => $comment,
                                               ]);
     }
 
