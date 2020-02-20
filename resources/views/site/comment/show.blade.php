@@ -271,6 +271,10 @@
 	  				@endforeach
 				@endif
 
+				<div class="comment_text">
+					{{ $comment[0]->comment_text }}
+				</div>
+
 			</div>
 
 		</div>

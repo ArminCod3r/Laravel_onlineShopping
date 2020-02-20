@@ -2166,6 +2166,13 @@ background-color: #3490dc;
     background-color: #a1a6b5;
 }
 
+.sumup .comment_text
+{
+    margin-top   : 20px;
+    text-align   : justify;
+    padding-left : 50px;
+}
+
 
 
 
