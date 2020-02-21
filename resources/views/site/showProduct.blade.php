@@ -282,9 +282,7 @@
 	    	
 	    </div>
 
-	    <div role="tabpanel" class="tab-pane" id="comments">
-	    	
-	    </div>
+	    <div role="tabpanel" class="tab-pane" id="comments"></div>
 
 	    <div role="tabpanel" class="tab-pane" id="questions"> questions </div>
 	  </div>
@@ -370,28 +368,33 @@
 		<?php $url= url('comment/ajax_fetch_comments'); ?>
 		show_comments = function()
 		{
-			$.ajaxSetup(
-			    			{
-			    				'headers':
-			    				{
-			    					'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
-			    				}
-			    			}
-    					);
-    		
-    		$.ajax(
-		    		{
+			text = document.getElementById('comments').innerHTML;
 
-		    		'url': '{{ $url }}',
-		    		'type': 'post',
-		    		'data': 'product_id='+<?php echo $product->id; ?>,
-		    		success:function(data)
-		    		{
-		    			$("#comments").append(data);
-		    		}
+			if(!text)
+			{
+				$.ajaxSetup(
+				    			{
+				    				'headers':
+				    				{
+				    					'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
+				    				}
+				    			}
+	    					);
+	    		
+	    		$.ajax(
+			    		{
 
-		    		}
-			  );
+			    		'url': '{{ $url }}',
+			    		'type': 'post',
+			    		'data': 'product_id='+<?php echo $product->id; ?>,
+			    		success:function(data)
+			    		{
+			    			$("#comments").append(data);
+			    		}
+
+			    		}
+				  );
+    		}
 		}
 
 
