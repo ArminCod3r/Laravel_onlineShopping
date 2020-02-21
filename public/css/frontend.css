@@ -2175,6 +2175,23 @@ background-color: #3490dc;
     padding-left : 50px;
 }
 
+.comment_username
+{
+    width : 95%;
+    margin: auto;
+    background-color: white;
+    border-radius: 5px;
+    background-color: #f4f4f4;
+    box-shadow: 0 2px 3px rgba(0,0,0,.15);
+    padding: 12px;
+}
+
+.comment_username p
+{
+    margin-top: 0;
+    margin-bottom: 0rem;
+}
+
 
 
 

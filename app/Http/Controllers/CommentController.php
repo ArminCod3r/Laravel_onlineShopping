@@ -207,7 +207,7 @@ class CommentController extends Controller
         $product_id = $request->get('product_id');
 
         // 'group_by' the table by 'user_id' to loop over easier
-        $scores   = ProductScore::where('product_id', $product_id)->get()->groupBy('user_id');
+        $scores   = ProductScore::with('User')->where('product_id', $product_id)->get()->groupBy('user_id');
         $comments = ProductComment::where('product_id', $product_id)->get()->groupBy('user_id');
 
         return view("include.comments_list")->with(['comments'=> $comments, 'scores'=>$scores])->render();

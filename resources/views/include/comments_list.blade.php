@@ -8,6 +8,14 @@
 
 	@foreach($scores as $key=>$value)
 
+		<div class="comment_username">
+			@if($value[0]->user->name)
+				<p>{{$value[0]->user->name}}</p>
+			@else
+				<p> کاربر سایت </p>
+			@endif
+		</div>
+
 		<div class="row sumup">
 			<div class="col-sm-6">
 				<table>
