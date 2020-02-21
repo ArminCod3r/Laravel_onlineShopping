@@ -282,7 +282,10 @@
 	    	
 	    </div>
 
-	    <div role="tabpanel" class="tab-pane" id="comments"> comments </div>
+	    <div role="tabpanel" class="tab-pane" id="comments">
+	    	
+	    </div>
+
 	    <div role="tabpanel" class="tab-pane" id="questions"> questions </div>
 	  </div>
 
@@ -381,10 +384,10 @@
 
 		    		'url': '{{ $url }}',
 		    		'type': 'post',
-		    		'data': 'product_id=11',
+		    		'data': 'product_id='+<?php echo $product->id; ?>,
 		    		success:function(data)
 		    		{
-		    			alert(data);
+		    			$("#comments").append(data);
 		    		}
 
 		    		}
