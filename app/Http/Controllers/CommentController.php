@@ -204,6 +204,12 @@ class CommentController extends Controller
 
     public function ajax_fetch_comments(Request $request)
     {
-        return 'hi';
+        $product_id = $request->get('product_id');
+
+        // 'group_by' the table by 'user_id' to loop over easier
+        $scores   = ProductScore::where('product_id', $product_id)->get()->groupBy('user_id');
+        $comments = ProductComment::where('product_id', $product_id)->get()->groupBy('user_id');
+
+        return view("include.comments_list")->with(['comments'=> $comments, 'scores'=>$scores])->render();
     }
 }
