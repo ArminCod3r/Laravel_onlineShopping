@@ -1,8 +1,36 @@
 
 
-<div style="margin-top: 20px"></div>
+<?php
 
-<?php $score_names = ['ارزش خرید نسبت به قیمت', 'کیفیت ساخت', 'امکانات و قابلیت ها', 'سهولت استفاده ', 'کارایی و ظاهر', 'نوآوری']?>
+$score_names = ['ارزش خرید نسبت به قیمت', 'کیفیت ساخت', 'امکانات و قابلیت ها', 'سهولت استفاده ', 'کارایی و ظاهر', 'نوآوری'];
+
+?>
+
+<div class="sumup average_score">
+	<table>
+		@foreach($average as $key=>$value)
+			<tr>
+				<td>{{$score_names[$key-1]}}</td>
+				<td>{{$value}}</td>
+				<td>
+
+					@for($i=1 ; $i<=5 ; $i++)
+
+						@if($i <= $value)
+							<span class="bar done"></span>
+						@else
+							<span class="bar"></span>							
+						@endif
+
+					@endfor
+					
+				</td>
+			</tr>
+		@endforeach
+	</table>
+</div>
+
+<div style="margin-top: 20px"></div>
 
 @if( sizeof($comments)>0 and sizeof($scores)>0  )
 

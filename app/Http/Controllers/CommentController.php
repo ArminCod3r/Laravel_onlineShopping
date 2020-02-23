@@ -210,6 +210,33 @@ class CommentController extends Controller
         $scores   = ProductScore::with('User')->where('product_id', $product_id)->get()->groupBy('user_id');
         $comments = ProductComment::where('product_id', $product_id)->get()->groupBy('user_id');
 
-        return view("include.comments_list")->with(['comments'=> $comments, 'scores'=>$scores])->render();
+        // Average score
+        $avg = array();
+        $avg[1] = 0;
+        $avg[2] = 0;
+        $avg[3] = 0;
+        $avg[4] = 0;
+        $avg[5] = 0;
+        $avg[6] = 0;
+        $count  = 0;
+
+        $all_scores   = ProductScore::where('product_id', $product_id)->get();
+
+        foreach ($all_scores as $key => $value)
+        {
+            if(array_key_exists($value->score_id, $avg))
+            {
+                $avg[$value->score_id] = $value->score_value + $avg[$value->score_id];
+                $count++;
+            }
+        }
+
+        foreach ($avg as $key => $value)
+        {
+            if($value>0)
+                $avg[$key] = $value / ($count/6);
+        }
+
+        return view("include.comments_list")->with(['comments'=> $comments, 'scores'=>$scores, 'average'=>$avg])->render();
     }
 }
