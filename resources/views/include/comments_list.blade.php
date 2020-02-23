@@ -1,10 +1,11 @@
 
 
 <?php
-
 $score_names = ['ارزش خرید نسبت به قیمت', 'کیفیت ساخت', 'امکانات و قابلیت ها', 'سهولت استفاده ', 'کارایی و ظاهر', 'نوآوری'];
 
+$half_score = true;
 ?>
+
 
 <div class="sumup average_score">
 	<table>
@@ -19,10 +20,27 @@ $score_names = ['ارزش خرید نسبت به قیمت', 'کیفیت ساخت
 						@if($i <= $value)
 							<span class="bar done"></span>
 						@else
-							<span class="bar"></span>							
+
+							@if( is_float($value) and $half_score )
+								<?php
+
+									$float_to_string = strval($value);
+									$fraction = explode(".", $float_to_string)[1];
+									$half_score = false;
+								?>
+								@if($fraction == 5)
+									<span class="done_half"></span>
+									<span class="bar_half"></span>
+								@endif
+
+							@else
+								<span class="bar"></span>
+							@endif
+							
 						@endif
 
 					@endfor
+					<?php $half_score = true;?>
 					
 				</td>
 			</tr>
