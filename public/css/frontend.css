@@ -2212,6 +2212,26 @@ background-color: #3490dc;
     background-color: #8cca8c;
 }
 
+.done_1-4
+{
+    width: 10px;
+    background-color: #8cca8c;;
+    height:6px;
+    display:inline-flex;
+    position: relative;
+}
+.bar_3-4
+{
+    width: 31px;
+    background-color: #e6e6e6; 
+    height:6px;
+    display: inline-flex;
+    position:absolute;
+    margin: 0px !important;
+    position: relative;
+    right: -4px;
+}
+
 
 .bar_half
 {
@@ -2234,6 +2254,25 @@ background-color: #3490dc;
 }
 
 
+.done_3-4
+{
+    width: 31px;
+    background-color: #8cca8c;;
+    height:6px;
+    display:inline-flex;
+    position: relative;
+}
+.bar_1-4
+{
+    width: 10px;
+    background-color: #e6e6e6; 
+    height:6px;
+    display: inline-flex;
+    position:absolute;
+    margin: 0px !important;
+    position: relative;
+    right: -4px;
+}
 
 
 

@@ -28,10 +28,21 @@ $half_score = true;
 									$fraction = explode(".", $float_to_string)[1];
 									$half_score = false;
 								?>
+								@if($fraction < 5)
+									<span class="done_1-4"></span>
+									<span class="bar_3-4"></span>
+								@endif
+
 								@if($fraction == 5)
 									<span class="done_half"></span>
 									<span class="bar_half"></span>
 								@endif
+
+								@if($fraction > 5)
+									<span class="done_3-4"></span>
+									<span class="bar_1-4"></span>
+								@endif
+
 
 							@else
 								<span class="bar"></span>
