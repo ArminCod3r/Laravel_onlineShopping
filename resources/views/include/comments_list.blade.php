@@ -72,6 +72,18 @@ $round_number_loop = true;
 			</tr>
 		@endforeach
 	</table>
+
+	<div class="row" style="margin: auto">
+		<div class="col-sm-7"></div>
+
+		<div class="col-sm-5">
+			<h5>شما هم می توانید در مورد این کالا نظر بدهید</h5>
+			<p class="you_can_comment">
+				برای ثبت نظرات و نقد و بررسی  شما لازم است ابتدا وارد حساب کاربری خود شده. اگر این محصول را قبلا" از دیجکالا خریداری خرید کرده باشید نظر شما به عنوان مالک ثبت خواهد شد.
+			</p>
+		</div>
+
+	</div>
 </div>
 
 <div style="margin-top: 20px"></div>
