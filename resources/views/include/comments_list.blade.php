@@ -4,6 +4,7 @@
 $score_names = ['ارزش خرید نسبت به قیمت', 'کیفیت ساخت', 'امکانات و قابلیت ها', 'سهولت استفاده ', 'کارایی و ظاهر', 'نوآوری'];
 
 $half_score = true;
+$round_number_loop = true;
 ?>
 
 
@@ -12,15 +13,22 @@ $half_score = true;
 		@foreach($average as $key=>$value)
 			<tr>
 				<td>{{$score_names[$key-1]}}</td>
-				<td>{{$value}}</td>
 				<td>
 
 					@for($i=1 ; $i<=5 ; $i++)
 
 						@if($i <= $value)
-							<span class="bar done"></span>
+							@if($i != 5 )
+								<span class="bar done"></span>
+							@else
+								@if( $i == 5)
+									<span class="bar done" style="position: relative;">
+										<span class="average_in_bar_round">{{$value}}</span>
+									</span>
+									<?php $round_number_loop = false;?>
+								@endif
+							@endif
 						@else
-
 							@if( is_float($value) and $half_score )
 								<?php
 
@@ -35,7 +43,7 @@ $half_score = true;
 
 								@if($fraction == 5)
 									<span class="done_half"></span>
-									<span class="bar_half"></span>
+									<span class="bar_half"><span class="average_in_bar">{{$value}}</span></span>
 								@endif
 
 								@if($fraction > 5)
@@ -45,13 +53,20 @@ $half_score = true;
 
 
 							@else
-								<span class="bar"></span>
+								@if( is_int($value) and $round_number_loop)
+									<span class="bar" style="position: relative;"><span class="average_in_bar">{{$value}}</span></span>
+									<?php $round_number_loop = false;?>
+								@else
+									<span class="bar"></span>
+								@endif
+								
 							@endif
 							
 						@endif
 
 					@endfor
 					<?php $half_score = true;?>
+					<?php $round_number_loop = true;?>
 					
 				</td>
 			</tr>

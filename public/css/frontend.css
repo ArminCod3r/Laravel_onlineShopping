@@ -2274,6 +2274,21 @@ background-color: #3490dc;
     right: -4px;
 }
 
+.average_in_bar
+{
+    position  : absolute;
+    top       : -8px;
+    font-size : 12px;
+}
+
+.average_in_bar_round
+{
+    position  : absolute;
+    top       : -8px;
+    left      : 0px;
+    font-size : 12px;
+}
+
 
 
 
