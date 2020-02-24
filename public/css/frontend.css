@@ -2200,8 +2200,8 @@ background-color: #3490dc;
 
 .average_score .bar
 {
-    width       : 42px;
-    height      : 6px;
+    width       : 60px;
+    height      : 8px;
     display     : inline-block;
     margin-left : 1px;
     background-color: #e6e6e6;
@@ -2214,7 +2214,7 @@ background-color: #3490dc;
 
 .done_1-4
 {
-    width: 10px;
+    width: 15px;
     background-color: #8cca8c;;
     height:6px;
     display:inline-flex;
@@ -2222,7 +2222,7 @@ background-color: #3490dc;
 }
 .bar_3-4
 {
-    width: 31px;
+    width: 45px;
     background-color: #e6e6e6; 
     height:6px;
     display: inline-flex;
@@ -2235,7 +2235,7 @@ background-color: #3490dc;
 
 .bar_half
 {
-    width: 21px;
+    width: 30px;
     background-color: #e6e6e6; 
     height:6px;
     display: inline-flex;
@@ -2246,7 +2246,7 @@ background-color: #3490dc;
 }
 .done_half
 {
-    width: 21px;
+    width: 30px;
     background-color: #8cca8c;;
     height:6px;
     display:inline-flex;
@@ -2256,7 +2256,7 @@ background-color: #3490dc;
 
 .done_3-4
 {
-    width: 31px;
+    width: 45px;
     background-color: #8cca8c;;
     height:6px;
     display:inline-flex;
@@ -2264,7 +2264,7 @@ background-color: #3490dc;
 }
 .bar_1-4
 {
-    width: 10px;
+    width: 15px;
     background-color: #e6e6e6; 
     height:6px;
     display: inline-flex;
@@ -2277,14 +2277,14 @@ background-color: #3490dc;
 .average_in_bar
 {
     position  : absolute;
-    top       : -8px;
+    top       : -6px;
     font-size : 12px;
 }
 
 .average_in_bar_round
 {
     position  : absolute;
-    top       : -8px;
+    top       : -6px;
     left      : 0px;
     font-size : 12px;
 }
