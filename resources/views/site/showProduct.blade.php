@@ -68,13 +68,13 @@
 								why? value is caluclated using php and changing value is 
 									 possible.
 							-->
-							<div class="activate_stars" style="width: 70%">	
+							<div class="activate_stars" style="width: {{$percent_score}}%">	
 							</div>	
 
 						</div>
 					</div>
 
-					<p class="vote"> از 10 رای </p>
+					<p class="vote"> از {{$scores_count}} رای </p>
 				</div>
 
 		    </div>

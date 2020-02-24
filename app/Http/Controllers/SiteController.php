@@ -11,6 +11,7 @@ use App\Review;
 use App\FeatureAssign;
 use App\Category;
 use App\Feature;
+use App\ProductScore;
 use Auth;
 
 use App\Lib\CheckColorProduct;
@@ -104,6 +105,15 @@ class SiteController extends Controller
             }
         }
 
+        // Count of the scores
+        $scores_count = count(ProductScore::with('User')->where('product_id', $product->id)->get()->groupBy('user_id'));
+
+        // Score average
+        $all_scores   = ProductScore::where('product_id', $product->id)->pluck('score_value')->toArray();
+        $avg_scores   = array_sum($all_scores) / count($all_scores);
+        $avg_scores   = (int)number_format((float)$avg_scores, 2, '.', ''); // 4483540: Show a number to two decimal places
+        $percent_score= ($avg_scores*100)/5;
+
 
         return view('site.showProduct')->with([
                                                'product'  => $product,
@@ -111,6 +121,8 @@ class SiteController extends Controller
                                                'features' => $features,
                                                'assigned_features_key' => $assigned_features_key,
                                                'categories'      => $categories,
+                                               'scores_count'    => $scores_count,
+                                               'percent_score'   => $percent_score,
                                               ]);
     }
 
