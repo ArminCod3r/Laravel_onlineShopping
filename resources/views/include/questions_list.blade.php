@@ -4,7 +4,8 @@
 
 	<div class="questions">
 
-		<form>
+		<form action="{{ action('QuestionController@store') }}" onsubmit="question_submit() ; return false;" method="POST" id="question_form">
+			{{ csrf_field() }}
 
 			<div class="row">
 
@@ -12,6 +13,13 @@
 					<div class="form-group">
 						<p for="text" class="title">متن پرسش</p>
 						<textarea class="form-control" name="question_text" id="question_text"></textarea>
+
+						<div style="margin-top: 10px">
+							<span style="color: red;" id="question_text_error" class="question_text_error">
+								{{ $errors->first('question_text') }}
+							</span>
+						</div>
+
 					</div>
 				</div>
 
@@ -29,3 +37,41 @@
 	</div>
 
 </div>
+
+<script type="text/javascript">
+	
+	question_submit = function()
+	{
+		var form_data = $("#question_form").serialize();
+		console.log(form_data);
+
+		$.ajaxSetup(
+		    			{
+		    				'headers':
+		    				{
+		    					'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
+		    				}
+		    			}
+					);
+		
+		$.ajax(
+	    		{
+
+	    		'url': $("#question_form").attr('action'),
+	    		'type': 'post',
+	    		'data': 'form_data='+form_data,
+	    		success:function(data)
+	    		{
+	    			var data = Object.entries(data);
+
+	    			data.forEach(([key, value]) => {
+					  $("#"+key+"_error").html(value);
+					});
+
+	    			console.log(data);
+	    		}
+
+	    		}
+		  );
+	}
+</script>

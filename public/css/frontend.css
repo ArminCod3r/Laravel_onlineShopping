@@ -2332,6 +2332,11 @@ background-color: #3490dc;
     width : 100%
 }
 
+.questions .question_text_error
+{
+    padding-right: 30px;
+}
+
 
 
 

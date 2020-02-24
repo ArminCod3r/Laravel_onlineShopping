@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Validator;
 
 class QuestionController extends Controller
 {
@@ -34,7 +35,20 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validator for the 'question_text'
+        $question_text = $request->get('question_text');
+
+        $rules = [ 'question_text' => 'required' ];
+        $msg   = [ 'required'      => ':attribute الزامی است' ];
+        $field = [ 'question_text' => 'متن پرسش' ];
+
+        $validator = Validator::make($request->all(), $rules, $msg, $field);
+
+        if($validator->fails())
+            return $validator->messages()->getMessages();
+        
+        else
+            return 'no error';
     }
 
     /**
