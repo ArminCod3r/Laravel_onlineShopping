@@ -237,6 +237,12 @@ class CommentController extends Controller
                 $avg[$key] = $value / ($count/6);
         }
 
-        return view("include.comments_list")->with(['comments'=> $comments, 'scores'=>$scores, 'average'=>$avg])->render();
+        return view("include.comments_list")->with([
+                                                    'comments'   => $comments,
+                                                    'scores'     => $scores,
+                                                    'average'    => $avg, 
+                                                    'product_id' => $product_id,
+                                                   ])
+                                            ->render();
     }
 }
