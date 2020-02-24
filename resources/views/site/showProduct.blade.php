@@ -188,7 +188,7 @@
 	    </li>
 
 	    <li role="presentation">
-		    <a href="#questions" aria-controls="questions" role="tab" data-toggle="tab">
+		    <a href="#questions" aria-controls="questions" role="tab" data-toggle="tab" onclick="show_questions()">
 			    <i class="fa fa-question fa-2x"></i>
 			    پرسش و پاسخ
 		    </a>
@@ -284,7 +284,7 @@
 
 	    <div role="tabpanel" class="tab-pane" id="comments"></div>
 
-	    <div role="tabpanel" class="tab-pane" id="questions"> questions </div>
+	    <div role="tabpanel" class="tab-pane" id="questions"></div>
 	  </div>
 
 </div>
@@ -395,6 +395,35 @@
 			    		}
 				  );
     		}
+		}
+
+		// Fetching Questions
+		<?php $url_questions= url('question/ajax_fetch_questions'); ?>
+		show_questions = function()
+		{
+			$.ajaxSetup(
+			    			{
+			    				'headers':
+			    				{
+			    					'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
+			    				}
+			    			}
+    					);
+    		
+    		$.ajax(
+		    		{
+
+		    		'url': '{{ $url_questions }}',
+		    		'type': 'post',
+		    		'data': 'product_id='+<?php echo $product->id; ?>,
+		    		success:function(data)
+		    		{
+		    			$("#questions").append(data);
+		    		}
+
+		    		}
+			  );
+    		
 		}
 
 

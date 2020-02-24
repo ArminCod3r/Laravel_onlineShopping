@@ -2298,6 +2298,41 @@ background-color: #3490dc;
 }
 
 
+.questions
+{
+    width : 95%;
+    margin: auto;
+    background-color: white;
+    border-radius: 5px;
+    margin-bottom: 30px;
+    background-color: #fafbfc;
+    box-shadow: 0 2px 3px rgba(0,0,0,.15);
+    padding: 20px 0px 20px 0px;
+    font-size: 14px;
+    margin-top: 20px;
+}
+
+.questions .title
+{
+    padding-right: 30px;
+}
+
+.questions textarea
+{
+    resize : none;
+    margin : auto;
+    width  : 95%;
+    height : 150px;
+}
+
+
+.questions .btn
+{
+    float : left;
+    width : 100%
+}
+
+
 
 
 

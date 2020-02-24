@@ -81,4 +81,9 @@ class QuestionController extends Controller
     {
         //
     }
+
+    public function ajax_fetch_questions(Request $request)
+    {
+        return view("include.questions_list");
+    }
 }
