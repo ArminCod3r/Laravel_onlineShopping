@@ -7,7 +7,6 @@
 		<form action="{{ action('QuestionController@store') }}" onsubmit="question_submit() ; return false;" method="POST" id="question_form">
 			{{ csrf_field() }}
 
-			<input type="hidden" name="product_id" id="product_id" value="28">
 			<div class="row">
 
 				<div class="col-sm-12">
@@ -21,7 +20,10 @@
 							</span>
 						</div>
 
+						<div id="alert_success" class="questions_alert_success"></div>
+
 					</div>
+
 				</div>
 
 			</div>
@@ -60,12 +62,15 @@
 
 	    		'url': $("#question_form").attr('action'),
 	    		'type': 'post',
-	    		'data': 'form_data='+form_data+"&product_id="+<?php echo $product_id;?>,
+	    		'data': 'form_data='+form_data+"&product_id="+<?php echo $product_id; ?>,
 	    		success:function(data)
 	    		{	    			
 	    			if(data == '1')
 	    			{
-	    				alert('پرسش با موفقیت ثبت شد');
+	    				$("#question_text_error").html("");
+
+	    				$("#alert_success").addClass("alert alert-success");	    				
+	    				$("#alert_success").html("با تشکر...پرسش شما پس از تایید مدیر منتشر خواهد");
 	    			}
 	    			else
 	    			{
@@ -79,6 +84,9 @@
 			    			data.forEach(([key, value]) => {
 							  $("#"+key+"_error").html(value);
 							});
+
+    						$("#alert_success").removeClass("alert alert-success");	    				
+		    				$("#alert_success").html("");
 	    				}
 	    			}
 	    		}
