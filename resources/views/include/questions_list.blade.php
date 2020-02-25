@@ -55,7 +55,9 @@
 					</div>
 				
 					<div style="padding-top: 10px">
-						{{$value->question}}
+
+						{!! strip_tags(nl2br($value->question), '<br/>') !!}
+
 						<div class="row">
 							<div class="col-sm-10"></div>
 							<div class="col-sm-2">
