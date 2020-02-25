@@ -2365,6 +2365,17 @@ background-color: #3490dc;
     height : 150px;
 }
 
+.answer_btn
+{
+    float   : left;
+    padding : 20px 0px 20px 0px;
+    color   : #3c9bff;
+}
+
+.answer_btn span
+{
+    cursor: pointer;
+}
 
 
 

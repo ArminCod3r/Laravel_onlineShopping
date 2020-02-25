@@ -58,12 +58,6 @@
 
 						{!! strip_tags(nl2br($value->question), '<br/>') !!}
 
-						<div class="row">
-							<div class="col-sm-10"></div>
-							<div class="col-sm-2">
-								<button class="btn btn-primary" style="float: left;" onclick="answer('{{$value->id}}')">جواب دادن</button>
-							</div>
-						</div>
 					</div>
 				
 					<div id="row_{{$value->id}}" style="margin-top: 20px">
@@ -72,7 +66,13 @@
 					</div>
 					
 				</div>
+
+				<div class="answer_btn"  onclick="answer('{{$value->id}}')">
+					<span class="fa fa-mail-reply"></span>
+					<span>به این پرسش پاسخ دهید</span>
+				</div>
 			</div>
+
 		@endforeach
 
 	@else
