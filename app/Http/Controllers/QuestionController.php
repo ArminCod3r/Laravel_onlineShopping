@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Product;
+use App\Question;
 use Validator;
+use Auth;
 
 class QuestionController extends Controller
 {
@@ -35,9 +38,6 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
-        // Validator for the 'question_text'
-        $question_text = $request->get('question_text');
-
         $rules = [ 'question_text' => 'required' ];
         $msg   = [ 'required'      => ':attribute الزامی است' ];
         $field = [ 'question_text' => 'متن پرسش' ];
@@ -46,9 +46,26 @@ class QuestionController extends Controller
 
         if($validator->fails())
             return $validator->messages()->getMessages();
-        
+
         else
-            return 'no error';
+        {
+            $product_id    = $request->get('product_id'); // $request->ALL('product_id'); output will be array
+            $product       = Product::findOrFail($product_id);
+            $question_text = $request->get('question_text');
+
+            $question = new Question;
+
+            $question->time       = time();
+            $question->product_id = $product_id;
+            $question->user_id    = Auth::user()->id;
+            $question->question   = $question_text;
+            $question->parent_id  = 0;
+
+            if($question->save())
+                return 'ok';
+            else
+                return '0';
+        }
     }
 
     /**

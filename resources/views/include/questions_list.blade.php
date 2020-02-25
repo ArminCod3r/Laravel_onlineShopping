@@ -7,6 +7,7 @@
 		<form action="{{ action('QuestionController@store') }}" onsubmit="question_submit() ; return false;" method="POST" id="question_form">
 			{{ csrf_field() }}
 
+			<input type="hidden" name="product_id" id="product_id" value="28">
 			<div class="row">
 
 				<div class="col-sm-12">
@@ -61,14 +62,26 @@
 	    		'type': 'post',
 	    		'data': 'form_data='+form_data,
 	    		success:function(data)
-	    		{
-	    			var data = Object.entries(data);
-
-	    			data.forEach(([key, value]) => {
-					  $("#"+key+"_error").html(value);
-					});
-
+	    		{	    			
 	    			console.log(data);
+	    			if(data == 'ok')
+	    			{
+	    				alert('پرسش با موفقیت ثبت شد');
+	    			}
+	    			else
+	    			{
+	    				if(data == '0')
+	    					alert('مشکلی در پرسش سوال پیش آمده.');
+
+	    				else
+	    				{
+	    					var data = Object.entries(data);
+
+			    			data.forEach(([key, value]) => {
+							  $("#"+key+"_error").html(value);
+							});
+	    				}
+	    			}
 	    		}
 
 	    		}
