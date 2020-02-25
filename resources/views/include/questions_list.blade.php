@@ -60,11 +60,10 @@
 
 	    		'url': $("#question_form").attr('action'),
 	    		'type': 'post',
-	    		'data': 'form_data='+form_data,
+	    		'data': 'form_data='+form_data+"&product_id="+<?php echo $product_id;?>,
 	    		success:function(data)
 	    		{	    			
-	    			console.log(data);
-	    			if(data == 'ok')
+	    			if(data == '1')
 	    			{
 	    				alert('پرسش با موفقیت ثبت شد');
 	    			}

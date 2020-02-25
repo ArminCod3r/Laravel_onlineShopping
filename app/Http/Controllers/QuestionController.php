@@ -62,7 +62,7 @@ class QuestionController extends Controller
             $question->parent_id  = 0;
 
             if($question->save())
-                return 'ok';
+                return '1';
             else
                 return '0';
         }
@@ -115,6 +115,7 @@ class QuestionController extends Controller
 
     public function ajax_fetch_questions(Request $request)
     {
-        return view("include.questions_list");
+        $product_id = $request->get('product_id');
+        return view("include.questions_list")->with('product_id', $product_id);
     }
 }
