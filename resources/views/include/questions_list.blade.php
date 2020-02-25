@@ -53,7 +53,22 @@
 							{{explode(" ", $value->created_at)[0]}}
 						</div>
 					</div>
-
+				
+					<div style="padding-top: 10px">
+						{{$value->question}}
+						<div class="row">
+							<div class="col-sm-10"></div>
+							<div class="col-sm-2">
+								<button class="btn btn-primary" style="float: left;" onclick="answer('{{$value->id}}')">جواب دادن</button>
+							</div>
+						</div>
+					</div>
+				
+					<div id="row_{{$value->id}}" style="margin-top: 20px">
+						<div id="col_sm_12_{{$value->id}}">								
+						</div>
+					</div>
+					
 				</div>
 			</div>
 		@endforeach
@@ -120,5 +135,17 @@
 	    		}
 		  );
 	}
-	
+
+	answer = function(question_id)
+	{		
+		$("#row_"+question_id).addClass("row");
+		$("#row_"+question_id).css("border-top", "1px dotted #dfdfdf");
+
+		$("#col_sm_12_"+question_id).addClass("col-sm-12");
+
+		textarea = "<span class='fa fa-mail-reply fa-rotate-270'></span>"+
+				   "<textarea id='"+question_id+"' class='answer form-control'></textarea>";
+
+		$("#col_sm_12_"+question_id).append(textarea);
+	}
 </script>
