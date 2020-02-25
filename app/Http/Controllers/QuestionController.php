@@ -60,6 +60,7 @@ class QuestionController extends Controller
             $question->user_id    = Auth::user()->id;
             $question->question   = $question_text;
             $question->parent_id  = 0;
+            $question->status     = 0;
 
             if($question->save())
                 return '1';

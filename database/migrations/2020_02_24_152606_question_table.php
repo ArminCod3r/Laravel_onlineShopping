@@ -20,6 +20,7 @@ class QuestionTable extends Migration
             $table->integer('user_id');
             $table->text('question');
             $table->integer('parent_id');
+            $table->smallInteger('status');
             $table->timestamps();
         });
     }
