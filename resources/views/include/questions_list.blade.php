@@ -60,8 +60,21 @@
 
 					</div>
 				
-					<div id="row_{{$value->id}}" style="margin-top: 20px">
-						<div id="col_sm_12_{{$value->id}}">								
+					<div id="row_{{$value->id}}" style="margin-top: 20px; display: none">
+						<div id="col_sm_12_{{$value->id}}">	
+
+							<form action="{{ action('QuestionController@store') }}" method='post'>
+							   {{ @csrf_field() }}
+
+							   <span class="fa fa-mail-reply fa-rotate-270"></span>
+							   <textarea class="answer form-control" name="question_text" id="{{$value->id}}"></textarea>
+							   <input type="hidden" name="parent_id" id="{{$value->id}}" value="{{$value->id}}">
+							   <input type="hidden" name="product_id" id="{{$product_id}}" value="{{$product_id}}">
+
+							   <input type="submit" class="btn btn-success" value="ثبت" style="float:left; margin-top: 10px">
+							   <div style="clear: both"></div>
+						  	</form>	
+
 						</div>
 					</div>
 					
@@ -81,6 +94,8 @@
 		</div>
 	
 	@endif
+
+
 
 </div>
 
@@ -142,12 +157,8 @@
 	{		
 		$("#row_"+question_id).addClass("row");
 		$("#row_"+question_id).css("border-top", "1px dotted #dfdfdf");
+		$("#row_"+question_id).css("display", "block");
 
 		$("#col_sm_12_"+question_id).addClass("col-sm-12");
-
-		textarea = "<span class='fa fa-mail-reply fa-rotate-270'></span>"+
-				   "<textarea id='"+question_id+"' class='answer form-control'></textarea>";
-
-		$("#col_sm_12_"+question_id).append(textarea);
 	}
 </script>
