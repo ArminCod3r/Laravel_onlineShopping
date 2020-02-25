@@ -37,7 +37,33 @@
 
 		</form>
 
+
 	</div>
+
+	@if( sizeof($questions)>0 )
+
+		@foreach($questions as $key=>$value)
+			<div class="prev_questions" style="margin-top: 20px">
+				<div style="width: 95%; margin:auto">
+
+					<div class="row" style="padding-bottom: 10px; border-bottom: 1px solid #dfdfdf">
+						<div class="col-sm-2">{{$value->User->name}}</div>
+						<div class="col-sm-9"></div>
+						<div class="col-sm-1">
+							{{explode(" ", $value->created_at)[0]}}
+						</div>
+					</div>
+
+				</div>
+			</div>
+		@endforeach
+
+	@else
+		<div class="prev_questions" style="margin-top: 20px">
+			<p style="color: red"> تاکنون پرسشی ثبت نشده </p>
+		</div>
+	
+	@endif
 
 </div>
 
@@ -94,4 +120,5 @@
 	    		}
 		  );
 	}
+	
 </script>

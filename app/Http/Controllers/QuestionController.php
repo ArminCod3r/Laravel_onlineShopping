@@ -117,6 +117,8 @@ class QuestionController extends Controller
     public function ajax_fetch_questions(Request $request)
     {
         $product_id = $request->get('product_id');
-        return view("include.questions_list")->with('product_id', $product_id);
+        $questions  = Question::with('User')->where(['product_id'=>$product_id, 'status'=>1])->get();
+
+        return view("include.questions_list")->with(['product_id'=> $product_id, 'questions'=>$questions]);
     }
 }
