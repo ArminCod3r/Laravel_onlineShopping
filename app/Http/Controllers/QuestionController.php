@@ -50,6 +50,7 @@ class QuestionController extends Controller
         else
         {
             $product_id    = $request->get('product_id'); // $request->ALL('product_id'); output will be array
+            $parent_id     = $request->get('parent_id');
             $product       = Product::findOrFail($product_id);
             $question_text = $request->get('question_text');
 
@@ -59,7 +60,7 @@ class QuestionController extends Controller
             $question->product_id = $product_id;
             $question->user_id    = Auth::user()->id;
             $question->question   = $question_text;
-            $question->parent_id  = 0;
+            $question->parent_id  = $parent_id;
             $question->status     = 0;
 
             if($question->save())
