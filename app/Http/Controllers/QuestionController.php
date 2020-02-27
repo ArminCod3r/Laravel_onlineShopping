@@ -119,6 +119,7 @@ class QuestionController extends Controller
     {
         $product_id = $request->get('product_id');
         $questions  = Question::with('User')->where(['product_id'=>$product_id, 'status'=>1])->orderBy("id", "DESC")->get();
+        // TODO: $questions groupBy('parent_id')
 
         return view("include.questions_list")->with(['product_id'=> $product_id, 'questions'=>$questions]);
     }
