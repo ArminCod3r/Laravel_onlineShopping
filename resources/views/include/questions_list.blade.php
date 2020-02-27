@@ -44,55 +44,82 @@
 	@if( sizeof($questions)>0 )
 
 		@foreach($questions as $key=>$value)
-			<div class="prev_questions" style="margin-top: 20px">
-				<div style="width: 95%; margin:auto">
+			@if( $value->parent_id == 0 )
+				<div class="prev_questions" style="margin-top: 20px">
+					<div style="width: 95%; margin:auto">
 
-					<div class="row" style="padding-bottom: 10px; border-bottom: 1px solid #dfdfdf">
-						<div class="col-sm-2">{{$value->User->name}}</div>
-						<div class="col-sm-9"></div>
-						<div class="col-sm-1">
-							{{explode(" ", $value->created_at)[0]}}
+						<div class="row" style="padding-bottom: 10px; border-bottom: 1px solid #dfdfdf">
+							<div class="col-sm-2">{{$value->User->name}}</div>
+							<div class="col-sm-9"></div>
+							<div class="col-sm-1">
+								{{explode(" ", $value->created_at)[0]}}
+							</div>
 						</div>
-					</div>
-				
-					<div style="padding-top: 10px">
-
-						{!! strip_tags(nl2br($value->question), '<br/>') !!}
-
-					</div>
-				
-					<div id="row_{{$value->id}}" style="margin-top: 20px; display: none">
-						<div id="col_sm_12_{{$value->id}}">	
-
-							<form action="{{ action('QuestionController@store') }}" onsubmit="answer_submit() ; return false;" method='post' id="answer_form">
-							   {{ @csrf_field() }}
-
-							   <span class="fa fa-mail-reply fa-rotate-270"></span>
-							   <textarea class="answer form-control" name="question_text" id="{{$value->id}}"></textarea>
-							   <div style="margin-top: 10px">
-									<span style="color: red;" id="answer_text_error" class="answer_text_error">
-										{{ $errors->first('question_text') }}
-									</span>
-								</div>
-							   <input type="hidden" name="parent_id" id="{{$value->id}}" value="{{$value->id}}">
-							   <input type="hidden" name="product_id" id="{{$product_id}}" value="{{$product_id}}">
-
-							   <input type="submit" class="btn btn-success" value="ثبت" style="float:left; margin-top: 10px">
-							   <div style="clear: both"></div>
-						  	</form>	
-
-						  	<div id="answer_alert_success" class="answer_alert_success"></div>
-
-						</div>
-					</div>
 					
+						<div style="padding-top: 10px">
+
+							{!! strip_tags(nl2br($value->question), '<br/>') !!}
+
+							<!-- Answers area -->
+							@foreach($questions as $key_answer=>$value_answer)
+								@if( $value->id == $value_answer->parent_id)
+									<div class="answered_area">
+
+										<div class="row">
+											<div class="col-sm-2">{{$value->User->name}}</div>
+											<div class="col-sm-9"></div>
+											<div class="col-sm-1 created_at">
+												{{explode(" ", $value_answer->created_at)[0]}}
+											</div>
+										</div>
+
+										<div class="text">
+											{{ $value_answer->question }}
+										</div>
+
+									</div>
+								@endif
+							@endforeach
+							<!-- ./Answers area -->
+
+						</div>
+					
+						<div id="row_{{$value->id}}" style="margin-top: 20px; display: none">
+							<div id="col_sm_12_{{$value->id}}">	
+
+								<form action="{{ action('QuestionController@store') }}" onsubmit="answer_submit() ; return false;" method='post' id="answer_form">
+								   {{ @csrf_field() }}
+
+								   <span class="fa fa-mail-reply fa-rotate-270"></span>
+								   <textarea class="answer form-control" name="question_text" id="{{$value->id}}"></textarea>
+								   <div style="margin-top: 10px">
+										<span style="color: red;" id="answer_text_error" class="answer_text_error">
+											{{ $errors->first('question_text') }}
+										</span>
+									</div>
+								   <input type="hidden" name="parent_id" id="{{$value->id}}" value="{{$value->id}}">
+								   <input type="hidden" name="product_id" id="{{$product_id}}" value="{{$product_id}}">
+
+								   <input type="submit" class="btn btn-success" value="ثبت" style="float:left; margin-top: 10px">
+								   <div style="clear: both"></div>
+							  	</form>	
+
+							  	<div id="answer_alert_success" class="answer_alert_success"></div>
+
+							</div>
+						</div>
+						
+					</div>
+
+					<div class="answer_btn"  onclick="answer('{{$value->id}}')">
+						<span class="fa fa-mail-reply"></span>
+						<span>به این پرسش پاسخ دهید</span>
+					</div>
 				</div>
 
-				<div class="answer_btn"  onclick="answer('{{$value->id}}')">
-					<span class="fa fa-mail-reply"></span>
-					<span>به این پرسش پاسخ دهید</span>
-				</div>
-			</div>
+
+				
+			@endif
 
 		@endforeach
 

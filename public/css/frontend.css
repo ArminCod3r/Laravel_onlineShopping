@@ -2377,6 +2377,29 @@ background-color: #3490dc;
     cursor: pointer;
 }
 
+.answered_area
+{
+    margin        : 20px;
+    padding       : 20px;
+    border-radius : 5px;
+    background-color: #eee;
+}
+
+.answered_area .row
+{
+    padding-bottom : 10px;
+    border-bottom  : 1px solid #dfdfdf;
+}
+
+.answered_area .row .created_at
+{
+    padding: 0px;
+}
+
+.answered_area .text
+{
+    padding-top: 10px
+}
 
 
 
