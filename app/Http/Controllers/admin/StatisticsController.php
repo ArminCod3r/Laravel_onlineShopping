@@ -12,6 +12,6 @@ class StatisticsController extends Controller
     {
     	$views = Statistics::fetch_statistics();
 
-    	return $views;
+    	return view('admin/statistics/stat')->with('views', $views);
     }
 }
