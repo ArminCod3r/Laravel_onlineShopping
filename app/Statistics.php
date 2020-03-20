@@ -38,4 +38,26 @@ class Statistics extends Model
 
         return true;
     }
+
+    public static function fetch_statistics()
+    {
+        $year  = date("Y");
+        $month = date("n");
+        $day   = date("d");
+
+        $days_of_current_month = date('t');  //3691142
+        $views = array();
+
+        for ($i=0 ; $i<=$days_of_current_month ; $i++)
+        {
+            $day = Statistics::where(['year'=>$year, 'month'=>$month, 'day'=>$i])->first();
+
+            if($day)
+                $views[$i] = $day->total_view;
+            else
+                $views[$i] = 0;
+        }
+
+        return $views;
+    }
 }
