@@ -16,6 +16,18 @@ class Statistic
      */
     public function handle($request, Closure $next)
     {
+        $users_ip = $request->ip();
+
+        $year  = date("Y");
+        $month = date("n"); // n:1 , m:01 , F:Jan-Dec    3768072
+        $day   = date("d");
+
+        $user_stat = StatisticsUser::where('user_ip', $users_ip)->first();
+
+        if(!$user_stat)
+            StatisticsUser::adding($year, $month, $day, $users_ip);
+
+
         return $next($request);
     }
 }
