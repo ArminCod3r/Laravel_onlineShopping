@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use App\StatisticsUser;
+use App\Statistics;
 
 class Statistic
 {
@@ -26,6 +27,17 @@ class Statistic
 
         if(!$user_stat)
             StatisticsUser::adding($year, $month, $day, $users_ip);
+
+
+        $stat = Statistics::where(['year'=>$year, 'month'=>$month, 'day'=>$day])->first();        
+        if($stat)
+        {
+            Statistics::increment_view($year, $month, $day);
+        }
+        else
+        {
+            Statistics::adding($year, $month, $day);
+        }
 
 
         return $next($request);
