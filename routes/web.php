@@ -13,7 +13,7 @@
 
 Route::middleware(['throttle:60,1'])->group(function(){
 	
-	
+
 	Route::middleware(['statistic'])->group(function(){
 		// site's index/product/Cart pages
 		Route::get('/', "SiteController@index");
@@ -115,6 +115,10 @@ Route::middleware(['throttle:60,1'])->group(function(){
 
 		// User
 		Route::resource('admin/user','admin\UserController');
+
+		// Statistics
+		Route::get('admin/stat_user', 'admin\StatisticsController@stat_user');
+		Route::get('admin/stat', 'admin\StatisticsController@stat');
 
 	});
 
