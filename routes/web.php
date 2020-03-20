@@ -16,11 +16,15 @@ Route::middleware(['throttle:60,1'])->group(function(){
 		
 	// site's index/product/Cart pages
 	Route::get('/', "SiteController@index");
-	Route::get('product/{code}/{title_url}', 'SiteController@showProduct');
+	
 	Route::post('/cart', 'SiteController@cart');
 	Route::get('/cart', 'SiteController@cart');
 	Route::post('/cart/change', 'SiteController@cart_change');
 	Route::post('/cart/count', 'SiteController@count');
+
+	Route::middleware(['statistic'])->group(function(){
+		Route::get('product/{code}/{title_url}', 'SiteController@showProduct');
+	});
 
 	Route::middleware(['check_admin'])->group(function(){
 		// Admin's idnex
