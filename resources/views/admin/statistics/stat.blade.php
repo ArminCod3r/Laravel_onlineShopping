@@ -15,6 +15,28 @@
 <div>
   <div id="container" style="direction: rtl"></div>
 </div>
+
+<div style="width: 50%; margin: auto ; padding-top: 30px">
+  <table class="table table-striped">
+
+    <tr>
+      <td>آمار بازدید سالیانه</td>
+      <td> {{ $yearly_view }}</td>
+    </tr>
+
+    <tr>
+      <td>آمار بازدید ماهانه</td>
+      <td> {{ $monthly_view }}</td>
+    </tr>
+
+    <tr>
+      <td>آمار بازدید روزانه</td>
+      <td> {{ $daily_view }}</td>
+    </tr>
+    
+  </table>
+</div>
+
  @endsection
 
 @section('content4')

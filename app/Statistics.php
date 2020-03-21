@@ -60,4 +60,20 @@ class Statistics extends Model
 
         return $views;
     }
+
+    public static function total_view_of($year=null, $month=null, $day=null)
+    {
+        $view;
+
+        if( $year )
+            $view = Statistics::where(['year'=>$year])->sum('total_view');
+
+        if( $month )
+            $view = Statistics::where(['year'=>$year, 'month'=>$month])->sum('total_view');
+
+        if( $day )
+            $view = Statistics::where(['year'=>$year, 'month'=>$month, 'day'=>$day])->sum('total_view');
+
+        return $view;
+    }
 }
