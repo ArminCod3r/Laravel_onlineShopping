@@ -487,6 +487,18 @@
               </ul>
             </li>
 
+
+            <li class="nav-item has-treeview" id="stat">
+              <a href="{{ url('admin/stat#stat') }}" class="nav-link">
+
+                <i class="nav-icon fa fa-line-chart"></i>
+                <p>
+                  آمار بازدید سایت
+                </p>
+
+              </a>
+            </li>
+
             
         </nav>
         <!-- /.sidebar-menu -->
