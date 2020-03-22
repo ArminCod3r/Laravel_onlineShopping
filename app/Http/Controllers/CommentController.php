@@ -112,17 +112,26 @@ class CommentController extends Controller
         if( sizeof($is_duplicate) == 0 ) 
         {
             // Verifications
-            if( is_array($pros) and is_array($cons) )
+            if( is_array($pros) or is_array($cons) )
             {
                 // Makeing custom string of pros/cons 
-                foreach ($pros as $key => $value)
-                {
-                    $pros_custom_string = $value."-::-".$pros_custom_string;
-                }
 
-                foreach ($cons as $key => $value)
+                // if only 'pros' added
+                if (is_array($pros))
+                 {
+                    foreach ($pros as $key => $value)
+                    {
+                        $pros_custom_string = $value."-::-".$pros_custom_string;
+                    }
+                 }
+
+                // if only 'cons' added
+                if (is_array($cons))
                 {
-                    $cons_custom_string = $value."-::-".$cons_custom_string;
+                    foreach ($cons as $key => $value)
+                    {
+                        $cons_custom_string = $value."-::-".$cons_custom_string;
+                    }
                 }
 
                 // Storing into the database
@@ -134,19 +143,20 @@ class CommentController extends Controller
                 $comment->pros         = $pros_custom_string;
                 $comment->cons         = $cons_custom_string;
                 $comment->comment_text = $comment_text;
+                $comment->status       = 0;
 
                 if($comment->save())
                     return $this->show($id);
 
                 else
-                    return redirect()->back();
+                    return redirect(url()->previous());
             }
             else
-                return redirect()->back();
+                return redirect(url()->previous());
         }
 
         else
-            return redirect()->back();
+            return redirect(url()->previous());
     }
 
     /**
