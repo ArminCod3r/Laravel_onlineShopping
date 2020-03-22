@@ -504,7 +504,10 @@
               <a href="#" class="nav-link">
                 <i class="nav-icon far fa-comment"></i>
                 <p>
-                  نظرات کاربران <span> ({{ $unapproved_comments }}) </span>
+                  نظرات کاربران
+                  @if( $unapproved_comments )
+                    <span> ({{ $unapproved_comments }}) </span>
+                  @endif
                   <i class="fa fa-angle-left right"></i>
                 </p>
               </a>
