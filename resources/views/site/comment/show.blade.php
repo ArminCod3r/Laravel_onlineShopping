@@ -171,9 +171,9 @@
 			  				@endforeach
 
 			  			@else
-			  				<input type="text" name="pros[1]" id="pros" class="form-control header" value=""><br>
-							<span class="fa fa-plus-circle" @if(sizeof($score)>0) onclick="add_pros()" @endif></span>
-			  				<span class="fa fa-minus-circle" @if(sizeof($score)>0) onclick="remove_pros()" @endif></span>
+			  				<input type="text" name="cons[1]" id="pros" class="form-control header" value=""><br>
+							<span class="fa fa-plus-circle" @if(sizeof($score)>0) onclick="add_cons()" @endif></span>
+			  				<span class="fa fa-minus-circle" @if(sizeof($score)>0) onclick="remove_cons()" @endif></span>
 
 			  			@endif
 
