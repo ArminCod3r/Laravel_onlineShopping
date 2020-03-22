@@ -120,6 +120,9 @@ Route::middleware(['throttle:60,1'])->group(function(){
 		Route::get('admin/stat_user', 'admin\StatisticsController@stat_user');
 		Route::get('admin/stat', 'admin\StatisticsController@stat');
 
+		// Comments Approval
+		Route::resource('admin/comment','admin\CommentController');
+
 	});
 
 	// Admin login
