@@ -14,4 +14,20 @@ class ProductComment extends Model
     {
     	return $this->hasMany(ProductScore::class, 'product_id', 'product_id');
     }
+
+    public static function update_status($comment_id)
+    {
+    	$response = false;
+
+    	try
+    	{
+    		ProductComment::where("id", $comment_id)->update(['status'=>1]);
+    		$response = true;
+    	}
+    	catch (Exception $e)
+    	{
+    	}
+
+    	return $response;
+    }
 }

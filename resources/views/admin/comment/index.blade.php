@@ -1,6 +1,7 @@
 @extends('admin/layouts/adminLayout')
 
 @section('header')
+	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<title>نظرات کاربران</title>
 @endsection
 
@@ -47,8 +48,10 @@
 
 				<div class="row" style="margin-top: 20px">
 
+					<label></label>
+
 					<div class="col-sm-2">
-						<a href="comment/{{ $item->id }}/edit" class="btn btn-success" style="width: 100%"> تایید </a>
+						<button class="btn btn-success" style="width: 100%" id="{{ $item->id }}" onclick="approval(this)"> تایید </button>
 					</div>	
 
 					<div class="col-sm-2">
@@ -57,8 +60,15 @@
                         <input type="hidden" name="_method" value="DELETE">
                         <input type="submit" name="submit" value="حذف" class="btn btn-danger" style="width: 100%">
                     </form>						
-					</div>					
-				</div>               
+					</div>
+				</div> 
+
+				<div id="status_area" style="margin: 10px 2px 0px 0px ; font-size: 16px;">
+					<span>وضعیت: </span>
+					<span id='status'>
+						<span style="color: red">تایید نشده</span>
+					</span>
+				</div>              
 
 			</div>
 
@@ -118,5 +128,48 @@
 
 
 @section('footer')
+
+<script type="text/javascript">
+	
+
+	<?php $url= url('admin/comment/approve/'); ?>
+	approval = function(caller)
+	{
+		var comment_id = caller.id;
+		url_approve = <?php echo json_encode($url); ?> + "/" + comment_id;
+
+		$.ajaxSetup(
+		    			{
+		    				'headers':
+		    				{
+		    					'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
+		    				}
+		    			}
+					);
+		
+		$.ajax(
+	    		{
+
+	    		'url': url_approve,
+	    		'type': 'get',
+	    		'data': '',
+	    		success:function(data){
+	    				if(data == 'true')
+	    				{
+	    					alert("نظر با موفقیت تایید شد.");
+
+	    					status = '<span  style="color: green">تایید شد</span>';
+	    					$("#status").html(status);
+	    				}
+	    				else
+	    				{
+	    					alert("مجددا تلاش کنید");
+	    				}
+	    			}
+	    		}
+		  );
+	}
+
+</script>
 
 @endsection

@@ -88,4 +88,17 @@ class CommentController extends Controller
     {
         //
     }
+
+    public function approve(Request $request, $id)
+    {
+        if($request->ajax())
+        {
+            $update_status = ProductComment::update_status($id);
+
+            if($update_status)
+                return 'true';
+            else
+                return 'false';
+        }
+    }
 }

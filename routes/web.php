@@ -121,6 +121,7 @@ Route::middleware(['throttle:60,1'])->group(function(){
 		Route::get('admin/stat', 'admin\StatisticsController@stat');
 
 		// Comments Approval
+		Route::get('admin/comment/approve/{comment_id}', 'admin\CommentController@approve');
 		Route::resource('admin/comment','admin\CommentController');
 
 	});
