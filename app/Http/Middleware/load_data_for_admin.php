@@ -17,9 +17,11 @@ class load_data_for_admin
      */
     public function handle($request, Closure $next)
     {
+        // Getting list of the unapproved comments and share it theough the views (pass variable to the view)
         $unapproved_comments = ProductComment::where('status', 0)->with('ProductScore')->count();
 
         view()->share('unapproved_comments', $unapproved_comments);
+        
 
         return $next($request);
     }
