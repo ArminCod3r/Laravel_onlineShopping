@@ -24,7 +24,7 @@ Route::middleware(['throttle:60,1'])->group(function(){
 		Route::post('/cart/count', 'SiteController@count');
 	});
 
-	Route::middleware(['check_admin'])->group(function(){
+	Route::middleware(['check_admin', 'load_data_for_admin'])->group(function(){
 		// Admin's idnex
 		Route::get('/admin', 'admin\AdminController@index');
 

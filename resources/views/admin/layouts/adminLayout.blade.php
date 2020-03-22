@@ -499,6 +499,31 @@
               </a>
             </li>
 
+
+            <li class="nav-item has-treeview" id="comment">
+              <a href="#" class="nav-link">
+                <i class="nav-icon far fa-comment"></i>
+                <p>
+                  نظرات کاربران <span> ({{ $unapproved_comments }}) </span>
+                  <i class="fa fa-angle-left right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <p>لیست</p>
+                  </a>
+                </li>
+              </ul>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="{{ url('admin/comment#comment') }}" class="nav-link">
+                    <p>تایید نشده</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+
             
         </nav>
         <!-- /.sidebar-menu -->
