@@ -382,3 +382,153 @@ body{
   margin-top    : 5px;
   border        : 1px solid #adaba5;
 }
+
+
+
+.sumup
+{
+    width : 95%;
+    margin: auto;
+    background-color: white;
+    border-radius: 5px;
+    margin-bottom: 30px;
+    background-color: #fafbfc;
+    box-shadow: 0 2px 3px rgba(0,0,0,.15);
+    padding: 20px 0px 20px 0px;
+    font-size: 14px;
+}
+
+.bar
+{
+    width       : 39px;
+    height      : 5px;
+    display     : inline-block;
+    margin-left : 1px;
+    background-color: #e6e6e6;
+}
+
+.done
+{
+    background-color: #a1a6b5;
+}
+
+.sumup .comment_text
+{
+    margin-top   : 20px;
+    text-align   : justify;
+    padding-left : 50px;
+}
+
+.comment_username
+{
+    width : 95%;
+    margin: auto;
+    background-color: white;
+    border-radius: 5px;
+    background-color: #f4f4f4;
+    box-shadow: 0 2px 3px rgba(0,0,0,.15);
+    padding: 12px;
+}
+
+.comment_username p
+{
+    margin-top: 0;
+    margin-bottom: 0rem;
+}
+
+.average_score
+{
+    margin-top: 20px;
+    padding-right: 20px;
+}
+
+.average_score .bar
+{
+    width       : 60px;
+    height      : 8px;
+    display     : inline-block;
+    margin-left : 1px;
+    background-color: #e6e6e6;
+}
+
+.average_score .done
+{
+    background-color: #8cca8c;
+}
+
+.done_1-4
+{
+    width: 15px;
+    background-color: #8cca8c;;
+    height:6px;
+    display:inline-flex;
+    position: relative;
+}
+.bar_3-4
+{
+    width: 45px;
+    background-color: #e6e6e6; 
+    height:6px;
+    display: inline-flex;
+    position:absolute;
+    margin: 0px !important;
+    position: relative;
+    right: -4px;
+}
+
+
+.bar_half
+{
+    width: 30px;
+    background-color: #e6e6e6; 
+    height:6px;
+    display: inline-flex;
+    position:absolute;
+    margin: 0px !important;
+    position: relative;
+    right: -4px;
+}
+.done_half
+{
+    width: 30px;
+    background-color: #8cca8c;;
+    height:6px;
+    display:inline-flex;
+    position: relative;
+}
+
+
+.done_3-4
+{
+    width: 45px;
+    background-color: #8cca8c;;
+    height:6px;
+    display:inline-flex;
+    position: relative;
+}
+.bar_1-4
+{
+    width: 15px;
+    background-color: #e6e6e6; 
+    height:6px;
+    display: inline-flex;
+    position:absolute;
+    margin: 0px !important;
+    position: relative;
+    right: -4px;
+}
+
+.average_in_bar
+{
+    position  : absolute;
+    top       : -6px;
+    font-size : 12px;
+}
+
+.average_in_bar_round
+{
+    position  : absolute;
+    top       : -6px;
+    left      : 0px;
+    font-size : 12px;
+}

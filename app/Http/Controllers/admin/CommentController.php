@@ -18,7 +18,9 @@ class CommentController extends Controller
      */
     public function index()
     {
-        //
+        $comments_and_scores = ProductComment::where('status', 0)->with('ProductScore')->get();
+
+        return view('admin.comment.index')->with('comments_and_scores', $comments_and_scores);
     }
 
     /**
