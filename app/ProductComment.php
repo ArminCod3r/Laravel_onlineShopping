@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\ProductScore;
 
 class ProductComment extends Model
 {
@@ -29,5 +30,24 @@ class ProductComment extends Model
     	}
 
     	return $response;
+    }
+
+    public static function remove_comment($comment_id)
+    {
+        $comment = ProductComment::find($comment_id);
+
+        if($comment->delete())
+        {
+            $scores = ProductScore::where(['product_id'=>$comment->product_id , 'user_id'=>$comment->user_id]);
+
+            if($scores->delete())
+                return true;
+
+            else
+                return false;
+        }
+
+        else
+            return false;
     }
 }

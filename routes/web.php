@@ -122,6 +122,7 @@ Route::middleware(['throttle:60,1'])->group(function(){
 
 		// Comments Approval
 		Route::get('admin/comment/approve/{comment_id}', 'admin\CommentController@approve');
+		Route::get('admin/comment/remove/{comment_id}' , 'admin\CommentController@remove' );
 		Route::resource('admin/comment','admin\CommentController');
 
 	});

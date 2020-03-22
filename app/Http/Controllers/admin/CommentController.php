@@ -101,4 +101,17 @@ class CommentController extends Controller
                 return 'false';
         }
     }
+
+    public function remove(Request $request, $id)
+    {
+        if($request->ajax())
+        {
+            $remove_comment = ProductComment::remove_comment($id);
+
+            if($remove_comment)
+                return 'true';
+            else
+                return 'false';
+        }
+    }
 }
