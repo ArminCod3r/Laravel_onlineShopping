@@ -55,10 +55,7 @@
 					</div>	
 
 					<div class="col-sm-2">
-						<form action="{{ action('admin\CommentController@destroy', ['id' => $item->id]) }}" method="POST"  accept-charset="utf-8" class="pull-right"  onsubmit="return confirm('آیا قصد حذف این دسته را دارید؟')" style="width: 100%"> <!--stack: 39790082-->
-                        {{ csrf_field() }}      
-                        <input type="hidden" name="_method" value="DELETE">
-                        <input type="submit" name="submit" value="حذف" class="btn btn-danger" style="width: 100%">
+						<button class="btn btn-danger" style="width: 100%" id="{{ $item->id }}" onclick="remove_comment('{{ $item->id }}')"> حذف </button>
                     </form>						
 					</div>
 				</div> 
@@ -159,6 +156,43 @@
 	    					alert("نظر با موفقیت تایید شد.");
 
 	    					status = '<span  style="color: green">تایید شد</span>';
+	    					$("#status").html(status);
+	    				}
+	    				else
+	    				{
+	    					alert("مجددا تلاش کنید");
+	    				}
+	    			}
+	    		}
+		  );
+	}
+
+	<?php $url_remove= url('admin/comment/remove/'); ?>
+	remove_comment = function(comment_id)
+	{
+		url_remove = <?php echo json_encode($url_remove); ?> + "/" + comment_id;
+
+		$.ajaxSetup(
+		    			{
+		    				'headers':
+		    				{
+		    					'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
+		    				}
+		    			}
+					);
+		
+		$.ajax(
+	    		{
+
+	    		'url': url_remove,
+	    		'type': 'get',
+	    		'data': '',
+	    		success:function(data){
+	    				if(data == 'true')
+	    				{
+	    					alert("نظر با موفقیت حذف شد.");
+
+	    					status = '<span  style="color: red">حذف شد</span>';
 	    					$("#status").html(status);
 	    				}
 	    				else
