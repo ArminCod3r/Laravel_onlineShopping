@@ -513,7 +513,7 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
+                  <a href="{{ url('admin/comment/#comment') }}" class="nav-link">
                     <p>لیست</p>
                   </a>
                 </li>
