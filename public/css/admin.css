@@ -543,3 +543,17 @@ body{
     font-size     : 15px;
     background-color: #ebebeb;
 }
+
+.no_new_comments
+{
+  text-align    : center;
+  border        : 1px solid #aeaeae;
+  border-radius : 5px;
+  margin-top    : 50px;
+}
+
+.no_new_comments p
+{
+  padding : 10px;
+  margin  : 0px;
+}

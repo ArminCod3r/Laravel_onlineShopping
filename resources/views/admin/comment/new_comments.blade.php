@@ -13,10 +13,10 @@
 @section('content1')
 
 <section class="col-lg-12 connectedSortable">
-
+@if( sizeof($unapproved_comments_list) > 0 )
 	<?php $score_names = ['ارزش خرید نسبت به قیمت', 'کیفیت ساخت', 'امکانات و قابلیت ها', 'شهولت استفاده ', 'کارایی و ظاهر', 'نوآوری']?>
 
-	@foreach($comments_and_scores as $key=>$item)
+	@foreach($unapproved_comments_list as $key=>$item)
 
 		<div class="row comment_approval_product_title">
 			<a href="{{ url('').'/product/'.$item->Product->code.'/'.str_replace(" ", "-", $item->Product->title) }}">
@@ -124,6 +124,13 @@
 
 	@endforeach
 
+@else
+
+<div class="no_new_comments">
+	<p> نظر جدیدی ثبت نشده است. </p>
+</div>
+
+@endif
 @endsection
 
 @section('content4')
