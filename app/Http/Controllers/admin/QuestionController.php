@@ -97,4 +97,17 @@ class QuestionController extends Controller
                 return 'false';
         }
     }
+
+    public function remove(Request $request, $question_id)
+    {
+        if($request->ajax())
+        {
+            $update_status = Question::remove_question($question_id);
+
+            if($update_status)
+                return 'true';
+            else
+                return 'false';
+        }
+    }
 }

@@ -129,6 +129,7 @@ Route::middleware(['throttle:60,1'])->group(function(){
 
 		// Questions Approval
 		Route::get('admin/question/approve/{question_id}', 'admin\QuestionController@approve');
+		Route::get('admin/question/remove/{question_id}' , 'admin\QuestionController@remove' );
 		Route::resource('admin/question','admin\QuestionController');
 
 	});

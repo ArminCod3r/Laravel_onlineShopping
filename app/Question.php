@@ -32,4 +32,21 @@ class Question extends Model
     	else
     		return false;
     }
+
+    public static function remove_question($question_id)
+    {
+        $question = Question::findOrFail($question_id);
+
+        if($question->parent_id == 0)
+        {
+            $childs_questions = Question::where('parent_id', $question->id);
+            $childs_questions->delete();
+
+            $question->delete();
+            return true;
+        }            
+
+        else
+            return false;
+    }
 }

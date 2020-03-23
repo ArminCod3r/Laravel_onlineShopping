@@ -78,6 +78,10 @@
 													<button class="btn btn-success fa fa-check approve_btn" id="{{ $question->id }}" onclick="approval('{{ $value_answer->id }}')"> </button>
 												</div>
 
+												<div class="col-sm-1">
+													<button class="btn btn-danger fa fa-trash remove_btn" id="{{ $question->id }}" onclick="remove_comment('{{ $value_answer->id }}')"> </button>
+												</div>
+
 											</div>
 
 											<div id="status_area" style="font-size: 16px;position: absolute;left:10px;top:0px;">
@@ -88,6 +92,12 @@
 											</div>
 										@else
 											
+												<div class="row">
+													<div class="col-sm-1">
+														<button class="btn btn-danger fa fa-trash remove_btn" id="{{ $question->id }}" onclick="remove_comment('{{ $value_answer->id }}')"> </button>
+													</div>
+
+												</div>
 
 												<div id="status_area" style="font-size: 16px;position: absolute;left:10px;top:0px;">
 													<span>وضعیت: </span>
@@ -145,7 +155,7 @@
 
 					<div style="margin-top: 40px ; background-color: #f4f4f4; padding: 10px">
 
-					<div style="position: relative;">
+					<div style="position: relative;">					
 
 					@if($question->status == 0)
 
@@ -153,6 +163,10 @@
 
 						<div class="col-sm-1">
 							<button class="btn btn-success fa fa-check approve_btn" id="{{ $question->id }}" onclick="approval('{{ $question->id }}')" > </button>
+						</div>
+
+						<div class="col-sm-1">
+							<button class="btn btn-danger fa fa-trash remove_btn" id="{{ $question->id }}" onclick="remove_question('{{ $question->id }}')"> </button>
 						</div>
 
 					</div>
@@ -168,6 +182,10 @@
 				
 				@else
 					<div class="row">
+
+						<div class="col-sm-1">
+							<button class="btn btn-danger fa fa-trash remove_btn" id="{{ $question->id }}" onclick="remove_question('{{ $question->id }}')"> </button>
+						</div>
 
 					</div>
 					<div id="status_area" style="font-size: 16px;position: absolute;left:10px;top:0px;">
@@ -241,10 +259,41 @@
 		  );
 	}
 
-	<?php $url_remove= url('admin/comment/remove/'); ?>
-	remove_comment = function(comment_id)
+	<?php $url_remove= url('admin/question/remove/'); ?>
+	remove_question = function(question_id)
 	{
-		alert("Under Construction");
+		url_remove = <?php echo json_encode($url_remove); ?> + "/" + question_id;
+
+		$.ajaxSetup(
+		    			{
+		    				'headers':
+		    				{
+		    					'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
+		    				}
+		    			}
+					);
+		
+		$.ajax(
+	    		{
+
+	    		'url': url_remove,
+	    		'type': 'get',
+	    		'data': '',
+	    		success:function(data){
+	    				if(data == 'true')
+	    				{
+	    					alert("با موفقیت حذف شد.");
+
+	    					status = '<span  style="color: red">حذف شد</span>';
+	    					$("#status_"+question_id).html(status);
+	    				}
+	    				else
+	    				{
+	    					alert("مجددا تلاش کنید");
+	    				}
+	    			}
+	    		}
+		  );
 	}
 
 </script>
