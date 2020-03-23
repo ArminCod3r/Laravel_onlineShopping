@@ -21,6 +21,11 @@ class ProductComment extends Model
         return $this->hasOne(Product::class, 'id', 'product_id');
     }
 
+    public function User()
+    {
+        return $this->hasOne(User::class, 'id', 'user_id');
+    }  
+
     public static function update_status($comment_id)
     {
     	$response = false;

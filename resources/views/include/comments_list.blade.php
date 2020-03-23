@@ -99,53 +99,66 @@ $round_number_loop = true;
 
 <div style="margin-top: 20px"></div>
 
-@if( sizeof($comments)>0 and sizeof($scores)>0  )
 
-	@foreach($scores as $key=>$value)
+
+@if( sizeof($comments)>0 )
+
+
+	@foreach($comments as $key=>$comment)
 
 		<div class="comment_username">
-			@if($value[0]->user->name)
-				<p>{{$value[0]->user->name}}</p>
+			@if($comment->User->name)
+				<p>{{$comment->User->name}}</p>
 			@else
 				<p> کاربر سایت </p>
 			@endif
 		</div>
-
+		
 		<div class="row sumup">
+
+			<!-- Scores -->
 			<div class="col-sm-6">
 				<table>
-					@foreach($value as $key_2=>$value_2)
+					@foreach($comment->ProductScore as $key_score=>$score)
+
+						@if($comment->user_id == $score->user_id)				
 						
-						<tr>
-							<td> {{ $score_names[$value_2->score_id-1] }} </td>
-							<td>
-								@for($i=1 ; $i<=5 ; $i++)
+							<tr>
+								<td> {{ $score_names[$score->score_id - 1] }} </td>
+								<td>
+									@for($i=1 ; $i<=5 ; $i++)
 
-									@if($i <= $value_2->score_value)
-										<span class="bar done"></span>
-									@else
-										<span class="bar"></span>
-									@endif
+										@if($i <= $score->score_value)
+											<span class="bar done"></span>
+										@else
+											<span class="bar"></span>
+										@endif
 
-								@endfor
-							</td>
-						</tr>
+									@endfor
+								</td>						
+							</tr>
+
+						@endif
 						
 					@endforeach
 				</table>
 			</div>
 
 			<div class="col-sm-6" style="border-right: 1px solid #eeeded">
-				<div>{{ $comments[$key][0]->subject }}</div>
 
+				<!-- Comment's subject -->
+				<div>{{ $comment->subject }}</div>
+
+
+				<!-- Pros -->
 				<div style="color:green ; margin-top: 20px">
 					<span class="fa fa-arrow-up"></span>
 					نقاط قوت
-				</div>				
+				</div>
 
-				@if(sizeof($comments[$key])>0)
+				@if(sizeof($comments)>0)
 					<?php
-						$pros_arr = explode("-::-", $comments[$key][0]->pros);								
+						$pros_arr = explode("-::-", $comment->pros);								
 						$pros_arr = array_filter($pros_arr);  // Remove an empty element
 					?>
 
@@ -155,15 +168,15 @@ $round_number_loop = true;
 				@endif
 
 
-
+				<!-- Cons -->
 				<div style="color:red ; margin-top: 20px">
 					<span class="fa fa-arrow-down"></span>
 					نقاط ضعف
 				</div>				
 
-				@if(sizeof($comments)>0)
+				@if(sizeof($comment)>0)
 					<?php
-						$cons_arr = explode("-::-", $comments[$key][0]->cons);								
+						$cons_arr = explode("-::-", $comment->cons);								
 						$cons_arr = array_filter($cons_arr);  // Remove an empty element
 					?>
 
@@ -172,8 +185,9 @@ $round_number_loop = true;
 	  				@endforeach
 				@endif
 
+				<!-- Comment's text -->
 				<div class="comment_text">
-					{{ $comments[$key][0]->comment_text }}
+					{{ $comment->comment_text }}
 				</div>
 
 			</div>
