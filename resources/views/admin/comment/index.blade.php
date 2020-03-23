@@ -18,6 +18,13 @@
 
 	@foreach($comments_and_scores as $key=>$item)
 
+		<div class="row comment_approval_product_title">
+			<a href="{{ url('').'/product/'.$item->Product->code.'/'.str_replace(" ", "-", $item->Product->title) }}">
+				<span class="fa fa-link"></span>
+				<span>{{ $item->Product->title }}</span>
+			</a>
+		</div>
+
 		<div class="row sumup">
 
 			<div class="col-sm-6">

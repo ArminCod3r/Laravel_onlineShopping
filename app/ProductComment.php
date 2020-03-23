@@ -16,6 +16,11 @@ class ProductComment extends Model
     	return $this->hasMany(ProductScore::class, 'product_id', 'product_id');
     }
 
+    public function Product()
+    {
+        return $this->hasOne(Product::class, 'id', 'product_id');
+    }
+
     public static function update_status($comment_id)
     {
     	$response = false;
