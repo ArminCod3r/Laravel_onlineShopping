@@ -520,7 +520,7 @@
               </ul>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="{{ url('admin/comment#comment') }}" class="nav-link">
+                  <a href="{{ url('admin/comment/new_comments#comment') }}" class="nav-link">
                     <p>تایید نشده</p>
                   </a>
                 </li>
