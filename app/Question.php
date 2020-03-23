@@ -14,4 +14,9 @@ class Question extends Model
     {
     	return $this->hasOne(User::class, 'id', 'user_id');
     }
+
+    public function Product()
+    {
+    	return $this->hasOne(Product::class, 'id', 'product_id');
+    }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Question;
 
 class QuestionController extends Controller
 {
@@ -14,7 +15,9 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        return view('admin.question.index');
+        $questions = Question::with(['User', 'Product'])->orderBy('id', 'DESC')->get();
+
+        return view('admin.question.index')->with('questions', $questions);
     }
 
     /**

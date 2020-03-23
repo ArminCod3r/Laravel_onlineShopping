@@ -557,3 +557,107 @@ body{
   padding : 10px;
   margin  : 0px;
 }
+
+
+.questions
+{
+    width : 95%;
+    margin: auto;
+    background-color: white;
+    border-radius: 5px;
+    margin-bottom: 30px;
+    background-color: #fafbfc;
+    box-shadow: 0 2px 3px rgba(0,0,0,.15);
+    padding: 20px 0px 20px 0px;
+    font-size: 14px;
+    margin-top: 20px;
+}
+
+.questions .title
+{
+    padding-right: 30px;
+}
+
+.questions textarea
+{
+    resize : none;
+    margin : auto;
+    width  : 95%;
+    height : 150px;
+}
+
+
+.questions .btn
+{
+    float : left;
+    width : 100%
+}
+
+.questions .question_text_error
+{
+    padding-right: 30px;
+}
+
+.questions_alert_success
+{
+    width  : 95%;
+    margin : auto;
+}
+
+.prev_questions
+{
+    width : 95%;
+    margin: auto;
+    background-color: white;
+    border-radius: 5px;
+    margin-bottom: 30px;
+    background-color: #fafbfc;
+    box-shadow: 0 2px 3px rgba(0,0,0,.15);
+    padding: 20px 0px 20px 0px;
+    font-size: 14px;
+}
+
+
+.answer
+{
+    resize : none;
+    margin : auto;
+    width  : 100%;
+    height : 150px;
+}
+
+.answer_btn
+{
+    float   : left;
+    padding : 20px 0px 20px 0px;
+    color   : #3c9bff;
+}
+
+.answer_btn span
+{
+    cursor: pointer;
+}
+
+.answered_area
+{
+    margin        : 20px;
+    padding       : 20px;
+    border-radius : 5px;
+    background-color: #eee;
+}
+
+.answered_area .row
+{
+    padding-bottom : 10px;
+    border-bottom  : 1px solid #dfdfdf;
+}
+
+.answered_area .row .created_at
+{
+    padding: 0px;
+}
+
+.answered_area .text
+{
+    padding-top: 10px
+}
