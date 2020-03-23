@@ -25,7 +25,7 @@
 			</a>
 		</div>
 
-		<div class="row sumup">
+		<div class="row sumup" style="position: relative;">
 
 			<div class="col-sm-6">
 
@@ -53,26 +53,44 @@
 				</table>
 
 
-				<div class="row" style="margin-top: 20px">
+				<div style="position: absolute; right: 10px ; bottom: 10px">
 
-					<label></label>
+					<div class="row" style="margin-top: 20px">
 
-					<div class="col-sm-2">
-						<button class="btn btn-success" style="width: 100%" id="{{ $item->id }}" onclick="approval(this)"> تایید </button>
-					</div>	
+					@if($item->status == 0)
+						<div class="col-sm-2">
+							<button class="btn btn-success" style="width: 100%" id="{{ $item->id }}" onclick="approval(this)"> تایید </button>
+						</div>	
 
-					<div class="col-sm-2">
-						<button class="btn btn-danger" style="width: 100%" id="{{ $item->id }}" onclick="remove_comment('{{ $item->id }}')"> حذف </button>
-                    </form>						
-					</div>
-				</div> 
+						<div class="col-sm-2">
+							<button class="btn btn-danger" style="width: 100%" id="{{ $item->id }}" onclick="remove_comment('{{ $item->id }}')"> حذف </button>
+						</div>
 
-				<div id="status_area" style="margin: 10px 2px 0px 0px ; font-size: 16px;">
-					<span>وضعیت: </span>
-					<span id='status'>
-						<span style="color: red">تایید نشده</span>
-					</span>
-				</div>              
+						</div>
+
+						<div id="status_area" style="margin: 10px 2px 0px 0px ; font-size: 16px;">
+							<span>وضعیت: </span>
+							<span id='status'>
+								<span style="color: red">تایید نشده</span>
+							</span>
+						</div> 
+
+
+					@else
+						<div class="col-sm-2">
+							<button class="btn btn-danger" id="{{ $item->id }}" onclick="remove_comment('{{ $item->id }}')"> حذف </button>
+						</div>
+
+						</div>
+
+						<div id="status_area" style="margin: 10px 2px 0px 0px ; font-size: 16px;">
+							<span>وضعیت: </span>
+							<span id='status'>
+								<span style="color: green">تایید شده</span>
+							</span>
+						</div>  
+					@endif
+				</div>
 
 			</div>
 
