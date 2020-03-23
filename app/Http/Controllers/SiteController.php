@@ -110,9 +110,14 @@ class SiteController extends Controller
 
         // Score average
         $all_scores   = ProductScore::where('product_id', $product->id)->pluck('score_value')->toArray();
-        $avg_scores   = array_sum($all_scores) / count($all_scores);
-        $avg_scores   = (int)number_format((float)$avg_scores, 2, '.', ''); // 4483540: Show a number to two decimal places
-        $percent_score= ($avg_scores*100)/5;
+        $avg_scores   = 0;
+        $percent_score= 0;
+        if( sizeof($all_scores)>0 )
+        {
+          $avg_scores   = array_sum($all_scores) / count($all_scores);
+          $avg_scores   = (int)number_format((float)$avg_scores, 2, '.', ''); // 4483540: Show a number to two decimal places
+          $percent_score= ($avg_scores*100)/5;
+        }
 
 
         return view('site.showProduct')->with([
