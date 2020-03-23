@@ -25,9 +25,9 @@ class CommentController extends Controller
 
     public function new_comments()
     {
-        $comments_and_scores = ProductComment::where('status', 0)->with('ProductScore')->with('Product')->get();
+        $unapproved_comments_list = ProductComment::where('status', 0)->with('ProductScore')->with('Product')->get();
 
-        return view('admin.comment.new_comments')->with('comments_and_scores', $comments_and_scores);
+        return view('admin.comment.new_comments')->with('unapproved_comments_list', $unapproved_comments_list);
     }
 
     /**
