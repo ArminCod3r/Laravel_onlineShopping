@@ -118,10 +118,10 @@
 
 						</div>
 					
-						<div id="row_{{$question->id}}" style="margin-top: 20px; display: none">
+						<div id="row_{{$question->id}}" style="margin: 20px 0px 20px 0px; display: none">
 							<div id="col_sm_12_{{$question->id}}">	
 
-								<form action="{{ action('QuestionController@store') }}" onsubmit="answer_submit() ; return false;" method='post' id="answer_form">
+								<form action="{{ action('admin\QuestionController@store') }}" onsubmit="answer_submit('{{$question->id}}') ; return false;" method='post' id="answer_form">
 								   {{ @csrf_field() }}
 
 								   <span class="fa fa-mail-reply fa-rotate-270"></span>
@@ -132,18 +132,16 @@
 										</span>
 									</div>
 								   <input type="hidden" name="parent_id" id="{{$question->id}}" value="{{$question->id}}">
-								   <input type="hidden" name="product_id" id="28" value="28">
+								   <input type="hidden" name="product_id" id="{{$question->Product->id}}" value="{{$question->Product->id}}">
 
 								   <input type="submit" class="btn btn-success" value="ثبت" style="float:left; margin-top: 10px">
 								   <div style="clear: both"></div>
 							  	</form>	
-
-							  	<div id="answer_alert_success" class="answer_alert_success"></div>
-
 							</div>
+
 						</div>
 
-
+						<div id="answer_alert_success" class="answer_alert_success"></div>
 						
 					</div>
 					
@@ -295,6 +293,73 @@
 	    		}
 		  );
 	}
+
+	answer = function(question_id)
+	{		
+		$("#row_"+question_id).addClass("row");
+		$("#row_"+question_id).css("border-top", "1px dotted #dfdfdf");
+		$("#row_"+question_id).css("display", "block");
+
+		$("#col_sm_12_"+question_id).addClass("col-sm-12");
+	}
+
+
+	
+	answer_submit = function(question_id)
+	{
+		var form_data = $("#answer_form").serialize();
+		console.log(form_data);
+
+		$.ajaxSetup(
+		    			{
+		    				'headers':
+		    				{
+		    					'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
+		    				}
+		    			}
+					);
+		
+		$.ajax(
+	    		{
+
+	    		'url': $("#answer_form").attr('action'),
+	    		'type': 'post',
+	    		'data': 'form_data='+form_data,
+	    		success:function(data)
+	    		{
+	    			if(data == '1')
+	    			{
+	    				$("#row_"+question_id).css("display", "none");
+
+	    				$("#answer_text_error").html("");
+	    				
+	    				$("#answer_alert_success").addClass("alert alert-success");	    				
+	    				$("#answer_alert_success").html("ثبت شد.");
+	    			}
+	    			else
+	    			{
+	    				if(data == '0')
+	    					alert('مشکلی در پرسش سوال پیش آمده.');
+
+	    				else
+	    				{
+	    					var data = Object.entries(data);
+
+			    			data.forEach(([key, value]) => {
+							  $("#answer_text_error").html(value);
+							});
+
+    						$("#answer_alert_success").removeClass("alert alert-success");	    				
+		    				$("#answer_alert_success").html("");
+	    				}
+	    			}
+	    		}
+
+	    		}
+		  );
+	}
+
+
 
 </script>
 

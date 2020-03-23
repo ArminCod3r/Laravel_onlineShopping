@@ -38,7 +38,12 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $admin_answer = Question::admin_answer($request);
+
+        if($admin_answer)
+            return '1';
+        else
+            return '0';
     }
 
     /**

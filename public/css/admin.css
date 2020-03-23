@@ -673,3 +673,20 @@ body{
   width: 100%;
   background-color: #db5966  !important;
 }
+
+.alert-success
+{
+    border-color: #62b375;
+}
+
+.alert-success, .bg-success, .label-success
+{
+    background-color: #62b375 !important;
+}
+
+.answer_alert_success
+{
+  width: 96%;
+  margin: auto;
+  margin-bottom: 15px;
+}

@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Question;
+use Auth;
 
 class Question extends Model
 {
@@ -46,6 +47,28 @@ class Question extends Model
             return true;
         }            
 
+        else
+            return false;
+    }
+
+    public static function admin_answer($request)
+    {
+        $product_id    = $request->get('product_id'); // $request->ALL('product_id'); output will be array
+        $parent_id     = $request->get('parent_id');
+        $product       = Product::findOrFail($product_id);
+        $question_text = $request->get('question_text');
+
+        $question = new Question;
+
+        $question->time       = time();
+        $question->product_id = $product_id;
+        $question->user_id    = Auth::user()->id;
+        $question->question   = $question_text;
+        $question->parent_id  = $parent_id;
+        $question->status     = 1;
+
+        if($question->save())
+            return true;
         else
             return false;
     }
