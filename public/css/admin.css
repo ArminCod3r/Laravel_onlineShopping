@@ -649,7 +649,7 @@ body{
 .answered_area .row
 {
     padding-bottom : 10px;
-    border-bottom  : 1px solid #dfdfdf;
+    /*border-bottom  : 1px solid #dfdfdf;*/
 }
 
 .answered_area .row .created_at
@@ -660,4 +660,16 @@ body{
 .answered_area .text
 {
     padding-top: 10px
+}
+
+.approve_btn
+{
+  width: 100%;
+  background-color: #7abd8a !important;
+}
+
+.remove_btn
+{
+  width: 100%;
+  background-color: #db5966  !important;
 }

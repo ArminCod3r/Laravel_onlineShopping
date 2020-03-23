@@ -6,11 +6,11 @@
 	<!-- font awesome -->
 	<link rel="stylesheet" href="{{ url('css/font-awesome.css') }}">
 	
-	<title>سوال و جواب کاربران</title>
+	<title>مدیریت پرسش های کاربران</title>
 @endsection
 
 @section('custom-title')
-  سوال و جواب کاربران
+  مدیریت پرسش های کاربران
 @endsection
 
 
@@ -23,6 +23,7 @@
 
 		@foreach($questions as $key=>$question)
 
+			<!-- Product's Link -->
 			@if( $question->parent_id == 0 )
 				<div class="row comment_approval_product_title">
 					<a href="{{ url('').'/product/'.$question->Product->code.'/'.str_replace(" ", "-", $question->Product->title) }}">
@@ -32,6 +33,7 @@
 				</div>
 			@endif
 
+			<!-- Question / Answers -->
 			@if( $question->parent_id == 0 )
 				<div class="prev_questions">
 					<div style="width: 95%; margin:auto">
@@ -65,6 +67,40 @@
 											{{ $value_answer->question }}
 										</div>
 
+										<!-- approve / remove -->
+										<div style="position: relative;background-color: #f4f4f4; padding: 10px">
+
+										@if($value_answer->status == 0)
+
+											<div class="row">
+
+												<div class="col-sm-1">
+													<button class="btn btn-success fa fa-check approve_btn" id="{{ $question->id }}" onclick="approval('{{ $value_answer->id }}')"> </button>
+												</div>
+
+											</div>
+
+											<div id="status_area" style="font-size: 16px;position: absolute;left:10px;top:0px;">
+												<span>وضعیت: </span>
+												<span id='status_{{$value_answer->id}}'>												
+													<span style="color: red">تایید نشده</span>
+												</span>
+											</div>
+										@else
+											
+
+												<div id="status_area" style="font-size: 16px;position: absolute;left:10px;top:0px;">
+													<span>وضعیت: </span>
+													<span id='status_{{$value_answer->id}}'>
+														<span style="color: green">تایید شده</span>
+													</span>
+												</div>
+												
+
+										@endif
+
+										</div>
+
 									</div>
 								@endif
 							@endforeach
@@ -96,16 +132,55 @@
 
 							</div>
 						</div>
+
+
 						
 					</div>
+					
 
-					<div class="answer_btn"  onclick="answer('{{$question->id}}')">
+					<div class="answer_btn"  onclick="answer('{{$question->id}}')" style="position: relative;bottom: 25px;">
 						<span class="fa fa-mail-reply"></span>
 						<span>به این پرسش پاسخ دهید</span>
 					</div>
+
+					<div style="margin-top: 40px ; background-color: #f4f4f4; padding: 10px">
+
+					<div style="position: relative;">
+
+					@if($question->status == 0)
+
+					<div class="row">
+
+						<div class="col-sm-1">
+							<button class="btn btn-success fa fa-check approve_btn" id="{{ $question->id }}" onclick="approval('{{ $question->id }}')" > </button>
+						</div>
+
+					</div>
+
+
+
+					<div id="status_area" style="font-size: 16px;position: absolute;left:10px;top:0px;">
+						<span>وضعیت: </span>
+						<span id='status_{{$question->id}}'>
+							<span style="color: red">تایید نشده</span>
+						</span>
+					</div>
+				
+				@else
+					<div class="row">
+
+					</div>
+					<div id="status_area" style="font-size: 16px;position: absolute;left:10px;top:0px;">
+						<span>وضعیت: </span>
+						<span id='status_{{$value_answer->id}}'>
+							<span style="color: green">تایید شده</span>
+						</span>
+					</div>				
+				@endif
+
 				</div>
-
-
+			</div>
+		</div>
 				
 			@endif
 			
@@ -122,3 +197,56 @@
 	<section class="col-lg-5 connectedSortable">
 @endsection
 
+@section('footer')
+
+<script type="text/javascript">
+	
+
+	<?php $url= url('admin/question/approve/'); ?>
+	approval = function(question_id)
+	{
+		console.log("#status_"+question_id);
+
+		url_approve = <?php echo json_encode($url); ?> + "/" + question_id;
+
+		$.ajaxSetup(
+		    			{
+		    				'headers':
+		    				{
+		    					'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
+		    				}
+		    			}
+					);
+		
+		$.ajax(
+	    		{
+
+	    		'url': url_approve,
+	    		'type': 'get',
+	    		'data': '',
+	    		success:function(data){
+	    				if(data == 'true')
+	    				{
+	    					alert("نظر با موفقیت تایید شد.");
+
+	    					status = '<span  style="color: green">تایید شد</span>';
+	    					$("#status_"+question_id).html(status);
+	    				}
+	    				else
+	    				{
+	    					alert("مجددا تلاش کنید");
+	    				}
+	    			}
+	    		}
+		  );
+	}
+
+	<?php $url_remove= url('admin/comment/remove/'); ?>
+	remove_comment = function(comment_id)
+	{
+		alert("Under Construction");
+	}
+
+</script>
+
+@endsection

@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Question;
 
 class Question extends Model
 {
@@ -18,5 +19,17 @@ class Question extends Model
     public function Product()
     {
     	return $this->hasOne(Product::class, 'id', 'product_id');
+    }
+
+    public static function update_status($question_id)
+    {
+    	$question = Question::findOrFail($question_id);
+
+    	$question->status = 1;
+
+    	if($question->save())
+    		return true;
+    	else
+    		return false;
     }
 }

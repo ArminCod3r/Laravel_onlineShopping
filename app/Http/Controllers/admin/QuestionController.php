@@ -85,4 +85,16 @@ class QuestionController extends Controller
     {
         //
     }
+    public function approve(Request $request, $question_id)
+    {
+        if($request->ajax())
+        {
+            $update_status = Question::update_status($question_id);
+
+            if($update_status)
+                return 'true';
+            else
+                return 'false';
+        }
+    }
 }
