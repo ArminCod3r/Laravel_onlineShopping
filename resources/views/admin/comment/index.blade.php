@@ -53,16 +53,16 @@
 				</table>
 
 
-				<div style="position: absolute; right: 10px ; bottom: 10px">
+				<div>
 
 					<div class="row" style="margin-top: 20px">
 
 					@if($item->status == 0)
-						<div class="col-sm-2">
+						<div class="col-sm-4">
 							<button class="btn btn-success" style="width: 100%" id="{{ $item->id }}" onclick="approval(this)"> تایید </button>
 						</div>	
 
-						<div class="col-sm-2">
+						<div class="col-sm-4">
 							<button class="btn btn-danger" style="width: 100%" id="{{ $item->id }}" onclick="remove_comment('{{ $item->id }}')"> حذف </button>
 						</div>
 
@@ -77,8 +77,8 @@
 
 
 					@else
-						<div class="col-sm-2">
-							<button class="btn btn-danger" id="{{ $item->id }}" onclick="remove_comment('{{ $item->id }}')"> حذف </button>
+						<div class="col-sm-4">
+							<button class="btn btn-danger" style="width: 100%" id="{{ $item->id }}" onclick="remove_comment('{{ $item->id }}')"> حذف </button>
 						</div>
 
 						</div>
