@@ -126,6 +126,10 @@ Route::middleware(['throttle:60,1'])->group(function(){
 		Route::get('admin/comment/new_comments'        , 'admin\CommentController@new_comments' );
 		Route::resource('admin/comment','admin\CommentController');
 
+
+		// Questions Approval
+		Route::resource('admin/question','admin\QuestionController');
+
 	});
 
 	// Admin login
