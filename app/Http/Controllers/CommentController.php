@@ -218,7 +218,7 @@ class CommentController extends Controller
 
         // 'group_by' the table by 'user_id' to loop over easier
         $scores   = ProductScore::with('User')->where('product_id', $product_id)->get()->groupBy('user_id');
-        $comments = ProductComment::where(['product_id'=>28, 'status'=>1])->with('ProductScore')->with('User')->get();
+        $comments = ProductComment::where(['product_id'=>$product_id, 'status'=>1])->with('ProductScore')->with('User')->get();
 
         // Average score
         $avg = array();
