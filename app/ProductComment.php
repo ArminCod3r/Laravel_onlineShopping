@@ -34,7 +34,7 @@ class ProductComment extends Model
 
     public static function remove_comment($comment_id)
     {
-        $comment = ProductComment::find($comment_id);
+        $comment = ProductComment::findOrFail($comment_id);
 
         if($comment->delete())
         {
