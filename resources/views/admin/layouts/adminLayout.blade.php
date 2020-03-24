@@ -533,6 +533,9 @@
                 <i class="nav-icon fa fa-question"></i>
                 <p>
                   پرسش کاربران
+                  @if( $unapproved_question )
+                    <span> ({{ $unapproved_question }}) </span>
+                  @endif
                   <i class="fa fa-angle-left right"></i>
                 </p>
               </a>
