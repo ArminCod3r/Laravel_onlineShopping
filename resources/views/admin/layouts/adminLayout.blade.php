@@ -527,6 +527,31 @@
               </ul>
             </li>
 
+
+            <li class="nav-item has-treeview" id="question">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fa fa-question"></i>
+                <p>
+                  پرسش کاربران
+                  <i class="fa fa-angle-left right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="{{ url('admin/question/#question') }}" class="nav-link">
+                    <p>لیست</p>
+                  </a>
+                </li>
+              </ul>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <p>تایید نشده (در دست ساخت)</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+
             
         </nav>
         <!-- /.sidebar-menu -->
