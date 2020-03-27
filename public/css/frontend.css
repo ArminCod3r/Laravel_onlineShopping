@@ -2401,6 +2401,51 @@ background-color: #3490dc;
     padding-top: 10px
 }
 
+.sort
+{
+    border-bottom: 1px solid #bdbdbd;
+    padding: 2px 0px 5px 0px;
+}
+
+.sort .title
+{
+    position: relative;
+}
+
+.sort .title span
+{
+    position: absolute;
+    top: 5px;
+}
+
+.sort .list-group-horizontal .list-group-item:first-child {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.sort .list-group-horizontal .list-group-item:last-child {
+    margin-right: 0;
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+    border-bottom-left-radius: 0;
+}
+
+.sort .options ul
+{
+    float: left;
+}
+
+.sort .options ul li
+{
+    cursor: pointer;
+}
+
+.active-sort-option
+{
+    background-color: #d1d1ea !important;
+}
+
 
 
 
