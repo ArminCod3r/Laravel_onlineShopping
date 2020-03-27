@@ -361,6 +361,17 @@
 
 		// Activating selected sorting-option
 		$("#sort_option_"+sortBy).addClass("active-sort-option");
+
+		
+		// Add sorted-option to the url
+		var sort_option    = "&sortby="+sortBy;
+		var url            = window.location.search;
+		var url_attributes = window.location.origin + window.location.pathname;
+
+		var url_for_sorting = url_attributes + url + sort_option;
+
+		// Redirecting new URL
+		window.location.replace(url_for_sorting);
 	}
 	
 
