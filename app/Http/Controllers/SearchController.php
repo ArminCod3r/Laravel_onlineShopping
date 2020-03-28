@@ -57,6 +57,7 @@ class SearchController extends Controller
         $search_result = array();
         $brand  = array();
         $selected_filters = array();
+        $sortby=null;
 
 
         // processing brand[] in the URL
@@ -64,6 +65,8 @@ class SearchController extends Controller
         {
             $brand    = $data['brand'];
             $selected_filters = $data['brand'];
+            if(isset($data['sortby']))
+                $sortby = $data['sortby'];
 
             // Query between tables: link_category_filter -> filter_assign -> product
             $products = DB::table('product')
@@ -75,6 +78,8 @@ class SearchController extends Controller
             // pop the brand[], page[] from the url to get the rest of filters services
             unset($data['brand']);
             unset($data['page']);
+            if(isset($data['sortby']))
+                unset($data['sortby']); 
 
             $conditions = array();
 
@@ -192,6 +197,7 @@ class SearchController extends Controller
                                                 'selected_filters'=> $selected_filters,
                                                 'selected_names'  => $selected_names,
                                                 'page_cats'       => $page_cats,
+                                                'sortby'          => $sortby,
                                               ]);
 
 
