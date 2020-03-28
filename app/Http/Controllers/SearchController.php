@@ -58,6 +58,7 @@ class SearchController extends Controller
         $brand  = array();
         $selected_filters = array();
         $sortby=null;
+        $sort_order = array();
 
 
         // processing brand[] in the URL
@@ -66,13 +67,26 @@ class SearchController extends Controller
             $brand    = $data['brand'];
             $selected_filters = $data['brand'];
             if(isset($data['sortby']))
-                $sortby = $data['sortby'];
+                if($data['sortby']>0 and $data['sortby']<5)
+                {
+                    $sortby = $data['sortby'];
+
+                    switch ($sortby)
+                    {
+                        case 1:  $sort_order = 'product.id            DESC';  break;
+                        case 2:  $sort_order = 'product.order_product ASC' ;  break;
+                        case 3:  $sort_order = 'product.price         ASC' ;  break;
+                        case 4:  $sort_order = 'product.price         DESC';  break;                        
+                        default: $sort_order = 'product.id            DESC';  break;
+                    }
+                }
 
             // Query between tables: link_category_filter -> filter_assign -> product
             $products = DB::table('product')
                       ->join('filter_assign', 'product.id', '=', 'filter_assign.product_id')
                       ->join('link_category_filter', 'filter_assign.value_id', '=', 'link_category_filter.filter_id')
                       ->wherein('link_category_filter.category_id', $data['brand'])
+                      ->orderByRaw($sort_order) //17006309
                       ->get();
             
             // pop the brand[], page[] from the url to get the rest of filters services
