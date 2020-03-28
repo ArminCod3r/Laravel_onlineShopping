@@ -207,6 +207,7 @@
 <script type="text/javascript" src="{{ url('js/list.min.js') }}"></script>
 
 <script type="text/javascript">
+
 	
 	checking = function(id)
 	{
@@ -364,15 +365,36 @@
 
 		
 		// Add sorted-option to the url
-		var sort_option    = "&sortby="+sortBy;
-		var url            = window.location.search;
-		var url_attributes = window.location.origin + window.location.pathname;
+		var url_params            = window.location.search;		
 
-		var url_for_sorting = url_attributes + url + sort_option;
+		var url = new URL(window.location.origin + window.location.pathname+window.location.search);
+
+		var query_string = url.search;
+		var search_params = new URLSearchParams(query_string); 
+
+		// javascript change value of parameter
+		// https://usefulangle.com/post/81/javascript-change-url-parameters
+		if(url_params.includes("sortby"))
+			search_params.set('sortby', sortBy);
+
+		else
+			search_params.append('sortby', sortBy);
+			//url_for_sorting = url_attributes + url + sort_option;
+		
+
+		// change the search property of the main url
+		url.search = search_params.toString();
+
+		// the new url string
+		var new_url = url.toString();
+
+		console.log(new_url);
+
 
 		// Redirecting new URL
-		window.location.replace(url_for_sorting);
+		window.location.replace(new_url);
 	}
+
 	
 
 </script>

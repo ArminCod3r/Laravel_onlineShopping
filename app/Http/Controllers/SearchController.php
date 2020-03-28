@@ -74,7 +74,8 @@ class SearchController extends Controller
             
             // pop the brand[], page[] from the url to get the rest of filters services
             unset($data['brand']);
-            unset($data['page']); 
+            unset($data['page']);
+
             $conditions = array();
 
             // make a new array to store all the filters
