@@ -173,12 +173,13 @@
 						</span>
 					</div>
 
-					 <div class="col-sm-5 options">
+					 <div class="col-sm-7 options">
 					 	<ul class="list-group list-group-horizontal">
 						 	<li class="list-group-item active-sort-option" id="sort_option_1" onclick="sort('1')">جدید ترین</li>
 						 	<li class="list-group-item" id="sort_option_2" onclick="sort('2')">پرفروش ترین</li>
 						  	<li class="list-group-item" id="sort_option_3" onclick="sort('3')">ارزان ترین</li>
 						  	<li class="list-group-item" id="sort_option_4" onclick="sort('4')">گران ترین</li>
+						 	<li class="list-group-item" id="sort_option_5" onclick="sort('5')">پر بازدید ترین</li>
 						 </ul>
 					 </div>
 					 

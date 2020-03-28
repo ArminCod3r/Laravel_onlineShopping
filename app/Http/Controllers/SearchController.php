@@ -58,7 +58,7 @@ class SearchController extends Controller
         $brand  = array();
         $selected_filters = array();
         $sortby=null;
-        $sort_order = array();
+        $sort_order = 'product.id DESC';
 
 
         // processing brand[] in the URL
@@ -67,7 +67,7 @@ class SearchController extends Controller
             $brand    = $data['brand'];
             $selected_filters = $data['brand'];
             if(isset($data['sortby']))
-                if($data['sortby']>0 and $data['sortby']<5)
+                if($data['sortby']>0 and $data['sortby']<6)
                 {
                     $sortby = $data['sortby'];
 
@@ -76,7 +76,8 @@ class SearchController extends Controller
                         case 1:  $sort_order = 'product.id            DESC';  break;
                         case 2:  $sort_order = 'product.order_product ASC' ;  break;
                         case 3:  $sort_order = 'product.price         ASC' ;  break;
-                        case 4:  $sort_order = 'product.price         DESC';  break;                        
+                        case 4:  $sort_order = 'product.price         DESC';  break;
+                        case 5:  $sort_order = 'product.view          DESC';  break;
                         default: $sort_order = 'product.id            DESC';  break;
                     }
                 }
