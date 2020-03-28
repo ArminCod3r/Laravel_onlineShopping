@@ -70,7 +70,9 @@ class SiteController extends Controller
                                                         'show_product' => 1])
 
                                                 ->firstOrFail();
-
+        $product->view = $product->view + 1;
+        $product->update();
+        
         $review = Review::where('product_id', $product->id)->get();
 
         //$category = Category::findOrFail($category_id);
