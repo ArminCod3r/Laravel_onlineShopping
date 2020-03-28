@@ -354,14 +354,8 @@
 	// Sorting
 	sort = function(sortBy)
 	{
-		// Deactiving previous option
-		for (var i=0 ; i<=4 ; i++)
-		{
-			$("#sort_option_"+i).removeClass("active-sort-option");
-		}
-
 		// Activating selected sorting-option
-		$("#sort_option_"+sortBy).addClass("active-sort-option");
+		enable_sorting_option(sortBy);
 
 		
 		// Add sorted-option to the url
