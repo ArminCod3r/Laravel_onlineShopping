@@ -395,6 +395,18 @@
 		window.location.replace(new_url);
 	}
 
+	enable_sorting_option = function()
+	{
+		for (var i=0 ; i<=4 ; i++)
+		{
+			$("#sort_option_"+i).removeClass("active-sort-option");
+		}
+
+		$("#sort_option_"+<?php echo $sortby;?>).addClass("active-sort-option");
+	}
+
+	enable_sorting_option(<?php echo $sortby;?>);
+
 	
 
 </script>
