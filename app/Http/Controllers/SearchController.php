@@ -42,6 +42,14 @@ class SearchController extends Controller
                                 ])
                                 ->firstOrFail();
 
+        $products_in_cat3 = $cat3->with(['Products_ID', 'Product'])->where('parent_id', $cat2->id)->first();
+        $prices_range = array();
+
+        foreach ($products_in_cat3['Product'] as $key => $value)
+            array_push($prices_range, $value['price']);
+        
+
+
         $page_cats    = array();
         $page_cats[1] = $cat1;
         $page_cats[2] = $cat2;
@@ -241,6 +249,7 @@ class SearchController extends Controller
                                                 'selected_names'  => $selected_names,
                                                 'page_cats'       => $page_cats,
                                                 'sortby'          => $sortby,
+                                                'prices_range'    => $prices_range,
                                               ]);
 
 

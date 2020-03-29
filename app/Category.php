@@ -37,4 +37,21 @@ class Category extends Model
         return $this->hasMany(Filter::class, 'category_id', 'id');
     }
 
+    public function Products_ID()
+    {
+        return $this->hasMany(ParentProduct::class, 'parent_id', 'id');
+    }
+
+    // PIVOT :    http://laravel.at.jeffsbox.eu/laravel-5-eloquent-relationship-types-many-to-many
+    public function Product()
+    {
+        // return $this->belongsToMany(LastClass::class
+        //                            'middle_TABLE_NAME(not class)',
+        //                            'middle-table and current-table connection-link',
+        //                            'middle-table and last-table connection-link'
+        //                            );
+
+        return $this->belongsToMany(Product::class, 'parent_product', 'parent_id', 'product_id');
+    }
+
 }
