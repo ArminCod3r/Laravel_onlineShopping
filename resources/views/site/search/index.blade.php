@@ -72,10 +72,10 @@
 					<div style="direction: ltr ; width: 92% ; margin: auto">
 						<input type="text" class="js-range-slider" name="my_range" id="price_slider" value=""
 					        data-type="double"
-					        data-min="1000000"
-					        data-max="4000000"
-					        data-from="1000000"
-					        data-to="4000000"
+					        data-min="{{ $products->min('price') }}"
+					        data-max="{{ $products->max('price') }}"
+					        data-from="{{ $products->min('price') }}"
+					        data-to="{{ $products->max('price') }}"
 					    />
 					</div>
 
