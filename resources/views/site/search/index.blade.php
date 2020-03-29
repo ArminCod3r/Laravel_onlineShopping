@@ -164,7 +164,14 @@
 				</div>
 
 				<div class="row sort" >
-					<div class="col-sm-2">
+					<div class="col-sm-1"></div>
+
+
+					<div class="col-sm-2 sum_product_result">
+						<div>
+							<span>مجموع :</span>
+							<span>{{sizeof($products)}}</span>
+						</div>
 					</div>
 
 					<div class="col-sm-2 title">

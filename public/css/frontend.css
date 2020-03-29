@@ -2446,6 +2446,17 @@ background-color: #3490dc;
     background-color: #d1d1ea !important;
 }
 
+.sort .sum_product_result
+{
+    position: relative;
+}
+
+.sort .sum_product_result div
+{
+    position: absolute;
+    top:5px;
+}
+
 
 
 
