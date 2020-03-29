@@ -72,10 +72,12 @@
 					<div style="direction: ltr ; width: 92% ; margin: auto">
 						<input type="text" class="js-range-slider" name="my_range" id="price_slider" value=""
 					        data-type="double"
-					        data-min="{{ $products->min('price') }}"
-					        data-max="{{ $products->max('price') }}"
-					        data-from="{{ $products->min('price') }}"
-					        data-to="{{ $products->max('price') }}"
+					        data-min="{{ min($prices_range) }}"
+					        data-max="{{ max($prices_range) }}"
+					        
+					        data-from=@if(app('request')->input('min_price')) {{app('request')->input('min_price')}} @else { min($prices_range) }} @endif
+
+					        data-to=@if(app('request')->input('max_price')) {{app('request')->input('max_price')}} @else { min($prices_range) }} @endif
 					    />
 					</div>
 
