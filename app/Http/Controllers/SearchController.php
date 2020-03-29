@@ -60,13 +60,18 @@ class SearchController extends Controller
         $sortby=null;
         $sort_order = 'product.id DESC';
 
+        $min_price = null;
+        $max_price = null;
+
 
         // processing brand[] in the URL
         if(array_key_exists('brand', $data))
         {
             $brand    = $data['brand'];
             $selected_filters = $data['brand'];
+
             if(isset($data['sortby']))
+            {
                 if($data['sortby']>0 and $data['sortby']<6)
                 {
                     $sortby = $data['sortby'];
@@ -81,20 +86,43 @@ class SearchController extends Controller
                         default: $sort_order = 'product.id            DESC';  break;
                     }
                 }
+            }
+
+            if(isset($data['min_price'])) $min_price = $data['min_price'];
+
+            if(isset($data['max_price'])) $max_price = $data['max_price'];
+
+
 
             // Query between tables: link_category_filter -> filter_assign -> product
             $products = DB::table('product')
                       ->join('filter_assign', 'product.id', '=', 'filter_assign.product_id')
                       ->join('link_category_filter', 'filter_assign.value_id', '=', 'link_category_filter.filter_id')
                       ->wherein('link_category_filter.category_id', $data['brand'])
+                      ->where(function ($q) use($max_price) { // execute if max_price != null
+                            if ($max_price) {
+                                $q->where('product.price', '<=', $max_price);
+                            }
+                        })
+                      ->where(function ($q) use($min_price) { // execute if min_price != null
+                            if ($min_price) {
+                                $q->where('product.price', '>=', $min_price);
+                            }
+                        })
                       ->orderByRaw($sort_order) //17006309
                       ->get();
             
             // pop the brand[], page[] from the url to get the rest of filters services
             unset($data['brand']);
             unset($data['page']);
+
             if(isset($data['sortby']))
                 unset($data['sortby']); 
+
+            if(isset($data['min_price'])) unset($data['min_price']);
+
+            if(isset($data['max_price'])) unset($data['max_price']);
+
 
             $conditions = array();
 
