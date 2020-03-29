@@ -477,7 +477,7 @@
 			search_params.set('max_price', to_);
 
 		else
-			search_params.append('min_price', to_);
+			search_params.append('max_price', to_);
 		
 
 		
