@@ -11,6 +11,9 @@
 	
 	</style>
 
+	<!--Plugin CSS file with desired skin-->
+    <link rel="stylesheet" type="text/css" href="{{ url('css/ion.rangeSlider.css') }}">
+
 @endsection
 
 @section('content')
@@ -65,6 +68,21 @@
 
 				@endforeach
 
+				<div style="width: 100%">
+					<div style="direction: ltr ; width: 92% ; margin: auto">
+						<input type="text" class="js-range-slider" name="my_range" value=""
+					        data-type="double"
+					        data-min="1000000"
+					        data-max="4000000"
+					        data-from="1000000"
+					        data-to="4000000"
+					    />
+					</div>
+
+					<div style="margin: 20px;">
+						<button class="btn btn-primary">اعمال محدوده قیمت</button>
+					</div>
+				</div>
 
 				<?php $first_color=true; ?>
 				@foreach($filters as $key=>$value)
@@ -213,6 +231,14 @@
 @section('footer')
 
 <script type="text/javascript" src="{{ url('js/list.min.js') }}"></script>
+
+ <!--jQuery-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<!--Plugin JavaScript file-->
+<script type="text/javascript" src="{{ url('js/ion.rangeSlider.min.js') }}"></script>
+
+
 
 <script type="text/javascript">
 
@@ -409,6 +435,9 @@
 
 	enable_sorting_option(<?php echo $sortby;?>);
 
+	
+	//  Price's range-slider initialize instance
+	$(".js-range-slider").ionRangeSlider();
 	
 
 </script>
