@@ -70,7 +70,7 @@
 
 				<div style="width: 100%">
 					<div style="direction: ltr ; width: 92% ; margin: auto">
-						<input type="text" class="js-range-slider" name="my_range" value=""
+						<input type="text" class="js-range-slider" name="my_range" id="price_slider" value=""
 					        data-type="double"
 					        data-min="1000000"
 					        data-max="4000000"
@@ -80,7 +80,7 @@
 					</div>
 
 					<div style="margin: 20px;">
-						<button class="btn btn-primary">اعمال محدوده قیمت</button>
+						<button class="btn btn-primary" onclick="set_price_range(this)">اعمال محدوده قیمت</button>
 					</div>
 				</div>
 
@@ -436,8 +436,61 @@
 	enable_sorting_option(<?php echo $sortby;?>);
 
 	
+	// set defaults
+	var from_ = document.getElementById('price_slider').getAttribute('data-min');
+	var to_   = document.getElementById('price_slider').getAttribute('data-max');
+
 	//  Price's range-slider initialize instance
-	$(".js-range-slider").ionRangeSlider();
+	$(".js-range-slider").ionRangeSlider({
+		min: document.getElementById('price_slider').getAttribute('data-min'),
+        max: document.getElementById('price_slider').getAttribute('data-max'),
+		onFinish: updateInputs
+	});
+
+
+
+	function updateInputs (data)
+	{
+        from_ = data.from;
+        to_ = data.to;
+    }
+
+	set_price_range = function()
+	{
+        console.log(from_);
+        console.log(to_);
+
+		var url_params = window.location.search;	
+		var url        = new URL(window.location.origin + window.location.pathname + url_params);
+
+		var query_string  = url.search;
+		var search_params = new URLSearchParams(query_string); 
+
+		// javascript change value of parameter: https://usefulangle.com/post/81/javascript-change-url-parameters
+		if(url_params.includes("min_price"))
+			search_params.set('min_price', from_);
+
+		else
+			search_params.append('min_price', from_);
+
+		if(url_params.includes("max_price"))
+			search_params.set('max_price', to_);
+
+		else
+			search_params.append('min_price', to_);
+		
+
+		
+		url.search = search_params.toString(); // change the search property of the main url
+		
+		var new_url = url.toString(); // the new url string
+
+		console.log(new_url);
+
+
+		// Redirecting new URL
+		window.location.replace(new_url);
+	}
 	
 
 </script>
