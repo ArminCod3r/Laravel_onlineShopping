@@ -30,6 +30,10 @@
 						<th>نام کاربری:</th>
 						<th>{{ $users_addr['username'] }}</th>
 					</tr>
+					<tr>
+						<th>شماره همراه:</th>
+						<th>{{ $users_addr['mobile'] }}</th>
+					</tr>
 				</table>
 			</div>
 
