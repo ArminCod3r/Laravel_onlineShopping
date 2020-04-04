@@ -542,10 +542,17 @@ class ShippingController extends Controller
         $addr       = $order->address_text;
         $addr_array = json_decode($addr, true);
 
-
+        // get bought-items details
+        $bought_items = OrderRow::where('order_id',$order_id)
+                                ->with("product")
+                                ->with("color")
+                                ->with("image")
+                                ->get();
+                                
         return view("site/shipping/receipt")->with([
-                                                    'order'=>$order,
-                                                    'users_addr' => $addr_array,
+                                                    'order'        => $order,
+                                                    'users_addr'   => $addr_array,
+                                                    'bought_items' => $bought_items,
                                                     ]);
     }
 
