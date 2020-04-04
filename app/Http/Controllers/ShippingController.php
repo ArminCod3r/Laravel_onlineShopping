@@ -14,6 +14,7 @@ use Session;
 use App\Order;
 use App\User;
 use App\OrderRow;
+use App\Category;
 
 class ShippingController extends Controller
 {
@@ -23,7 +24,10 @@ class ShippingController extends Controller
     {
         $this->middleware('auth');
 
-        $categories = self::categoryTree();
+        //$categories = self::categoryTree();
+        $categories = Category::all();
+        $categories = json_decode($categories, true);
+        
         View::share('categories', $categories);
     }
 

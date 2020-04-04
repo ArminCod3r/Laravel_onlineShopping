@@ -23,7 +23,10 @@ class SiteController extends Controller
 
 	public function __construct()
 	{
-		$categories = self::categoryTree();
+		//$categories = self::categoryTree();
+    $categories = Category::all();
+    $categories = json_decode($categories, true);
+
 		View::share('categories', $categories);
 	}
 
