@@ -15,6 +15,8 @@
  *                  http://www.gnu.org/licenses/gpl.html
  */
 
+namespace App\Lib;
+
 class Barcode {
 
     static public function gd($res, $color, $x, $y, $angle, $type, $datas, $width = null, $height = null){
