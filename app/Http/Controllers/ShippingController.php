@@ -27,7 +27,7 @@ class ShippingController extends Controller
         //$categories = self::categoryTree();
         $categories = Category::all();
         $categories = json_decode($categories, true);
-        
+
         View::share('categories', $categories);
     }
 
@@ -531,7 +531,22 @@ class ShippingController extends Controller
     }
 
 
+    public function receipt(Request $request, $order_id)
+    {
+        $order = Order::where([
+                                'id'      => $order_id,
+                                'user_id' => Auth::user()->id,
+                              ])->firstOrFail();
 
+        $addr       = $order->address_text;
+        $addr_array = json_decode($addr, true);
+        
+
+        return view("site/shipping/receipt")->with([
+                                                    'order'=>$order,
+                                                    'users_addr' => $addr_array,
+                                                    ]);
+    }
 
 
 

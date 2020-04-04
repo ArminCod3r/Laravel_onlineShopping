@@ -287,7 +287,13 @@
 
 </div>
 
-
+<div class="receipt">
+	<p>
+		<a href="{{ action('ShippingController@receipt', ['order_id'=>$order[0]->id]) }}">
+			دریافت فاکتور
+		</a>
+	</p>
+</div>
 
 
 @endsection

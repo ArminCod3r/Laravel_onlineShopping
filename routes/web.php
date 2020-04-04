@@ -199,6 +199,8 @@ Route::middleware(['throttle:60,1'])->group(function(){
 		// Products' question
 		Route::resource('question','QuestionController');
 	});
+
+	Route::get("receipt/{order_id?}","ShippingController@receipt");
 	
 	Route::post('comment/ajax_fetch_comments/', 'CommentController@ajax_fetch_comments');
 	Route::post('question/ajax_fetch_questions/', 'QuestionController@ajax_fetch_questions');
