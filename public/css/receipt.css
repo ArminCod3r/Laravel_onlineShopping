@@ -1,0 +1,68 @@
+
+@font-face {
+    font-family: Vazir;
+    src: url('../dist/fonts/Vazir.eot');
+    src: url('../dist/fonts/Vazir.eot?#iefix') format('embedded-opentype'),
+    url('../dist/fonts/Vazir.woff2') format('woff2'),
+    url('../dist/fonts/Vazir.woff') format('woff'),
+    url('../dist/fonts/Vazir.ttf') format('truetype');
+    font-weight: normal;
+}
+
+body
+{
+	direction: rtl;
+	background: ##f7f7f7;;
+    font-family: 'Vazir', sans-serif !important;
+}
+
+.bought_items
+{
+    padding-top      : 20px;
+    width            : 82.2%;
+    background-color : white;
+    margin           : auto;
+    padding-bottom   : 2px;
+    margin-bottom    : 20px;
+    border: 1px solid black
+}
+
+.cart_headers
+{
+    text-align: center;
+}
+
+.cart_values
+{
+    text-align: center;
+    line-height: 80px;
+}
+
+
+.cart_product_color
+{
+    width         : 14px;
+    height        : 14px;
+    border-radius : 50%;
+    margin-bottom : 18px;
+    margin-top    : 30px;
+    margin-right  : 0px;
+    border        : 1px solid #adaba5;
+}
+
+.order-details
+{
+	text-align  : center;
+	padding-top : 40px;
+	width       : 80%;
+	margin      : auto;
+}
+
+.order-details .row
+{
+	background-color: #ebebeb;
+}
+.order-details .barcode
+{
+	padding-top: 10px;
+}
