@@ -31,6 +31,7 @@
 			</div>
 
 			<div class="col-sm-6">
+				<img src="{{ action('ShippingController@barcode_generator', ['order_id'=>$order->order_id]) }}" class="barcode" style="padding-top: 10px">
 			</div>
 
 		</div>

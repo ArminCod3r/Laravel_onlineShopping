@@ -201,6 +201,7 @@ Route::middleware(['throttle:60,1'])->group(function(){
 	});
 
 	Route::get("receipt/{order_id?}","ShippingController@receipt");
+	Route::get("barcode_generator/{order_id?}","ShippingController@barcode_generator");
 	
 	Route::post('comment/ajax_fetch_comments/', 'CommentController@ajax_fetch_comments');
 	Route::post('question/ajax_fetch_questions/', 'QuestionController@ajax_fetch_questions');

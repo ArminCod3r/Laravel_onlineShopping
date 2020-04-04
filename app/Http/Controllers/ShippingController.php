@@ -15,6 +15,7 @@ use App\Order;
 use App\User;
 use App\OrderRow;
 use App\Category;
+use App\Lib\Barcode;
 
 class ShippingController extends Controller
 {
@@ -540,12 +541,59 @@ class ShippingController extends Controller
 
         $addr       = $order->address_text;
         $addr_array = json_decode($addr, true);
-        
+
 
         return view("site/shipping/receipt")->with([
                                                     'order'=>$order,
                                                     'users_addr' => $addr_array,
                                                     ]);
+    }
+
+    public function barcode_generator(Request $request, $order_id)
+    {
+        $fontSize = 10;
+        $marge    = 10;
+        $x        = 100;
+        $y        = 45;
+        $height   = 50;
+        $width    = 2;
+        $angle    = 0;
+      
+        $code     = $order_id; // barcode, of course ;)
+        $type     = 'ean8';
+      
+        //  USEFUL  
+        function drawCross($im, $color, $x, $y)
+        {
+            imageline($im, $x - 10, $y, $x + 10, $y, $color);
+            imageline($im, $x, $y- 10, $x, $y + 10, $color);
+        }
+      
+        // ALLOCATE GD RESSOURCE
+        $im     = imagecreatetruecolor(200, 90);
+        $black  = ImageColorAllocate($im,0x00,0x00,0x00);
+        $white  = ImageColorAllocate($im,0xff,0xff,0xff);
+        $red    = ImageColorAllocate($im,0xff,0x00,0x00);
+        $blue   = ImageColorAllocate($im,0x00,0x00,0xff);
+
+        imagefilledrectangle($im, 0, 0, 200, 90, $white);
+      
+        // BARCODE
+        $data = Barcode::gd($im, $black, $x, $y, $angle, $type, array('code'=>$code), $width, $height);
+      
+        //HRI
+        if ( isset($font) )
+        {
+            $box = imagettfbbox($fontSize, 0, $font, $data['hri']);
+            $len = $box[2] - $box[0];
+            Barcode::rotate(-$len / 2, ($data['height'] / 2) + $fontSize + $marge, $angle, $xt, $yt);
+            imagettftext($im, $fontSize, $angle, $x + $xt, $y + $yt, $blue, $font, $data['hri']);
+        }
+      
+        // GENERATE
+        header('Content-type: image/gif');
+        imagegif($im);
+        imagedestroy($im);
     }
 
 
