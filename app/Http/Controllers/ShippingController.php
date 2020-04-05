@@ -16,6 +16,8 @@ use App\User;
 use App\OrderRow;
 use App\Category;
 use App\Lib\Barcode;
+use Mail;
+use App\Mail\OrderMail;
 
 class ShippingController extends Controller
 {
@@ -471,6 +473,10 @@ class ShippingController extends Controller
 
                         if(array_key_exists('id', $result))
                         {
+                            $email = Auth::user()->username;
+
+                            Mail::to($email )->send(new OrderMail());
+
                             Session::forget('cart');
 
                             $url = url('/shipping/payment/cash-on-delivery')."/".$result['id'];
