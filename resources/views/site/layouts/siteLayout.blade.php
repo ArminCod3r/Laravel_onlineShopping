@@ -52,13 +52,20 @@
             <li class="list-inline-item"> 
                 <span class="fa fa-lock"></span>
                 <span>فروشگاه اینترنتی دیجی کالا</span>
-                <span> <a href="/login">وارد شوید</a> </span>
+
+                @if(Auth::check())
+                  <span style="margin-right: 20px"> {{ Auth::user()->username }} </span>
+                @else
+                  <span> <a href="/login">وارد شوید</a> </span>
+                @endif
             </li>
 
-            <li class="list-inline-item">
-              <span class="fa fa-user" ></span>
-              <span> <a href="/regsiter">ثبت نام </a> </span>
-            </li>
+            @if(!Auth::check())
+              <li class="list-inline-item">
+                <span class="fa fa-user" ></span>
+                <span> <a href="/regsiter">ثبت نام </a> </span>
+              </li>
+            @endif
 
             <li class="list-inline-item">
               <span class="fa fa-gift" ></span>
