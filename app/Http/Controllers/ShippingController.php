@@ -475,7 +475,7 @@ class ShippingController extends Controller
                         {
                             $email = Auth::user()->username;
 
-                            Mail::to($email )->send(new OrderMail());
+                            Mail::to($email )->queue(new OrderMail());
 
                             Session::forget('cart');
 
