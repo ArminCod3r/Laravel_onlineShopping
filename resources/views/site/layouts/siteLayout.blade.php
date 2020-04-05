@@ -55,6 +55,13 @@
 
                 @if(Auth::check())
                   <span style="margin-right: 20px"> {{ Auth::user()->username }} </span>
+
+                  <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('frm-logout').submit();">
+                      خروج
+                  </a>    
+                  <form id="frm-logout" action="{{ route('logout') }}" method="POST" style="display: none;">
+                      {{ csrf_field() }}
+                  </form>
                 @else
                   <span> <a href="/login">وارد شوید</a> </span>
                 @endif
