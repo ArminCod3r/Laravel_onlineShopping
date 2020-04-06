@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Category;
 use View;
+use Auth;
+use App\Order;
 
 class ProfileController extends Controller
 {
@@ -23,7 +25,10 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        return view('profile.index');
+        $user_id = Auth::user()->id;
+        $orders  = Order::where(['user_id'=>$user_id])->orderBy('id', 'DESC')->paginate(10);
+
+        return view('profile.index')->with('orders',$orders);
     }
 
     /**
