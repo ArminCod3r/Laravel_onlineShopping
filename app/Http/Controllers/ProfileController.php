@@ -3,9 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Category;
+use View;
 
 class ProfileController extends Controller
 {
+
+    public function __construct()
+    {
+        $categories = Category::all();
+        $categories = json_decode($categories, true);
+
+        View::share('categories', $categories);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +23,7 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        //
+        return view('profile.index');
     }
 
     /**

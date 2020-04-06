@@ -2475,8 +2475,40 @@ background-color: #3490dc;
     font-weight: bold;
 }
 
+.users_profile
+{
+    background-color: white;
+    border-radius: 5px;
+    width: 90%;
+    margin :auto;
+}
 
+.users_profile .right_side ul
+{
+    list-style-type: none;
+    padding-right: 0px !important;
+    padding-top: 10px;
+}
 
+.users_profile .right_side ul li
+{
+    padding: 10px 0px 10px 0px;
+    border-bottom: 1px solid #ebebeb;
+}
+
+.users_profile .right_side ul li:hover
+{    
+    background-color: #c1f1f5;
+    border-radius: 5px;
+}
+
+.users_profile .right_side ul a
+{
+    text-decoration: none;;
+    text-decoration-style: none;
+    color:black;
+    margin-right: 30px;
+}
 
 
 
