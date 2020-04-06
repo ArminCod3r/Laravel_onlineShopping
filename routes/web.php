@@ -198,6 +198,9 @@ Route::middleware(['throttle:60,1'])->group(function(){
 
 		// Products' question
 		Route::resource('question','QuestionController');
+
+		// Profile
+		Route::resource('profile','ProfileController');
 	});
 
 	Route::get("receipt/{order_id?}","ShippingController@receipt");

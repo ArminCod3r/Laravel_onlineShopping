@@ -54,7 +54,9 @@
                 <span>فروشگاه اینترنتی دیجی کالا</span>
 
                 @if(Auth::check())
-                  <span style="margin-right: 20px"> {{ Auth::user()->username }} </span>
+                  <span style="margin-right: 20px">
+                    <a href="{{ url('profile') }}"> {{ Auth::user()->username }} </a>
+                  </span>
 
                   <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('frm-logout').submit();">
                       خروج
