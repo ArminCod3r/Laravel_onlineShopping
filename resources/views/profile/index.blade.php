@@ -75,7 +75,9 @@
 								</td>
 								<td> {{ $order_status[$order->order_step] }} </td>
 								<td>
-									<span class="fa fa-eye"></span>
+									<a href="{{ url('shipping/payment/cash-on-delivery'.'/'.$order->id) }}">
+										<span class="fa fa-eye"></span>
+									</a>
 								</td>
 							</tr>
 						@endforeach
