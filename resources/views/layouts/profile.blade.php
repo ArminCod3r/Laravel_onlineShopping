@@ -24,7 +24,7 @@
 					</li>
 
 					<li>
-						<a href="#"> نقدهای من </a>
+						<a href="{{ url('profile/comments') }}"> نقدهای من </a>
 					</li>
 
 					<li>

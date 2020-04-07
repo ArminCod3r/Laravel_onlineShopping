@@ -200,6 +200,7 @@ Route::middleware(['throttle:60,1'])->group(function(){
 		Route::resource('question','QuestionController');
 
 		// Profile
+		Route::get('profile/comments','ProfileController@comments');
 		Route::resource('profile','ProfileController');
 	});
 

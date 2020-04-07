@@ -7,6 +7,7 @@ use App\Category;
 use View;
 use Auth;
 use App\Order;
+use App\ProductComment;
 
 class ProfileController extends Controller
 {
@@ -29,6 +30,14 @@ class ProfileController extends Controller
         $orders  = Order::where(['user_id'=>$user_id])->orderBy('id', 'DESC')->paginate(10);
 
         return view('profile.index')->with('orders',$orders);
+    }
+
+    public function comments()
+    {
+        $user_id = Auth::user()->id;
+        $comments = ProductComment::where('user_id', $user_id)->with('Product')->get();
+
+        return view('profile.comments')->with('comments',$comments);
     }
 
     /**
