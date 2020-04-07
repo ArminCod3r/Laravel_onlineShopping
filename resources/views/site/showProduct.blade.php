@@ -34,8 +34,8 @@
 						</div>
 
 					@else
-						<div class="otherProductImages">
-							<div onclick="imgToShow('{{ $imgLink }}')">
+						<div class="otherProductImages" onclick="images_in_modal('{{ $imgLink }}')" data-toggle="modal" data-target="#myModal">
+							<div>
 								...
 							</div>
 						</div>
@@ -159,6 +159,50 @@
 
 		</div>
 	</div>
+</div>
+
+<!-- Modal -->
+<div class="products_more_images">
+	<div class="modal fade" id="myModal" role="dialog" style="background-color:transparent !important">
+    <div class="modal-dialog modal-lg">
+    
+      <!-- Modal content-->
+      <div class="modal-content" style="height: 600px;">
+        <div class="modal-header"  style="direction: ltr">
+          <button type="button" class="close" data-dismiss="modal"></button>
+          <h4 class="modal-title"> {{ $product->title }} </h4>
+        </div>
+        <div class="modal-body">
+        	<div class="container-fluid">
+        		<div class="row">
+
+        			<div class="col-sm-9 main_img">
+        				<img id="modal_main_img" src="{{ url('upload').'/'.$product->ProductImage[0]->url }}">
+        			</div>
+
+        			<div class="col-sm-3 list_of_images">
+        				<div class="img_box">
+
+        					@foreach($product->ProductImage as $key=>$image)
+	        						@if($image->tag != 'review')
+	        							<?php
+	        									$img_url = url('upload').'/'.$image->url;
+	        							?>
+	        							<div class="more_img" onclick="more_img_modal('{{$img_url}}')">
+		        							<img src="{{ $img_url }}">
+	        							</div>
+		        					@endif
+	        				@endforeach
+
+        				</div>
+        			</div>
+
+        		</div>
+        	</div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <div class="tabs">
@@ -293,13 +337,10 @@
 @endsection
 
 @section('footer')
-
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="{{ url('js/jscolor.js') }}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script type="text/javascript" src="{{ url('js/jquery.elevateZoom-3.0.8.min.js') }}"></script>
-    
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
 
 
     <script type="text/javascript">
@@ -424,6 +465,16 @@
 		    		}
 			  );
     		
+		}
+
+		images_in_modal = function()
+		{
+			$('#myModal').modal('show');
+		}
+
+		more_img_modal = function(img_url)
+		{
+			document.getElementById('modal_main_img').src = img_url;
 		}
 
 

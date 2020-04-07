@@ -2533,8 +2533,51 @@ background-color: #3490dc;
     text-align : justify;
 }
 
+.products_more_images .container-fluid
+{
+    padding-right : 0px;
+    padding-left  : 0px;
+}
+
+.products_more_images .container-fluid .list_of_images
+{
+    padding-left: 0px;
+}
+
+.products_more_images .container-fluid .main_img
+{
+    text-align: center;
+}
+
+.products_more_images .container-fluid .main_img img
+{
+    height: 70%;
+}
 
 
+.list_of_images
+{
+    height       : 500px;
+    overflow-y   : scroll;
+}
+
+.list_of_images .img_box
+{
+    text-align   : center;
+    border-right : 1px solid #a7a7a7;
+}
+
+.list_of_images .img_box .more_img
+{
+    padding       : 10px 0px 10px 0px;
+    cursor        : pointer;
+    border-bottom : 1px solid #a7a7a7;
+}
+
+.list_of_images .img_box .more_img img
+{
+    width: 50%;
+}
 
 
 
