@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Category;
 use App\ParentProduct;
+use App\Product;
 use App\Filter;
 use App\LinkCatFilter;
 use View;
@@ -253,5 +254,17 @@ class SearchController extends Controller
                                               ]);
 
 
+    }
+
+    public function search_input(Request $request)
+    {
+        $search = $request->get('q');
+
+        $products = Product::where('title', 'like', '%'.$search.'%')
+                            ->orWhere('code', 'like', '%'.$search.'%')
+                            ->with('ProductImage')
+                            ->paginate(10);
+
+        return view('site.search.search_input')->with('products', $products);
     }
 }

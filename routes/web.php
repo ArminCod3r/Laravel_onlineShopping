@@ -187,6 +187,7 @@ Route::middleware(['throttle:60,1'])->group(function(){
 		return [$cat1, $cat2, $cat3, $cat4];
 	});*/
 	Route::get('/search/{cat1?}/{cat2?}/{cat3?}/{cat4?}', 'SearchController@search');
+	Route::get('/search_input', 'SearchController@search_input');
 
 	
 	Route::middleware('auth')->group(function(){

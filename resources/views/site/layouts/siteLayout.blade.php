@@ -109,8 +109,23 @@
               <div class="list-inline-item searching-box">
                 <div class="input-group">
 
-                  <span class="fa fa-search seach-btn"></span>
-                  <input type="text" class="form-control search-input" placeholder=" … جستجو در دیجی‌کالا">
+                  
+                  <form action="{{ url('search_input') }}" method="GET" style="position: relative;">
+
+                    <input type="text" name="q" id="q"
+                           class="form-control search-input"
+                           @if(app('request')->input('q'))
+                              value="{{ app('request')->input('q') }}"
+                           @else
+                              placeholder=" … جستجو در دیجی‌کالا"
+                           @endif
+                           >
+
+                    <button type="submit" value="" class="btn" style="padding: 0px !important; margin:0px !important; position: absolute;left: -38px;top: 0px;">
+                      <i class="fa fa-search seach-btn"></i>
+                    </button>
+
+                  </form>
 
                 </div>
               </div>
