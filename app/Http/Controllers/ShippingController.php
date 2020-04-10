@@ -18,10 +18,12 @@ use App\Category;
 use App\Lib\Barcode;
 use Mail;
 use App\Mail\OrderMail;
+use App\Lib\zarinpal;
 
 class ShippingController extends Controller
 {
     private $categories = array();
+    private $amount;
 
     public function __construct()
     {
@@ -464,7 +466,24 @@ class ShippingController extends Controller
                 switch(true)
                 {
                     case (int)$payment_type == 1:
-                        return redirect()->back()->with('error', 'در دست ساخت');
+
+                        $prices = Order::price_details();
+                        $total_prices=0;
+
+                        foreach ($prices as $key => $price)
+                            $total_prices += $price;
+
+                        $this->amount = 1100;
+                        $authority = zarinpal::pay($this->amount);
+                        if ($authority)
+                        {
+                            $order = new Order;
+                            $result = $order->order_insert(1, $authority);
+
+                            return redirect('https://www.zarinpal.com/pg/StartPay/'.$authority);
+                        }
+                        
+                        return $total_prices; //redirect()->back()->with('error', 'در دست ساخت');
                         break;
 
                     case (int)$payment_type == 2:
@@ -607,6 +626,98 @@ class ShippingController extends Controller
         header('Content-type: image/gif');
         imagegif($im);
         imagedestroy($im);
+    }
+
+    public function verify(Request $request)
+    {
+
+        $MerchantID = zarinpal::get_MerchantID();
+        $Amount     = $request->get('amount'); // Toman
+        $Authority  = $request->get('Authority');
+        $status     = $request->get('Status');
+
+
+        if ( $status == 'OK' )
+        {
+            $client = new \SoapClient('https://www.zarinpal.com/pg/services/WebGate/wsdl', ['encoding' => 'UTF-8']);
+
+            $result = $client->PaymentVerification(
+                [
+                    'MerchantID' => $MerchantID,
+                    'Authority'  => $Authority,
+                    'Amount'     => $Amount,
+                ]
+            );
+
+            if ($result->Status == 100) 
+            {
+                // Insert into the database 
+                $refID = $result->RefID;
+
+                $order  = new Order();
+                $result = $order->order_insert(1, $Authority, $refID);
+
+                if(array_key_exists('id', $result))
+                {
+                    // Email to the user
+                    $email = Auth::user()->username;
+                    Mail::to($email )->queue(new OrderMail());
+
+                    // Empty Cart
+                    Session::forget('cart');
+
+                    // redirect to the URL(METHOD)
+                    $order_id = $result['id'];
+                    $url = url('/shipping/payment/online_payment')."/".$order_id."/".$refID;
+                    return redirect($url);
+                }
+                else
+                {
+                    return redirect()->back()->with('error', 'خطا به وجو آمده');
+                }
+            }
+            
+            else
+                return $result->Status;
+            
+        }
+
+        else
+            return 'Transaction canceled by user';
+    }
+
+
+    public function online_payment($order_id, $refID)
+    {
+        $order = Order::where([
+                                'id'      => $order_id,
+                                'user_id' => Auth::user()->id,
+                              ])->firstOrFail();
+
+        $addr       = $order->address_text;
+        $addr_array = json_decode($addr, true);
+
+        // Checking if user-inputed-address still exists
+        $if_addr_exists = UsersAddress::where('id',$order->address_id)->get();
+        $addr_exists    = false;
+
+        if($if_addr_exists)
+            $addr_exists = true;
+
+        // get bought-items details
+        $bought_items = OrderRow::where('order_id',$order_id)
+                                ->with("product")
+                                ->with("color")
+                                ->with("image")
+                                ->get();
+
+        return view("site/shipping/online_payment")->with([
+                                                             'order'       => $order,
+                                                             'users_addr'  => $addr_array,
+                                                             'addr_exists' => $addr_exists,
+                                                             'bought_items'=> $bought_items,
+                                                             'refID'       => $refID,
+                                                            ]);
     }
 
 
