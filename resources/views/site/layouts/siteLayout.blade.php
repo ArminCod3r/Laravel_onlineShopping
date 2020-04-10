@@ -72,7 +72,7 @@
             @if(!Auth::check())
               <li class="list-inline-item">
                 <span class="fa fa-user" ></span>
-                <span> <a href="/regsiter">ثبت نام </a> </span>
+                <span> <a href="/register">ثبت نام </a> </span>
               </li>
             @endif
 
