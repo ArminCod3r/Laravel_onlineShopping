@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
-use Category;
+use App\Category;
 use View;
 use DB;
 use Session;
@@ -46,7 +46,7 @@ class RegisterController extends Controller
     {
         $this->middleware('guest');
 
-        $categories = self::categoryTree();
+        $categories = Category::all();
         View::share('categories', $categories);
     }
 
