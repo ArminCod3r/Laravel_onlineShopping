@@ -54,4 +54,4 @@ admin panel/orders list/order manamgent:
 
 ![alt text](https://github.com/ArminCod3r/Laravel_onlineShopping/blob/master/pictures/11-admin%20panel-orders%20list.png?raw=true)
 
-
+![alt text](https://github.com/ArminCod3r/Laravel_onlineShopping/blob/master/pictures/11-admin%20panel-order%20managment.png?raw=true)
