@@ -2,7 +2,7 @@
 
 #### Introduction
 
-This is work-in-progress laravelCMS (based on the digikala, the most famouse e-commerce company in Iran). Every one can use it and feel free to change anything.
+This is work-in-progress laravelCMS (based on the digikala, the most famous e-commerce company in Iran). Every one can use it and feel free to change anything.
 Back me up if you like it.
 
 #### Database
@@ -54,5 +54,4 @@ admin panel/orders list/order manamgent:
 
 ![alt text](https://github.com/ArminCod3r/Laravel_onlineShopping/blob/master/pictures/11-admin%20panel-orders%20list.png?raw=true)
 
-![alt text](https://github.com/ArminCod3r/Laravel_onlineShopping/blob/master/pictures/11-admin%20panel-order%20managment.png?raw=true)
 
